@@ -1,0 +1,198 @@
+﻿
+> ktrip-os@0.1.0 build
+> next build
+
+??Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+node.exe : 
+위치 줄:1 문자:1
++ & "C:\Program Files\nodejs/
+node.exe" "C:\Program Files\n
+odejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (:String  
+  ) [], RemoteException
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+> Build error occurred
+Error: Turbopack build failed
+ with 3 errors:
+./src/app/navigation/page.tsx
+:7:1
+Module not found: Can't resol
+ve '../../../lib/i18n/client'
+[0m [90m  5 |[39m [36mimp
+ort[39m styles [36mfrom[39
+m [32m"./navigation.module.c
+ss"[39m[33m;[39m
+ [90m  6 |[39m [36mimport
+[39m { useRouter } [36mfrom
+[39m [32m"next/navigation"[
+39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 
+|[39m [36mimport[39m [32m
+"../../../lib/i18n/client"[3
+9m[33m;[39m
+ [90m    |[39m [31m[1m^[
+22m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[39
+m
+ [90m  8 |[39m [36mimport
+[39m { useTranslation } [36m
+from[39m [32m"react-i18next
+"[39m[33m;[39m
+ [90m  9 |[39m
+ [90m 10 |[39m [36mimport
+[39m type { [33mComponentTyp
+e[39m } [36mfrom[39m [32m
+"react"[39m[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/navigation/page
+.tsx [Client Component Browse
+r]
+    ./src/app/navigation/page
+.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/navigation/page
+.tsx [Client Component SSR]
+    ./src/app/navigation/page
+.tsx [Server Component]
+
+https://nextjs.org/docs/messa
+ges/module-not-found
+
+
+./src/app/navigation/page.tsx
+Module not found: Can't resol
+ve '../../components/Map'
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/navigation/page
+.tsx [Client Component Browse
+r]
+    ./src/app/navigation/page
+.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/navigation/page
+.tsx [Client Component SSR]
+    ./src/app/navigation/page
+.tsx [Server Component]
+
+https://nextjs.org/docs/messa
+ges/module-not-found
+
+
+./src/app/navigation/page.tsx
+:21:11
+Module not found: Can't resol
+ve '../../components/Map'
+[0m [90m 19 |[39m
+ [90m 20 |[39m [36mconst[
+39m [33mMap[39m [33m=[39m
+ dynamic[33m<[39m[33mMapPr
+ops[39m[33m>[39m(
+[31m[1m>[22m[39m[90m 21 
+|[39m     () [33m=>[39m [
+36mimport[39m([32m"../../co
+mponents/Map"[39m) [36mas[
+39m [33mPromise[39m[33m<[
+39m{ [36mdefault[39m[33m:
+[39m [33mComponentType[39m
+[33m<[39m[33mMapProps[39m
+[33m>[39m }[33m>[39m[33m,
+[39m
+ [90m    |[39m           [
+31m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m
+ [90m 22 |[39m     { ssr[3
+3m:[39m [36mfalse[39m }
+ [90m 23 |[39m )[33m;[39m
+ [90m 24 |[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/navigation/page
+.tsx [Client Component Browse
+r]
+    ./src/app/navigation/page
+.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/navigation/page
+.tsx [Client Component SSR]
+    ./src/app/navigation/page
+.tsx [Server Component]
+
+https://nextjs.org/docs/messa
+ges/module-not-found
+
+
+    at <unknown> (./src/app/n
+avigation/page.tsx:7:1)
+    at <unknown> (https://nex
+tjs.org/docs/messages/module-
+not-found)
+    at <unknown> (https://nex
+tjs.org/docs/messages/module-
+not-found)
+    at <unknown> (./src/app/n
+avigation/page.tsx:21:11)
+    at <unknown> (https://nex
+tjs.org/docs/messages/module-
+not-found)

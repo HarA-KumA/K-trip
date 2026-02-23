@@ -1,0 +1,45 @@
+{
+    "common": {
+        "welcome": "ยินดีต้อนรับนักเดินทาง",
+        "greeting": "อรุณสวัสดิ์",
+        "login": "เข้าสู่ระบบ",
+        "today": "วันนี้",
+        "move": "เดินทาง",
+        "book": "จอง",
+        "chat": "แชท",
+        "my": "ของฉัน",
+        "current_operation": "กำลังดำเนินการ",
+        "live": "สด",
+        "recommended": "แนะนำใกล้เคียง",
+        "based_on_location": "ตามตำแหน่งของคุณ",
+        "start_nav": "เริ่มนำทาง",
+        "delay_10m": "ล่าช้า +10 นาที",
+        "confirmed": "ยืนยันแล้ว",
+        "payment_completed": "ชำระเงินสำเร็จ",
+        "weather_clear": "แจ่มใส",
+        "back": "ย้อนกลับ"
+    },
+    "transport": {
+        "moving_to": "กำลังไปที่ {{dest}}",
+        "remaining": "เหลือ",
+        "line_2_direction": "สาย 2 • มุ่งหน้า City Hall",
+        "departed": "ออกเดินทางแล้ว",
+        "passing_now": "กำลังผ่าน...",
+        "current": "ปัจจุบัน",
+        "get_off_at": "ลงที่",
+        "exit_3": "ทางออก 3",
+        "getting_off_here": "ฉันลงที่นี่",
+        "stations": {
+            "samseong": "ซัมซอง",
+            "seolleung": "ซอลลึง",
+            "yeoksam": "ยอกซัม",
+            "gangnam": "คังนัม",
+            "gyodae": "เคียวแด",
+            "seocho": "ซอโช",
+            "seongsu": "ซองซู"
+        }
+    },
+    "home": {
+        "title_korea": "เกาหลีวันนี้"
+    }
+}

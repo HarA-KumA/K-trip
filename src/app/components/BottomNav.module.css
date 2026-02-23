@@ -1,0 +1,68 @@
+/* Bottom Navigation */
+.navBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 480px;
+    margin: 0 auto;
+    height: 80px;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 20px;
+    z-index: 100;
+}
+
+.navItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    color: var(--gray-500);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    width: 60px;
+}
+
+.navItem.active {
+    color: var(--foreground);
+    transform: translateY(-4px);
+}
+
+.navItem.active .navIcon {
+    text-shadow: 0 0 12px var(--primary-glow);
+    filter: drop-shadow(0 0 5px var(--primary));
+}
+
+.navIcon {
+    font-size: 1.4rem;
+    transition: transform 0.2s;
+}
+
+.navLabel {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.navItem.active .navLabel {
+    opacity: 1;
+}
+
+.indicator {
+    position: absolute;
+    top: -12px;
+    width: 20px;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--primary);
+}

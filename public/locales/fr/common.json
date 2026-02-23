@@ -1,0 +1,49 @@
+{
+    "common": {
+        "welcome": "Bienvenue, Voyageur.",
+        "greeting": "Bonjour",
+        "login": "Connexion",
+        "today": "Aujourd'hui",
+        "move": "Déplacer",
+        "book": "Réserver",
+        "chat": "Discuter",
+        "my": "Mon Info",
+        "current_operation": "Opération Actuelle",
+        "live": "EN DIRECT",
+        "recommended": "Recommandé à Proximité",
+        "based_on_location": "Basé sur votre position",
+        "start_nav": "Lancer Navigation",
+        "delay_10m": "Retard +10m",
+        "confirmed": "Confirmé",
+        "payment_completed": "Paiement Terminé",
+        "weather_clear": "Clair",
+        "back": "Retour"
+    },
+    "transport": {
+        "moving_to": "En route vers {{dest}}",
+        "remaining": "Restant",
+        "line_2_direction": "Ligne 2 • Direction Hôtel de Ville",
+        "departed": "parti",
+        "passing_now": "Passe maintenant...",
+        "current": "Actuel",
+        "get_off_at": "Descendre à",
+        "exit_3": "Sortie 3",
+        "getting_off_here": "Je descends ici",
+        "stations": {
+            "samseong": "Samseong",
+            "seolleung": "Seolleung",
+            "yeoksam": "Yeoksam",
+            "gangnam": "Gangnam",
+            "gyodae": "Gyodae",
+            "seocho": "Seocho",
+            "seongsu": "Seongsu"
+        }
+    },
+    "home": {
+        "title_korea": "Aujourd'hui en Corée",
+        "move_gangnam": "Aller à Gangnam",
+        "subway_line_2": "Métro Ligne 2 (Vert) • 25min",
+        "reservation_hair": "Jenny House Cheongdam",
+        "dinner_bbq": "Restaurant Porc Doré"
+    }
+}

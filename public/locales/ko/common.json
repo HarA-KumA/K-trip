@@ -1,0 +1,45 @@
+{
+  "common": {
+    "welcome": "환영합니다, 여행자님.",
+    "greeting": "좋은 아침이에요",
+    "login": "로그인",
+    "today": "오늘",
+    "move": "이동",
+    "book": "예약",
+    "chat": "문의",
+    "my": "MY",
+    "current_operation": "현재 운영 중",
+    "live": "라이브",
+    "recommended": "주변 추천",
+    "based_on_location": "현재 위치 기반",
+    "start_nav": "길찾기 시작",
+    "delay_10m": "10분 지연",
+    "confirmed": "예약 확정",
+    "payment_completed": "결제 완료",
+    "weather_clear": "맑음",
+    "back": "뒤로"
+  },
+  "transport": {
+    "moving_to": "{{dest}}(으)로 이동 중",
+    "remaining": "남음",
+    "line_2_direction": "2호선 • 시청 방면",
+    "departed": "출발함",
+    "passing_now": "지금 지나는 중...",
+    "current": "현재",
+    "get_off_at": "하차 문:",
+    "exit_3": "3번 출구",
+    "getting_off_here": "여기서 내려요",
+    "stations": {
+      "samseong": "삼성",
+      "seolleung": "선릉",
+      "yeoksam": "역삼",
+      "gangnam": "강남",
+      "gyodae": "교대",
+      "seocho": "서초",
+      "seongsu": "성수"
+    }
+  },
+  "home": {
+    "title_korea": "오늘의 한국"
+  }
+}

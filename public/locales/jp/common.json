@@ -1,0 +1,45 @@
+{
+    "common": {
+        "welcome": "ようこそ、旅行者様。",
+        "greeting": "おはようございます",
+        "login": "ログイン",
+        "today": "今日",
+        "move": "移動",
+        "book": "予約",
+        "chat": "相談",
+        "my": "MY",
+        "current_operation": "現在のスケジュール",
+        "live": "LIVE",
+        "recommended": "周辺のおすすめ",
+        "based_on_location": "現在地に基づく",
+        "start_nav": "ルート案内開始",
+        "delay_10m": "10分遅らせる",
+        "confirmed": "予約確定",
+        "payment_completed": "支払い完了",
+        "weather_clear": "晴れ",
+        "back": "戻る"
+    },
+    "transport": {
+        "moving_to": "{{dest}}へ移動中",
+        "remaining": "残り",
+        "line_2_direction": "2号線 • 市庁方面",
+        "departed": "出発済み",
+        "passing_now": "通過中...",
+        "current": "現在",
+        "get_off_at": "下車出口:",
+        "exit_3": "3番出口",
+        "getting_off_here": "ここで降ります",
+        "stations": {
+            "samseong": "サムソン",
+            "seolleung": "ソンルン",
+            "yeoksam": "ヨクサム",
+            "gangnam": "カンナム",
+            "gyodae": "キョデ",
+            "seocho": "ソチョ",
+            "seongsu": "ソンス"
+        }
+    },
+    "home": {
+        "title_korea": "今日の韓国"
+    }
+}

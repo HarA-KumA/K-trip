@@ -1,0 +1,327 @@
+/* home.module.css — redesigned */
+
+.main {
+    min-height: 100vh;
+    background: #080a14;
+    color: #fff;
+    padding: 0 20px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ── Ambient Orbs ── */
+.orbPurple {
+    position: fixed;
+    top: -120px;
+    left: -80px;
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.35) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.orbBlue {
+    position: fixed;
+    bottom: 100px;
+    right: -100px;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Hero ── */
+.hero {
+    position: relative;
+    z-index: 1;
+    padding: 60px 0 24px;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 20px;
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.4);
+    color: #a78bfa;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+}
+
+.heroTitle {
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin: 0 0 10px;
+    letter-spacing: -0.02em;
+}
+
+.heroAccent {
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.heroSub {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 0.04em;
+}
+
+/* ── Value Props ── */
+.valueSection {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0 0 24px;
+}
+
+.valuePill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    cursor: pointer;
+    transition: all 0.2s;
+    opacity: 0.5;
+}
+
+.valuePillActive {
+    background: rgba(124, 58, 237, 0.12);
+    border-color: rgba(124, 58, 237, 0.35);
+    opacity: 1;
+}
+
+.valueIcon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.valueTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.valueDesc {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* ── Input Section ── */
+.inputSection {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.inputLabel {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+}
+
+.inputWrap {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 0 14px;
+    gap: 8px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+}
+
+.inputWrap:focus-within {
+    border-color: rgba(124, 58, 237, 0.7);
+}
+
+.inputIcon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.inputField {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 14px 0;
+    font-weight: 500;
+}
+
+.inputField::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.inputClear {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+/* Days chips */
+.daysRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.daysLabel {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.daysChips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.dayChip {
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.dayChipActive {
+    background: rgba(124, 58, 237, 0.25);
+    border-color: rgba(124, 58, 237, 0.6);
+    color: #c4b5fd;
+}
+
+/* CTA Button */
+.ctaBtn {
+    width: 100%;
+    padding: 17px 24px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    letter-spacing: -0.01em;
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.4);
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.ctaBtn:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+}
+
+.ctaArrow {
+    font-size: 18px;
+    transition: transform 0.2s;
+}
+
+.ctaBtn:hover .ctaArrow {
+    transform: translateX(4px);
+}
+
+/* ── Preset Grid ── */
+.presetSection {
+    position: relative;
+    z-index: 1;
+}
+
+.sectionLabel {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+}
+
+.presetGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.presetCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 18px 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s, border-color 0.15s, transform 0.12s;
+}
+
+.presetCard:active {
+    transform: scale(0.97);
+}
+
+.presetCard:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.presetIcon {
+    font-size: 26px;
+}
+
+.presetLabel {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.presetDays {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 2px 8px;
+    border-radius: 10px;
+}

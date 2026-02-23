@@ -1,0 +1,45 @@
+{
+    "common": {
+        "welcome": "Добро пожаловать, Путешественник.",
+        "greeting": "Доброе утро",
+        "login": "Войти",
+        "today": "Сегодня",
+        "move": "Маршрут",
+        "book": "Бронировать",
+        "chat": "Чат",
+        "my": "Мой",
+        "current_operation": "Работает",
+        "live": "ПРЯМОЙ ЭФИР",
+        "recommended": "Рядом с вами",
+        "based_on_location": "На основе вашего местоположения",
+        "start_nav": "Начать навигацию",
+        "delay_10m": "Задержка +10 мин",
+        "confirmed": "Подтверждено",
+        "payment_completed": "Оплата завершена",
+        "weather_clear": "Ясно",
+        "back": "Назад"
+    },
+    "transport": {
+        "moving_to": "Едем к {{dest}}",
+        "remaining": "Осталось",
+        "line_2_direction": "Линия 2 • В сторону City Hall",
+        "departed": "отправился",
+        "passing_now": "Сейчас проезжает...",
+        "current": "Текущая",
+        "get_off_at": "Выйти на",
+        "exit_3": "Выход 3",
+        "getting_off_here": "Я выхожу здесь",
+        "stations": {
+            "samseong": "Самсон",
+            "seolleung": "Соллын",
+            "yeoksam": "Ёксам",
+            "gangnam": "Каннам",
+            "gyodae": "Кёде",
+            "seocho": "Сочо",
+            "seongsu": "Сонсу"
+        }
+    },
+    "home": {
+        "title_korea": "Корея сегодня"
+    }
+}

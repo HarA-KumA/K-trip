@@ -1,0 +1,49 @@
+{
+    "common": {
+        "welcome": "Willkommen, Reisender.",
+        "greeting": "Guten Morgen",
+        "login": "Anmelden",
+        "today": "Heute",
+        "move": "Bewegen",
+        "book": "Buchen",
+        "chat": "Chat",
+        "my": "Mein Info",
+        "current_operation": "Aktueller Betrieb",
+        "live": "LIVE",
+        "recommended": "In der Nähe Empfohlen",
+        "based_on_location": "Basierend auf Ihrem Standort",
+        "start_nav": "Navigation Starten",
+        "delay_10m": "Verzögerung +10m",
+        "confirmed": "Bestätigt",
+        "payment_completed": "Zahlung Abgeschlossen",
+        "weather_clear": "Klar",
+        "back": "Zurück"
+    },
+    "transport": {
+        "moving_to": "Fahrt nach {{dest}}",
+        "remaining": "Verbleibend",
+        "line_2_direction": "Linie 2 • Richtung Rathaus",
+        "departed": "abgefahren",
+        "passing_now": "Fährt jetzt vorbei...",
+        "current": "Aktuell",
+        "get_off_at": "Aussteigen bei",
+        "exit_3": "Ausgang 3",
+        "getting_off_here": "Ich steige hier aus",
+        "stations": {
+            "samseong": "Samseong",
+            "seolleung": "Seolleung",
+            "yeoksam": "Yeoksam",
+            "gangnam": "Gangnam",
+            "gyodae": "Gyodae",
+            "seocho": "Seocho",
+            "seongsu": "Seongsu"
+        }
+    },
+    "home": {
+        "title_korea": "Heute in Korea",
+        "move_gangnam": "Nach Gangnam Fahren",
+        "subway_line_2": "U-Bahn Linie 2 (Grün) • 25min",
+        "reservation_hair": "Jenny House Cheongdam",
+        "dinner_bbq": "Goldenes Schweine Restaurant"
+    }
+}

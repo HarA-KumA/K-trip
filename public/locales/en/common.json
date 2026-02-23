@@ -1,0 +1,45 @@
+{
+    "common": {
+        "welcome": "Welcome, Traveler.",
+        "greeting": "Good Morning",
+        "login": "Login",
+        "today": "Today",
+        "move": "Move",
+        "book": "Book",
+        "chat": "Chat",
+        "my": "My",
+        "current_operation": "Current Operation",
+        "live": "LIVE",
+        "recommended": "Recommended Nearby",
+        "based_on_location": "Based on your location",
+        "start_nav": "Start Navigation",
+        "delay_10m": "Delay +10m",
+        "confirmed": "Confirmed",
+        "payment_completed": "Payment Completed",
+        "weather_clear": "Clear",
+        "back": "Back"
+    },
+    "transport": {
+        "moving_to": "Moving to {{dest}}",
+        "remaining": "Remaining",
+        "line_2_direction": "Line 2 • Headed to City Hall direction",
+        "departed": "departed",
+        "passing_now": "Passing now...",
+        "current": "Current",
+        "get_off_at": "Get off at",
+        "exit_3": "Exit 3",
+        "getting_off_here": "I'm Getting Off Here",
+        "stations": {
+            "samseong": "Samseong",
+            "seolleung": "Seolleung",
+            "yeoksam": "Yeoksam",
+            "gangnam": "Gangnam",
+            "gyodae": "Gyodae",
+            "seocho": "Seocho",
+            "seongsu": "Seongsu"
+        }
+    },
+    "home": {
+        "title_korea": "Today in Korea"
+    }
+}

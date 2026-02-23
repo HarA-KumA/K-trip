@@ -1,0 +1,45 @@
+{
+    "common": {
+        "welcome": "Chào mừng, Lữ khách.",
+        "greeting": "Chào buổi sáng",
+        "login": "Đăng nhập",
+        "today": "Hôm nay",
+        "move": "Di chuyển",
+        "book": "Đặt chỗ",
+        "chat": "Chat",
+        "my": "Của tôi",
+        "current_operation": "Đang hoạt động",
+        "live": "Trực tiếp",
+        "recommended": "Gần đây",
+        "based_on_location": "Dựa trên vị trí của bạn",
+        "start_nav": "Bắt đầu dẫn đường",
+        "delay_10m": "Trễ +10 phút",
+        "confirmed": "Đã xác nhận",
+        "payment_completed": "Thanh toán thành công",
+        "weather_clear": "Trời quang",
+        "back": "Quay lại"
+    },
+    "transport": {
+        "moving_to": "Đang đến {{dest}}",
+        "remaining": "Còn lại",
+        "line_2_direction": "Tuyến 2 • Hướng City Hall",
+        "departed": "đã khởi hành",
+        "passing_now": "Đang đi qua...",
+        "current": "Hiện tại",
+        "get_off_at": "Xuống tại",
+        "exit_3": "Cửa 3",
+        "getting_off_here": "Tôi xuống ở đây",
+        "stations": {
+            "samseong": "Samseong",
+            "seolleung": "Seolleung",
+            "yeoksam": "Yeoksam",
+            "gangnam": "Gangnam",
+            "gyodae": "Gyodae",
+            "seocho": "Seocho",
+            "seongsu": "Seongsu"
+        }
+    },
+    "home": {
+        "title_korea": "Hàn Quốc hôm nay"
+    }
+}

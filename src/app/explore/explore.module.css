@@ -1,0 +1,402 @@
+/* Global Vars (assuming globals.css defines --primary, --text-color, etc.) */
+.container {
+    padding-bottom: 80px; /* Space for bottom nav */
+    background: #000;
+    min-height: 100vh;
+    color: #fff;
+}
+
+/* Header */
+.stickyHeader {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px;
+}
+
+.headerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.cityPill {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cityPill:active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dropdownArrow {
+    font-size: 10px;
+    color: #aaa;
+}
+
+.searchContainer {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.searchWrapper {
+    flex: 1;
+    position: relative;
+    background: rgba(255, 255, 255, 0.08); /* slightly lighter for input bg */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+}
+
+.searchIcon {
+    margin-right: 8px;
+    opacity: 0.5;
+}
+
+.searchInput {
+    background: transparent;
+    border: none;
+    color: #fff;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    outline: none;
+}
+
+.searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.filterBtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08); /* Consistent with search bar */
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.filterBadge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #ff4d4d; /* Red badge */
+    color: white;
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Category Tabs */
+.categoryScroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    /* Hide scrollbar */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.categoryScroll::-webkit-scrollbar {
+    display: none;
+}
+
+.categoryChip {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 13px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #ccc;
+}
+
+.categoryChip.active {
+    background: #fff;
+    color: #000;
+    font-weight: 600;
+    border-color: #fff;
+}
+
+/* Modals & Sheets */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Bottom sheet default */
+}
+
+/* For center modal */
+.modalContent {
+    background: #1e1e1e;
+    width: 80%;
+    max-width: 320px;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: auto; /* Push to center vertically if flex-end */
+    margin-top: auto;
+    border: 1px solid #333;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+}
+
+.modalTitle {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    text-align: center;
+}
+
+.cityGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.cityOption {
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    background: #2a2a2a;
+    color: #fff;
+    cursor: pointer;
+}
+
+.cityOption.selected {
+    border-color: var(--primary, #9d4edd); /* Fallback purple */
+    background: rgba(157, 78, 221, 0.2);
+}
+
+/* Bottom Sheet */
+.bottomSheet {
+    background: #1e1e1e;
+    width: 100%;
+    max-width: 600px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding: 24px 20px 40px 20px; /* Extra bottom padding */
+    max-height: 80vh;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.sheetHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.sheetContent {
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.sheetSubTitle {
+    font-size: 16px;
+    margin-bottom: 16px;
+    color: #aaa;
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.dayList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dayOption {
+    padding: 16px;
+    border-radius: 12px;
+    background: #2a2a2a;
+    border: 1px solid #333;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dayOption:active {
+    background: #333;
+}
+
+.dayIcon {
+    font-size: 20px;
+}
+
+/* Service Card */
+.card {
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+}
+
+.cardThumbnail {
+    height: 160px;
+    background-color: #333;
+    position: relative;
+    padding: 12px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.eventOverlay {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.saveBtn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.saveBtn.saved {
+    color: #ff4d4d;
+}
+
+.cardContent {
+    padding: 16px;
+}
+
+.cardTitle {
+    font-size: 18px;
+    margin: 0 0 4px 0;
+    font-weight: 700;
+}
+
+.cardMeta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 12px;
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.badge {
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    font-size: 11px;
+    color: #ddd;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.veganBadge {
+    background: rgba(0, 255, 0, 0.1);
+    color: #cfc;
+    border-color: rgba(0, 255, 0, 0.2);
+}
+
+.foodTags, .festivalInfo, .beautyInfo, .attractionInfo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 8px;
+}
+
+.ingredientTag {
+    color: #aaa;
+}
+
+.cardActions {
+    padding: 0 16px 16px 16px;
+}
+
+.addToPlanBtn {
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    color: #000;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+    transition: opacity 0.2s;
+}
+
+.addToPlanBtn:active {
+    opacity: 0.8;
+}
+
+/* Animation */
+.slideUp {
+    animation: slideUp 0.3s ease-out;
+}

@@ -1,0 +1,49 @@
+{
+    "common": {
+        "welcome": "Bienvenido, Viajero.",
+        "greeting": "Buenos días",
+        "login": "Entrar",
+        "today": "Hoy",
+        "move": "Mover",
+        "book": "Reservar",
+        "chat": "Chat",
+        "my": "Mi Info",
+        "current_operation": "Operación Actual",
+        "live": "EN VIVO",
+        "recommended": "Recomendado Cerca",
+        "based_on_location": "Basado en tu ubicación",
+        "start_nav": "Iniciar Navegación",
+        "delay_10m": "Retraso +10m",
+        "confirmed": "Confirmado",
+        "payment_completed": "Pago Completado",
+        "weather_clear": "Despejado",
+        "back": "Atrás"
+    },
+    "transport": {
+        "moving_to": "Yendo a {{dest}}",
+        "remaining": "Restante",
+        "line_2_direction": "Línea 2 • Dirección Ayuntamiento",
+        "departed": "salió",
+        "passing_now": "Pasando ahora...",
+        "current": "Actual",
+        "get_off_at": "Bajar en",
+        "exit_3": "Salida 3",
+        "getting_off_here": "Me bajo aquí",
+        "stations": {
+            "samseong": "Samseong",
+            "seolleung": "Seolleung",
+            "yeoksam": "Yeoksam",
+            "gangnam": "Gangnam",
+            "gyodae": "Gyodae",
+            "seocho": "Seocho",
+            "seongsu": "Seongsu"
+        }
+    },
+    "home": {
+        "title_korea": "Hoy en Corea",
+        "move_gangnam": "Ir a Gangnam",
+        "subway_line_2": "Línea 2 del Metro (Verde) • 25min",
+        "reservation_hair": "Jenny House Cheongdam",
+        "dinner_bbq": "Restaurante Cerdo Dorado"
+    }
+}

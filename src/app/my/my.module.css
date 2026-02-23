@@ -1,0 +1,137 @@
+/* My Page (Passport Style) */
+.container {
+    padding: 24px;
+    background: var(--background);
+    padding-bottom: 100px;
+    min-height: 100vh;
+}
+
+.profileSection {
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+    padding-top: 20px;
+}
+
+.avatarContainer {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 16px;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid var(--primary);
+    overflow: hidden;
+    background: #222;
+}
+
+.levelBadge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--primary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.trustScore {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--secondary);
+    margin-top: 8px;
+}
+
+/* Passport Stamps Section */
+.passportGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.stamp {
+    aspect-ratio: 1;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--gray-500);
+}
+
+.stamp.collected {
+    background: rgba(60, 180, 74, 0.1);
+    border: 1px solid var(--success);
+    color: var(--success);
+}
+
+/* Booking Ticket */
+.ticket {
+    background: white;
+    color: black;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    /* Ticket perforation effect */
+    mask-image: radial-gradient(circle at 0 70%, transparent 10px, black 11px),
+        radial-gradient(circle at 100% 70%, transparent 10px, black 11px);
+    -webkit-mask-image: radial-gradient(circle at 0 70%, transparent 10px, black 11px),
+        radial-gradient(circle at 100% 70%, transparent 10px, black 11px);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+}
+
+.ticketHeader {
+    padding: 16px;
+    background: #f5f5f5;
+    border-bottom: 1px dashed #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticketBody {
+    padding: 16px;
+}
+
+.qrCode {
+    background: black;
+    width: 60px;
+    height: 60px;
+    margin-left: auto;
+    /* Mock QR pattern */
+    background-image: repeating-linear-gradient(45deg, #000 0, #000 2px, #fff 0, #fff 4px);
+}
+
+.statusLabel {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #e0e0e0;
+    color: #555;
+}
+
+.statusLabel.confirmed {
+    background: #d1fae5;
+    color: #065f46;
+}

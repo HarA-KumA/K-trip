@@ -1,0 +1,45 @@
+{
+    "common": {
+        "welcome": "Selamat Datang, Pelancong.",
+        "greeting": "Selamat Pagi",
+        "login": "Log Masuk",
+        "today": "Hari Ini",
+        "move": "Pergi",
+        "book": "Tempah",
+        "chat": "Sembang",
+        "my": "Saya",
+        "current_operation": "Sedang Beroperasi",
+        "live": "LANGSUNG",
+        "recommended": "Cadangan Berdekatan",
+        "based_on_location": "Berdasarkan lokasi anda",
+        "start_nav": "Mulakan Navigasi",
+        "delay_10m": "Lewat +10 min",
+        "confirmed": "Disahkan",
+        "payment_completed": "Pembayaran Selesai",
+        "weather_clear": "Cerah",
+        "back": "Kembali"
+    },
+    "transport": {
+        "moving_to": "Menuju {{dest}}",
+        "remaining": "Berbaki",
+        "line_2_direction": "Laluan 2 • Hala City Hall",
+        "departed": "telah bertolak",
+        "passing_now": "Sedang melalui...",
+        "current": "Semasa",
+        "get_off_at": "Turun di",
+        "exit_3": "Pintu keluar 3",
+        "getting_off_here": "Saya turun di sini",
+        "stations": {
+            "samseong": "Samseong",
+            "seolleung": "Seolleung",
+            "yeoksam": "Yeoksam",
+            "gangnam": "Gangnam",
+            "gyodae": "Gyodae",
+            "seocho": "Seocho",
+            "seongsu": "Seongsu"
+        }
+    },
+    "home": {
+        "title_korea": "Korea Hari Ini"
+    }
+}

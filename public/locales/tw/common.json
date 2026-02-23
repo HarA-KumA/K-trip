@@ -1,0 +1,49 @@
+{
+    "common": {
+        "welcome": "歡迎，旅行者。",
+        "greeting": "早安",
+        "login": "登入",
+        "today": "今天",
+        "move": "移動",
+        "book": "預訂",
+        "chat": "諮詢",
+        "my": "我的",
+        "current_operation": "當前行程",
+        "live": "直播",
+        "recommended": "周邊推薦",
+        "based_on_location": "基於當前位置",
+        "start_nav": "開始導航",
+        "delay_10m": "延遲10分鐘",
+        "confirmed": "已確認",
+        "payment_completed": "付款完成",
+        "weather_clear": "晴朗",
+        "back": "返回"
+    },
+    "transport": {
+        "moving_to": "前往 {{dest}}",
+        "remaining": "剩餘",
+        "line_2_direction": "2號線 • 市政廳方向",
+        "departed": "已出發",
+        "passing_now": "正在經過...",
+        "current": "目前",
+        "get_off_at": "下車出口:",
+        "exit_3": "3號出口",
+        "getting_off_here": "我在這裡下車",
+        "stations": {
+            "samseong": "三成",
+            "seolleung": "宣陵",
+            "yeoksam": "驛三",
+            "gangnam": "江南",
+            "gyodae": "教大",
+            "seocho": "瑞草",
+            "seongsu": "聖水"
+        }
+    },
+    "home": {
+        "title_korea": "今日韓國",
+        "move_gangnam": "前往江南",
+        "subway_line_2": "地鐵2號線 (綠色) • 25分鐘",
+        "reservation_hair": "珍妮美髮 & 化妝",
+        "dinner_bbq": "楓葉家烤肉"
+    }
+}

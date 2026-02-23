@@ -1,0 +1,45 @@
+{
+    "common": {
+        "welcome": "مرحباً أيها المسافر",
+        "greeting": "صباح الخير",
+        "login": "تسجيل الدخول",
+        "today": "اليوم",
+        "move": "تنقل",
+        "book": "حجز",
+        "chat": "دردشة",
+        "my": "حسابي",
+        "current_operation": "يعمل الآن",
+        "live": "مباشر",
+        "recommended": "قريب منك",
+        "based_on_location": "بناءً على موقعك",
+        "start_nav": "بدء الملاحة",
+        "delay_10m": "تأخير +10 دقائق",
+        "confirmed": "تم التأكيد",
+        "payment_completed": "اكتملت الدفعة",
+        "weather_clear": "صافٍ",
+        "back": "رجوع"
+    },
+    "transport": {
+        "moving_to": "متجه إلى {{dest}}",
+        "remaining": "متبقي",
+        "line_2_direction": "الخط 2 • اتجاه City Hall",
+        "departed": "غادر",
+        "passing_now": "يمر الآن...",
+        "current": "الحالي",
+        "get_off_at": "انزل في",
+        "exit_3": "مخرج 3",
+        "getting_off_here": "سأنزل هنا",
+        "stations": {
+            "samseong": "سامسيونغ",
+            "seolleung": "سيولونغ",
+            "yeoksam": "يوكسام",
+            "gangnam": "كانغنام",
+            "gyodae": "كيوداي",
+            "seocho": "سيوتشو",
+            "seongsu": "سيونغسو"
+        }
+    },
+    "home": {
+        "title_korea": "كوريا اليوم"
+    }
+}

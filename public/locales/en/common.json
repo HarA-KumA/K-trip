@@ -1,13 +1,20 @@
 {
+    "header": {
+        "view_app": "View in App",
+        "faq": "FAQ",
+        "recent": "Recent Activities"
+    },
     "common": {
         "welcome": "Welcome, Traveler.",
         "greeting": "Good Morning",
         "login": "Login",
+        "signup": "Sign Up",
         "today": "Today",
         "move": "Move",
         "book": "Book",
         "chat": "Chat",
         "my": "My",
+        "min_unit": "min",
         "current_operation": "Current Operation",
         "live": "LIVE",
         "recommended": "Recommended Nearby",
@@ -17,7 +24,352 @@
         "confirmed": "Confirmed",
         "payment_completed": "Payment Completed",
         "weather_clear": "Clear",
-        "back": "Back"
+        "back": "Back",
+        "select_language": "Change Language",
+        "home_nav": "Home",
+        "explore_nav": "Explore",
+        "planner_nav": "Planner",
+        "today_nav": "Today",
+        "my_nav": "My Info",
+        "day_unit": "d",
+        "locale": "en-US",
+        "cities": {
+            "seoul": "Seoul",
+            "busan": "Busan",
+            "jeju": "Jeju",
+            "gyeongju": "Gyeongju"
+        },
+        "categories": {
+            "all": "All",
+            "food": "Food",
+            "beauty": "Beauty",
+            "event": "Events",
+            "festival": "Festivals",
+            "attraction": "Attractions",
+            "transport": "Transport"
+        },
+        "badges": {
+            "english_friendly": "English-friendly",
+            "vegan_certified": "Vegan-certified",
+            "michelin": "Michelin",
+            "wait_free": "Wait-free",
+            "local_experience": "Local Experience",
+            "k_idol_style": "K-Idol Style",
+            "tax_refund": "Tax Refund",
+            "summer_must_go": "Summer Must-go",
+            "non_verbal": "Non-verbal",
+            "family": "Family",
+            "night_view": "Night view",
+            "photo_spot": "Photo spot",
+            "hanbok_free_entry": "Hanbok Free Entry",
+            "history": "History",
+            "city_view": "City view"
+        },
+        "ingredients": {
+            "vegetables": "Vegetables",
+            "soy": "Soy",
+            "pork": "Pork",
+            "kimchi": "Kimchi",
+            "seafood": "Seafood"
+        },
+        "diet": {
+            "vegan": "Vegan",
+            "gluten_free": "Gluten-free",
+            "meat_lover": "Meat-lover",
+            "pescatarian": "Pescatarian"
+        }
+    },
+    "home": {
+        "presets": {
+            "beauty_tour": "Beauty Tour",
+            "foodie": "Foodie",
+            "heritage": "Heritage",
+            "k_pop": "K-pop"
+        },
+        "badge": "✦ Korea Travel OS",
+        "title": "Korea Trip, Understood in 3 Seconds",
+        "subtitle": "Concierge Booking · Auto Itinerary · Navigation",
+        "create_trip_cta": "Start Creating Itinerary",
+        "how_it_works": {
+            "title": "How it works",
+            "step1": "Request",
+            "step1_desc": "Choose your beauty/food places",
+            "step2": "Processing",
+            "step2_desc": "We book via local channels",
+            "step3": "Confirmed",
+            "step3_desc": "Auto-sync to your itinerary"
+        },
+        "input_label": "Where are you traveling to?",
+        "input_placeholder": "City, Area, or Accommodation",
+        "days_label": "Duration",
+        "value_props": {
+            "itinerary": {
+                "title": "Auto Itinerary",
+                "desc": "AI optimizes your route"
+            },
+            "booking": {
+                "title": "Concierge Booking",
+                "desc": "Clinics, Spas, and more"
+            },
+            "navigation": {
+                "title": "Real-time Nav",
+                "desc": "Zero language barrier"
+            }
+        }
+    },
+    "explore_page": {
+        "title": "Explore",
+        "city_changed": "City changed to {{city}}",
+        "added_to": "Added to Day {{day}}",
+        "no_items": "No items found in {{city}}",
+        "try_changing": "Try changing the category or city.",
+        "select_city": "Select City",
+        "search_placeholders": {
+            "all": "Search for beauty, food...",
+            "beauty": "Search clinics, salons...",
+            "event": "Search concerts, shows...",
+            "food": "Search restaurants, dishes...",
+            "festival": "Search festivals...",
+            "attraction": "Search palaces, parks..."
+        },
+        "add_to_plan": "+ Add to Plan",
+        "today": "Today",
+        "tonight": "Tonight",
+        "starts_from": "Starts from ₩{{price}}",
+        "indoor": "Indoor",
+        "outdoor": "Outdoor",
+        "badges": {
+            "vegan_only": "Vegan Only",
+            "vegan_option": "Vegan Option"
+        },
+        "filters_title": "Filters",
+        "apply": "Apply",
+        "reset": "Reset",
+        "adding_item_to": "Adding <strong>{{title}}</strong> to...",
+        "no_specific_filters": "No specific filters for this category.",
+        "filters": {
+            "show": "Show",
+            "price": "Price",
+            "diet": "Diet",
+            "ingredients": "Ingredients",
+            "date": "Date",
+            "type": "Type",
+            "options": {
+                "skin_care": "Skin Care",
+                "hair_makeup": "Hair & Makeup",
+                "spa": "Spa",
+                "nails": "Nails",
+                "vegan": "Vegan",
+                "vegetarian": "Vegetarian",
+                "no_pork": "No Pork",
+                "halal": "Halal",
+                "beef": "Beef",
+                "pork": "Pork",
+                "chicken": "Chicken",
+                "seafood": "Seafood",
+                "dairy": "Dairy",
+                "egg": "Egg",
+                "today": "Today",
+                "weekend": "This Weekend",
+                "select": "Select Date",
+                "concert": "Concert",
+                "show": "Show",
+                "popup": "Popup",
+                "club": "Club",
+                "exhibition": "Exhibition"
+            }
+        }
+    },
+    "explore_items": {
+        "f1": {
+            "title": "Plant Cafe Seoul",
+            "area": "Itaewon",
+            "desc": "100% vegan cuisine made with fresh vegetables and healthy ingredients",
+            "price": "15,000"
+        },
+        "f2": {
+            "title": "Gold Pig BBQ",
+            "area": "Yaksu",
+            "desc": "The best samgyeopsal restaurant in Korea, selected by the Michelin Guide",
+            "price": "20,000"
+        },
+        "f3": {
+            "title": "Jagalchi Fish Market",
+            "area": "Nampo",
+            "desc": "A hearty sashimi course where you can feel the freshness of the Busan sea",
+            "price": "40,000"
+        },
+        "b1": {
+            "title": "Jenny House Cheongdam",
+            "area": "Cheongdam",
+            "desc": "Premium hair & makeup shop frequented by K-idols",
+            "price": "150,000"
+        },
+        "b2": {
+            "title": "PPEUM Clinic Gangnam",
+            "area": "Gangnam",
+            "desc": "The best value-for-money beauty clinic most visited by foreigners",
+            "price": "50,000"
+        },
+        "e1": {
+            "title": "PSY Water Show 2024",
+            "area": "Jamsil Stadium",
+            "desc": "PSY's cool and passionate performance to blow away the summer heat",
+            "price": "140,000"
+        },
+        "e2": {
+            "title": "Nanta Show Myeongdong",
+            "area": "Myeongdong",
+            "desc": "A non-verbal performance combining traditional Korean rhythms with modern performance",
+            "price": "40,000"
+        },
+        "fs1": {
+            "title": "Seoul Lantern Festival",
+            "area": "Gwanghwamun",
+            "desc": "A feast of colorful and beautiful lanterns embroidering Gwanghwamun Square",
+            "price": "Free"
+        },
+        "fs2": {
+            "title": "Film Festival",
+            "area": "Centum City",
+            "desc": "Asia's largest film festival, a meeting of film professionals from around the world",
+            "price": "10,000"
+        },
+        "a1": {
+            "title": "Gyeongbokgung",
+            "area": "Jongno",
+            "desc": "A place that preserves the history and beauty of Korea as the main palace of the Joseon Dynasty",
+            "price": "3,000"
+        },
+        "a2": {
+            "title": "Lotte World Tower",
+            "area": "Jamsil",
+            "desc": "Korea's tallest building where you can see the fantastic night view of Seoul at a glance",
+            "price": "27,000"
+        },
+        "t1": {
+            "title": "KTX to Busan",
+            "area": "Seoul Station",
+            "desc": "The fastest and most convenient way to travel from Seoul to Busan",
+            "price": "59,800"
+        }
+    },
+    "today_page": {
+        "title": "Today's Schedule",
+        "active_now": "Active Now",
+        "navigate": "Navigate",
+        "booking_ref": "Booking Ref: {{ref}}",
+        "next_up": "Next Up",
+        "minutes_left": "Starts in {{mins}}m",
+        "depart_early": "Depart Now",
+        "timeline": "Timeline",
+        "empty": {
+            "title": "No schedule for today",
+            "desc": "Explore places and add them to your trip!",
+            "cta": "Explore Places"
+        }
+    },
+    "booking_detail": {
+        "select_date": "Select Date",
+        "select_time": "Select Time",
+        "total_price": "Total Price",
+        "request_booking": "Request Booking"
+    },
+    "navigation_page": {
+        "title": "Today's Schedule",
+        "status": {
+            "on_trip": "Traveling",
+            "pre_trip": "Preparing",
+            "idle": "No Schedule"
+        },
+        "countdown": {
+            "today": "Today",
+            "starts_in": "Starts in {{mins}}m",
+            "traveling_to": "Traveling to {{dest}}"
+        },
+        "empty": {
+            "title": "No schedule today",
+            "subtitle": "Plan your day in Explore or Itinerary",
+            "cta": "Explore Places"
+        },
+        "actions": {
+            "directions": "Navigate",
+            "booking": "View Booking",
+            "late_risk": "Late Risk!",
+            "booking_ref": "Booking Ref: {{ref}}",
+            "departure_warning": "⚠️ {{title}} starts in {{mins}}m — Please depart now!"
+        }
+    },
+    "planner_page": {
+        "title": "Itinerary",
+        "day": "Day {{n}}",
+        "add_from_discover": "🔍 Add from Discover",
+        "auto_build": "✨ Auto-build",
+        "add_to": "Add to {{slot}}",
+        "book_all": "🎫 Request Reservation",
+        "booking_modal": {
+            "title": "Booking Request",
+            "date": "Date",
+            "people": "People",
+            "people_count": "{{n}} Person",
+            "notes": "Special Requests (Optional)",
+            "submit": "Submit Request",
+            "submitting": "Submitting...",
+            "success_title": "Request Received!",
+            "success_desc": "Our concierge will contact you within 24 hours.",
+            "unavailable_title": "Time Slot Unavailable",
+            "unavailable_desc": "We recommend these alternatives:",
+            "view_status": "View Status"
+        },
+        "status": {
+            "draft": "Draft",
+            "submitted": "Submitted",
+            "confirmed": "Confirmed",
+            "unavailable": "Unavailable",
+            "completed": "Done"
+        },
+        "slots": {
+            "am": "AM",
+            "pm": "PM",
+            "night": "Night"
+        }
+    },
+    "my_page": {
+        "profile": {
+            "trust_score": "💎 Trust Score",
+            "trust_level_excellent": "Excellent"
+        },
+        "passport": {
+            "title": "My Passport",
+            "view_all": "View All",
+            "seoul": "Seoul",
+            "beauty": "Beauty",
+            "jeju": "Jeju"
+        },
+        "bookings": {
+            "title": "My Bookings",
+            "today_time": "Today, {{time}}",
+            "tomorrow_time": "Tomorrow, {{time}}",
+            "next_week_time": "Next Week, {{time}}",
+            "new_added": "New Booking Added!"
+        }
+    },
+    "fab": {
+        "idle": "Plan Trip",
+        "pre_trip": "Departure Soon",
+        "on_trip": "Next Place?",
+        "near_deadline": "Late Risk!",
+        "to": "to {{dest}}",
+        "kride": "Call K.Ride",
+        "kride_sub": "Arrives in {{mins}}m",
+        "transit": "Transit Guide",
+        "transit_sub": "Fastest route",
+        "copy": "Copy Address",
+        "copy_done": "Copied!",
+        "card": "For Driver Card",
+        "card_sub": "Show this to driver",
+        "card_modal_title": "🗺️ Please go to this address",
+        "cancel": "Cancel"
     },
     "transport": {
         "moving_to": "Moving to {{dest}}",
@@ -38,8 +390,5 @@
             "seocho": "Seocho",
             "seongsu": "Seongsu"
         }
-    },
-    "home": {
-        "title_korea": "Today in Korea"
     }
 }

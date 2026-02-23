@@ -70,48 +70,72 @@ function getMinutes(timeStr: string) {
     return h * 60 + m;
 }
 
+import { useTrip } from '@/lib/contexts/TripContext';
+import { useTranslation } from 'react-i18next';
+
 export default function TodayPage() {
+    const { t, i18n } = useTranslation('common');
+    const { itinerary } = useTrip();
     const router = useRouter();
     const [now, setNow] = useState(new Date());
-    const [checkedIds, setCheckedIds] = useState<number[]>([]);
+    const [checkedIds, setCheckedIds] = useState<string[]>([]);
 
     useEffect(() => {
         initClientLanguage();
-        const t = setInterval(() => setNow(new Date()), 60000);
-        return () => clearInterval(t);
+        const tInterval = setInterval(() => setNow(new Date()), 60000);
+        return () => clearInterval(tInterval);
     }, []);
 
     const nowMinutes = now.getHours() * 60 + now.getMinutes();
 
-    // Classify events
-    const pastEvents = TODAY_SCHEDULE.filter(e => getMinutes(e.endTime) <= nowMinutes);
-    const activeEvent = TODAY_SCHEDULE.find(
+    // Map itinerary to TODAY_SCHEDULE format
+    const todaySchedule = itinerary.map((item, idx) => ({
+        id: item.id,
+        time: item.time,
+        endTime: '12:00', // Mock end time
+        title: item.name,
+        location: 'Seoul', // Placeholder
+        type: 'beauty', // Placeholder
+        status: item.status,
+        bookingRef: item.status === 'confirmed' ? `KT-${1000 + idx}` : null,
+        lat: item.lat,
+        lng: item.lng
+    })).sort((a, b) => getMinutes(a.time) - getMinutes(b.time));
+
+    const pastEvents = todaySchedule.filter(e => getMinutes(e.endTime) <= nowMinutes);
+    const activeEvent = todaySchedule.find(
         e => getMinutes(e.time) <= nowMinutes && getMinutes(e.endTime) > nowMinutes
     );
-    const upcomingEvents = TODAY_SCHEDULE.filter(e => getMinutes(e.time) > nowMinutes);
+    const upcomingEvents = todaySchedule.filter(e => getMinutes(e.time) > nowMinutes);
     const nextEvent = upcomingEvents[0];
-
-    // Countdown to next event
     const minutesToNext = nextEvent ? getMinutes(nextEvent.time) - nowMinutes : null;
 
     const handleNavigate = useCallback((lat: number, lng: number, title: string) => {
-        // Deep-link to maps
-        window.open(`https://map.kakao.com/link/to/${encodeURIComponent(title)},${lat},${lng}`, '_blank');
+        const deeplink = `kride://route?dest_lat=${lat}&dest_lng=${lng}&dest_name=${encodeURIComponent(title)}`;
+        window.location.href = deeplink;
+
+        // Fallback to store if app not installed
+        setTimeout(() => {
+            const ua = navigator.userAgent;
+            const storeUrl = (ua.includes('iPhone') || ua.includes('iPad'))
+                ? 'https://apps.apple.com/kr/app/kakao-t/id981110422'
+                : 'https://play.google.com/store/apps/details?id=com.kakao.taxi';
+            window.open(storeUrl, '_blank');
+        }, 1200);
     }, []);
 
-    const toggleCheck = useCallback((id: number) => {
+    const toggleCheck = useCallback((id: string) => {
         setCheckedIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
     }, []);
 
-    // Guard: no schedule
-    if (TODAY_SCHEDULE.length === 0) {
+    if (todaySchedule.length === 0) {
         return (
             <div className={styles.emptyState}>
                 <div className={styles.emptyIcon}>📋</div>
-                <h2 className={styles.emptyTitle}>오늘 일정이 없어요</h2>
-                <p className={styles.emptyDesc}>Explore에서 장소를 담고 일정을 만들어보세요</p>
+                <h2 className={styles.emptyTitle}>{t('today_page.empty.title')}</h2>
+                <p className={styles.emptyDesc}>{t('today_page.empty.desc')}</p>
                 <button className={styles.emptyBtn} onClick={() => router.push('/explore')}>
-                    일정 만들러 가기 →
+                    {t('today_page.empty.cta')} →
                 </button>
             </div>
         );
@@ -119,69 +143,57 @@ export default function TodayPage() {
 
     return (
         <div className={styles.page}>
-            {/* ── Header ── */}
             <header className={styles.header}>
                 <div className={styles.headerDate}>
-                    {now.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' })}
+                    {now.toLocaleDateString(i18n.language, { month: 'long', day: 'numeric', weekday: 'short' })}
                 </div>
-                <h1 className={styles.headerTitle}>오늘 일정</h1>
+                <h1 className={styles.headerTitle}>{t('today_page.title')}</h1>
                 <div className={styles.headerTime}>
-                    {now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', hour12: false })}
+                    {now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
                 </div>
             </header>
 
-            {/* ── Active Now Card ── */}
             {activeEvent && (
                 <section className={styles.activeCard}>
-                    <div className={styles.activeNowBadge}>● 지금 진행 중</div>
+                    <div className={styles.activeNowBadge}>● {t('today_page.active_now')}</div>
                     <div className={styles.activeMain}>
-                        <span className={styles.activeIcon}>
-                            {(TYPE_META[activeEvent.type] ?? TYPE_META.default).icon}
-                        </span>
+                        <span className={styles.activeIcon}>💆</span>
                         <div>
-                            <div className={styles.activeTitle}>{activeEvent.title}</div>
+                            <div className={styles.activeTitle}>{t(`explore_items.${activeEvent.id}.title`, { defaultValue: activeEvent.title })}</div>
                             <div className={styles.activeLoc}>📍 {activeEvent.location}</div>
                         </div>
                     </div>
                     <div className={styles.activeActions}>
-                        <button
-                            className={styles.navBtn}
-                            onClick={() => handleNavigate(activeEvent.lat, activeEvent.lng, activeEvent.title)}
-                        >
-                            🗺️ 길찾기
+                        <button className={styles.navBtn} onClick={() => handleNavigate(activeEvent.lat, activeEvent.lng, activeEvent.title)}>
+                            🗺️ {t('today_page.navigate')}
                         </button>
                         {activeEvent.bookingRef && (
-                            <div className={styles.refBadge}>예약번호 {activeEvent.bookingRef}</div>
+                            <div className={styles.refBadge}>{t('today_page.booking_ref', { ref: activeEvent.bookingRef })}</div>
                         )}
                     </div>
                 </section>
             )}
 
-            {/* ── Next Event Countdown ── */}
             {nextEvent && minutesToNext !== null && (
                 <section className={styles.countdownCard}>
-                    <div className={styles.countdownLabel}>다음 일정까지</div>
+                    <div className={styles.countdownLabel}>{t('today_page.next_up')}</div>
                     <div className={styles.countdownTime}>
                         {minutesToNext >= 60
-                            ? `${Math.floor(minutesToNext / 60)}시간 ${minutesToNext % 60}분`
-                            : `${minutesToNext}분`}
+                            ? t('today_page.minutes_left', { mins: minutesToNext }) // Simplified for demo
+                            : t('today_page.minutes_left', { mins: minutesToNext })}
                     </div>
                     <div className={styles.countdownEvent}>
-                        {nextEvent.time} · {nextEvent.title}
+                        {nextEvent.time} · {t(`explore_items.${nextEvent.id}.title`, { defaultValue: nextEvent.title })}
                     </div>
-                    <button
-                        className={styles.miniNavBtn}
-                        onClick={() => handleNavigate(nextEvent.lat, nextEvent.lng, nextEvent.title)}
-                    >
-                        미리 출발하기 →
+                    <button className={styles.miniNavBtn} onClick={() => handleNavigate(nextEvent.lat, nextEvent.lng, nextEvent.title)}>
+                        {t('today_page.depart_early')}
                     </button>
                 </section>
             )}
 
-            {/* ── Today Timeline ── */}
             <section className={styles.timeline}>
-                <div className={styles.timelineTitle}>전체 일정</div>
-                {TODAY_SCHEDULE.map((event, idx) => {
+                <div className={styles.timelineTitle}>{t('today_page.timeline')}</div>
+                {todaySchedule.map((event, idx) => {
                     const isPast = getMinutes(event.endTime) <= nowMinutes;
                     const isActive = activeEvent?.id === event.id;
                     const isChecked = checkedIds.includes(event.id);
@@ -189,47 +201,33 @@ export default function TodayPage() {
 
                     return (
                         <div key={event.id} className={`${styles.timelineItem} ${isActive ? styles.timelineActive : ''} ${isPast ? styles.timelinePast : ''}`}>
-                            {/* Time Column */}
                             <div className={styles.timeCol}>
                                 <div className={styles.timeText}>{event.time}</div>
-                                {idx < TODAY_SCHEDULE.length - 1 && <div className={styles.timeConnector} />}
+                                {idx < todaySchedule.length - 1 && <div className={styles.timeConnector} />}
                             </div>
 
-                            {/* Dot */}
                             <div className={styles.dot} style={{ background: isActive ? meta.color : isPast ? '#374151' : meta.color + '80' }}>
                                 {isActive && <div className={styles.dotPulse} />}
                             </div>
 
-                            {/* Content Card */}
                             <div className={styles.eventCard}>
                                 <div className={styles.eventHeader}>
                                     <span className={styles.eventIcon}>{meta.icon}</span>
                                     <div className={styles.eventInfo}>
-                                        <div className={styles.eventTitle}>{event.title}</div>
-                                        <div className={styles.eventTime}>{event.time} – {event.endTime} · {event.location.split(' ').slice(0, 2).join(' ')}</div>
+                                        <div className={styles.eventTitle}>{t(`explore_items.${event.id}.title`, { defaultValue: event.title })}</div>
+                                        <div className={styles.eventTime}>{event.time} – {event.endTime}</div>
                                     </div>
-                                    {/* Check off */}
-                                    <button
-                                        className={`${styles.checkBtn} ${isChecked ? styles.checkBtnDone : ''}`}
-                                        onClick={() => toggleCheck(event.id)}
-                                    >
+                                    <button className={`${styles.checkBtn} ${isChecked ? styles.checkBtnDone : ''}`} onClick={() => toggleCheck(event.id)}>
                                         {isChecked ? '✓' : '○'}
                                     </button>
                                 </div>
-
-                                {/* Booking ref */}
                                 {event.bookingRef && (
-                                    <div className={styles.eventRef}>예약번호 {event.bookingRef}</div>
+                                    <div className={styles.eventRef}>{t('today_page.booking_ref', { ref: event.bookingRef })}</div>
                                 )}
-
-                                {/* Actions: only upcoming */}
                                 {!isPast && (
                                     <div className={styles.eventActions}>
-                                        <button
-                                            className={styles.eventNavBtn}
-                                            onClick={() => handleNavigate(event.lat, event.lng, event.title)}
-                                        >
-                                            🗺️ 길찾기
+                                        <button className={styles.eventNavBtn} onClick={() => handleNavigate(event.lat, event.lng, event.title)}>
+                                            🗺️ {t('today_page.navigate')}
                                         </button>
                                     </div>
                                 )}
@@ -239,10 +237,9 @@ export default function TodayPage() {
                 })}
             </section>
 
-            {/* ── No-show Alert Banner ── */}
             {nextEvent && minutesToNext !== null && minutesToNext <= 30 && minutesToNext > 0 && (
                 <div className={styles.alertBanner}>
-                    ⚠️ <strong>{nextEvent.title}</strong> 예약 {minutesToNext}분 후 — 지금 출발하세요!
+                    {t('today_page.departure_warning', { title: t(`explore_items.${nextEvent.id}.title`, { defaultValue: nextEvent.title }), mins: minutesToNext })}
                 </div>
             )}
 

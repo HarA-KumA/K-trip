@@ -24,21 +24,21 @@ const STORAGE_KEY = "ktrip_lang";
 const SUPPORTED = ["en", "ko", "jp", "cn", "tw", "es", "fr", "de", "th", "vi", "ar", "id", "pt", "ms", "ru"];
 
 const resources = {
-    en: { translation: en },
-    ko: { translation: ko },
-    jp: { translation: jp },
-    cn: { translation: cn },
-    tw: { translation: tw },
-    es: { translation: es },
-    fr: { translation: fr },
-    de: { translation: de },
-    th: { translation: th },
-    vi: { translation: vi },
-    ar: { translation: ar },
-    id: { translation: id },
-    pt: { translation: pt },
-    ms: { translation: ms },
-    ru: { translation: ru },
+    en: { common: en },
+    ko: { common: ko },
+    jp: { common: jp },
+    cn: { common: cn },
+    tw: { common: tw },
+    es: { common: es },
+    fr: { common: fr },
+    de: { common: de },
+    th: { common: th },
+    vi: { common: vi },
+    ar: { common: ar },
+    id: { common: id },
+    pt: { common: pt },
+    ms: { common: ms },
+    ru: { common: ru },
 };
 
 // ────────────────────────────────────────────────────────────
@@ -54,6 +54,8 @@ if (!i18n.isInitialized) {
             resources,
             lng: "en",          // ← always "en" for SSR match
             fallbackLng: "en",
+            ns: ["common"],
+            defaultNS: "common",
             interpolation: { escapeValue: false },
         });
 }
@@ -73,7 +75,7 @@ export function initClientLanguage() {
         return;
     }
 
-    // 테스트사이트 요청: 브라우저 언어 무시하고 기본 언어를 한국어(ko)로 설정
+    // Default to Korean as per test site request
     const detected = "ko";
     applyLanguage(detected);
 }

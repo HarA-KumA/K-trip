@@ -28,6 +28,8 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
+import { TripProvider } from "@/lib/contexts/TripContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,12 +38,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="mobile-wrapper">
-          {children}
-          <BottomNav />
-          <GlobalLangButton />
-          <KRideGlobalFAB />
-        </div>
+        <TripProvider>
+          <div className="mobile-wrapper">
+            {children}
+            <BottomNav />
+            <GlobalLangButton />
+            <KRideGlobalFAB />
+          </div>
+        </TripProvider>
       </body>
     </html>
   );

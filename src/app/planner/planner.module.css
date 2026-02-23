@@ -237,6 +237,40 @@
     text-transform: capitalize;
 }
 
+.statusBadge {
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    margin-left: auto;
+}
+
+.statusDraft {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.statusSubmitted {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+}
+
+.statusConfirmed {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+}
+
+.statusUnavailable {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+}
+
+.statusCompleted {
+    background: rgba(107, 114, 128, 0.2);
+    color: #9ca3af;
+}
+
 .cardTitle {
     font-size: 14px;
     font-weight: 700;

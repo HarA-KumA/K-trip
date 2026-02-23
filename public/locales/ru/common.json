@@ -17,7 +17,30 @@
         "confirmed": "Подтверждено",
         "payment_completed": "Оплата завершена",
         "weather_clear": "Ясно",
-        "back": "Назад"
+        "back": "Назад",
+        "select_language": "Выбрать язык",
+        "home_nav": "Главная",
+        "explore_nav": "Поиск",
+        "planner_nav": "План",
+        "today_nav": "Сегодня",
+        "my_nav": "Мой",
+        "day_unit": "д",
+        "locale": "ru-RU",
+        "cities": {
+            "seoul": "Сеул",
+            "busan": "Пусан",
+            "jeju": "Чеджу",
+            "gyeongju": "Кёнджу"
+        },
+        "categories": {
+            "all": "Все",
+            "food": "Еда",
+            "beauty": "Красота",
+            "event": "События",
+            "festival": "Фестивали",
+            "attraction": "Места",
+            "transport": "Транспорт"
+        }
     },
     "transport": {
         "moving_to": "Едем к {{dest}}",
@@ -40,6 +63,49 @@
         }
     },
     "home": {
-        "title_korea": "Корея сегодня"
+        "title_korea": "Корея сегодня",
+        "title": "Путешествие в Корею, понятное за 3 секунды",
+        "subtitle": "Бронирование консьержем · Автоматический план · Навигация",
+        "create_trip_cta": "Начать планирование",
+        "input_label": "Куда вы отправляетесь?",
+        "input_placeholder": "Город, район, название отеля",
+        "days_label": "Период поездки"
+    },
+    "explore_page": {
+        "title": "Поиск",
+        "select_city": "Выбрать город"
+    },
+    "planner_page": {
+        "title": "План",
+        "day": "День {{n}}"
+    },
+    "today_page": {
+        "title": "Сегодня",
+        "active_now": "Выполняется",
+        "navigate": "Навигация",
+        "booking_ref": "Бронь: {{ref}}",
+        "next_up": "Далее",
+        "minutes_left": "Начнется через {{mins}}м",
+        "depart_early": "Выходить сейчас",
+        "timeline": "График",
+        "empty": {
+            "title": "На сегодня планов нет",
+            "desc": "Найдите интересные места и добавьте их!",
+            "cta": "Найти места"
+        }
+    },
+    "booking_detail": {
+        "select_date": "Выбрать дату",
+        "select_time": "Выбрать время",
+        "total_price": "Итого",
+        "request_booking": "Забронировать"
+    },
+    "navigation_page": {
+        "title": "Сегодня"
+    },
+    "my_page": {
+        "bookings": {
+            "title": "Мои бронирования"
+        }
     }
 }

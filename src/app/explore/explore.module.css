@@ -1,6 +1,7 @@
 /* Global Vars (assuming globals.css defines --primary, --text-color, etc.) */
 .container {
-    padding-bottom: 80px; /* Space for bottom nav */
+    padding-bottom: 80px;
+    /* Space for bottom nav */
     background: #000;
     min-height: 100vh;
     color: #fff;
@@ -58,7 +59,8 @@
 .searchWrapper {
     flex: 1;
     position: relative;
-    background: rgba(255, 255, 255, 0.08); /* slightly lighter for input bg */
+    background: rgba(255, 255, 255, 0.08);
+    /* slightly lighter for input bg */
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -88,7 +90,8 @@
     width: 40px;
     height: 40px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.08); /* Consistent with search bar */
+    background: rgba(255, 255, 255, 0.08);
+    /* Consistent with search bar */
     border: none;
     display: flex;
     align-items: center;
@@ -101,7 +104,8 @@
     position: absolute;
     top: -4px;
     right: -4px;
-    background: #ff4d4d; /* Red badge */
+    background: #ff4d4d;
+    /* Red badge */
     color: white;
     font-size: 10px;
     width: 16px;
@@ -120,8 +124,10 @@
     overflow-x: auto;
     padding-bottom: 4px;
     /* Hide scrollbar */
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .categoryScroll::-webkit-scrollbar {
@@ -155,7 +161,8 @@
     z-index: 200;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Bottom sheet default */
+    align-items: flex-end;
+    /* Bottom sheet default */
 }
 
 /* For center modal */
@@ -165,10 +172,11 @@
     max-width: 320px;
     border-radius: 16px;
     padding: 24px;
-    margin-bottom: auto; /* Push to center vertically if flex-end */
+    margin-bottom: auto;
+    /* Push to center vertically if flex-end */
     margin-top: auto;
     border: 1px solid #333;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
 }
 
 .modalTitle {
@@ -193,7 +201,8 @@
 }
 
 .cityOption.selected {
-    border-color: var(--primary, #9d4edd); /* Fallback purple */
+    border-color: var(--primary, #9d4edd);
+    /* Fallback purple */
     background: rgba(157, 78, 221, 0.2);
 }
 
@@ -204,14 +213,20 @@
     max-width: 600px;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
-    padding: 24px 20px 40px 20px; /* Extra bottom padding */
+    padding: 24px 20px 40px 20px;
+    /* Extra bottom padding */
     max-height: 80vh;
     animation: slideUp 0.3s ease-out;
 }
 
 @keyframes slideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
 .sheetHeader {
@@ -292,7 +307,7 @@
     position: absolute;
     top: 12px;
     left: 12px;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(4px);
     color: #fff;
     padding: 4px 8px;
@@ -361,7 +376,10 @@
     border-color: rgba(0, 255, 0, 0.2);
 }
 
-.foodTags, .festivalInfo, .beautyInfo, .attractionInfo {
+.foodTags,
+.festivalInfo,
+.beautyInfo,
+.attractionInfo {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -399,4 +417,158 @@
 /* Animation */
 .slideUp {
     animation: slideUp 0.3s ease-out;
+}
+
+.emptyState {
+    padding: 60px 24px;
+    text-align: center;
+    color: #888;
+}
+
+.emptyState p:first-child {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    color: #000;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-weight: 700;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    z-index: 300;
+    animation: slideUpToast 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUpToast {
+    from {
+        transform: translate(-50%, 20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+/* Router 2 UX Additions */
+.hotelSearchWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.hotelSearchInputBox {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.hotelSearchInputBox input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    width: 100%;
+    outline: none;
+    font-size: 15px;
+}
+
+.suggestionsList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 12px;
+    margin-top: 8px;
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 1);
+}
+
+.suggestionsList li {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #222;
+}
+
+.suggestionsList li:last-child {
+    border-bottom: none;
+}
+
+.suggestionsList li:hover {
+    background: #2a2a2a;
+}
+
+.headerActions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.radiusSelect {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 0 8px;
+    height: 40px;
+    border-radius: 12px;
+    font-size: 13px;
+    outline: none;
+}
+
+.distance {
+    color: #9d4edd;
+    font-weight: bold;
+}
+
+.rating {
+    font-size: 13px;
+    color: #ffd700;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.loadingState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    gap: 16px;
+    color: #888;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #9d4edd;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }

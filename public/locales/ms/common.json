@@ -17,7 +17,30 @@
         "confirmed": "Disahkan",
         "payment_completed": "Pembayaran Selesai",
         "weather_clear": "Cerah",
-        "back": "Kembali"
+        "back": "Kembali",
+        "select_language": "Pilih Bahasa",
+        "home_nav": "Utama",
+        "explore_nav": "Teroka",
+        "planner_nav": "Jadual",
+        "today_nav": "Hari Ini",
+        "my_nav": "Saya",
+        "day_unit": "h",
+        "locale": "ms-MY",
+        "cities": {
+            "seoul": "Seoul",
+            "busan": "Busan",
+            "jeju": "Jeju",
+            "gyeongju": "Gyeongju"
+        },
+        "categories": {
+            "all": "Semua",
+            "food": "Makanan",
+            "beauty": "Kecantikan",
+            "event": "Acara",
+            "festival": "Festival",
+            "attraction": "Tarikan",
+            "transport": "Pengangkutan"
+        }
     },
     "transport": {
         "moving_to": "Menuju {{dest}}",
@@ -40,6 +63,49 @@
         }
     },
     "home": {
-        "title_korea": "Korea Hari Ini"
+        "title_korea": "Korea Hari Ini",
+        "title": "Percutian Korea, Difahami dalam 3 Saat",
+        "subtitle": "Tempahan Concierge · Jadual Automatik · Navigasi",
+        "create_trip_cta": "Mula Merancang",
+        "input_label": "Ke mana anda melancong?",
+        "input_placeholder": "Bandar, kawasan, nama hotel",
+        "days_label": "Tempoh Percutian"
+    },
+    "explore_page": {
+        "title": "Teroka",
+        "select_city": "Pilih Bandar"
+    },
+    "planner_page": {
+        "title": "Jadual",
+        "day": "Hari {{n}}"
+    },
+    "today_page": {
+        "title": "Hari Ini",
+        "active_now": "Sedang Berlangsung",
+        "navigate": "Navigasi",
+        "booking_ref": "Ref Tempahan: {{ref}}",
+        "next_up": "Seterusnya",
+        "minutes_left": "Bermula dalam {{mins}}m",
+        "depart_early": "Bertolak Sekarang",
+        "timeline": "Timeline",
+        "empty": {
+            "title": "Tiada jadual untuk hari ini",
+            "desc": "Teroka tempat dan tambahkan ke percutian anda!",
+            "cta": "Teroka Tempat"
+        }
+    },
+    "booking_detail": {
+        "select_date": "Pilih Tarikh",
+        "select_time": "Pilih Masa",
+        "total_price": "Jumlah Harga",
+        "request_booking": "Mohon Tempahan"
+    },
+    "navigation_page": {
+        "title": "Hari Ini"
+    },
+    "my_page": {
+        "bookings": {
+            "title": "Tempahan Saya"
+        }
     }
 }

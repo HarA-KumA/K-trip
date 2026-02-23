@@ -12,6 +12,10 @@ export interface ServiceItem {
     badges: string[]; // "English-friendly", "Vegan", etc.
     image_url?: string;
     image_color?: string; // fallback color
+    lat?: number;
+    lng?: number;
+    rating?: number;
+    reviews?: number;
 
     // Type Specific
     // Food

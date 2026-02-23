@@ -21,8 +21,11 @@ export default function LoginPage() {
         setTimeout(() => {
             if (email && password) {
                 // Success
-                // router.push('/'); 
                 console.log("Logged in mock");
+                // Attempt to get name from signup, otherwise use email handle
+                const savedName = localStorage.getItem(`signup_name_${email}`);
+                const userName = savedName || email.split('@')[0];
+                localStorage.setItem('user', JSON.stringify({ name: userName, email }));
                 setLoading(false);
                 router.push('/');
             } else {
@@ -64,6 +67,7 @@ export default function LoginPage() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full bg-black/20 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                            style={{ color: '#ffffff', backgroundColor: 'rgba(255, 255, 255, 0.05)' }}
                             placeholder="user@example.com"
                         />
                     </div>
@@ -75,6 +79,7 @@ export default function LoginPage() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full bg-black/20 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                            style={{ color: '#ffffff', backgroundColor: 'rgba(255, 255, 255, 0.05)' }}
                             placeholder="••••••••"
                         />
                     </div>

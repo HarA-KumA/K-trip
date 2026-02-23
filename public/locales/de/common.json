@@ -17,7 +17,30 @@
         "confirmed": "Bestätigt",
         "payment_completed": "Zahlung Abgeschlossen",
         "weather_clear": "Klar",
-        "back": "Zurück"
+        "back": "Zurück",
+        "select_language": "Sprache auswählen",
+        "home_nav": "Start",
+        "explore_nav": "Erkunden",
+        "planner_nav": "Reiseplan",
+        "today_nav": "Heute",
+        "my_nav": "Mein Info",
+        "day_unit": "t",
+        "locale": "de-DE",
+        "cities": {
+            "seoul": "Seoul",
+            "busan": "Busan",
+            "jeju": "Jeju",
+            "gyeongju": "Gyeongju"
+        },
+        "categories": {
+            "all": "Alle",
+            "food": "Gastronomie",
+            "beauty": "Schönheit",
+            "event": "Events",
+            "festival": "Festivals",
+            "attraction": "Attraktionen",
+            "transport": "Transport"
+        }
     },
     "transport": {
         "moving_to": "Fahrt nach {{dest}}",
@@ -41,9 +64,48 @@
     },
     "home": {
         "title_korea": "Heute in Korea",
-        "move_gangnam": "Nach Gangnam Fahren",
-        "subway_line_2": "U-Bahn Linie 2 (Grün) • 25min",
-        "reservation_hair": "Jenny House Cheongdam",
-        "dinner_bbq": "Goldenes Schweine Restaurant"
+        "title": "Korea-Reise, in 3 Sekunden verstanden",
+        "subtitle": "Concierge-Buchungen · Automatischer Reiseplan · Navigation",
+        "create_trip_cta": "Planung beginnen",
+        "input_label": "Wohin reisen Sie?",
+        "input_placeholder": "Stadt, Viertel, Hotelname",
+        "days_label": "Reisezeitraum"
+    },
+    "explore_page": {
+        "title": "Erkunden",
+        "select_city": "Stadt wählen"
+    },
+    "planner_page": {
+        "title": "Reiseplan",
+        "day": "Tag {{n}}"
+    },
+    "today_page": {
+        "title": "Heute",
+        "active_now": "Aktiv",
+        "navigate": "Navigieren",
+        "booking_ref": "Buchungsnr: {{ref}}",
+        "next_up": "Als nächstes",
+        "minutes_left": "Beginnt in {{mins}}m",
+        "depart_early": "Jetzt losgehen",
+        "timeline": "Zeitplan",
+        "empty": {
+            "title": "Keine Termine heute",
+            "desc": "Orte erkunden und hinzufügen!",
+            "cta": "Orte erkunden"
+        }
+    },
+    "booking_detail": {
+        "select_date": "Datum wählen",
+        "select_time": "Uhrzeit wählen",
+        "total_price": "Gesamtpreis",
+        "request_booking": "Buchung anfragen"
+    },
+    "navigation_page": {
+        "title": "Heute"
+    },
+    "my_page": {
+        "bookings": {
+            "title": "Meine Buchungen"
+        }
     }
 }

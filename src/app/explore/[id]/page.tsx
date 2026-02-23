@@ -2,22 +2,22 @@
 
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 export default function BookingDetailPage() {
+    const { t } = useTranslation("common");
     const params = useParams();
     const router = useRouter();
     const id = params.id; // Service ID
 
     const [selectedDate, setSelectedDate] = useState<string | null>(null);
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
-    const [step, setStep] = useState(1); // 1: Date/Time, 2: Confirm
 
-    // Mock Service Data (Ideally fetched by ID)
+    // Mock Service Data
     const service = {
-        title: "Jenny House Cheongdam",
-        desc: "Premium K-Pop Idol Hair & Makeup Styling",
-        price: "150,000",
+        title: t(`explore_items.${id}.title`, { defaultValue: "Jenny House Cheongdam" }),
+        desc: t(`explore_items.${id}.desc`, { defaultValue: "Premium K-Pop Idol Hair & Makeup Styling" }),
+        price: t(`explore_items.${id}.price`, { defaultValue: "150,000" }),
         duration: "90 min",
         imageColor: "#ffccd5"
     };
@@ -30,16 +30,13 @@ export default function BookingDetailPage() {
         d.setDate(d.getDate() + i);
         return {
             full: d.toISOString().split('T')[0],
-            day: d.toLocaleDateString('en-US', { weekday: 'short' }),
+            day: d.toLocaleDateString(t('common.locale', { defaultValue: 'en-US' }), { weekday: 'short' }),
             date: d.getDate()
         };
     });
 
     const handleConfirm = () => {
-        // Mock API call
-        // router.push('/'); 
         router.push('/my?booked=true');
-        // alert("Booking Requested! (Mock)"); // Removing alert for smoother transitions
     };
 
     return (
@@ -48,10 +45,10 @@ export default function BookingDetailPage() {
             <div className="relative h-64 w-full bg-gray-800">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black" />
                 <div className="absolute top-4 left-4 z-10">
-                    <button onClick={() => router.back()} className="glass-btn">← Back</button>
+                    <button onClick={() => router.back()} className="glass-btn">← {t('common.back')}</button>
                 </div>
                 <div className="absolute bottom-4 left-4 right-4 z-10">
-                    <div className="text-xs text-purple-400 font-bold uppercase mb-1">Beauty • Hair</div>
+                    <div className="text-xs text-purple-400 font-bold uppercase mb-1">{t('common.categories.beauty')}</div>
                     <h1 className="text-2xl font-bold">{service.title}</h1>
                     <p className="text-gray-300 text-sm mt-1">{service.desc}</p>
                 </div>
@@ -60,7 +57,7 @@ export default function BookingDetailPage() {
             <div className="p-6">
                 {/* Step 1: Select Date */}
                 <div className="mb-8">
-                    <h2 className="text-lg font-bold mb-4">Select Date</h2>
+                    <h2 className="text-lg font-bold mb-4">{t('booking_detail.select_date')}</h2>
                     <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
                         {dates.map((d) => (
                             <div
@@ -81,7 +78,7 @@ export default function BookingDetailPage() {
                 {/* Step 2: Select Time */}
                 {selectedDate && (
                     <div className="mb-8 animate-slide-up">
-                        <h2 className="text-lg font-bold mb-4">Select Time</h2>
+                        <h2 className="text-lg font-bold mb-4">{t('booking_detail.select_time')}</h2>
                         <div className="grid grid-cols-3 gap-3">
                             {timeSlots.map(time => (
                                 <button
@@ -103,7 +100,7 @@ export default function BookingDetailPage() {
             {/* Bottom Sticky Action */}
             <div className="fixed bottom-0 left-0 w-full bg-black/80 backdrop-blur-xl border-t border-white/10 p-6 flex justify-between items-center z-50">
                 <div>
-                    <div className="text-xs text-gray-400">Total Price</div>
+                    <div className="text-xs text-gray-400">{t('booking_detail.total_price')}</div>
                     <div className="text-lg font-bold text-white">₩{service.price}</div>
                 </div>
                 <button
@@ -111,7 +108,7 @@ export default function BookingDetailPage() {
                     onClick={handleConfirm}
                     className="bg-purple-600 text-white px-8 py-3 rounded-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-purple-900/30"
                 >
-                    Request Booking
+                    {t('booking_detail.request_booking')}
                 </button>
             </div>
         </div>

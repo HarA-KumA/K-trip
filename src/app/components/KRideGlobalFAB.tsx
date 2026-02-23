@@ -4,49 +4,34 @@ import { useState, useEffect, useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import styles from './KRideGlobalFAB.module.css';
 
-// 오늘 일정 모의 — 실제 구현 시 전역 상태(Context/Zustand)로 교체
-const MOCK_NEXT_DEST = {
-    name: '아모레스토어 성수 스파',
-    nameKo: '서울특별시 성동구 성수이로 5',
-    lat: 37.5445,
-    lng: 127.0557,
-    scheduleAt: new Date(Date.now() + 45 * 60 * 1000), // 45분 후
-    travelMinutes: 20,
-};
+import { useTrip } from '@/lib/contexts/TripContext';
+import { useTranslation } from 'react-i18next';
 
 // FAB를 숨기는 경로
 const HIDE_ROUTES = ['/auth', '/my', '/lang-test'];
 
-type FABState = 'NO_SCHEDULE' | 'PRE_TRAVEL' | 'IMMINENT';
-
-function getFABState(): FABState {
-    const dest = MOCK_NEXT_DEST;
-    if (!dest) return 'NO_SCHEDULE';
-    const minsUntilSchedule = (dest.scheduleAt.getTime() - Date.now()) / 60_000;
-    const minsUntilDepart = minsUntilSchedule - dest.travelMinutes - 15;
-    if (minsUntilDepart <= 60) return 'IMMINENT';
-    return 'PRE_TRAVEL';
-}
-
-const FAB_CONFIG: Record<FABState, { label: string; icon: string; color: string }> = {
-    NO_SCHEDULE: { label: '이동 수단', icon: '🚕', color: '#6B7280' },
-    PRE_TRAVEL: { label: '다음 장소로 이동', icon: '📍', color: '#3B82F6' },
-    IMMINENT: { label: 'k.ride 호출', icon: '🚗', color: 'gradient' },
-};
-
 export default function KRideGlobalFAB() {
+    const { t } = useTranslation('common');
+    const { tripStatus, itinerary } = useTrip();
     const pathname = usePathname();
     const router = useRouter();
     const [open, setOpen] = useState(false);
-    const [fabState, setFabState] = useState<FABState>('PRE_TRAVEL');
     const [copied, setCopied] = useState(false);
     const [shrink, setShrink] = useState(false);
+    const [showCard, setShowCard] = useState(false);
 
-    useEffect(() => {
-        setFabState(getFABState());
-    }, []);
+    // Get next destination from itinerary
+    const nextDest = itinerary.find(item => item.status === 'confirmed');
 
-    // 스크롤 축소
+    // MOCK_NEXT_DEST mapping
+    const destInfo = nextDest ? {
+        name: nextDest.name,
+        nameKo: '서울특별시 성동구 성수이로 5', // Placeholder for Korean address
+        lat: nextDest.lat,
+        lng: nextDest.lng,
+        travelMinutes: 20
+    } : null;
+
     useEffect(() => {
         let lastY = window.scrollY;
         const onScroll = () => {
@@ -58,22 +43,24 @@ export default function KRideGlobalFAB() {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
-    const shouldHide =
-        HIDE_ROUTES.some(r => pathname.startsWith(r));
+    // Config based on tripStatus from context
+    const getFABConfig = () => {
+        switch (tripStatus) {
+            case 'idle': return { label: t('fab.idle'), icon: '✨', color: '#6B7280' };
+            case 'pre-trip': return { label: t('fab.pre_trip'), icon: '📍', color: '#3B82F6' };
+            case 'on-trip': return { label: t('fab.on_trip'), icon: '🏃', color: '#10B981' };
+            case 'near-deadline': return { label: t('fab.near_deadline', { defaultValue: 'Late Risk' }), icon: '🚕', color: 'gradient' };
+            default: return { label: t('fab.idle'), icon: '✨', color: '#6B7280' };
+        }
+    };
 
-    if (shouldHide) return null;
+    const cfg = getFABConfig();
 
-    const cfg = FAB_CONFIG[fabState];
-
-    // ── 액션 핸들러 ─────────────────────────────────────────────────
     const handleKRide = useCallback(() => {
-        const dest = MOCK_NEXT_DEST;
-        // 주소 클립보드 자동 복사 (fallback)
-        navigator.clipboard.writeText(dest.nameKo).catch(() => { });
-        // k.ride 딥링크
-        const deeplink = `kride://route?dest_lat=${dest.lat}&dest_lng=${dest.lng}&dest_name=${encodeURIComponent(dest.nameKo)}`;
+        if (!destInfo) return;
+        navigator.clipboard.writeText(destInfo.nameKo).catch(() => { });
+        const deeplink = `kride://route?dest_lat=${destInfo.lat}&dest_lng=${destInfo.lng}&dest_name=${encodeURIComponent(destInfo.nameKo)}`;
         window.location.href = deeplink;
-        // 500ms 후 미설치 fallback
         setTimeout(() => {
             const ua = navigator.userAgent;
             if (ua.includes('iPhone') || ua.includes('iPad')) {
@@ -83,134 +70,100 @@ export default function KRideGlobalFAB() {
             }
         }, 1200);
         setOpen(false);
-    }, []);
+    }, [destInfo]);
 
     const handleTransit = useCallback(() => {
-        const dest = MOCK_NEXT_DEST;
-        window.open(
-            `kakaomap://route?ep=${dest.lat},${dest.lng}&by=PUBLICTRANSIT`,
-            '_blank'
-        );
+        if (!destInfo) return;
+        window.open(`kakaomap://route?ep=${destInfo.lat},${destInfo.lng}&by=PUBLICTRANSIT`, '_blank');
         setTimeout(() => {
-            window.open(
-                `https://map.kakao.com/link/to/${encodeURIComponent(dest.name)},${dest.lat},${dest.lng}`,
-                '_blank'
-            );
+            window.open(`https://map.kakao.com/link/to/${encodeURIComponent(destInfo.name)},${destInfo.lat},${destInfo.lng}`, '_blank');
         }, 500);
         setOpen(false);
-    }, []);
+    }, [destInfo]);
 
     const handleCopy = useCallback(async () => {
-        await navigator.clipboard.writeText(MOCK_NEXT_DEST.nameKo);
+        if (!destInfo) return;
+        await navigator.clipboard.writeText(destInfo.nameKo);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
-    }, []);
+    }, [destInfo]);
 
-    const handleAddressCard = useCallback(() => {
-        setOpen(false);
-        setTimeout(() => setShowCard(true), 100);
-    }, []);
-
-    const [showCard, setShowCard] = useState(false);
-
-    // FAB 클릭
-    const handleFAB = () => {
-        if (fabState === 'NO_SCHEDULE') {
-            router.push('/planner');
-            return;
-        }
-        setOpen(true);
-    };
+    const shouldHide = HIDE_ROUTES.some(r => pathname.startsWith(r));
+    if (shouldHide) return null;
 
     return (
         <>
-            {/* ── FAB Button ── */}
             <button
-                className={`${styles.fab} ${fabState === 'IMMINENT' ? styles.fabImminent : ''} ${shrink ? styles.fabShrink : ''}`}
-                onClick={handleFAB}
-                aria-label="k.ride 이동 수단"
+                className={`${styles.fab} ${tripStatus === 'near-deadline' ? styles.fabImminent : ''} ${shrink ? styles.fabShrink : ''}`}
+                onClick={() => tripStatus === 'idle' ? router.push('/planner') : setOpen(true)}
+                aria-label="Concierge Navigation"
             >
                 <span className={styles.fabIcon}>{cfg.icon}</span>
                 {!shrink && <span className={styles.fabLabel}>{cfg.label}</span>}
             </button>
 
-            {/* ── Action Sheet Overlay ── */}
-            {open && (
+            {open && destInfo && (
                 <div className={styles.overlay} onClick={() => setOpen(false)}>
                     <div className={styles.sheet} onClick={e => e.stopPropagation()}>
                         <div className={styles.sheetHandle} />
-
-                        {/* Destination Info */}
                         <div className={styles.destBanner}>
                             <span className={styles.destIcon}>📍</span>
                             <div>
-                                <div className={styles.destName}>{MOCK_NEXT_DEST.name}</div>
-                                <div className={styles.destAddr}>{MOCK_NEXT_DEST.nameKo}</div>
+                                <div className={styles.destName}>{destInfo.name}</div>
+                                <div className={styles.destAddr}>{destInfo.nameKo}</div>
                             </div>
                         </div>
 
-                        {/* Option 1 — k.ride (Primary) */}
-                        <button
-                            className={`${styles.option} ${styles.optionKride}`}
-                            onClick={handleKRide}
-                        >
-                            <span className={styles.optionIcon}>🚗</span>
+                        <button className={`${styles.option} ${styles.optionKride}`} onClick={handleKRide}>
+                            <span className={styles.optionIcon}>🚕</span>
                             <div className={styles.optionText}>
-                                <span className={styles.optionTitle}>k.ride 앱 열기</span>
-                                <span className={styles.optionSub}>예상 이동 {MOCK_NEXT_DEST.travelMinutes}분</span>
+                                <span className={styles.optionTitle}>{t('fab.kride')}</span>
+                                <span className={styles.optionSub}>{t('fab.kride_sub', { defaultValue: 'Arrives in 5m', mins: destInfo.travelMinutes })}</span>
                             </div>
                             <span className={styles.optionArrow}>→</span>
                         </button>
 
-                        {/* Option 2 — 대중교통 */}
                         <button className={styles.option} onClick={handleTransit}>
                             <span className={styles.optionIcon}>🚇</span>
                             <div className={styles.optionText}>
-                                <span className={styles.optionTitle}>대중교통 / 도보 길찾기</span>
-                                <span className={styles.optionSub}>카카오맵으로 열기</span>
+                                <span className={styles.optionTitle}>{t('fab.transit')}</span>
+                                <span className={styles.optionSub}>{t('fab.transit_sub', { defaultValue: 'Fastest route' })}</span>
                             </div>
                             <span className={styles.optionArrow}>→</span>
                         </button>
 
-                        {/* Option 3 — 주소 복사 */}
                         <button className={styles.option} onClick={handleCopy}>
                             <span className={styles.optionIcon}>📋</span>
                             <div className={styles.optionText}>
-                                <span className={styles.optionTitle}>목적지 주소 복사</span>
-                                <span className={styles.optionSub}>{copied ? '✅ 복사됨!' : '한국어 주소 클립보드에 복사'}</span>
+                                <span className={styles.optionTitle}>{t('fab.copy')}</span>
+                                <span className={styles.optionSub}>{copied ? t('fab.copy_done', { defaultValue: 'Copied!' }) : t('fab.copy')}</span>
                             </div>
                         </button>
 
-                        {/* Option 4 — 기사님용 카드 */}
-                        <button className={styles.option} onClick={handleAddressCard}>
+                        <button className={styles.option} onClick={() => { setOpen(false); setShowCard(true); }}>
                             <span className={styles.optionIcon}>🗺️</span>
                             <div className={styles.optionText}>
-                                <span className={styles.optionTitle}>기사님용 한국어 주소 카드</span>
-                                <span className={styles.optionSub}>화면 보여주기</span>
+                                <span className={styles.optionTitle}>{t('fab.card')}</span>
+                                <span className={styles.optionSub}>{t('fab.card_sub', { defaultValue: 'Show this to driver' })}</span>
                             </div>
                             <span className={styles.optionArrow}>→</span>
                         </button>
 
-                        <button className={styles.cancelBtn} onClick={() => setOpen(false)}>취소</button>
+                        <button className={styles.cancelBtn} onClick={() => setOpen(false)}>{t('fab.cancel')}</button>
                     </div>
                 </div>
             )}
 
-            {/* ── 기사님용 주소 카드 모달 ── */}
-            {showCard && (
+            {showCard && destInfo && (
                 <div className={styles.overlay} onClick={() => setShowCard(false)}>
                     <div className={styles.addressCard} onClick={e => e.stopPropagation()}>
-                        <div className={styles.cardTitle}>🗺️ 기사님, 여기로 가주세요</div>
-                        <div className={styles.cardAddress}>{MOCK_NEXT_DEST.nameKo}</div>
-                        <div className={styles.cardName}>{MOCK_NEXT_DEST.name}</div>
-                        <button className={styles.cardCopyBtn} onClick={async () => {
-                            await navigator.clipboard.writeText(MOCK_NEXT_DEST.nameKo);
-                            setCopied(true);
-                            setTimeout(() => setCopied(false), 2000);
-                        }}>
-                            {copied ? '✅ 복사됨' : '📋 주소 복사'}
+                        <div className={styles.cardTitle}>{t('fab.card_modal_title', { defaultValue: '🗺️ Please go to this address' })}</div>
+                        <div className={styles.cardAddress}>{destInfo.nameKo}</div>
+                        <div className={styles.cardName}>{destInfo.name}</div>
+                        <button className={styles.cardCopyBtn} onClick={handleCopy}>
+                            {copied ? t('fab.copy_done', { defaultValue: '✅ Copied' }) : t('fab.copy', { defaultValue: '📋 Copy Address' })}
                         </button>
-                        <button className={styles.cardCloseBtn} onClick={() => setShowCard(false)}>닫기</button>
+                        <button className={styles.cardCloseBtn} onClick={() => setShowCard(false)}>{t('fab.cancel', { defaultValue: 'Close' })}</button>
                     </div>
                 </div>
             )}

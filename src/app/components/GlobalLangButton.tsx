@@ -20,8 +20,8 @@ export default function GlobalLangButton() {
         initClientLanguage();
     }, []);
 
-    // auth 페이지에선 숨김
-    if (pathname.startsWith('/auth')) return null;
+    // auth 페이지 및 홈 페이지(헤더 통합)에선 숨김
+    if (pathname.startsWith('/auth') || pathname === '/') return null;
 
     return (
         <div className={styles.floatWrap}>

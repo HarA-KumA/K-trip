@@ -1,8 +1,8 @@
-'use client';
-
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import styles from '../explore.module.css';
 import { CITIES, CATEGORIES, CityId } from '../mock/data';
+import HotelSearch from './HotelSearch';
 
 interface ExploreHeaderProps {
     currentCity: CityId;
@@ -11,6 +11,9 @@ interface ExploreHeaderProps {
     onCategoryChange: (catId: string) => void;
     onFilterClick: () => void;
     filterCount: number;
+    onHotelSelect: (location: { lat: number, lng: number, name: string, placeId: string }) => void;
+    radius: number;
+    onRadiusChange: (r: number) => void;
 }
 
 export default function ExploreHeader({
@@ -19,8 +22,12 @@ export default function ExploreHeader({
     currentCategory,
     onCategoryChange,
     onFilterClick,
-    filterCount
+    filterCount,
+    onHotelSelect,
+    radius,
+    onRadiusChange
 }: ExploreHeaderProps) {
+    const { t } = useTranslation('common');
     const [isCityModalOpen, setIsCityModalOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -30,31 +37,19 @@ export default function ExploreHeader({
     };
 
     const getPlaceholder = () => {
-        switch (currentCategory) {
-            case 'beauty': return 'Search clinics, salons...';
-            case 'event': return 'Search concerts, shows...';
-            case 'food': return 'Search restaurants, dishes...';
-            case 'festival': return 'Search festivals...';
-            case 'attraction': return 'Search palaces, parks...';
-            default: return 'Search for beauty, food...';
-        }
+        const key = `explore_page.search_placeholders.${currentCategory}`;
+        return t(key, { defaultValue: t('explore_page.search_placeholders.all', { defaultValue: 'Search...' }) });
     };
 
     return (
         <>
             <header className={styles.stickyHeader}>
-                {/* Top Row: City & Title */}
+                {/* Top Row: Hotel Search */}
                 <div className={styles.headerTop}>
-                    <div
-                        className={styles.cityPill}
-                        onClick={() => setIsCityModalOpen(true)}
-                    >
-                        {CITIES.find(c => c.id === currentCity)?.label} <span className={styles.dropdownArrow}>▾</span>
-                    </div>
-                    {/* Optional: Add user profile or other icons here */}
+                    <HotelSearch onSelect={onHotelSelect} />
                 </div>
 
-                {/* Search Bar */}
+                {/* Sub Row: Search Bar & Radius / Filter */}
                 <div className={styles.searchContainer}>
                     <div className={styles.searchWrapper}>
                         <span className={styles.searchIcon}>🔍</span>
@@ -67,10 +62,13 @@ export default function ExploreHeader({
                         />
                     </div>
 
-                    <button className={styles.filterBtn} onClick={onFilterClick}>
-                        <span className={styles.filterIcon}>⚡</span>
-                        {filterCount > 0 && <span className={styles.filterBadge}>{filterCount}</span>}
-                    </button>
+                    <div className={styles.headerActions}>
+                        {/* Replaced select with scroll menu below */}
+                        <button className={styles.filterBtn} onClick={onFilterClick}>
+                            <span className={styles.filterIcon}>⚡</span>
+                            {filterCount > 0 && <span className={styles.filterBadge}>{filterCount}</span>}
+                        </button>
+                    </div>
                 </div>
 
                 {/* Category Tabs */}
@@ -81,17 +79,38 @@ export default function ExploreHeader({
                             className={`${styles.categoryChip} ${currentCategory === cat.id ? styles.active : ''}`}
                             onClick={() => onCategoryChange(cat.id)}
                         >
-                            {cat.label}
+                            {t(`common.categories.${cat.id}`, { defaultValue: cat.label })}
+                        </div>
+                    ))}
+                </div>
+
+                {/* Radius Scroll Menu */}
+                <div className={styles.categoryScroll} style={{ marginTop: '0', paddingBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                    <div className={styles.chipLabel} style={{ fontSize: '0.8rem', color: 'var(--gray-500)', marginRight: '8px', alignSelf: 'center' }}>
+                        Distance:
+                    </div>
+                    {[
+                        { label: '500m', value: 500 },
+                        { label: '1km', value: 1000 },
+                        { label: '3km', value: 3000 }
+                    ].map(rad => (
+                        <div
+                            key={rad.value}
+                            className={`${styles.categoryChip} ${radius === rad.value ? styles.active : ''}`}
+                            onClick={() => onRadiusChange(rad.value)}
+                            style={{ padding: '6px 12px', fontSize: '0.85rem' }}
+                        >
+                            {rad.label}
                         </div>
                     ))}
                 </div>
             </header>
 
-            {/* City Selection Modal */}
+            {/* City Selection Modal - Keep it for now or remove if it's redundant with HotelSearch */}
             {isCityModalOpen && (
                 <div className={styles.modalOverlay} onClick={() => setIsCityModalOpen(false)}>
                     <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
-                        <h3 className={styles.modalTitle}>Select City</h3>
+                        <h3 className={styles.modalTitle}>{t('explore_page.select_city')}</h3>
                         <div className={styles.cityGrid}>
                             {CITIES.map(city => (
                                 <button
@@ -99,7 +118,7 @@ export default function ExploreHeader({
                                     className={`${styles.cityOption} ${currentCity === city.id ? styles.selected : ''}`}
                                     onClick={() => handleCitySelect(city.id as CityId)}
                                 >
-                                    {city.label}
+                                    {t(`common.cities.${city.id}`, { defaultValue: city.label })}
                                 </button>
                             ))}
                         </div>

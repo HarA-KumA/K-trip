@@ -17,7 +17,15 @@
         "confirmed": "Confirmado",
         "payment_completed": "Pago Completado",
         "weather_clear": "Despejado",
-        "back": "Atrás"
+        "back": "Atrás",
+        "select_language": "Seleccionar Idioma",
+        "home_nav": "Inicio",
+        "explore_nav": "Explorar",
+        "planner_nav": "Itinerario",
+        "today_nav": "Hoy",
+        "my_nav": "Mi Info",
+        "day_unit": "d",
+        "locale": "es-ES"
     },
     "transport": {
         "moving_to": "Yendo a {{dest}}",
@@ -41,9 +49,48 @@
     },
     "home": {
         "title_korea": "Hoy en Corea",
-        "move_gangnam": "Ir a Gangnam",
-        "subway_line_2": "Línea 2 del Metro (Verde) • 25min",
-        "reservation_hair": "Jenny House Cheongdam",
-        "dinner_bbq": "Restaurante Cerdo Dorado"
+        "title": "Viaje a Corea, comprendido en 3 segundos",
+        "subtitle": "Reservas de conserjería · Itinerario automático · Navegación",
+        "create_trip_cta": "Empezar a planificar",
+        "input_label": "¿A dónde viajas ?",
+        "input_placeholder": "Ciudad, área, nombre del hotel",
+        "days_label": "Periodo del viaje"
+    },
+    "explore_page": {
+        "title": "Explorar",
+        "select_city": "Seleccionar ciudad"
+    },
+    "planner_page": {
+        "title": "Itinerario",
+        "day": "Día {{n}}"
+    },
+    "today_page": {
+        "title": "Hoy",
+        "active_now": "Activo",
+        "navigate": "Navegar",
+        "booking_ref": "Ref reserva: {{ref}}",
+        "next_up": "Siguiente",
+        "minutes_left": "Empieza en {{mins}}m",
+        "depart_early": "Salir ahora",
+        "timeline": "Cronograma",
+        "empty": {
+            "title": "Sin agenda para hoy",
+            "desc": "¡Explora lugares y añadélos!",
+            "cta": "Explorar lugares"
+        }
+    },
+    "booking_detail": {
+        "select_date": "Seleccionar fecha",
+        "select_time": "Seleccionar hora",
+        "total_price": "Precio total",
+        "request_booking": "Solicitar reserva"
+    },
+    "navigation_page": {
+        "title": "Hoy"
+    },
+    "my_page": {
+        "bookings": {
+            "title": "Mis reservas"
+        }
     }
 }

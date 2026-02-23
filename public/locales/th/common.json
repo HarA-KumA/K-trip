@@ -17,7 +17,30 @@
         "confirmed": "ยืนยันแล้ว",
         "payment_completed": "ชำระเงินสำเร็จ",
         "weather_clear": "แจ่มใส",
-        "back": "ย้อนกลับ"
+        "back": "ย้อนกลับ",
+        "select_language": "เลือกภาษา",
+        "home_nav": "หน้าแรก",
+        "explore_nav": "สำรวจ",
+        "planner_nav": "ตารางเวลา",
+        "today_nav": "วันนี้",
+        "my_nav": "ของฉัน",
+        "day_unit": "ว",
+        "locale": "th-TH",
+        "cities": {
+            "seoul": "โซล",
+            "busan": "ปูซาน",
+            "jeju": "เจจู",
+            "gyeongju": "คยองจู"
+        },
+        "categories": {
+            "all": "ทั้งหมด",
+            "food": "อาหาร",
+            "beauty": "บิวตี้",
+            "event": "อีเวนต์",
+            "festival": "เทศกาล",
+            "attraction": "สถานที่",
+            "transport": "การเดินทาง"
+        }
     },
     "transport": {
         "moving_to": "กำลังไปที่ {{dest}}",
@@ -40,6 +63,46 @@
         }
     },
     "home": {
-        "title_korea": "เกาหลีวันนี้"
+        "title_korea": "เกาหลีวันนี้",
+        "title": "ทริปเกาหลี เข้าใจภายใน 3 วินาที",
+        "subtitle": "จองผ่านคอนเซียร์จ · จัดตารางอัตโนมัติ · นำทาง",
+        "create_trip_cta": "เริ่มจัดตารางเวลา",
+        "input_label": "คุณกำลังจะไปเที่ยวที่ไหน?",
+        "input_placeholder": "เมือง, ย่าน, ชื่อโรงแรม",
+        "days_label": "ระยะเวลาการเดินทาง"
+    },
+    "explore_page": {
+        "title": "สำรวจ",
+        "select_city": "เลือกเมือง"
+    },
+    "planner_page": {
+        "title": "ตารางเวลา",
+        "day": "วันที่ {{n}}"
+    },
+    "today_page": {
+        "title": "วันนี้",
+        "active_now": "กำลังดำเนินการ",
+        "navigate": "นำทาง",
+        "booking_ref": "รหัสการจอง: {{ref}}",
+        "next_up": "ถัดไป",
+        "minutes_left": "เริ่มในอีก {{mins}} นาที",
+        "depart_early": "ออกเดินทางเลย",
+        "timeline": "ไทม์ไลน์",
+        "empty": {
+            "title": "ไม่มีตารางเวลาสำหรับวันนี้",
+            "desc": "สำรวจสถานที่และเพิ่มลงในทริปของคุณ!",
+            "cta": "สำรวจสถานที่"
+        }
+    },
+    "booking_detail": {
+        "select_date": "เลือกวันที่",
+        "select_time": "เลือกเวลา",
+        "total_price": "ราคารวม",
+        "request_booking": "ขอจอง"
+    },
+    "my_page": {
+        "bookings": {
+            "title": "การจองของฉัน"
+        }
     }
 }

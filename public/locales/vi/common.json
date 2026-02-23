@@ -17,7 +17,30 @@
         "confirmed": "Đã xác nhận",
         "payment_completed": "Thanh toán thành công",
         "weather_clear": "Trời quang",
-        "back": "Quay lại"
+        "back": "Quay lại",
+        "select_language": "Chọn ngôn ngữ",
+        "home_nav": "Trang chủ",
+        "explore_nav": "Khám phá",
+        "planner_nav": "Lịch trình",
+        "today_nav": "Hôm nay",
+        "my_nav": "Của tôi",
+        "day_unit": "n",
+        "locale": "vi-VN",
+        "cities": {
+            "seoul": "Seoul",
+            "busan": "Busan",
+            "jeju": "Jeju",
+            "gyeongju": "Gyeongju"
+        },
+        "categories": {
+            "all": "Tất cả",
+            "food": "Ẩm thực",
+            "beauty": "Làm đẹp",
+            "event": "Sự kiện",
+            "festival": "Lễ hội",
+            "attraction": "Địa điểm",
+            "transport": "Giao thông"
+        }
     },
     "transport": {
         "moving_to": "Đang đến {{dest}}",
@@ -40,6 +63,46 @@
         }
     },
     "home": {
-        "title_korea": "Hàn Quốc hôm nay"
+        "title_korea": "Hàn Quốc hôm nay",
+        "title": "Du lịch Hàn Quốc, hiểu trong 3 giây",
+        "subtitle": "Đặt lịch qua Concierge · Lịch trình tự động · Dẫn đường",
+        "create_trip_cta": "Bắt đầu lập kế hoạch",
+        "input_label": "Bạn định đi đâu du lịch?",
+        "input_placeholder": "Thành phố, khu vực, tên khách sạn",
+        "days_label": "Thời gian chuyến đi"
+    },
+    "explore_page": {
+        "title": "Khám phá",
+        "select_city": "Chọn thành phố"
+    },
+    "planner_page": {
+        "title": "Lịch trình",
+        "day": "Ngày {{n}}"
+    },
+    "today_page": {
+        "title": "Hôm nay",
+        "active_now": "Đang diễn ra",
+        "navigate": "Dẫn đường",
+        "booking_ref": "Mã đặt: {{ref}}",
+        "next_up": "Tiếp theo",
+        "minutes_left": "Bắt đầu sau {{mins}}p",
+        "depart_early": "Khởi hành ngay",
+        "timeline": "Timeline",
+        "empty": {
+            "title": "Không có lịch trình hôm nay",
+            "desc": "Khám phá địa điểm và thêm vào chuyến đi!",
+            "cta": "Khám phá địa điểm"
+        }
+    },
+    "booking_detail": {
+        "select_date": "Chọn ngày",
+        "select_time": "Chọn giờ",
+        "total_price": "Tổng giá",
+        "request_booking": "Yêu cầu đặt chỗ"
+    },
+    "my_page": {
+        "bookings": {
+            "title": "Lịch đặt của tôi"
+        }
     }
 }

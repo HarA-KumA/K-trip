@@ -3,19 +3,21 @@
 import { usePathname, useRouter } from "next/navigation";
 import styles from "./BottomNav.module.css";
 import { useEffect, useState } from "react";
-
-const navItems = [
-    { path: "/", icon: "✦", label: "Home", activeKey: "/" },
-    { path: "/explore", icon: "🔍", label: "탐색", activeKey: "/explore" },
-    { path: "/planner", icon: "📋", label: "일정", activeKey: "/planner" },
-    { path: "/navigation", icon: "📍", label: "오늘", activeKey: "/navigation" },
-    { path: "/my", icon: "👤", label: "My", activeKey: "/my" },
-];
+import { useTranslation } from "react-i18next";
 
 export default function BottomNav() {
+    const { t } = useTranslation('common');
     const router = useRouter();
     const pathname = usePathname();
     const [activeTab, setActiveTab] = useState("/");
+
+    const navItems = [
+        { path: "/", icon: "✦", label: t('common.home_nav', { defaultValue: 'Home' }), activeKey: "/" },
+        { path: "/explore", icon: "🔍", label: t('common.explore_nav', { defaultValue: 'Explore' }), activeKey: "/explore" },
+        { path: "/planner", icon: "🗓️", label: t('common.planner_nav', { defaultValue: 'Itinerary' }), activeKey: "/planner" },
+        { path: "/navigation", icon: "📍", label: t('common.today_nav', { defaultValue: 'Today' }), activeKey: "/navigation" },
+        { path: "/my", icon: "👤", label: t('common.my_nav', { defaultValue: 'My' }), activeKey: "/my" },
+    ];
 
     useEffect(() => {
         const matched = navItems.find(item => {
@@ -34,7 +36,7 @@ export default function BottomNav() {
                 const isActive = activeTab === item.activeKey;
                 return (
                     <div
-                        key={item.label}
+                        key={item.path}
                         className={`${styles.navItem} ${isActive ? styles.active : ""}`}
                         onClick={() => router.push(item.path)}
                     >

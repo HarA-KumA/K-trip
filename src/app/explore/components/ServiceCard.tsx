@@ -1,5 +1,4 @@
-'use client';
-
+import { useTranslation } from 'react-i18next';
 import { ServiceItem } from '../mock/data';
 import styles from '../explore.module.css';
 
@@ -9,19 +8,23 @@ interface ServiceCardProps {
     onAddToPlan: (id: string) => void;
     onDetails: (id: string) => void;
     isSaved: boolean;
+    distance?: string;
 }
 
-export default function ServiceCard({ item, onSave, onAddToPlan, onDetails, isSaved }: ServiceCardProps) {
+export default function ServiceCard({ item, onSave, onAddToPlan, onDetails, isSaved, distance }: ServiceCardProps) {
+    const { t } = useTranslation('common');
 
     const renderBadges = () => {
         return (
             <div className={styles.badges}>
-                {item.badges.map(badge => (
-                    <span key={badge} className={styles.badge}>{badge}</span>
+                {item.badges.map((badge, idx) => (
+                    <span key={idx} className={styles.badge}>
+                        {t(`explore_items.${item.id}.badges.${idx}`, { defaultValue: t(`common.badges.${badge.toLowerCase().replace(/ /g, '_').replace(/-/g, '_')}`, { defaultValue: badge }) })}
+                    </span>
                 ))}
                 {item.vegan_option && (
                     <span className={`${styles.badge} ${styles.veganBadge}`}>
-                        {item.vegan_option === 'all_vegan' ? 'Vegan Only' : 'Vegan Option'}
+                        {item.vegan_option === 'all_vegan' ? t('explore_page.badges.vegan_only') : t('explore_page.badges.vegan_option')}
                     </span>
                 )}
             </div>
@@ -33,25 +36,29 @@ export default function ServiceCard({ item, onSave, onAddToPlan, onDetails, isSa
             case 'food':
                 return (
                     <div className={styles.foodTags}>
-                        {item.ingredients?.map(ing => (
-                            <span key={ing} className={styles.ingredientTag}>{ing}</span>
+                        {item.ingredients?.map((ing, idx) => (
+                            <span key={idx} className={styles.ingredientTag}>
+                                {t(`explore_items.${item.id}.ingredients.${idx}`, { defaultValue: t(`common.ingredients.${ing.toLowerCase()}`, { defaultValue: ing }) })}
+                            </span>
                         ))}
-                        {item.diet_tags?.map(diet => (
-                            <span key={diet} className={styles.dietTag}>{diet}</span>
+                        {item.diet_tags?.map((diet, idx) => (
+                            <span key={idx} className={styles.dietTag}>
+                                {t(`explore_items.${item.id}.diet_tags.${idx}`, { defaultValue: t(`common.diet.${diet.toLowerCase().replace(/-/g, '_')}`, { defaultValue: diet }) })}
+                            </span>
                         ))}
                     </div>
                 );
             case 'event':
                 return (
                     <div className={styles.eventTimeStrip}>
-                        Today {item.start_time}
+                        {t('explore_page.today')} {item.start_time}
                     </div>
                 );
             case 'beauty':
                 return (
                     <div className={styles.beautyInfo}>
-                        <span>⏱ {item.duration_min} min</span>
-                        <span>Starts from ₩{item.price_from?.toLocaleString()}</span>
+                        <span>⏱ {item.duration_min} {t('common.min_unit', { defaultValue: 'min' })}</span>
+                        <span>{t('explore_page.starts_from', { price: item.price_from?.toLocaleString() })}</span>
                     </div>
                 );
             case 'festival':
@@ -59,15 +66,15 @@ export default function ServiceCard({ item, onSave, onAddToPlan, onDetails, isSa
                     <div className={styles.festivalInfo}>
                         <span>📅 {item.date_range}</span>
                         <span className={item.indoor_outdoor === 'indoor' ? styles.indoor : styles.outdoor}>
-                            {item.indoor_outdoor?.toUpperCase()}
+                            {item.indoor_outdoor === 'indoor' ? t('explore_page.indoor') : t('explore_page.outdoor')}
                         </span>
                     </div>
                 );
             case 'attraction':
                 return (
                     <div className={styles.attractionInfo}>
-                        <span>⏳ {item.time_needed}</span>
-                        <span className={styles.themeBadge}>{item.theme}</span>
+                        <span>⏳ {t(`explore_items.${item.id}.time_needed`, { defaultValue: item.time_needed })}</span>
+                        <span className={styles.themeBadge}>{t(`explore_items.${item.id}.theme`, { defaultValue: item.theme })}</span>
                     </div>
                 );
             default:
@@ -86,7 +93,7 @@ export default function ServiceCard({ item, onSave, onAddToPlan, onDetails, isSa
                 {/* Event specific overlay */}
                 {item.type === 'event' && (
                     <div className={styles.eventOverlay}>
-                        Tonight {item.start_time}
+                        {t('explore_page.tonight')} {item.start_time}
                     </div>
                 )}
                 {/* Save Button */}
@@ -104,12 +111,17 @@ export default function ServiceCard({ item, onSave, onAddToPlan, onDetails, isSa
             {/* Content */}
             <div className={styles.cardContent} onClick={() => onDetails(item.id)}>
                 <div className={styles.cardHeader}>
-                    <h3 className={styles.cardTitle}>{item.title}</h3>
+                    <h3 className={styles.cardTitle}>{t(`explore_items.${item.id}.title`, { defaultValue: item.title })}</h3>
                     <div className={styles.cardMeta}>
-                        <span className={styles.area}>{item.area}</span>
-                        <span className={styles.price}>
-                            {Array(item.price_level).fill('₩').join('')}
+                        <span className={styles.area}>
+                            {distance && <strong className={styles.distance}>{distance} · </strong>}
+                            {t(`explore_items.${item.id}.area`, { defaultValue: item.area })}
                         </span>
+                        {item.rating && (
+                            <span className={styles.rating}>
+                                ⭐ {item.rating} ({item.reviews})
+                            </span>
+                        )}
                     </div>
                 </div>
 
@@ -126,9 +138,10 @@ export default function ServiceCard({ item, onSave, onAddToPlan, onDetails, isSa
                         onAddToPlan(item.id);
                     }}
                 >
-                    + Add to Plan
+                    {t('explore_page.add_to_plan')}
                 </button>
             </div>
         </div>
     );
 }
+

@@ -1,45 +1,101 @@
 {
     "common": {
-        "welcome": "Selamat Datang, Pelancong.",
+        "welcome": "Selamat datang, Pelancong.",
         "greeting": "Selamat Pagi",
         "login": "Masuk",
-        "today": "Hari ini",
-        "move": "Pergi",
+        "today": "Hari Ini",
+        "move": "Pindah",
         "book": "Pesan",
-        "chat": "Obrolan",
+        "chat": "Chat",
         "my": "Saya",
-        "current_operation": "Sedang Beroperasi",
+        "current_operation": "Operasi Saat Ini",
         "live": "LIVE",
-        "recommended": "Rekomendasi Sekitar",
+        "recommended": "Rekomendasi Terdekat",
         "based_on_location": "Berdasarkan lokasi Anda",
         "start_nav": "Mulai Navigasi",
-        "delay_10m": "Terlambat +10 menit",
+        "delay_10m": "Tunda +10m",
         "confirmed": "Dikonfirmasi",
         "payment_completed": "Pembayaran Selesai",
         "weather_clear": "Cerah",
-        "back": "Kembali"
-    },
-    "transport": {
-        "moving_to": "Menuju {{dest}}",
-        "remaining": "Tersisa",
-        "line_2_direction": "Jalur 2 • Arah City Hall",
-        "departed": "telah berangkat",
-        "passing_now": "Sedang melewati...",
-        "current": "Saat ini",
-        "get_off_at": "Turun di",
-        "exit_3": "Pintu keluar 3",
-        "getting_off_here": "Saya turun di sini",
-        "stations": {
-            "samseong": "Samseong",
-            "seolleung": "Seolleung",
-            "yeoksam": "Yeoksam",
-            "gangnam": "Gangnam",
-            "gyodae": "Gyodae",
-            "seocho": "Seocho",
-            "seongsu": "Seongsu"
+        "back": "Kembali",
+        "select_language": "Pilih Bahasa",
+        "home_nav": "Utama",
+        "explore_nav": "Eksplorasi",
+        "planner_nav": "Jadwal",
+        "today_nav": "Hari Ini",
+        "my_nav": "Saya",
+        "day_unit": "h",
+        "locale": "id-ID",
+        "cities": {
+            "seoul": "Seoul",
+            "busan": "Busan",
+            "jeju": "Jeju",
+            "gyeongju": "Gyeongju"
+        },
+        "categories": {
+            "all": "Semua",
+            "food": "Makanan",
+            "beauty": "Kecantikan",
+            "event": "Acara",
+            "festival": "Festival",
+            "attraction": "Wisata",
+            "transport": "Transportasi"
         }
     },
     "home": {
-        "title_korea": "Korea Hari Ini"
+        "badge": "✦ Korea Travel OS",
+        "title": "Perjalanan Korea, Dimengerti dalam 3 Detik",
+        "subtitle": "Pemesanan Concierge · Jadwal Otomatis · Navigasi",
+        "create_trip_cta": "Mulai Membuat Jadwal",
+        "input_label": "Ke mana Anda akan berwisata?",
+        "input_placeholder": "Kota, daerah, nama hotel",
+        "days_label": "Durasi Perjalanan",
+        "how_it_works": {
+            "title": "Cara kerja",
+            "step1": "Permintaan",
+            "step1_desc": "Pilih tempat kecantikan/makanan Anda",
+            "step2": "Proses",
+            "step2_desc": "Kami memesankan melalui saluran lokal",
+            "step3": "Dikonfirmasi",
+            "step3_desc": "Sinkronisasi otomatis ke jadwal Anda"
+        }
+    },
+    "explore_page": {
+        "title": "Eksplorasi",
+        "city_changed": "Kota diubah ke {{city}}",
+        "added_to": "Ditambahkan ke Hari {{day}}",
+        "no_items": "Tidak ada item ditemukan di {{city}}",
+        "try_changing": "Coba ubah kategori atau kota.",
+        "select_city": "Pilih Kota"
+    },
+    "planner_page": {
+        "title": "Jadwal",
+        "day": "Hari {{n}}"
+    },
+    "today_page": {
+        "title": "Jadwal Hari Ini",
+        "active_now": "Sedang Aktif",
+        "navigate": "Navigasi",
+        "booking_ref": "Ref Pemesanan: {{ref}}",
+        "next_up": "Selanjutnya",
+        "minutes_left": "Mulai dalam {{mins}}mnt",
+        "depart_early": "Berangkat Sekarang",
+        "timeline": "Timeline",
+        "empty": {
+            "title": "Tidak ada jadwal untuk hari ini",
+            "desc": "Eksplorasi tempat dan tambahkan ke perjalanan Anda!",
+            "cta": "Eksplorasi Tempat"
+        }
+    },
+    "booking_detail": {
+        "select_date": "Pilih Tanggal",
+        "select_time": "Pilih Waktu",
+        "total_price": "Total Harga",
+        "request_booking": "Ajukan Pemesanan"
+    },
+    "my_page": {
+        "bookings": {
+            "title": "Pemesanan Saya"
+        }
     }
 }

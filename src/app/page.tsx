@@ -3,33 +3,60 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { initClientLanguage } from '@/lib/i18n/client';
+import LanguagePicker from './components/LanguagePicker';
+import CurrencySelector from './components/CurrencySelector';
+import WeatherWidget from './components/WeatherWidget';
 import styles from './home.module.css';
 
-const VALUE_PROPS = [
-  { icon: '📅', title: '일정 자동 정리', desc: '숙소·관광·식사를 AI가 최적 순서로' },
-  { icon: '🎫', title: '예약 대행', desc: '클리닉·스파·레스토랑 한번에 예약' },
-  { icon: '🗺️', title: '실시간 이동 안내', desc: '지하철·도보 경로를 한국어 없이도' },
-];
-
-const PRESETS = [
-  { icon: '💆', label: '뷰티 투어', query: '피부과,스파,네일', days: 3 },
-  { icon: '🍜', label: '미식 여행', query: '맛집,카페,야시장', days: 2 },
-  { icon: '🏯', label: '문화 탐방', query: '경복궁,북촌,인사동', days: 2 },
-  { icon: '🎶', label: 'K-pop 성지', query: 'HYBE,SM,홍대', days: 1 },
-];
+import { useTranslation } from 'react-i18next';
 
 export default function HomePage() {
+  const { t, i18n } = useTranslation('common');
   const router = useRouter();
   const [input, setInput] = useState('');
   const [days, setDays] = useState(3);
   const [activeValueIdx, setActiveValueIdx] = useState(0);
+  const [userName, setUserName] = useState<string | null>(null);
+
+  const VALUE_PROPS = [
+    { icon: '🗓️', key: 'itinerary' },
+    { icon: '🎫', key: 'booking' },
+    { icon: '🗺️', key: 'navigation' },
+  ];
+
+  const PRESETS = [
+    { icon: '💆', label: 'Beauty Tour', query: 'clinic,spa,nail', days: 3 },
+    { icon: '🍜', label: 'Foodie', query: 'restaurant,cafe', days: 2 },
+    { icon: '🏯', label: 'Heritage', query: 'palace,bukchon', days: 2 },
+    { icon: '🎶', label: 'K-pop', query: 'hybe,hongdae', days: 1 },
+  ];
 
   useEffect(() => {
     initClientLanguage();
-    // Auto-rotate value props
-    const t = setInterval(() => setActiveValueIdx(i => (i + 1) % VALUE_PROPS.length), 3000);
-    return () => clearInterval(t);
-  }, []);
+
+    // Check if user is stored in localStorage
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('user');
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          setUserName(parsed.name);
+        } catch (e) { }
+      }
+    }
+
+    const tInterval = setInterval(() => setActiveValueIdx(i => (i + 1) % VALUE_PROPS.length), 3000);
+    return () => clearInterval(tInterval);
+  }, [VALUE_PROPS.length]);
+
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    const isKo = i18n.language?.startsWith('ko');
+
+    if (hour < 12) return isKo ? '좋은 아침입니다' : 'Good morning';
+    if (hour < 18) return isKo ? '좋은 오후입니다' : 'Good afternoon';
+    return isKo ? '좋은 저녁입니다' : 'Good evening';
+  };
 
   const handleStart = () => {
     if (input.trim()) {
@@ -45,18 +72,71 @@ export default function HomePage() {
 
   return (
     <main className={styles.main}>
+      {/* ── Top Navigation (Image Matched) ── */}
+      <div className={styles.topNav}>
+        {/* Language Selector */}
+        <LanguagePicker compact />
+
+        <div style={{ flexGrow: 1 }} /> {/* Spacer */}
+
+        {/* Weather Based on Location */}
+        <WeatherWidget />
+
+        {/* Currency Selector (Real Exchange Rates) */}
+        <CurrencySelector />
+
+        {/* Auth */}
+        {!userName ? (
+          <>
+            <button className={styles.navBtn} onClick={() => router.push('/auth/signup')}>
+              {t('common.signup')}
+            </button>
+            <button className={`${styles.navBtn} ${styles.navBtnPrimary}`} onClick={() => router.push('/auth/login')}>
+              {t('common.login')}
+            </button>
+          </>
+        ) : (
+          <button className={styles.navBtn} onClick={() => {
+            localStorage.removeItem('user');
+            setUserName(null);
+          }}>
+            {userName}
+          </button>
+        )}
+      </div>
+
       {/* Ambient Background */}
       <div className={styles.orbPurple} />
       <div className={styles.orbBlue} />
 
       {/* ── HERO ── */}
       <section className={styles.hero}>
-        <div className={styles.badge}>✦ Korea Travel OS</div>
-        <h1 className={styles.heroTitle}>
-          한국 여행,<br />
-          <span className={styles.heroAccent}>3초만에 이해</span>
-        </h1>
-        <p className={styles.heroSub}>예약 대행 · 일정 자동 정리 · 이동 안내</p>
+        <div className={styles.badge}>{t('home.badge')}</div>
+        {userName ? (
+          <h1 className={styles.heroTitle} style={{ fontSize: '2rem', marginBottom: '8px', fontWeight: 'bold', color: 'var(--primary)', textShadow: '0 0 10px rgba(188, 19, 254, 0.5)' }}>
+            {getGreeting()}, {userName}님! 👋
+          </h1>
+        ) : (
+          <h1 className={styles.heroTitle} dangerouslySetInnerHTML={{ __html: t('home.title').replace(',', ',<br />') }} />
+        )}
+        <p className={styles.heroSub}>{t('home.subtitle')}</p>
+      </section>
+
+      {/* ── HOW IT WORKS ── */}
+      <section className={styles.howItWorks}>
+        <h2 className={styles.sectionTitle}>{t('home.how_it_works.title')}</h2>
+        <div className={styles.stepsGrid}>
+          {[1, 2, 3].map((step) => (
+            <div key={step} className={styles.stepCard}>
+              <div className={styles.stepNumber}>{step}</div>
+              <div className={styles.stepContent}>
+                <div className={styles.stepTitle}>{t(`home.how_it_works.step${step}`)}</div>
+                <div className={styles.stepDesc}>{t(`home.how_it_works.step${step}_desc`)}</div>
+              </div>
+              {step === 3 && <span className={styles.confirmedBadge}>{t('common.confirmed')}</span>}
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ── VALUE PROPS CAROUSEL ── */}
@@ -69,8 +149,8 @@ export default function HomePage() {
           >
             <span className={styles.valueIcon}>{v.icon}</span>
             <div>
-              <div className={styles.valueTitle}>{v.title}</div>
-              <div className={styles.valueDesc}>{v.desc}</div>
+              <div className={styles.valueTitle}>{t(`home.value_props.${v.key}.title`)}</div>
+              <div className={styles.valueDesc}>{t(`home.value_props.${v.key}.desc`)}</div>
             </div>
           </div>
         ))}
@@ -78,12 +158,12 @@ export default function HomePage() {
 
       {/* ── SINGLE INPUT ── */}
       <section className={styles.inputSection}>
-        <div className={styles.inputLabel}>어디로 여행하시나요?</div>
+        <div className={styles.inputLabel}>{t('home.input_label')}</div>
         <div className={styles.inputWrap}>
           <span className={styles.inputIcon}>📍</span>
           <input
             className={styles.inputField}
-            placeholder="도시 · 지역 · 숙소 이름"
+            placeholder={t('home.input_placeholder')}
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && handleStart()}
@@ -95,7 +175,7 @@ export default function HomePage() {
 
         {/* 기간 선택 */}
         <div className={styles.daysRow}>
-          <span className={styles.daysLabel}>여행 기간</span>
+          <span className={styles.daysLabel}>{t('home.days_label')}</span>
           <div className={styles.daysChips}>
             {[1, 2, 3, 4, 5, 7].map(d => (
               <button
@@ -103,7 +183,7 @@ export default function HomePage() {
                 className={`${styles.dayChip} ${days === d ? styles.dayChipActive : ''}`}
                 onClick={() => setDays(d)}
               >
-                {d}일
+                {d}
               </button>
             ))}
           </div>
@@ -111,14 +191,13 @@ export default function HomePage() {
 
         {/* CTA */}
         <button className={styles.ctaBtn} onClick={handleStart}>
-          <span>일정 만들기 시작</span>
+          <span>{t('home.create_trip_cta')}</span>
           <span className={styles.ctaArrow}>→</span>
         </button>
       </section>
 
       {/* ── PRESETS ── */}
       <section className={styles.presetSection}>
-        <div className={styles.sectionLabel}>추천 코스 바로 시작</div>
         <div className={styles.presetGrid}>
           {PRESETS.map(preset => (
             <button
@@ -127,8 +206,8 @@ export default function HomePage() {
               onClick={() => handlePreset(preset)}
             >
               <span className={styles.presetIcon}>{preset.icon}</span>
-              <span className={styles.presetLabel}>{preset.label}</span>
-              <span className={styles.presetDays}>{preset.days}일</span>
+              <span className={styles.presetLabel}>{t(`home.presets.${preset.label.toLowerCase().replace(' ', '_').replace('-', '_')}`, { defaultValue: preset.label })}</span>
+              <span className={styles.presetDays}>{preset.days}{t('common.day_unit', { defaultValue: 'd' })}</span>
             </button>
           ))}
         </div>

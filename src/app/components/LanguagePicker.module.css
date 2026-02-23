@@ -44,101 +44,199 @@
 
 .langLabel {
     font-size: 13px;
-    max-width: 100px;
+    max-width: 150px;
+    /* Increased from 100px */
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .chevron {
     font-size: 10px;
     opacity: 0.6;
+    margin-left: 2px;
 }
 
 /* ── Backdrop ────────────────────────────────────────────── */
 .backdrop {
     position: fixed;
     inset: 0;
-    z-index: 199;
+    z-index: 999998;
+    background: rgba(0, 0, 0, 0.2);
+    /* Dim the background slightly */
+    backdrop-filter: blur(4px);
 }
 
 /* ── Dropdown ────────────────────────────────────────────── */
 .dropdown {
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    width: 800px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Center perfectly in middle of screen */
+    width: 90vw;
+    max-width: 1100px;
     background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 28px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
     overflow: hidden;
-    z-index: 300;
-    animation: dropIn 0.18s ease;
+    z-index: 999999;
+    animation: zoomIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@keyframes dropIn {
+@keyframes zoomIn {
     from {
         opacity: 0;
-        transform: translateY(-8px) scale(0.97);
+        transform: translate(-50%, -45%) scale(0.9);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translate(-50%, -50%) scale(1);
     }
 }
 
 .dropdownHeader {
-    padding: 20px 24px 12px;
+    padding: 40px 48px 20px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .dropdownHeader h2 {
     margin: 0;
-    font-size: 16px;
-    font-weight: 700;
-    color: #333;
+    font-size: 24px;
+    font-weight: 800;
+    color: #111;
 }
 
 /* ── Language List ───────────────────────────────────────── */
 .langList {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-flow: column;
-    grid-template-rows: repeat(9, auto);
-    column-gap: 16px;
-    padding: 12px 24px 24px;
+    /* Auto-arrange columns based on width, minimum 260px per item */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    padding: 40px;
+    max-height: 60vh;
+    overflow-y: auto;
+    justify-content: center;
+    /* Center items if columns don't fill width */
+}
+
+/* Scrollbar Styling */
+.langList::-webkit-scrollbar {
+    width: 6px;
+}
+
+.langList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.langList::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+}
+
+@media (max-width: 1100px) {
+    .langList {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+    .langList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .langList {
+        grid-template-columns: 1fr;
+    }
 }
 
 .langItem {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
-    padding: 10px 12px;
+    padding: 10px 14px;
     background: transparent;
     border: none;
-    color: #333;
-    font-size: 14px;
+    color: #111;
+    font-size: 13.5px;
+    font-weight: 500;
     cursor: pointer;
     text-align: left;
-    transition: background 0.12s;
-    border-radius: 4px;
+    transition: background 0.2s;
+    border-radius: 10px;
+    white-space: normal;
+    word-break: keep-all;
 }
 
 .langItem:hover {
-    background: #f5f5f5;
+    background: #f5f5f7;
+    color: #7c3aed;
 }
 
 .langItem.active {
-    background: #f0f0f0;
-    color: #e55a00;
-    font-weight: 600;
+    background: #fdf2ff;
+    color: #7c3aed;
+    font-weight: 700;
 }
 
 .itemFlag {
-    font-size: 18px;
+    font-size: 24px;
+    /* Larger flags */
+    flex-shrink: 0;
 }
 
 .itemLabel {
     flex: 1;
+    white-space: normal;
+    word-break: keep-all;
+    /* Prevent awkward mid-word breaks */
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+/* Mobile responsive for language picker */
+@media (max-width: 768px) {
+    .dropdown {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        max-height: 70vh;
+        /* Set to 70% of viewport height */
+        border-radius: 20px 20px 0 0;
+        animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(100%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    .langList {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns for better space usage on mobile */
+        max-height: calc(70vh - 60px);
+        padding-bottom: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .langList {
+        grid-template-columns: 1fr;
+        /* Single column on very small screens */
+    }
 }

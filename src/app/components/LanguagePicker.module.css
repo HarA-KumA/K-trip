@@ -210,10 +210,12 @@
         right: 0;
         width: 100%;
         max-width: 100%;
-        max-height: 70vh;
-        /* Set to 70% of viewport height */
+        height: 70vh;
+        transform: none;
+        display: flex;
+        flex-direction: column;
         border-radius: 20px 20px 0 0;
-        animation: slideUp 0.3s ease-out;
+        animation: slideUp 0.3s ease-out forwards;
     }
 
     @keyframes slideUp {
@@ -226,10 +228,17 @@
         }
     }
 
+    .dropdownHeader {
+        padding: 24px;
+        flex-shrink: 0;
+    }
+
     .langList {
         grid-template-columns: repeat(2, 1fr);
-        /* 2 columns for better space usage on mobile */
-        max-height: calc(70vh - 60px);
+        max-height: none;
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
         padding-bottom: 60px;
     }
 }

@@ -6,8 +6,8 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: 100dvh;
-    background: #080c18;
+    min-height: calc(100dvh - 200px);
+    background: transparent;
     color: #fff;
     overflow: hidden;
     font-family: 'Inter', sans-serif;

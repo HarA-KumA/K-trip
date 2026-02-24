@@ -16,6 +16,7 @@ export interface ServiceItem {
     lng?: number;
     rating?: number;
     reviews?: number;
+    is_premium?: boolean; // Highlighted or priority sorting
 
     // Type Specific
     // Food
@@ -55,7 +56,10 @@ export const MOCK_ITEMS: ServiceItem[] = [
         image_color: '#aaddaa',
         diet_tags: ['Vegan', 'Gluten-free'],
         ingredients: ['Vegetables', 'Soy'],
-        vegan_option: 'all_vegan'
+        vegan_option: 'all_vegan',
+        lat: 37.5340,
+        lng: 126.9940,
+        is_premium: true
     },
     {
         id: 'f2',
@@ -69,7 +73,9 @@ export const MOCK_ITEMS: ServiceItem[] = [
         image_color: '#ffddaa',
         diet_tags: ['Meat-lover'],
         ingredients: ['Pork', 'Kimchi'],
-        vegan_option: 'unknown'
+        vegan_option: 'unknown',
+        lat: 37.5540,
+        lng: 127.0140
     },
     {
         id: 'f3',
@@ -98,7 +104,10 @@ export const MOCK_ITEMS: ServiceItem[] = [
         badges: ['K-Idol Style', 'English-friendly'],
         image_color: '#ffccd5',
         duration_min: 90,
-        price_from: 150000
+        price_from: 150000,
+        lat: 37.5240,
+        lng: 127.0440,
+        is_premium: true
     },
     {
         id: 'b2',

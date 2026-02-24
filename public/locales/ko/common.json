@@ -1,387 +1,443 @@
 {
-  "header": {
-    "view_app": "앱에서 보기",
-    "faq": "FAQ",
-    "recent": "최근 본 액티비티"
-  },
-  "common": {
-    "welcome": "환영합니다, 여행자님.",
-    "greeting": "좋은 아침이에요",
-    "login": "로그인",
-    "signup": "회원가입",
-    "today": "오늘",
-    "move": "이동",
-    "book": "예약",
-    "chat": "상담",
-    "my": "MY",
-    "min_unit": "분",
-    "current_operation": "현재 일정",
-    "live": "라이브",
-    "recommended": "주변 추천",
-    "based_on_location": "현재 위치 기반",
-    "start_nav": "길찾기 시작",
-    "delay_10m": "10분 지연",
-    "confirmed": "예약 확정",
-    "payment_completed": "결제 완료",
-    "weather_clear": "맑음",
-    "back": "뒤로",
-    "select_language": "언어 선택",
-    "home_nav": "홈",
-    "explore_nav": "탐색",
-    "planner_nav": "일정표",
-    "today_nav": "오늘",
-    "my_nav": "MY",
-    "day_unit": "일",
-    "locale": "ko-KR",
-    "cities": {
-      "seoul": "서울",
-      "busan": "부산",
-      "jeju": "제주",
-      "gyeongju": "경주"
+    "header": {
+        "view_app": "앱에서 보기",
+        "faq": "FAQ",
+        "recent": "최근 본 액티비티"
     },
-    "categories": {
-      "all": "전체",
-      "food": "맛집",
-      "beauty": "뷰티",
-      "event": "공연",
-      "festival": "축제",
-      "attraction": "명소",
-      "transport": "교통"
-    },
-    "badges": {
-      "english_friendly": "영어 가능",
-      "vegan_certified": "비건 인증",
-      "michelin": "미쉐린",
-      "wait_free": "대기 없음",
-      "local_experience": "현지 경험",
-      "k_idol_style": "K-아이돌 스타일",
-      "tax_refund": "세금 환급",
-      "summer_must_go": "여름 필수",
-      "non_verbal": "넌버벌",
-      "family": "가족",
-      "night_view": "야경",
-      "photo_spot": "포토존",
-      "hanbok_free_entry": "한복 무료",
-      "history": "역사",
-      "city_view": "시티뷰"
-    },
-    "ingredients": {
-      "vegetables": "채소",
-      "soy": "콩",
-      "pork": "돼지고기",
-      "kimchi": "김치",
-      "seafood": "해산물"
-    },
-    "diet": {
-      "vegan": "비건",
-      "gluten_free": "글루텐 프리",
-      "meat_lover": "고기 중심",
-      "pescatarian": "페스카테리언"
-    }
-  },
-  "transport": {
-    "moving_to": "{{dest}}(으)로 이동 중",
-    "remaining": "남음",
-    "line_2_direction": "2호선 • 시청 방면",
-    "departed": "출발함",
-    "passing_now": "지금 지나는 중...",
-    "current": "현재",
-    "get_off_at": "하차 문:",
-    "exit_3": "3번 출구",
-    "getting_off_here": "여기서 내려요",
-    "stations": {
-      "samseong": "삼성",
-      "seolleung": "선릉",
-      "yeoksam": "역삼",
-      "gangnam": "강남",
-      "gyodae": "교대",
-      "seocho": "서초",
-      "seongsu": "성수"
-    }
-  },
-  "home": {
-    "presets": {
-      "beauty_tour": "뷰티 투어",
-      "foodie": "맛집 탐방",
-      "heritage": "전통 문화",
-      "k_pop": "K-팝 투어"
-    },
-    "badge": "✦ Korea Travel OS",
-    "title": "한국 여행, 3초 만에 이해",
-    "subtitle": "예약 대행 · 일정 자동 정리 · 실시간 안내",
-    "create_trip_cta": "일정 만들기 시작",
-    "how_it_works": {
-      "title": "이용 방법",
-      "step1": "요청",
-      "step1_desc": "원하는 뷰티/맛집 선택",
-      "step2": "진행중",
-      "step2_desc": "현지 채널로 대리 예약",
-      "step3": "확정",
-      "step3_desc": "내 일정에 자동 동기화"
-    },
-    "input_label": "어디로 여행하시나요?",
-    "input_placeholder": "도시, 지역, 숙소 이름",
-    "days_label": "여행 기간",
-    "value_props": {
-      "itinerary": {
-        "title": "일정 자동 정리",
-        "desc": "AI가 최적 경로로 구성"
-      },
-      "booking": {
-        "title": "예약 대행",
-        "desc": "관리숍, 스파 등 대신 예약"
-      },
-      "navigation": {
-        "title": "실시간 이동 안내",
-        "desc": "언어 장벽 없는 길안내"
-      }
-    }
-  },
-  "explore_page": {
-    "title": "탐색",
-    "city_changed": "도시가 {{city}}(으)로 변경되었습니다",
-    "added_to": "기록의 {{day}}일차에 추가되었습니다",
-    "no_items": "{{city}}에서 찾을 수 없습니다",
-    "try_changing": "카테고리나 도시를 변경해보세요.",
-    "select_city": "도시 선택",
-    "search_placeholders": {
-      "all": "뷰티, 맛집 등을 검색해 보세요...",
-      "beauty": "피부과, 관리숍 등을 검색해 보세요...",
-      "event": "콘서트, 공연 등을 검색해 보세요...",
-      "food": "맛집, 메뉴 등을 검색해 보세요...",
-      "festival": "축제 등을 검색해 보세요...",
-      "attraction": "고궁, 공원 등을 검색해 보세요..."
-    },
-    "add_to_plan": "+ 일정에 추가",
-    "today": "오늘",
-    "tonight": "오늘 밤",
-    "starts_from": "₩{{price}} 부터",
-    "indoor": "실내",
-    "outdoor": "실외",
-    "badges": {
-      "vegan_only": "비건 전용",
-      "vegan_option": "비건 옵션"
-    },
-    "filters_title": "필터",
-    "apply": "적용",
-    "reset": "초기화",
-    "adding_item_to": "<strong>{{title}}</strong> 장소를 다음에 추가:",
-    "no_specific_filters": "이 카테고리에는 특별한 필터가 없습니다.",
-    "filters": {
-      "show": "종류",
-      "price": "가격",
-      "diet": "식단",
-      "ingredients": "재료",
-      "date": "날짜",
-      "type": "유형",
-      "options": {
-        "skin_care": "피부 관리",
-        "hair_makeup": "헤어/메이크업",
-        "spa": "스파",
-        "nails": "네일",
-        "vegan": "비건",
-        "vegetarian": "채식",
-        "no_pork": "돼지고기 없음",
-        "halal": "할랄",
-        "beef": "소고기",
-        "pork": "돼지고기",
-        "chicken": "닭고기",
-        "seafood": "해산물",
-        "dairy": "유제품",
-        "egg": "계란",
+    "common": {
+        "welcome": "환영합니다, 여행자님.",
+        "greeting": "좋은 아침이에요",
+        "login": "로그인",
+        "signup": "회원가입",
         "today": "오늘",
-        "weekend": "이번 주말",
-        "select": "날짜 선택",
-        "concert": "콘서트",
-        "show": "공연",
-        "popup": "팝업",
-        "club": "클럽",
-        "exhibition": "전시"
-      }
+        "move": "이동",
+        "book": "예약",
+        "chat": "상담",
+        "my": "MY",
+        "min_unit": "분",
+        "current_operation": "현재 일정",
+        "live": "라이브",
+        "recommended": "주변 추천",
+        "based_on_location": "현재 위치 기반",
+        "start_nav": "길찾기 시작",
+        "delay_10m": "10분 지연",
+        "confirmed": "예약 확정",
+        "payment_completed": "결제 완료",
+        "weather_clear": "맑음",
+        "back": "뒤로",
+        "select_language": "언어 선택",
+        "home_nav": "홈",
+        "explore_nav": "탐색",
+        "planner_nav": "일정표",
+        "today_nav": "오늘",
+        "my_nav": "MY",
+        "day_unit": "일",
+        "locale": "ko-KR",
+        "cities": {
+            "seoul": "서울",
+            "busan": "부산",
+            "jeju": "제주",
+            "gyeongju": "경주"
+        },
+        "categories": {
+            "all": "전체",
+            "food": "맛집",
+            "beauty": "뷰티",
+            "event": "공연",
+            "festival": "축제",
+            "attraction": "명소",
+            "transport": "교통"
+        },
+        "badges": {
+            "english_friendly": "영어 가능",
+            "vegan_certified": "비건 인증",
+            "michelin": "미쉐린",
+            "wait_free": "대기 없음",
+            "local_experience": "현지 경험",
+            "k_idol_style": "K-아이돌 스타일",
+            "tax_refund": "세금 환급",
+            "summer_must_go": "여름 필수",
+            "non_verbal": "넌버벌",
+            "family": "가족",
+            "night_view": "야경",
+            "photo_spot": "포토존",
+            "hanbok_free_entry": "한복 무료",
+            "history": "역사",
+            "city_view": "시티뷰"
+        },
+        "ingredients": {
+            "vegetables": "채소",
+            "soy": "콩",
+            "pork": "돼지고기",
+            "kimchi": "김치",
+            "seafood": "해산물"
+        },
+        "diet": {
+            "vegan": "비건",
+            "gluten_free": "글루텐 프리",
+            "meat_lover": "고기 중심",
+            "pescatarian": "페스카테리언"
+        },
+        "community_nav": "커뮤니티"
+    },
+    "transport": {
+        "moving_to": "{{dest}}(으)로 이동 중",
+        "remaining": "남음",
+        "line_2_direction": "2호선 • 시청 방면",
+        "departed": "출발함",
+        "passing_now": "지금 지나는 중...",
+        "current": "현재",
+        "get_off_at": "하차 문:",
+        "exit_3": "3번 출구",
+        "getting_off_here": "여기서 내려요",
+        "stations": {
+            "samseong": "삼성",
+            "seolleung": "선릉",
+            "yeoksam": "역삼",
+            "gangnam": "강남",
+            "gyodae": "교대",
+            "seocho": "서초",
+            "seongsu": "성수"
+        }
+    },
+    "home": {
+        "presets": {
+            "beauty_tour": "뷰티 투어",
+            "foodie": "맛집 탐방",
+            "heritage": "전통 문화",
+            "k_pop": "K-팝 투어"
+        },
+        "badge": "✦ Korea Travel OS",
+        "title": "한국 여행, 3초 만에 이해",
+        "subtitle": "예약 대행 · 일정 자동 정리 · 실시간 안내",
+        "create_trip_cta": "일정 만들기 시작",
+        "how_it_works": {
+            "title": "이용 방법",
+            "step1": "요청",
+            "step1_desc": "원하는 뷰티/맛집 선택",
+            "step2": "진행중",
+            "step2_desc": "현지 채널로 대리 예약",
+            "step3": "확정",
+            "step3_desc": "내 일정에 자동 동기화"
+        },
+        "input_label": "어디로 여행하시나요?",
+        "input_placeholder": "도시, 지역, 숙소 이름",
+        "days_label": "여행 기간",
+        "value_props": {
+            "itinerary": {
+                "title": "일정 자동 정리",
+                "desc": "AI가 최적 경로로 구성"
+            },
+            "booking": {
+                "title": "예약 대행",
+                "desc": "관리숍, 스파 등 대신 예약"
+            },
+            "navigation": {
+                "title": "실시간 이동 안내",
+                "desc": "언어 장벽 없는 길안내"
+            }
+        }
+    },
+    "explore_page": {
+        "title": "탐색",
+        "city_changed": "도시가 {{city}}(으)로 변경되었습니다",
+        "added_to": "기록의 {{day}}일차에 추가되었습니다",
+        "no_items": "{{city}}에서 찾을 수 없습니다",
+        "try_changing": "카테고리나 도시를 변경해보세요.",
+        "select_city": "도시 선택",
+        "search_placeholders": {
+            "all": "뷰티, 맛집 등을 검색해 보세요...",
+            "beauty": "피부과, 관리숍 등을 검색해 보세요...",
+            "event": "콘서트, 공연 등을 검색해 보세요...",
+            "food": "맛집, 메뉴 등을 검색해 보세요...",
+            "festival": "축제 등을 검색해 보세요...",
+            "attraction": "고궁, 공원 등을 검색해 보세요..."
+        },
+        "add_to_plan": "+ 일정에 추가",
+        "today": "오늘",
+        "tonight": "오늘 밤",
+        "starts_from": "₩{{price}} 부터",
+        "indoor": "실내",
+        "outdoor": "실외",
+        "badges": {
+            "vegan_only": "비건 전용",
+            "vegan_option": "비건 옵션"
+        },
+        "filters_title": "필터",
+        "apply": "적용",
+        "reset": "초기화",
+        "adding_item_to": "<strong>{{title}}</strong> 장소를 다음에 추가:",
+        "no_specific_filters": "이 카테고리에는 특별한 필터가 없습니다.",
+        "filters": {
+            "show": "종류",
+            "price": "가격",
+            "diet": "식단",
+            "ingredients": "재료",
+            "date": "날짜",
+            "type": "유형",
+            "options": {
+                "skin_care": "피부 관리",
+                "hair_makeup": "헤어/메이크업",
+                "spa": "스파",
+                "nails": "네일",
+                "vegan": "비건",
+                "vegetarian": "채식",
+                "no_pork": "돼지고기 없음",
+                "halal": "할랄",
+                "beef": "소고기",
+                "pork": "돼지고기",
+                "chicken": "닭고기",
+                "seafood": "해산물",
+                "dairy": "유제품",
+                "egg": "계란",
+                "today": "오늘",
+                "weekend": "이번 주말",
+                "select": "날짜 선택",
+                "concert": "콘서트",
+                "show": "공연",
+                "popup": "팝업",
+                "club": "클럽",
+                "exhibition": "전시"
+            }
+        }
+    },
+    "explore_items": {
+        "f1": {
+            "title": "플랜트 카페 서울",
+            "area": "이태원",
+            "desc": "신선한 채소와 건강한 재료로 만든 100% 비건 요리",
+            "price": "15,000"
+        },
+        "f2": {
+            "title": "금돼지식당",
+            "area": "약수",
+            "desc": "미쉐린 가이드에 선정된 국내 최고의 삼겹살 맛집",
+            "price": "20,000"
+        },
+        "f3": {
+            "title": "자갈치 시장 회 정식",
+            "area": "남포",
+            "desc": "부산 바다의 신선함을 느낄 수 있는 푸짐한 회 정식",
+            "price": "40,000"
+        },
+        "b1": {
+            "title": "제니하우스 청담",
+            "area": "청담",
+            "desc": "K-아이돌들이 즐겨찾는 프리미엄 헤어 & 메이크업 숍",
+            "price": "150,000"
+        },
+        "b2": {
+            "title": "쁨클리닉 강남",
+            "area": "강남",
+            "desc": "외국인들이 가장 많이 찾는 가성비 최고의 미용 클리닉",
+            "price": "50,000"
+        },
+        "e1": {
+            "title": "싸이 흠뻑쇼 2024",
+            "area": "잠실 주경기장",
+            "desc": "여름 무더위를 날려버릴 싸이의 시원하고 열정적인 공연",
+            "price": "140,000"
+        },
+        "e2": {
+            "title": "난타 공연 명동",
+            "area": "명동",
+            "desc": "한국의 전통 가락과 현대적 퍼포먼스가 어우러진 비언어 공연",
+            "price": "40,000"
+        },
+        "fs1": {
+            "title": "서울 빛초롱 축제",
+            "area": "광화문",
+            "desc": "광화문 광장을 수놓는 화려하고 아름다운 등불의 향연",
+            "price": "무료"
+        },
+        "fs2": {
+            "title": "부산 국제 영화제",
+            "area": "센텀시티",
+            "desc": "아시아 최대 규모의 영화 축제, 전 세계 영화인들의 만남",
+            "price": "10,000"
+        },
+        "a1": {
+            "title": "경복궁",
+            "area": "종로",
+            "desc": "조선 왕조의 정궁으로서 한국의 역사와 아름다움을 간직한 곳",
+            "price": "3,000"
+        },
+        "a2": {
+            "title": "롯데월드타워",
+            "area": "잠실",
+            "desc": "서울의 환상적인 야경을 한눈에 담을 수 있는 한국 최고층 빌딩",
+            "price": "27,000"
+        },
+        "t1": {
+            "title": "부산행 KTX",
+            "area": "서울역",
+            "desc": "서울에서 부산까지 가장 빠르고 편리하게 이동하는 방법",
+            "price": "59,800"
+        }
+    },
+    "my_page": {
+        "profile": {
+            "trust_score": "💎 신뢰 점수",
+            "trust_level_excellent": "최상"
+        },
+        "passport": {
+            "title": "내 여권",
+            "view_all": "전체보기",
+            "seoul": "서울",
+            "beauty": "뷰티",
+            "jeju": "제주"
+        },
+        "bookings": {
+            "title": "예약 내역",
+            "today_time": "오늘, {{time}}",
+            "tomorrow_time": "내일, {{time}}",
+            "next_week_time": "내주, {{time}}",
+            "new_added": "새 예약이 추가되었습니다!"
+        }
+    },
+    "fab": {
+        "idle": "내 여행 만들기",
+        "pre_trip": "모레 출발해요",
+        "on_trip": "다음 목적지는?",
+        "near_deadline": "지연 위험!",
+        "to": "{{dest}} (으)로",
+        "kride": "K.Ride 호출",
+        "kride_sub": "{{mins}}분 후 도착",
+        "transit": "대중교통 안내",
+        "transit_sub": "최적 경로 안내",
+        "copy": "주소 복사",
+        "copy_done": "복사 완료!",
+        "card": "기사님 보여드리기",
+        "card_sub": "택시 기사님용 카드",
+        "card_modal_title": "🗺️ 이 주소로 가주세요",
+        "cancel": "닫기"
+    },
+    "today_page": {
+        "title": "오늘의 일정",
+        "active_now": "지금 진행 중",
+        "navigate": "길찾기",
+        "booking_ref": "예약번호: {{ref}}",
+        "next_up": "다음 일정",
+        "minutes_left": "{{mins}}분 후 시작",
+        "depart_early": "지금 출발하기",
+        "timeline": "전체 타임라인",
+        "departure_warning": "⚠️ {{title}} 시작 {{mins}}분 전 — 지금 출발하세요!",
+        "status": {
+            "on_trip": "여행 중",
+            "pre_trip": "여행 준비 중",
+            "idle": "일정이 없습니다"
+        },
+        "countdown": {
+            "today": "오늘",
+            "starts_in": "{{mins}}분 후 시작",
+            "traveling_to": "{{dest}} 이동 중"
+        },
+        "empty": {
+            "title": "오늘 일정이 없네요",
+            "subtitle": "가고 싶은 곳을 탐색해서 추가해보세요!",
+            "cta": "장소 탐색하기"
+        },
+        "actions": {
+            "directions": "길찾기",
+            "booking": "예약 보기",
+            "late_risk": "지각 위험!",
+            "booking_ref": "예약번호: {{ref}}",
+            "departure_warning": "⚠️ {{title}} 시작 {{mins}}분 전 — 지금 출발하세요!"
+        }
+    },
+    "planner_page": {
+        "title": "일정표",
+        "day": "{{n}}일차",
+        "add_from_discover": "🔍 장소 추가",
+        "auto_build": "✨ 자동 완성",
+        "add_to": "{{slot}}에 추가",
+        "book_all": "🎫 예약 요청하기",
+        "booking_modal": {
+            "title": "예약 요청",
+            "date": "날짜",
+            "people": "인원",
+            "people_count": "{{n}}명",
+            "notes": "요청 사항 (선택)",
+            "submit": "요약 요청 제출",
+            "submitting": "제출 중...",
+            "success_title": "요청이 접수되었습니다!",
+            "success_desc": "24시간 내에 담당자가 연락드릴 예정입니다.",
+            "unavailable_title": "예약 불가",
+            "unavailable_desc": "다음 장소들을 추천드려요:",
+            "view_status": "상태 확인"
+        },
+        "status": {
+            "draft": "가안",
+            "submitted": "요청됨",
+            "confirmed": "확정됨",
+            "unavailable": "불가",
+            "completed": "완료"
+        },
+        "slots": {
+            "am": "오전",
+            "pm": "오후",
+            "night": "밤"
+        }
+    },
+    "booking_detail": {
+        "select_date": "날짜 선택",
+        "select_time": "시간 선택",
+        "total_price": "총 금액",
+        "request_booking": "예약 요청하기"
+    },
+    "community_page": {
+        "title": "커뮤니티",
+        "subtitle": "현지인 및 여행자와 소통하세요",
+        "filter_all": "전체",
+        "filter_meetup": "식사 & 모임",
+        "filter_travel": "여행 메이트",
+        "filter_help": "로컬 도움 요청",
+        "comments": "댓글",
+        "message": "메시지 보내기",
+        "type": {
+            "MEETUP": "식사모임",
+            "TRAVEL": "여행메이트",
+            "HELP": "로컬도움요청",
+            "REVIEW": "이용후기"
+        },
+        "post": {
+            "1": {
+                "author": "미카 (일본)",
+                "time": "10분 전",
+                "title": "삼겹살 모임 🥓",
+                "desc": "오늘 저녁 7시 금돼지 식당에서 같이 삼겹살 드실 분 계신가요?"
+            },
+            "2": {
+                "author": "존 (미국)",
+                "time": "1시간 전",
+                "title": "홍대 버스킹 공연 🎸",
+                "desc": "인디 밴드 보러 홍대로 가는 길이에요. 같이 가요!"
+            },
+            "3": {
+                "author": "지훈 (한국)",
+                "time": "2시간 전",
+                "title": "지하철 방향 헤매시나요? 🚇",
+                "desc": "명동 근처에 살고 있어서 길을 잃으셨다면 통역이나 길 안내 도와드릴 수 있어요. 편하게 연락주세요!"
+            },
+            "4": {
+                "author": "리웨이 (중국)",
+                "time": "3시간 전",
+                "title": "K-뷰티 화장품 쇼핑 💄",
+                "desc": "올리브영 명동점에서 같이 쇼핑할 친구를 찾아요. 좋은 브랜드 정보 많이 알고 있어요!"
+            }
+        },
+        "form_title": "제목",
+        "form_desc": "내용",
+        "form_title_ph": "예: 오늘 저녁 삼겹살 드실 분!",
+        "form_desc_ph": "무엇을 하고 싶은지/어떤 도움이 필요한지 적어주세요...",
+        "posting": "저장 중...",
+        "post_btn": "커뮤니티에 등록하기",
+        "form_category": "분류",
+        "write_post": "글쓰기",
+        "update_post": "수정 완료",
+        "edit": "수정",
+        "delete": "삭제",
+        "search_placeholder": "궁금한 키워드를 검색해보세요!",
+        "filter_review": "이용후기"
     }
-  },
-  "explore_items": {
-    "f1": {
-      "title": "플랜트 카페 서울",
-      "area": "이태원",
-      "desc": "신선한 채소와 건강한 재료로 만든 100% 비건 요리",
-      "price": "15,000"
-    },
-    "f2": {
-      "title": "금돼지식당",
-      "area": "약수",
-      "desc": "미쉐린 가이드에 선정된 국내 최고의 삼겹살 맛집",
-      "price": "20,000"
-    },
-    "f3": {
-      "title": "자갈치 시장 회 정식",
-      "area": "남포",
-      "desc": "부산 바다의 신선함을 느낄 수 있는 푸짐한 회 정식",
-      "price": "40,000"
-    },
-    "b1": {
-      "title": "제니하우스 청담",
-      "area": "청담",
-      "desc": "K-아이돌들이 즐겨찾는 프리미엄 헤어 & 메이크업 숍",
-      "price": "150,000"
-    },
-    "b2": {
-      "title": "쁨클리닉 강남",
-      "area": "강남",
-      "desc": "외국인들이 가장 많이 찾는 가성비 최고의 미용 클리닉",
-      "price": "50,000"
-    },
-    "e1": {
-      "title": "싸이 흠뻑쇼 2024",
-      "area": "잠실 주경기장",
-      "desc": "여름 무더위를 날려버릴 싸이의 시원하고 열정적인 공연",
-      "price": "140,000"
-    },
-    "e2": {
-      "title": "난타 공연 명동",
-      "area": "명동",
-      "desc": "한국의 전통 가락과 현대적 퍼포먼스가 어우러진 비언어 공연",
-      "price": "40,000"
-    },
-    "fs1": {
-      "title": "서울 빛초롱 축제",
-      "area": "광화문",
-      "desc": "광화문 광장을 수놓는 화려하고 아름다운 등불의 향연",
-      "price": "무료"
-    },
-    "fs2": {
-      "title": "부산 국제 영화제",
-      "area": "센텀시티",
-      "desc": "아시아 최대 규모의 영화 축제, 전 세계 영화인들의 만남",
-      "price": "10,000"
-    },
-    "a1": {
-      "title": "경복궁",
-      "area": "종로",
-      "desc": "조선 왕조의 정궁으로서 한국의 역사와 아름다움을 간직한 곳",
-      "price": "3,000"
-    },
-    "a2": {
-      "title": "롯데월드타워",
-      "area": "잠실",
-      "desc": "서울의 환상적인 야경을 한눈에 담을 수 있는 한국 최고층 빌딩",
-      "price": "27,000"
-    },
-    "t1": {
-      "title": "부산행 KTX",
-      "area": "서울역",
-      "desc": "서울에서 부산까지 가장 빠르고 편리하게 이동하는 방법",
-      "price": "59,800"
-    }
-  },
-  "my_page": {
-    "profile": {
-      "trust_score": "💎 신뢰 점수",
-      "trust_level_excellent": "최상"
-    },
-    "passport": {
-      "title": "내 여권",
-      "view_all": "전체보기",
-      "seoul": "서울",
-      "beauty": "뷰티",
-      "jeju": "제주"
-    },
-    "bookings": {
-      "title": "예약 내역",
-      "today_time": "오늘, {{time}}",
-      "tomorrow_time": "내일, {{time}}",
-      "next_week_time": "내주, {{time}}",
-      "new_added": "새 예약이 추가되었습니다!"
-    }
-  },
-  "fab": {
-    "idle": "내 여행 만들기",
-    "pre_trip": "모레 출발해요",
-    "on_trip": "다음 목적지는?",
-    "near_deadline": "지연 위험!",
-    "to": "{{dest}} (으)로",
-    "kride": "K.Ride 호출",
-    "kride_sub": "{{mins}}분 후 도착",
-    "transit": "대중교통 안내",
-    "transit_sub": "최적 경로 안내",
-    "copy": "주소 복사",
-    "copy_done": "복사 완료!",
-    "card": "기사님 보여드리기",
-    "card_sub": "택시 기사님용 카드",
-    "card_modal_title": "🗺️ 이 주소로 가주세요",
-    "cancel": "닫기"
-  },
-  "today_page": {
-    "title": "오늘의 일정",
-    "active_now": "지금 진행 중",
-    "navigate": "길찾기",
-    "booking_ref": "예약번호: {{ref}}",
-    "next_up": "다음 일정",
-    "minutes_left": "{{mins}}분 후 시작",
-    "depart_early": "지금 출발하기",
-    "timeline": "전체 타임라인",
-    "departure_warning": "⚠️ {{title}} 시작 {{mins}}분 전 — 지금 출발하세요!",
-    "status": {
-      "on_trip": "여행 중",
-      "pre_trip": "여행 준비 중",
-      "idle": "일정이 없습니다"
-    },
-    "countdown": {
-      "today": "오늘",
-      "starts_in": "{{mins}}분 후 시작",
-      "traveling_to": "{{dest}} 이동 중"
-    },
-    "empty": {
-      "title": "오늘 일정이 없네요",
-      "subtitle": "가고 싶은 곳을 탐색해서 추가해보세요!",
-      "cta": "장소 탐색하기"
-    },
-    "actions": {
-      "directions": "길찾기",
-      "booking": "예약 보기",
-      "late_risk": "지각 위험!",
-      "booking_ref": "예약번호: {{ref}}",
-      "departure_warning": "⚠️ {{title}} 시작 {{mins}}분 전 — 지금 출발하세요!"
-    }
-  },
-  "planner_page": {
-    "title": "일정표",
-    "day": "{{n}}일차",
-    "add_from_discover": "🔍 장소 추가",
-    "auto_build": "✨ 자동 완성",
-    "add_to": "{{slot}}에 추가",
-    "book_all": "🎫 예약 요청하기",
-    "booking_modal": {
-      "title": "예약 요청",
-      "date": "날짜",
-      "people": "인원",
-      "people_count": "{{n}}명",
-      "notes": "요청 사항 (선택)",
-      "submit": "요약 요청 제출",
-      "submitting": "제출 중...",
-      "success_title": "요청이 접수되었습니다!",
-      "success_desc": "24시간 내에 담당자가 연락드릴 예정입니다.",
-      "unavailable_title": "예약 불가",
-      "unavailable_desc": "다음 장소들을 추천드려요:",
-      "view_status": "상태 확인"
-    },
-    "status": {
-      "draft": "가안",
-      "submitted": "요청됨",
-      "confirmed": "확정됨",
-      "unavailable": "불가",
-      "completed": "완료"
-    },
-    "slots": {
-      "am": "오전",
-      "pm": "오후",
-      "night": "밤"
-    }
-  },
-  "booking_detail": {
-    "select_date": "날짜 선택",
-    "select_time": "시간 선택",
-    "total_price": "총 금액",
-    "request_booking": "예약 요청하기"
-  }
 }

@@ -40,7 +40,8 @@
             "festival": "Festivals",
             "attraction": "Attractions",
             "transport": "Transport"
-        }
+        },
+        "community_nav": "Community"
     },
     "transport": {
         "moving_to": "En route vers {{dest}}",
@@ -107,5 +108,48 @@
         "bookings": {
             "title": "Mes réservations"
         }
+    },
+    "community_page": {
+        "title": "Community",
+        "subtitle": "Connect with locals & travelers",
+        "filter_all": "All",
+        "filter_meetup": "Food & Meetup",
+        "filter_travel": "Travel Mate",
+        "filter_help": "Local Help",
+        "comments": "Comments",
+        "message": "Message",
+        "type": {
+            "MEETUP": "MEETUP",
+            "TRAVEL": "TRAVEL",
+            "HELP": "HELP",
+            "REVIEW": "REVIEW"
+        },
+        "post": {
+            "1": {
+                "author": "Mika (Japan)",
+                "time": "10 mins ago",
+                "title": "Samgyeopsal Meetup 🥓",
+                "desc": "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
+            },
+            "2": {
+                "author": "John (US)",
+                "time": "1 hour ago",
+                "title": "Hongdae Street Performance 🎸",
+                "desc": "Heading to Hongdae right now to watch indie bands. Join me!"
+            },
+            "3": {
+                "author": "Jihoon (Korea)",
+                "time": "2 hours ago",
+                "title": "Need help with subway directions? 🚇",
+                "desc": "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
+            },
+            "4": {
+                "author": "Li Wei (China)",
+                "time": "3 hours ago",
+                "title": "K-Beauty Shopping 💄",
+                "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
+            }
+        },
+        "filter_review": "Reviews"
     }
 }

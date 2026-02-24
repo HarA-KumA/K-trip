@@ -75,7 +75,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function TodayPage() {
     const { t, i18n } = useTranslation('common');
-    const { itinerary } = useTrip();
+    const { itinerary, removeItineraryItem } = useTrip();
     const router = useRouter();
     const [now, setNow] = useState(new Date());
     const [checkedIds, setCheckedIds] = useState<string[]>([]);
@@ -141,109 +141,129 @@ export default function TodayPage() {
         );
     }
 
-    return (
-        <div className={styles.page}>
-            <header className={styles.header}>
-                <div className={styles.headerDate}>
-                    {now.toLocaleDateString(i18n.language, { month: 'long', day: 'numeric', weekday: 'short' })}
-                </div>
-                <h1 className={styles.headerTitle}>{t('today_page.title')}</h1>
-                <div className={styles.headerTime}>
-                    {now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
-                </div>
-            </header>
+    const renderTodayContent = () => {
+        return (
+            <div className={styles.page}>
+                <header className={styles.header}>
+                    <div className={styles.headerDate}>
+                        {now.toLocaleDateString(i18n.language, { month: 'long', day: 'numeric', weekday: 'short' })}
+                    </div>
+                    <h1 className={styles.headerTitle}>{t('today_page.title')}</h1>
+                    <div className={styles.headerTime}>
+                        {now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
+                    </div>
+                </header>
 
-            {activeEvent && (
-                <section className={styles.activeCard}>
-                    <div className={styles.activeNowBadge}>● {t('today_page.active_now')}</div>
-                    <div className={styles.activeMain}>
-                        <span className={styles.activeIcon}>💆</span>
-                        <div>
-                            <div className={styles.activeTitle}>{t(`explore_items.${activeEvent.id}.title`, { defaultValue: activeEvent.title })}</div>
-                            <div className={styles.activeLoc}>📍 {activeEvent.location}</div>
+                {activeEvent && (
+                    <section className={styles.activeCard}>
+                        <div className={styles.activeNowBadge}>● {t('today_page.active_now')}</div>
+                        <div className={styles.activeMain}>
+                            <span className={styles.activeIcon}>💆</span>
+                            <div>
+                                <div className={styles.activeTitle}>{t(`explore_items.${activeEvent.id}.title`, { defaultValue: activeEvent.title })}</div>
+                                <div className={styles.activeLoc}>📍 {activeEvent.location}</div>
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles.activeActions}>
-                        <button className={styles.navBtn} onClick={() => handleNavigate(activeEvent.lat, activeEvent.lng, activeEvent.title)}>
-                            🗺️ {t('today_page.navigate')}
+                        <div className={styles.activeActions}>
+                            <button className={styles.navBtn} onClick={() => handleNavigate(activeEvent.lat, activeEvent.lng, activeEvent.title)}>
+                                🗺️ {t('today_page.navigate')}
+                            </button>
+                            {activeEvent.bookingRef && (
+                                <div className={styles.refBadge}>{t('today_page.booking_ref', { ref: activeEvent.bookingRef })}</div>
+                            )}
+                        </div>
+                    </section>
+                )}
+
+                {nextEvent && minutesToNext !== null && (
+                    <section className={styles.countdownCard}>
+                        <div className={styles.countdownLabel}>{t('today_page.next_up')}</div>
+                        <div className={styles.countdownTime}>
+                            {minutesToNext >= 60
+                                ? t('today_page.minutes_left', { mins: minutesToNext }) // Simplified for demo
+                                : t('today_page.minutes_left', { mins: minutesToNext })}
+                        </div>
+                        <div className={styles.countdownEvent}>
+                            {nextEvent.time} · {t(`explore_items.${nextEvent.id}.title`, { defaultValue: nextEvent.title })}
+                        </div>
+                        <button className={styles.miniNavBtn} onClick={() => handleNavigate(nextEvent.lat, nextEvent.lng, nextEvent.title)}>
+                            {t('today_page.depart_early')}
                         </button>
-                        {activeEvent.bookingRef && (
-                            <div className={styles.refBadge}>{t('today_page.booking_ref', { ref: activeEvent.bookingRef })}</div>
-                        )}
-                    </div>
-                </section>
-            )}
+                    </section>
+                )}
 
-            {nextEvent && minutesToNext !== null && (
-                <section className={styles.countdownCard}>
-                    <div className={styles.countdownLabel}>{t('today_page.next_up')}</div>
-                    <div className={styles.countdownTime}>
-                        {minutesToNext >= 60
-                            ? t('today_page.minutes_left', { mins: minutesToNext }) // Simplified for demo
-                            : t('today_page.minutes_left', { mins: minutesToNext })}
-                    </div>
-                    <div className={styles.countdownEvent}>
-                        {nextEvent.time} · {t(`explore_items.${nextEvent.id}.title`, { defaultValue: nextEvent.title })}
-                    </div>
-                    <button className={styles.miniNavBtn} onClick={() => handleNavigate(nextEvent.lat, nextEvent.lng, nextEvent.title)}>
-                        {t('today_page.depart_early')}
-                    </button>
-                </section>
-            )}
+                <section className={styles.timeline}>
+                    <div className={styles.timelineTitle}>{t('today_page.timeline')}</div>
+                    {todaySchedule.map((event, idx) => {
+                        const isPast = getMinutes(event.endTime) <= nowMinutes;
+                        const isActive = activeEvent?.id === event.id;
+                        const isChecked = checkedIds.includes(event.id);
+                        const meta = TYPE_META[event.type] ?? TYPE_META.default;
 
-            <section className={styles.timeline}>
-                <div className={styles.timelineTitle}>{t('today_page.timeline')}</div>
-                {todaySchedule.map((event, idx) => {
-                    const isPast = getMinutes(event.endTime) <= nowMinutes;
-                    const isActive = activeEvent?.id === event.id;
-                    const isChecked = checkedIds.includes(event.id);
-                    const meta = TYPE_META[event.type] ?? TYPE_META.default;
-
-                    return (
-                        <div key={event.id} className={`${styles.timelineItem} ${isActive ? styles.timelineActive : ''} ${isPast ? styles.timelinePast : ''}`}>
-                            <div className={styles.timeCol}>
-                                <div className={styles.timeText}>{event.time}</div>
-                                {idx < todaySchedule.length - 1 && <div className={styles.timeConnector} />}
-                            </div>
-
-                            <div className={styles.dot} style={{ background: isActive ? meta.color : isPast ? '#374151' : meta.color + '80' }}>
-                                {isActive && <div className={styles.dotPulse} />}
-                            </div>
-
-                            <div className={styles.eventCard}>
-                                <div className={styles.eventHeader}>
-                                    <span className={styles.eventIcon}>{meta.icon}</span>
-                                    <div className={styles.eventInfo}>
-                                        <div className={styles.eventTitle}>{t(`explore_items.${event.id}.title`, { defaultValue: event.title })}</div>
-                                        <div className={styles.eventTime}>{event.time} – {event.endTime}</div>
-                                    </div>
-                                    <button className={`${styles.checkBtn} ${isChecked ? styles.checkBtnDone : ''}`} onClick={() => toggleCheck(event.id)}>
-                                        {isChecked ? '✓' : '○'}
-                                    </button>
+                        return (
+                            <div key={event.id} className={`${styles.timelineItem} ${isActive ? styles.timelineActive : ''} ${isPast ? styles.timelinePast : ''}`}>
+                                <div className={styles.timeCol}>
+                                    <div className={styles.timeText}>{event.time}</div>
+                                    {idx < todaySchedule.length - 1 && <div className={styles.timeConnector} />}
                                 </div>
-                                {event.bookingRef && (
-                                    <div className={styles.eventRef}>{t('today_page.booking_ref', { ref: event.bookingRef })}</div>
-                                )}
-                                {!isPast && (
-                                    <div className={styles.eventActions}>
-                                        <button className={styles.eventNavBtn} onClick={() => handleNavigate(event.lat, event.lng, event.title)}>
-                                            🗺️ {t('today_page.navigate')}
+
+                                <div className={styles.dot} style={{ background: isActive ? meta.color : isPast ? '#374151' : meta.color + '80' }}>
+                                    {isActive && <div className={styles.dotPulse} />}
+                                </div>
+
+                                <div className={styles.eventCard}>
+                                    <div className={styles.eventHeader}>
+                                        <span className={styles.eventIcon}>{meta.icon}</span>
+                                        <div className={styles.eventInfo}>
+                                            <div className={styles.eventTitle}>{t(`explore_items.${event.id}.title`, { defaultValue: event.title })}</div>
+                                            <div className={styles.eventTime}>{event.time} – {event.endTime}</div>
+                                        </div>
+                                        <button className={`${styles.checkBtn} ${isChecked ? styles.checkBtnDone : ''}`} onClick={() => toggleCheck(event.id)}>
+                                            {isChecked ? '✓' : '○'}
                                         </button>
                                     </div>
-                                )}
+                                    {event.bookingRef && (
+                                        <div className={styles.eventRef}>{t('today_page.booking_ref', { ref: event.bookingRef })}</div>
+                                    )}
+                                    {!isPast && (
+                                        <div className={styles.eventActions}>
+                                            <button className={styles.eventNavBtn} onClick={() => handleNavigate(event.lat, event.lng, event.title)}>
+                                                🗺️ {t('today_page.navigate')}
+                                            </button>
+                                            <button className={styles.eventDelBtn} onClick={() => removeItineraryItem(String(event.id))}>
+                                                {t('planner_page.remove', { defaultValue: 'Delete' })}
+                                            </button>
+                                        </div>
+                                    )}
+                                    {isPast && (
+                                        <div className={styles.eventActions}>
+                                            <button className={styles.eventDelBtn} onClick={() => removeItineraryItem(String(event.id))}>
+                                                {t('planner_page.remove', { defaultValue: 'Delete' })}
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    );
-                })}
-            </section>
+                        );
+                    })}
 
-            {nextEvent && minutesToNext !== null && minutesToNext <= 30 && minutesToNext > 0 && (
-                <div className={styles.alertBanner}>
-                    {t('today_page.departure_warning', { title: t(`explore_items.${nextEvent.id}.title`, { defaultValue: nextEvent.title }), mins: minutesToNext })}
-                </div>
-            )}
+                    <div className={styles.addEventRow}>
+                        <button className={styles.addEventBtn} onClick={() => router.push('/explore?action=add')}>
+                            + {t('planner_page.add_from_discover', { defaultValue: 'Add new plan' })}
+                        </button>
+                    </div>
+                </section>
 
-            <div style={{ height: 100 }} />
-        </div>
-    );
+                {nextEvent && minutesToNext !== null && minutesToNext <= 30 && minutesToNext > 0 && (
+                    <div className={styles.alertBanner}>
+                        {t('today_page.departure_warning', { title: t(`explore_items.${nextEvent.id}.title`, { defaultValue: nextEvent.title }), mins: minutesToNext })}
+                    </div>
+                )}
+
+                <div style={{ height: 100 }} />
+            </div>
+        );
+    };
+
+    return renderTodayContent();
 }

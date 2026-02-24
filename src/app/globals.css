@@ -1,31 +1,31 @@
 :root {
-  /* Premium Dark Theme Variables */
-  --background: #050505;
-  --foreground: #ffffff;
+  /* Premium Light Theme Variables */
+  --background: #fdfdfd;
+  --foreground: #0f172a;
 
   --primary: #bc13fe;
   /* K-Pop Purple */
-  --primary-glow: rgba(188, 19, 254, 0.5);
-  --secondary: #4cc9f0;
+  --primary-glow: rgba(188, 19, 254, 0.2);
+  --secondary: #0ea5e9;
   /* Han River Blue */
-  --secondary-glow: rgba(76, 201, 240, 0.5);
-  --success: #3cb44a;
+  --secondary-glow: rgba(14, 165, 233, 0.2);
+  --success: #10b981;
   /* Seoul Subway Green for "Go" */
-  --warning: #ffcc00;
+  --warning: #f59e0b;
 
-  --glass-bg: rgba(20, 20, 20, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-highlight: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-highlight: rgba(255, 255, 255, 1);
 
-  --gray-100: #1a1a1a;
-  --gray-200: #2a2a2a;
-  --gray-400: #666;
-  --gray-500: #888;
-  --gray-light: #aaa;
+  --gray-100: #f8fafc;
+  --gray-200: #f1f5f9;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-light: #475569;
 
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
   --radius-xl: 100px;
 
   --spacing-xs: 4px;
@@ -75,12 +75,23 @@ button {
 .mobile-wrapper {
   max-width: 480px;
   margin: 0 auto;
-  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   position: relative;
   background-color: var(--background);
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
-  padding-bottom: 90px;
-  /* Space for Bottom Nav */
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Typography Utilities */

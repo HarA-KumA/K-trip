@@ -40,7 +40,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <TripProvider>
           <div className="mobile-wrapper">
-            {children}
+            <main className="scroll-container">
+              {children}
+            </main>
             <BottomNav />
             <GlobalLangButton />
             <KRideGlobalFAB />

@@ -90,4 +90,7 @@ function applyLanguage(lang: string) {
 /** Change language and persist (for use in UI pickers) */
 export function changeLanguage(lang: string) {
     applyLanguage(lang);
+    if (typeof window !== 'undefined') {
+        window.location.reload();
+    }
 }

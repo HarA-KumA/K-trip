@@ -38,7 +38,7 @@ export default function ExploreHeader({
 
     const getPlaceholder = () => {
         const key = `explore_page.search_placeholders.${currentCategory}`;
-        return t(key, { defaultValue: t('explore_page.search_placeholders.all', { defaultValue: 'Search...' }) });
+        return t(key, { defaultValue: 'Search for beauty, food...' });
     };
 
     return (

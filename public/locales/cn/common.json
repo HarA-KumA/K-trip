@@ -77,7 +77,8 @@
             "gluten_free": "无麸质",
             "meat_lover": "肉食爱好者",
             "pescatarian": "鱼素"
-        }
+        },
+        "community_nav": "社区"
     },
     "transport": {
         "moving_to": "正在前往 {{dest}}",
@@ -381,5 +382,48 @@
             "next_week_time": "下周, {{time}}",
             "new_added": "新预约已添加！"
         }
+    },
+    "community_page": {
+        "title": "社区",
+        "subtitle": "与当地人和旅行者交流",
+        "filter_all": "全部",
+        "filter_meetup": "美食与聚会",
+        "filter_travel": "旅行伙伴",
+        "filter_help": "当地帮助",
+        "comments": "评论",
+        "message": "发信息",
+        "type": {
+            "MEETUP": "聚会",
+            "TRAVEL": "旅行",
+            "HELP": "帮助",
+            "REVIEW": "REVIEW"
+        },
+        "post": {
+            "1": {
+                "author": "Mika (日本)",
+                "time": "10分钟前",
+                "title": "一起吃五花肉 🥓",
+                "desc": "今晚7点在金猪食堂有人想一起吃五花肉吗？"
+            },
+            "2": {
+                "author": "John (美国)",
+                "time": "1小时前",
+                "title": "弘大街头表演 🎸",
+                "desc": "我正要去弘大看独立乐队表演，一起来吧！"
+            },
+            "3": {
+                "author": "Jihoon (韩国)",
+                "time": "2小时前",
+                "title": "需要地铁方向的帮助吗？ 🚇",
+                "desc": "我住在明洞附近，如果您迷路了，我可以帮您翻译或指路。随时给我发信息！"
+            },
+            "4": {
+                "author": "Li Wei (中国)",
+                "time": "3小时前",
+                "title": "K-Beauty 化妆品购物 💄",
+                "desc": "找个在明洞Olive Young一起购物的伙伴。我知道很多好用的牌子！"
+            }
+        },
+        "filter_review": "Reviews"
     }
 }

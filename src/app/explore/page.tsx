@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation';
 import styles from './explore.module.css';
 import { MOCK_ITEMS, ServiceItem, CityId } from './mock/data';
 import ExploreHeader from './components/ExploreHeader';
-import ServiceCard from './components/ServiceCard';
 import FilterSheet from './components/FilterSheet';
 import AddToPlanModal from './components/AddToPlanModal';
+import ExploreMap from './components/ExploreMap';
 
 import { useTrip } from '@/lib/contexts/TripContext';
 import { useTranslation } from 'react-i18next';
@@ -63,6 +63,7 @@ export default function ExplorePage() {
 
     useEffect(() => {
         if (hotelLocation) {
+            // Delay slightly to debounce fast changes if needed, or straight fetch
             fetchNearby(hotelLocation.lat, hotelLocation.lng, radius, currentCategory);
         }
     }, [hotelLocation, radius, currentCategory]);
@@ -171,13 +172,20 @@ export default function ExplorePage() {
     };
 
     // -- Filtering Logic --
-    const itemsToShow = hotelLocation
+    // If the API returns results, use them. Otherwise, fallback to MOCK_ITEMS so the screen isn't empty.
+    const itemsToShow = (hotelLocation && nearbyItems.length > 0)
         ? nearbyItems
         : MOCK_ITEMS.filter(item => {
-            if (item.city_id !== currentCity) return false;
             if (currentCategory !== 'all' && item.type !== currentCategory) return false;
             return true;
         });
+
+    // Sort so premium items or future clients come first, then others
+    const sortedItemsToShow = [...itemsToShow].sort((a, b) => {
+        const aScore = (a as any).is_premium ? 1 : 0;
+        const bScore = (b as any).is_premium ? 1 : 0;
+        return bScore - aScore;
+    });
 
     return (
         <div className={styles.container}>
@@ -193,30 +201,21 @@ export default function ExplorePage() {
                 onRadiusChange={setRadius}
             />
 
-            <main style={{ paddingBottom: '80px' }}>
-                {isLoading ? (
-                    <div className={styles.loadingState}>
+            <main style={{ paddingBottom: '80px', flex: 1, display: 'flex', flexDirection: 'column', position: 'relative', height: '100%', minHeight: '500px' }}>
+                {isLoading && (
+                    <div className={styles.loadingState} style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 10, background: 'rgba(0,0,0,0.5)' }}>
                         <div className={styles.spinner}></div>
                         <p>Finding nearby {currentCategory}...</p>
                     </div>
-                ) : itemsToShow.length > 0 ? (
-                    itemsToShow.map(item => (
-                        <ServiceCard
-                            key={item.id}
-                            item={item}
-                            onSave={handleSave}
-                            onAddToPlan={() => openAddToPlan(item)}
-                            onDetails={handleDetails}
-                            isSaved={savedItemIds.includes(item.id)}
-                            distance={(hotelLocation && item.lat && item.lng) ? calculateDistance(hotelLocation.lat, hotelLocation.lng, item.lat, item.lng) : undefined}
-                        />
-                    ))
-                ) : (
-                    <div className={styles.emptyState}>
-                        <p>{t('explore_page.no_items', { city: hotelLocation ? hotelLocation.name : t(`common.cities.${currentCity}`, { defaultValue: currentCity.toUpperCase() }) })}</p>
-                        <p>{t('explore_page.try_changing')}</p>
-                    </div>
                 )}
+                <div style={{ flex: 1, width: '100%', display: 'flex' }}>
+                    <ExploreMap
+                        items={sortedItemsToShow}
+                        center={hotelLocation ? { lat: hotelLocation.lat, lng: hotelLocation.lng } : { lat: 37.5665, lng: 126.9780 }} // Default to Seoul City Hall
+                        onItemClick={handleDetails}
+                        radius={radius}
+                    />
+                </div>
             </main>
 
             <FilterSheet

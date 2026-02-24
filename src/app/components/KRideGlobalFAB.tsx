@@ -8,7 +8,7 @@ import { useTrip } from '@/lib/contexts/TripContext';
 import { useTranslation } from 'react-i18next';
 
 // FAB를 숨기는 경로
-const HIDE_ROUTES = ['/auth', '/my', '/lang-test'];
+const HIDE_ROUTES = ['/auth', '/my', '/lang-test', '/community'];
 
 export default function KRideGlobalFAB() {
     const { t } = useTranslation('common');

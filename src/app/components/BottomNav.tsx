@@ -14,9 +14,9 @@ export default function BottomNav() {
     const navItems = [
         { path: "/", icon: "✦", label: t('common.home_nav', { defaultValue: 'Home' }), activeKey: "/" },
         { path: "/explore", icon: "🔍", label: t('common.explore_nav', { defaultValue: 'Explore' }), activeKey: "/explore" },
-        { path: "/planner", icon: "🗓️", label: t('common.planner_nav', { defaultValue: 'Itinerary' }), activeKey: "/planner" },
         { path: "/navigation", icon: "📍", label: t('common.today_nav', { defaultValue: 'Today' }), activeKey: "/navigation" },
-        { path: "/my", icon: "👤", label: t('common.my_nav', { defaultValue: 'My' }), activeKey: "/my" },
+        { path: "/community", icon: "💬", label: t('common.community_nav', { defaultValue: 'Community' }), activeKey: "/community" },
+        { path: "/my", icon: "👤", label: t('common.my_nav', { defaultValue: 'My Info' }), activeKey: "/my" },
     ];
 
     useEffect(() => {

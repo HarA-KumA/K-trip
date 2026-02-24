@@ -1,0 +1,462 @@
+.container {
+    min-height: 100%;
+    background: var(--background);
+    color: var(--foreground);
+    padding: 0 16px 40px;
+    position: relative;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--background);
+    padding: 24px 16px 0;
+    /* Reduced top padding from 56px */
+    /* Align with container padding */
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.title {
+    font-size: 22px;
+    /* Reduced from 26px */
+    font-weight: 900;
+    margin: 0 0 2px;
+}
+
+.subtitle {
+    font-size: 13px;
+    /* Reduced from 14px */
+    color: var(--gray-500);
+    margin: 0 0 12px;
+}
+
+.searchBar {
+    position: relative;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+.searchInput {
+    width: 100%;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 8px 12px 8px 32px;
+    /* Slimmer input */
+    font-size: 13px;
+    color: var(--foreground);
+    outline: none;
+    transition: all 0.2s;
+}
+
+.searchInput:focus {
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(188, 19, 254, 0.05);
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin: 12px -16px 0;
+    padding: 0 16px 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tab {
+    flex-shrink: 0;
+    min-width: max-content;
+    padding: 6px 14px;
+    /* More compact tabs */
+    border-radius: 16px;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    color: var(--gray-500);
+    font-size: 12px;
+    /* Smaller font */
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    line-height: 1.2;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tab.activeTab {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    /* Tighter gap between cards */
+    margin-top: 16px;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 14px;
+    /* Reduced padding from 18px */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.authorInfo {
+    flex: 1;
+}
+
+.authorName {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.postTime {
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-top: 2px;
+}
+
+.badge {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.badge_meetup {
+    background: rgba(251, 146, 60, 0.15);
+    color: #fb923c;
+}
+
+.badge_travel {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
+}
+
+.badge_help {
+    background: rgba(96, 165, 250, 0.15);
+    color: #60a5fa;
+}
+
+.badge_review {
+    background: rgba(236, 72, 153, 0.11);
+    color: #ec4899;
+}
+
+.postTitle {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 8px;
+}
+
+.postDesc {
+    font-size: 14px;
+    color: var(--gray-light);
+    line-height: 1.5;
+    margin: 0 0 16px;
+}
+
+.cardFooter {
+    display: flex;
+    gap: 12px;
+    border-top: 1px solid var(--gray-100);
+    padding-top: 14px;
+}
+
+.actionBtn {
+    background: none;
+    border: none;
+    color: var(--gray-500);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.15s;
+}
+
+.actionBtn:hover {
+    color: var(--primary);
+}
+
+/* ── Floating Action Button ── */
+.fab {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    height: 52px;
+    padding: 0 24px;
+    border-radius: 26px;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 8px 16px rgba(124, 58, 237, 0.4);
+    cursor: pointer;
+    z-index: 500;
+    transition: transform 0.15s;
+}
+
+.fab:active {
+    transform: scale(0.92);
+}
+
+/* ── Write Modal ── */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex;
+    align-items: flex-end;
+    animation: fadeIn 0.15s ease;
+}
+
+.modalSheet {
+    width: 100%;
+    background: #ffffff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 24px 24px calc(24px + env(safe-area-inset-bottom, 20px));
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%)
+    }
+
+    to {
+        transform: translateY(0)
+    }
+}
+
+/* ── Comments & Delete ── */
+.deleteBtn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+
+.deleteBtn:hover {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.commentSection {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--gray-200);
+    animation: fadeIn 0.2s;
+}
+
+.commentList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.commentItem {
+    background: var(--gray-100);
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+
+.commentAuthor {
+    font-size: 12px;
+    font-weight: 700;
+    color: #a78bfa;
+    margin-bottom: 4px;
+}
+
+.commentContent {
+    font-size: 14px;
+    color: var(--foreground);
+    word-break: break-word;
+}
+
+.commentInputBox {
+    display: flex;
+    gap: 8px;
+}
+
+.commentInput {
+    flex: 1;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    color: var(--foreground);
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.commentInput:focus {
+    border-color: #7c3aed;
+}
+
+.commentSubmit {
+    background: #7c3aed;
+    color: white;
+    border: none;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.commentSubmit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modalTitle {
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0;
+    color: #000;
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.formLabel {
+    font-size: 13px;
+    color: var(--gray-light);
+    font-weight: 600;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    color: #000;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+}
+
+.formSelect option {
+    background: #fff;
+    color: #000;
+}
+
+.formTextarea {
+    resize: none;
+    height: 100px;
+    font-family: inherit;
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+    border-color: #7c3aed;
+}
+
+.submitBtn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: opacity 0.15s;
+}
+
+.submitBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--gray-400);
+}

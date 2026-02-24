@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./my.module.css";
 import Image from "next/image";
@@ -11,6 +11,20 @@ function MyPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const hasNewBooking = searchParams.get('booked') === 'true';
+
+    const [userName, setUserName] = useState("Jessie Kim");
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            try {
+                const parsed = JSON.parse(storedUser);
+                if (parsed.name) setUserName(parsed.name);
+            } catch (e) {
+                // Ignore parse errors
+            }
+        }
+    }, []);
 
     // Mock Booking Data
     const bookings = [
@@ -55,7 +69,7 @@ function MyPageContent() {
                     </div>
                     <div className={styles.levelBadge}>Lv.3</div>
                 </div>
-                <h1 className="text-2xl font-bold">Jessie Kim</h1>
+                <h1 className="text-2xl font-bold">{userName}</h1>
                 <div className={styles.trustScore}>
                     {t('my_page.profile.trust_score')}: <span className="text-white font-bold">850</span> ({t('my_page.profile.trust_level_excellent')})
                 </div>

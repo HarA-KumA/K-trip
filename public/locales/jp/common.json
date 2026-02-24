@@ -77,7 +77,8 @@
             "gluten_free": "グルテンフリー",
             "meat_lover": "お肉好き",
             "pescatarian": "ペスカタリアン"
-        }
+        },
+        "community_nav": "コミュニティ"
     },
     "transport": {
         "moving_to": "{{dest}}へ移動中",
@@ -381,5 +382,48 @@
             "next_week_time": "来週, {{time}}",
             "new_added": "新しい予約が追加されました！"
         }
+    },
+    "community_page": {
+        "title": "コミュニティ",
+        "subtitle": "地元の人や旅行者と繋がる",
+        "filter_all": "すべて",
+        "filter_meetup": "食事＆集まり",
+        "filter_travel": "旅行仲間",
+        "filter_help": "ローカルヘルプ",
+        "comments": "コメント",
+        "message": "メッセージ",
+        "type": {
+            "MEETUP": "集まり",
+            "TRAVEL": "旅行",
+            "HELP": "ヘルプ",
+            "REVIEW": "REVIEW"
+        },
+        "post": {
+            "1": {
+                "author": "ミカ (日本)",
+                "time": "10分前",
+                "title": "サムギョプサル集まり 🥓",
+                "desc": "今夜7時に金豚食堂で一緒にサムギョプサル食べませんか？"
+            },
+            "2": {
+                "author": "ジョン (米国)",
+                "time": "1時間前",
+                "title": "弘大路上ライブ 🎸",
+                "desc": "インディーズバンドを見に弘大に向かっています。一緒にどうですか！"
+            },
+            "3": {
+                "author": "ジフン (韓国)",
+                "time": "2時間前",
+                "title": "地下鉄の案内が必要ですか？ 🚇",
+                "desc": "明洞の近くに住んでいるので、道に迷ったら通訳や案内ができますよ。お気軽にメッセージください！"
+            },
+            "4": {
+                "author": "リウェイ (中国)",
+                "time": "3時間前",
+                "title": "K-Beauty コスメショッピング 💄",
+                "desc": "明洞のオリーブヤングで一緒に買い物する友達を探しています。いいブランドたくさん知ってます！"
+            }
+        },
+        "filter_review": "Reviews"
     }
 }

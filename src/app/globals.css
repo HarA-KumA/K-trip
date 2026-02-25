@@ -1,27 +1,27 @@
 :root {
-  /* Premium Light Theme Variables */
-  --background: #fdfdfd;
-  --foreground: #0f172a;
+  /* Premium Light Theme Variables (White & Blue) */
+  --background: #ffffff;
+  --foreground: #1e293b;
 
-  --primary: #bc13fe;
-  /* K-Pop Purple */
-  --primary-glow: rgba(188, 19, 254, 0.2);
-  --secondary: #0ea5e9;
-  /* Han River Blue */
-  --secondary-glow: rgba(14, 165, 233, 0.2);
+  --primary: #2563eb;
+  /* Royal Blue */
+  --primary-glow: rgba(37, 99, 235, 0.15);
+  --secondary: #3b82f6;
+  /* Lighter Blue */
+  --secondary-glow: rgba(59, 130, 246, 0.15);
   --success: #10b981;
-  /* Seoul Subway Green for "Go" */
+  /* Seoul Subway Green */
   --warning: #f59e0b;
 
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(0, 0, 0, 0.08);
   --glass-highlight: rgba(255, 255, 255, 1);
 
   --gray-100: #f8fafc;
   --gray-200: #f1f5f9;
   --gray-400: #94a3b8;
   --gray-500: #64748b;
-  --gray-light: #475569;
+  --gray-light: #e2e8f0;
 
   --radius-sm: 10px;
   --radius-md: 18px;

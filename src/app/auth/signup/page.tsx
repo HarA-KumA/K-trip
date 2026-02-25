@@ -82,11 +82,11 @@ export default function SignupPage() {
                     </button>
                 </form>
 
-                <div className={styles.footer} style={{ marginTop: '24px', textAlign: 'center', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)' }}>
+                <div className={styles.footer} style={{ marginTop: '24px', textAlign: 'center', fontSize: '0.9rem', color: 'var(--gray-500)' }}>
                     Already have an account?{" "}
                     <span
                         onClick={() => router.push('/auth/login')}
-                        style={{ color: '#7c3aed', cursor: 'pointer', fontWeight: '600' }}
+                        style={{ color: 'var(--primary)', cursor: 'pointer', fontWeight: '600' }}
                     >
                         Log in
                     </span>

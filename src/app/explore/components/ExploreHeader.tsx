@@ -14,6 +14,8 @@ interface ExploreHeaderProps {
     onHotelSelect: (location: { lat: number, lng: number, name: string, placeId: string }) => void;
     radius: number;
     onRadiusChange: (r: number) => void;
+    searchTerm: string;
+    onSearchChange: (val: string) => void;
 }
 
 export default function ExploreHeader({
@@ -25,11 +27,12 @@ export default function ExploreHeader({
     filterCount,
     onHotelSelect,
     radius,
-    onRadiusChange
+    onRadiusChange,
+    searchTerm,
+    onSearchChange
 }: ExploreHeaderProps) {
     const { t } = useTranslation('common');
     const [isCityModalOpen, setIsCityModalOpen] = useState(false);
-    const [searchTerm, setSearchTerm] = useState("");
 
     const handleCitySelect = (cityId: CityId) => {
         onCityChange(cityId);
@@ -58,8 +61,17 @@ export default function ExploreHeader({
                             placeholder={getPlaceholder()}
                             className={styles.searchInput}
                             value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onChange={(e) => onSearchChange(e.target.value)}
                         />
+                        {searchTerm && (
+                            <button
+                                className={styles.searchMapBtn}
+                                onClick={() => window.open(`https://www.google.com/maps/search/${encodeURIComponent(searchTerm)}`, '_blank')}
+                                title="Search on Google Maps"
+                            >
+                                🌐
+                            </button>
+                        )}
                     </div>
 
                     <div className={styles.headerActions}>

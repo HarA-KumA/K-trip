@@ -102,24 +102,15 @@
     },
     "home": {
         "presets": {
-            "beauty_tour": "뷰티 투어",
             "foodie": "맛집 탐방",
             "heritage": "전통 문화",
-            "k_pop": "K-팝 투어"
+            "k_pop": "K-팝 투어",
+            "shopping": "쇼핑 & 패션"
         },
         "badge": "✦ Korea Travel OS",
         "title": "한국 여행, 3초 만에 이해",
         "subtitle": "예약 대행 · 일정 자동 정리 · 실시간 안내",
         "create_trip_cta": "일정 만들기 시작",
-        "how_it_works": {
-            "title": "이용 방법",
-            "step1": "요청",
-            "step1_desc": "원하는 뷰티/맛집 선택",
-            "step2": "진행중",
-            "step2_desc": "현지 채널로 대리 예약",
-            "step3": "확정",
-            "step3_desc": "내 일정에 자동 동기화"
-        },
         "input_label": "어디로 여행하시나요?",
         "input_placeholder": "도시, 지역, 숙소 이름",
         "days_label": "여행 기간",
@@ -130,7 +121,7 @@
             },
             "booking": {
                 "title": "예약 대행",
-                "desc": "관리숍, 스파 등 대신 예약"
+                "desc": "관리숍, 미용실 등 대신 예약"
             },
             "navigation": {
                 "title": "실시간 이동 안내",
@@ -178,7 +169,6 @@
             "options": {
                 "skin_care": "피부 관리",
                 "hair_makeup": "헤어/메이크업",
-                "spa": "스파",
                 "nails": "네일",
                 "vegan": "비건",
                 "vegetarian": "채식",
@@ -297,7 +287,7 @@
     },
     "fab": {
         "idle": "내 여행 만들기",
-        "pre_trip": "모레 출발해요",
+        "pre_trip": "이동방법",
         "on_trip": "다음 목적지는?",
         "near_deadline": "지연 위험!",
         "to": "{{dest}} (으)로",

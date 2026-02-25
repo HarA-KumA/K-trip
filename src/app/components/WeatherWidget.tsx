@@ -50,13 +50,13 @@ export default function WeatherWidget() {
             display: 'flex',
             alignItems: 'center',
             gap: '4px',
-            fontSize: '0.85rem',
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-            padding: '4px 8px',
-            borderRadius: '12px',
-            backdropFilter: 'blur(4px)',
-            color: 'white',
-            border: '1px solid rgba(255, 255, 255, 0.1)'
+            fontSize: '11px',
+            backgroundColor: 'var(--gray-100)',
+            padding: '4px 10px',
+            borderRadius: '20px',
+            color: 'var(--foreground)',
+            border: '1px solid var(--gray-200)',
+            fontWeight: 600
         }}>
             <span>{weatherData.icon}</span>
             <span style={{ fontWeight: 600 }}>{weatherData.temp}°C</span>

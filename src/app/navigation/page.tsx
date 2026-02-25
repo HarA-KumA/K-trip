@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { initClientLanguage } from '@/lib/i18n/client';
 import styles from './today.module.css';
 
 // Mock today's schedule — 실제로는 planner state/DB에서 읽어옴
@@ -81,7 +80,6 @@ export default function TodayPage() {
     const [checkedIds, setCheckedIds] = useState<string[]>([]);
 
     useEffect(() => {
-        initClientLanguage();
         const tInterval = setInterval(() => setNow(new Date()), 60000);
         return () => clearInterval(tInterval);
     }, []);

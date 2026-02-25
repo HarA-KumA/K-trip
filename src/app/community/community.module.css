@@ -190,7 +190,7 @@
 
 .postDesc {
     font-size: 14px;
-    color: var(--gray-light);
+    color: var(--gray-500);
     line-height: 1.5;
     margin: 0 0 16px;
 }
@@ -227,7 +227,7 @@
     height: 52px;
     padding: 0 24px;
     border-radius: 26px;
-    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
     border: none;
     color: #fff;
     font-size: 16px;
@@ -236,7 +236,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 8px 16px rgba(124, 58, 237, 0.4);
+    box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
     cursor: pointer;
     z-index: 500;
     transition: transform 0.15s;
@@ -327,7 +327,7 @@
 .commentAuthor {
     font-size: 12px;
     font-weight: 700;
-    color: #a78bfa;
+    color: var(--primary);
     margin-bottom: 4px;
 }
 
@@ -354,11 +354,11 @@
 }
 
 .commentInput:focus {
-    border-color: #7c3aed;
+    border-color: var(--primary);
 }
 
 .commentSubmit {
-    background: #7c3aed;
+    background: var(--primary);
     color: white;
     border: none;
     padding: 0 16px;
@@ -403,7 +403,7 @@
 
 .formLabel {
     font-size: 13px;
-    color: var(--gray-light);
+    color: var(--gray-500);
     font-weight: 600;
 }
 
@@ -433,14 +433,14 @@
 .formInput:focus,
 .formSelect:focus,
 .formTextarea:focus {
-    border-color: #7c3aed;
+    border-color: var(--primary);
 }
 
 .submitBtn {
     width: 100%;
     padding: 14px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
     border: none;
     color: #fff;
     font-size: 15px;

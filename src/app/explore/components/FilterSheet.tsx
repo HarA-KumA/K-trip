@@ -22,7 +22,7 @@ export default function FilterSheet({ isOpen, onClose, category, onApply }: Filt
                     <>
                         <h4>{t('explore_page.filters.show')}</h4>
                         <div className={styles.filterSection}>
-                            {['skin_care', 'hair_makeup', 'spa', 'nails'].map(opt => (
+                            {['skin_care', 'hair_makeup', 'nails'].map(opt => (
                                 <button className={styles.filterChip} key={opt}>{t(`explore_page.filters.options.${opt}`)}</button>
                             ))}
                         </div>

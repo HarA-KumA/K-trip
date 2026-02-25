@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import LanguagePicker from './LanguagePicker';
 import styles from './GlobalLangButton.module.css';
-import { initClientLanguage } from '@/lib/i18n/client';
 
 /**
  * Floating language selector — visible on all pages.
@@ -15,10 +14,7 @@ import { initClientLanguage } from '@/lib/i18n/client';
 export default function GlobalLangButton() {
     const pathname = usePathname();
 
-    // Apply user's saved/browser language AFTER hydration completes
-    useEffect(() => {
-        initClientLanguage();
-    }, []);
+    // Language persistence is handled by LanguageInitializer in RootLayout
 
     // auth 페이지 및 홈 페이지(헤더 통합)에선 숨김
     if (pathname.startsWith('/auth') || pathname === '/') return null;

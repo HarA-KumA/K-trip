@@ -4,6 +4,7 @@ import { useMemo, useCallback, useState, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import { useTranslation } from 'react-i18next';
 import { ServiceItem } from '../mock/data';
+import styles from '../explore.module.css';
 
 interface ExploreMapProps {
     items: ServiceItem[];
@@ -65,8 +66,25 @@ function ExploreMapInner({ items, center, onItemClick, radius, lang }: ExploreMa
         language: lang,
     });
 
+    const { t } = useTranslation('common');
     const [map, setMap] = useState<google.maps.Map | null>(null);
     const [selectedItem, setSelectedItem] = useState<ServiceItem | null>(null);
+
+    const handleKRide = (item: ServiceItem) => {
+        const deeplink = `kride://route?dest_lat=${item.lat}&dest_lng=${item.lng}&dest_name=${encodeURIComponent(item.title)}`;
+        window.location.href = deeplink;
+    };
+
+    const handleTransit = (item: ServiceItem) => {
+        window.open(`kakaomap://route?ep=${item.lat},${item.lng}&by=PUBLICTRANSIT`, '_blank');
+        setTimeout(() => {
+            window.open(`https://map.kakao.com/link/to/${encodeURIComponent(item.title)},${item.lat},${item.lng}`, '_blank');
+        }, 500);
+    };
+
+    const handleGoogleMaps = (item: ServiceItem) => {
+        window.open(`https://www.google.com/maps/search/?api=1&query=${item.lat},${item.lng}`, '_blank');
+    };
 
     const onLoad = useCallback(function callback(map: google.maps.Map) {
         setMap(map);
@@ -127,13 +145,36 @@ function ExploreMapInner({ items, center, onItemClick, radius, lang }: ExploreMa
                         position={{ lat: selectedItem.lat, lng: selectedItem.lng }}
                         onCloseClick={() => setSelectedItem(null)}
                     >
-                        <div
-                            style={{ padding: '8px', cursor: 'pointer', maxWidth: '200px' }}
-                            onClick={() => onItemClick(selectedItem.id)}
-                        >
-                            <h3 style={{ margin: '0 0 8px', fontSize: '14px', fontWeight: 'bold' }}>{selectedItem.title}</h3>
-                            <p style={{ margin: '0 0 4px', fontSize: '12px' }}>{selectedItem.area}</p>
-                            <span style={{ fontSize: '12px', color: '#0066cc' }}>View Details &rarr;</span>
+                        <div className={styles.infoWindow} onClick={(e) => e.stopPropagation()}>
+                            <h3 className={styles.infoTitle}>{selectedItem.title}</h3>
+                            <p className={styles.infoArea}>{selectedItem.area}</p>
+
+                            <div className={styles.infoActions}>
+                                <button
+                                    className={`${styles.infoActionBtn} ${styles.infoActionKride}`}
+                                    onClick={() => handleKRide(selectedItem)}
+                                >
+                                    🚕 Taxi
+                                </button>
+                                <button
+                                    className={`${styles.infoActionBtn} ${styles.infoActionTransit}`}
+                                    onClick={() => handleTransit(selectedItem)}
+                                >
+                                    🚇 Transit
+                                </button>
+                                <button
+                                    className={`${styles.infoActionBtn} ${styles.infoActionMap}`}
+                                    onClick={() => handleGoogleMaps(selectedItem)}
+                                >
+                                    🌐 Map
+                                </button>
+                                <button
+                                    className={styles.infoActionBtn}
+                                    onClick={() => onItemClick(selectedItem.id)}
+                                >
+                                    📄 {t('common.details', { defaultValue: 'Details' })}
+                                </button>
+                            </div>
                         </div>
                     </InfoWindow>
                 )}

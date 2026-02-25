@@ -39,6 +39,7 @@ export default function ExplorePage() {
 
     // Filters
     const [activeFilters, setActiveFilters] = useState<ActiveFilters>({});
+    const [searchTerm, setSearchTerm] = useState("");
 
     // -- Effects --
     useEffect(() => {
@@ -172,13 +173,21 @@ export default function ExplorePage() {
     };
 
     // -- Filtering Logic --
-    // If the API returns results, use them. Otherwise, fallback to MOCK_ITEMS so the screen isn't empty.
-    const itemsToShow = (hotelLocation && nearbyItems.length > 0)
-        ? nearbyItems
-        : MOCK_ITEMS.filter(item => {
-            if (currentCategory !== 'all' && item.type !== currentCategory) return false;
-            return true;
-        });
+    let baseItems = (hotelLocation && nearbyItems.length > 0) ? nearbyItems : MOCK_ITEMS;
+
+    // Apply category filter
+    const categorizedItems = baseItems.filter(item => {
+        if (currentCategory !== 'all' && item.type !== currentCategory) return false;
+        return true;
+    });
+
+    // Apply search term filter
+    const itemsToShow = categorizedItems.filter(item => {
+        if (!searchTerm) return true;
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        return item.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+            item.area.toLowerCase().includes(lowerCaseSearchTerm);
+    });
 
     // Sort so premium items or future clients come first, then others
     const sortedItemsToShow = [...itemsToShow].sort((a, b) => {
@@ -199,6 +208,8 @@ export default function ExplorePage() {
                 onHotelSelect={handleHotelSelect}
                 radius={radius}
                 onRadiusChange={setRadius}
+                searchTerm={searchTerm}
+                onSearchChange={setSearchTerm}
             />
 
             <main style={{ paddingBottom: '80px', flex: 1, display: 'flex', flexDirection: 'column', position: 'relative', height: '100%', minHeight: '500px' }}>

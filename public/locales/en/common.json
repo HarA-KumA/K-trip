@@ -91,15 +91,6 @@
         "title": "Korea Trip, Understood in 3 Seconds",
         "subtitle": "Concierge Booking · Auto Itinerary · Navigation",
         "create_trip_cta": "Start Creating Itinerary",
-        "how_it_works": {
-            "title": "How it works",
-            "step1": "Request",
-            "step1_desc": "Choose your beauty/food places",
-            "step2": "Processing",
-            "step2_desc": "We book via local channels",
-            "step3": "Confirmed",
-            "step3_desc": "Auto-sync to your itinerary"
-        },
         "input_label": "Where are you traveling to?",
         "input_placeholder": "City, Area, or Accommodation",
         "days_label": "Duration",

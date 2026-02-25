@@ -38,17 +38,8 @@ export function TripProvider({ children }: { children: React.ReactNode }) {
         if (saved) {
             setItinerary(JSON.parse(saved));
         } else {
-            // Initial mock data
-            const mockItinerary: ItineraryItem[] = [
-                {
-                    id: '1', name: 'Paradise Spa', time: '10:00', status: 'confirmed',
-                    lat: 37.5665, lng: 126.9780, day: 1, slot: 'am', type: 'beauty'
-                },
-                {
-                    id: '2', name: 'Hongdae Nail', time: '14:00', status: 'submitted',
-                    lat: 37.5565, lng: 126.9230, day: 1, slot: 'pm', type: 'beauty'
-                },
-            ];
+            // Initial mock data - Empty as requested
+            const mockItinerary: ItineraryItem[] = [];
             setItinerary(mockItinerary);
         }
     }, []);

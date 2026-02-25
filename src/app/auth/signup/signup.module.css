@@ -39,15 +39,15 @@
 .formCard {
     width: 100%;
     max-width: 400px;
-    background: rgba(20, 20, 20, 0.6);
+    background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 1);
     border-radius: 24px;
     padding: 32px;
     z-index: 10;
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
 }
 
 .title {
@@ -59,7 +59,7 @@
 
 .subTitle {
     font-size: 0.9rem;
-    color: var(--gray-light);
+    color: var(--gray-500);
     text-align: center;
     margin-bottom: 32px;
 }
@@ -79,9 +79,9 @@
     width: 100%;
     padding: 14px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: white;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: var(--foreground);
     font-size: 1rem;
     transition: border 0.2s;
 }
@@ -89,7 +89,7 @@
 .input:focus {
     border-color: var(--primary);
     outline: none;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.06);
 }
 
 .submitBtn {
@@ -125,7 +125,7 @@
     content: "";
     flex: 1;
     height: 1px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--gray-200);
 }
 
 .divider::before {
@@ -138,9 +138,9 @@
 
 .socialBtn {
     width: 100%;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    color: var(--foreground);
     padding: 14px;
     border-radius: 16px;
     display: flex;
@@ -150,8 +150,9 @@
     cursor: pointer;
     font-size: 0.9rem;
     margin-bottom: 12px;
+    transition: background 0.2s;
 }
 
 .socialBtn:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--gray-200);
 }

@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BottomNav from "./components/BottomNav";
-import GlobalLangButton from "./components/GlobalLangButton";
 import KRideGlobalFAB from "./components/KRideGlobalFAB";
+import LanguageInitializer from "./components/LanguageInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,13 +39,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <TripProvider>
+          <LanguageInitializer />
           <div className="mobile-wrapper">
             <main className="scroll-container">
               {children}
             </main>
             <BottomNav />
-            <GlobalLangButton />
-            <KRideGlobalFAB />
           </div>
         </TripProvider>
       </body>

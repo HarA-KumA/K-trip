@@ -43,26 +43,10 @@ export default function CommunityDetailPage() {
     const [loading, setLoading] = useState(true);
     const [loggedInUserName, setLoggedInUserName] = useState("Jessie Kim");
 
-    useEffect(() => {
-        try {
-            const storedUser = localStorage.getItem('user');
-            if (storedUser) {
-                const parsed = JSON.parse(storedUser);
-                if (parsed.name) setLoggedInUserName(parsed.name);
-            }
-        } catch (e) {
-            // ignore
-        }
-
-        if (id) {
-            fetchPostData();
-        }
-    }, [id]);
-
     const fetchPostData = async () => {
         setLoading(true);
         // Fetch Post
-        const { data: postData, error: postError } = await supabase
+        const { data: postData } = await supabase
             .from('community_posts')
             .select('*')
             .eq('id', id)
@@ -84,6 +68,23 @@ export default function CommunityDetailPage() {
         }
         setLoading(false);
     };
+
+    useEffect(() => {
+        try {
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+                const parsed = JSON.parse(storedUser);
+                if (parsed.name) setLoggedInUserName(parsed.name);
+            }
+        } catch (e) {
+            // ignore
+        }
+
+        if (id) {
+            fetchPostData();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id]);
 
     const handleSubmitComment = async () => {
         if (!newComment.trim() || !post) return;

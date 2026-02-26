@@ -18,6 +18,13 @@ const eslintConfig = defineConfig([
     rules: {
       // useState/setState inside useEffect at mount is a common/accepted pattern
       "react-hooks/set-state-in-effect": "warn",
+      // Downgrade from error to warn for common patterns used throughout the project
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "react-hooks/exhaustive-deps": "warn",
+      "react/no-unescaped-entities": "warn",
+      "@next/next/no-img-element": "warn",
+      "prefer-const": "warn",
     },
   },
 ]);

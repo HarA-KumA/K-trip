@@ -94,7 +94,7 @@ export default function LoginPage() {
                 </form>
 
                 <div className={styles.footer} style={{ marginTop: '24px', textAlign: 'center', fontSize: '0.9rem', color: 'var(--gray-500)' }}>
-                    Don't have an account?{" "}
+                    Don&apos;t have an account?{" "}
                     <span
                         onClick={() => router.push('/auth/signup')}
                         style={{ color: 'var(--primary)', cursor: 'pointer', fontWeight: '600' }}

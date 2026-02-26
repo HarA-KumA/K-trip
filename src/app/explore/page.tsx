@@ -179,7 +179,7 @@ export default function ExplorePage() {
     };
 
     // -- Filtering Logic --
-    let baseItems = (hotelLocation && nearbyItems.length > 0) ? nearbyItems : MOCK_ITEMS;
+    const baseItems = (hotelLocation && nearbyItems.length > 0) ? nearbyItems : MOCK_ITEMS;
 
     // Apply category filter
     const categorizedItems = baseItems.filter(item => {

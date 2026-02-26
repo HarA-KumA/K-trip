@@ -6,6 +6,7 @@ import styles from "./my.module.css";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { useTrip } from "@/lib/contexts/TripContext";
+import { supabase } from "@/lib/supabaseClient";
 
 function MyPageContent() {
     const { t } = useTranslation("common");
@@ -15,6 +16,7 @@ function MyPageContent() {
     const hasNewBooking = searchParams.get('booked') === 'true';
 
     const [userName, setUserName] = useState("Jessie Kim");
+    const [myPosts, setMyPosts] = useState<any[]>([]);
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -27,6 +29,22 @@ function MyPageContent() {
             }
         }
     }, []);
+
+    useEffect(() => {
+        const fetchMyPosts = async () => {
+            if (!userName) return;
+            const { data, error } = await supabase
+                .from('community_posts')
+                .select('*')
+                .eq('author', userName)
+                .order('created_at', { ascending: false });
+
+            if (data && !error) {
+                setMyPosts(data);
+            }
+        };
+        fetchMyPosts();
+    }, [userName]);
 
     // Get real confirmed bookings from itinerary
     const realBookings = useMemo(() => {
@@ -91,30 +109,8 @@ function MyPageContent() {
                 </div>
             </div>
 
-            {/* Passport Stamps */}
-            <section className="mb-8">
-                <h2 className="text-lg font-bold mb-4 flex justify-between">
-                    <span>{t('my_page.passport.title')}</span>
-                    <span className="text-sm text-purple">{t('my_page.passport.view_all')}</span>
-                </h2>
-                <div className={styles.passportGrid}>
-                    <div className={`${styles.stamp} ${styles.collected}`}>
-                        <span>🌆</span>
-                        <span>{t('my_page.passport.seoul')}</span>
-                    </div>
-                    <div className={`${styles.stamp} ${styles.collected}`}>
-                        <span>💄</span>
-                        <span>{t('my_page.passport.beauty')}</span>
-                    </div>
-                    <div className={styles.stamp}>
-                        <span>🏝️</span>
-                        <span>{t('my_page.passport.jeju')}</span>
-                    </div>
-                </div>
-            </section>
-
             {/* My Bookings */}
-            <section>
+            <section className="mb-8">
                 <h2 className="text-lg font-bold mb-4">{t('my_page.bookings.title')}</h2>
 
                 {allBookings.map((booking: any) => (
@@ -154,6 +150,34 @@ function MyPageContent() {
                         </div>
                     </div>
                 ))}
+            </section>
+
+            {/* My Community Posts */}
+            <section>
+                <h2 className="text-lg font-bold mb-4">{t('my_page.community.title', { defaultValue: 'My Community Posts' })}</h2>
+                {myPosts.length === 0 ? (
+                    <div className="text-sm text-gray-500 text-center py-6 bg-white rounded-xl shadow-sm border border-gray-100">
+                        {t('my_page.community.empty', { defaultValue: 'No community posts written yet.' })}
+                    </div>
+                ) : (
+                    <div className={styles.postList}>
+                        {myPosts.map(post => (
+                            <div key={post.id} className={styles.postCard} onClick={() => router.push(`/community/${post.id}`)}>
+                                <div className={styles.postHeader}>
+                                    <div className={`${styles.badge} ${styles['badge_' + post.type]}`}>
+                                        {t(`community_page.type.${post.type.toUpperCase()}`, { defaultValue: post.type.toUpperCase() })}
+                                    </div>
+                                    <div className={styles.postTime}>{post.time}</div>
+                                </div>
+                                <h3 className={styles.postTitle}>{post.title}</h3>
+                                <p className={styles.postDesc}>{post.desc}</p>
+                                <div className={styles.postFooter}>
+                                    💬 {post.comments}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </section>
         </div>
     );

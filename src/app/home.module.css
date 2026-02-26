@@ -796,30 +796,33 @@
 .searchResultItem {
     display: flex;
     align-items: center;
-    padding: 12px 16px;
+    padding: 18px 0;
     cursor: pointer;
-    transition: background 0.15s;
+    transition: all 0.1s;
     border-bottom: 1px solid var(--gray-100);
     text-align: left;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.searchResultItem:active {
+    background: var(--gray-50);
+    opacity: 0.7;
 }
 
 .searchResultItem:last-child {
     border-bottom: none;
 }
 
-.searchResultItem:hover {
-    background: var(--gray-100);
-}
-
 .searchResultTitle {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     color: var(--foreground);
     display: block;
+    margin-bottom: 2px;
 }
 
 .searchResultArea {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--gray-500);
     display: block;
 }
@@ -864,6 +867,18 @@
     display: flex;
     flex-direction: column;
     max-height: 90vh;
+}
+
+@media (max-width: 480px) {
+    .mapModal {
+        max-height: 100vh;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .modalOverlay {
+        padding: 0;
+    }
 }
 
 .mapModalHeader {
@@ -981,14 +996,20 @@
 .choiceBtn {
     background: var(--gray-50);
     border: 2px solid transparent;
-    border-radius: 20px;
-    padding: 20px 12px;
+    border-radius: 22px;
+    padding: 24px 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.choiceBtn:active {
+    transform: scale(0.95);
+    background: var(--gray-100);
 }
 
 .choiceBtn:hover {
@@ -1030,18 +1051,19 @@
 
 .footerBtn {
     flex: 1;
-    padding: 14px;
+    padding: 16px;
     border: none;
-    border-radius: 14px;
-    font-size: 14px;
-    font-weight: 600;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
     background: var(--gray-100);
     color: var(--gray-700);
-    transition: background 0.2s;
+    transition: all 0.1s;
 }
 
-.footerBtn:hover {
+.footerBtn:active {
+    transform: scale(0.97);
     background: var(--gray-200);
 }
 

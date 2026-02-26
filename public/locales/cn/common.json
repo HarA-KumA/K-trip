@@ -404,6 +404,10 @@
             "tomorrow_time": "明天, {{time}}",
             "next_week_time": "下周, {{time}}",
             "new_added": "新预约已添加！"
+        },
+        "community": {
+            "title": "我的社区动态",
+            "empty": "还没有撰写任何社区动态。"
         }
     },
     "community_page": {
@@ -447,6 +451,7 @@
                 "desc": "找个在明洞Olive Young一起购物的伙伴。我知道很多好用的牌子！"
             }
         },
-        "filter_review": "Reviews"
+        "filter_review": "Reviews",
+        "detail": "帖子详情"
     }
 }

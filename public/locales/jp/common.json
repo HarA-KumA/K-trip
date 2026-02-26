@@ -404,6 +404,10 @@
             "tomorrow_time": "明日, {{time}}",
             "next_week_time": "来週, {{time}}",
             "new_added": "新しい予約が追加されました！"
+        },
+        "community": {
+            "title": "マイコミュニティ投稿",
+            "empty": "まだコミュニティの投稿がありません。"
         }
     },
     "community_page": {
@@ -447,6 +451,7 @@
                 "desc": "明洞のオリーブヤングで一緒に買い物する友達を探しています。いいブランドたくさん知ってます！"
             }
         },
-        "filter_review": "Reviews"
+        "filter_review": "Reviews",
+        "detail": "投稿の詳細"
     }
 }

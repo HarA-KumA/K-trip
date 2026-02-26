@@ -126,6 +126,10 @@
             "area": "ย่าน",
             "price": "ราคา",
             "new_added": "เพิ่มหน้าการจองใหม่แล้ว!"
+        },
+        "community": {
+            "title": "โพสต์ของฉัน",
+            "empty": "ยังไม่มีโพสต์ในชุมชน"
         }
     },
     "community_page": {
@@ -169,7 +173,8 @@
                 "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
             }
         },
-        "filter_review": "Reviews"
+        "filter_review": "Reviews",
+        "detail": "รายละเอียดโพสต์"
     },
     "explore_items": {
         "airport_arrival": "ถึงสนามบินอินชอน",

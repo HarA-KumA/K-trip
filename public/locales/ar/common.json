@@ -68,6 +68,10 @@
             "area": "المنطقة",
             "price": "السعر",
             "new_added": "تم إضافة حجز جديد!"
+        },
+        "community": {
+            "title": "مشاركاتي في المجتمع",
+            "empty": "لم تتم كتابة مشاركات بعد."
         }
     },
     "community_page": {
@@ -111,7 +115,8 @@
                 "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
             }
         },
-        "filter_review": "Reviews"
+        "filter_review": "Reviews",
+        "detail": "تفاصيل المشاركة"
     },
     "explore_items": {
         "airport_arrival": "الوصول إلى مطار إنتشون",

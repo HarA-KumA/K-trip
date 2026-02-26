@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './community.module.css';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '@/lib/supabaseClient';
@@ -18,6 +19,7 @@ interface Post {
 
 export default function CommunityPage() {
     const { t } = useTranslation('common');
+    const router = useRouter();
     const [filter, setFilter] = useState<string>('all');
     const [posts, setPosts] = useState<Post[]>([]);
     const [loading, setLoading] = useState(true);
@@ -29,11 +31,6 @@ export default function CommunityPage() {
     const [newDesc, setNewDesc] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [editingPostId, setEditingPostId] = useState<number | null>(null);
-
-    const [activeCommentPost, setActiveCommentPost] = useState<number | null>(null);
-    const [commentsMap, setCommentsMap] = useState<Record<number, any[]>>({});
-    const [newComment, setNewComment] = useState('');
-    const [isSubmittingComment, setIsSubmittingComment] = useState(false);
 
     const [loggedInUserName, setLoggedInUserName] = useState("Jessie Kim");
 
@@ -65,48 +62,7 @@ export default function CommunityPage() {
         fetchPosts();
     }, []);
 
-    const loadComments = async (postId: number) => {
-        const { data, error } = await supabase
-            .from('community_comments')
-            .select('*')
-            .eq('post_id', postId)
-            .order('created_at', { ascending: true });
-
-        if (!error && data) {
-            setCommentsMap(prev => ({ ...prev, [postId]: data }));
-        }
-    };
-
-    const handleToggleComments = (post: Post) => {
-        if (activeCommentPost === post.id) {
-            setActiveCommentPost(null);
-        } else {
-            setActiveCommentPost(post.id);
-            setNewComment('');
-            loadComments(post.id);
-        }
-    };
-
-    const handleSubmitComment = async (postId: number) => {
-        if (!newComment.trim()) return;
-        setIsSubmittingComment(true);
-        const { error } = await supabase.from('community_comments').insert([{
-            post_id: postId,
-            author: loggedInUserName,
-            content: newComment
-        }]);
-        if (!error) {
-            setNewComment('');
-            loadComments(postId);
-            // Update comments count lightly
-            const post = posts.find(p => p.id === postId);
-            if (post) {
-                await supabase.from('community_posts').update({ comments: post.comments + 1 }).eq('id', postId);
-                fetchPosts();
-            }
-        }
-        setIsSubmittingComment(false);
-    };
+    // Comment logic moved to detail page
 
     const handleDeletePost = async (id: number) => {
         if (confirm('Are you sure you want to delete this post?')) {
@@ -206,7 +162,7 @@ export default function CommunityPage() {
                     <div className={styles.emptyState}>No posts yet. Be the first to share!</div>
                 ) : (
                     filteredPosts.map(post => (
-                        <div key={post.id} className={styles.card}>
+                        <div key={post.id} className={styles.card} onClick={() => router.push(`/community/${post.id}`)} style={{ cursor: 'pointer' }}>
                             <div className={styles.cardHeader}>
                                 <div className={styles.avatar}>{post.flag}</div>
                                 <div className={styles.authorInfo}>
@@ -218,10 +174,10 @@ export default function CommunityPage() {
                                 </div>
                                 {post.author === loggedInUserName && (
                                     <div style={{ display: 'flex', gap: '8px', marginLeft: 'auto' }}>
-                                        <button className={styles.deleteBtn} onClick={() => handleEditPost(post)}>
+                                        <button className={styles.deleteBtn} onClick={(e) => { e.stopPropagation(); handleEditPost(post); }}>
                                             {t('community_page.edit', { defaultValue: 'Edit' })}
                                         </button>
-                                        <button className={styles.deleteBtn} onClick={() => handleDeletePost(post.id)}>
+                                        <button className={styles.deleteBtn} onClick={(e) => { e.stopPropagation(); handleDeletePost(post.id); }}>
                                             {t('community_page.delete', { defaultValue: 'Delete' })}
                                         </button>
                                     </div>
@@ -230,40 +186,10 @@ export default function CommunityPage() {
                             <h2 className={styles.postTitle}>{post.title}</h2>
                             <p className={styles.postDesc}>{post.desc}</p>
                             <div className={styles.cardFooter}>
-                                <button className={styles.actionBtn} onClick={() => handleToggleComments(post)}>
-                                    💬 {commentsMap[post.id] ? commentsMap[post.id].length : post.comments} {t('community_page.comments', { defaultValue: 'Comments' })}
+                                <button className={styles.actionBtn}>
+                                    💬 {post.comments} {t('community_page.comments', { defaultValue: 'Comments' })}
                                 </button>
                             </div>
-
-                            {/* Comment Section Expansion */}
-                            {activeCommentPost === post.id && (
-                                <div className={styles.commentSection}>
-                                    <div className={styles.commentList}>
-                                        {(commentsMap[post.id] || []).map(comment => (
-                                            <div key={comment.id} className={styles.commentItem}>
-                                                <div className={styles.commentAuthor}>{comment.author}</div>
-                                                <div className={styles.commentContent}>{comment.content}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <div className={styles.commentInputBox}>
-                                        <input
-                                            className={styles.commentInput}
-                                            placeholder="Write a comment..."
-                                            value={newComment}
-                                            onChange={e => setNewComment(e.target.value)}
-                                            onKeyDown={e => e.key === 'Enter' && handleSubmitComment(post.id)}
-                                        />
-                                        <button
-                                            className={styles.commentSubmit}
-                                            disabled={!newComment.trim() || isSubmittingComment}
-                                            onClick={() => handleSubmitComment(post.id)}
-                                        >
-                                            ➤
-                                        </button>
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     ))
                 )}

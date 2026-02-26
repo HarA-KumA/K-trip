@@ -86,6 +86,10 @@
             "area": "Área",
             "price": "Preço",
             "new_added": "Nova reserva adicionada!"
+        },
+        "community": {
+            "title": "Minhas Postagens",
+            "empty": "Nenhuma postagem escrita ainda."
         }
     },
     "community_page": {
@@ -129,6 +133,7 @@
                 "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
             }
         },
-        "filter_review": "Reviews"
+        "filter_review": "Reviews",
+        "detail": "Detalhes da Postagem"
     }
 }

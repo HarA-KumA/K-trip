@@ -126,6 +126,10 @@
             "area": "Khu vực",
             "price": "Giá",
             "new_added": "Đã thêm đơn đặt mới!"
+        },
+        "community": {
+            "title": "Bài viết Của Tôi",
+            "empty": "Chưa có bài viết nào được tạo."
         }
     },
     "community_page": {
@@ -169,7 +173,8 @@
                 "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
             }
         },
-        "filter_review": "Reviews"
+        "filter_review": "Reviews",
+        "detail": "Chi tiết Bài viết"
     },
     "explore_items": {
         "airport_arrival": "Đến sân bay Incheon",

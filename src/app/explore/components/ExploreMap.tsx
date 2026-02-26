@@ -80,8 +80,14 @@ function ExploreMapInner({ items, center, onItemClick, radius, zoom, lang }: Exp
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (pos) => setCurrentLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-                (err) => console.log('Map location error', err)
+                (err) => {
+                    console.log('Map location error, using fallback', err);
+                    setCurrentLocation({ lat: 37.5665, lng: 126.9780 }); // Fallback to a default center
+                },
+                { timeout: 3000 }
             );
+        } else {
+            setCurrentLocation({ lat: 37.5665, lng: 126.9780 });
         }
     }, []);
 
@@ -284,6 +290,17 @@ function ExploreMapInner({ items, center, onItemClick, radius, zoom, lang }: Exp
                         url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
                     }}
                     title={center.name || "Hotel / Destination"}
+                    onClick={() => {
+                        const centerItem = {
+                            id: 'center-dest',
+                            title: center.name || 'Destination',
+                            area: '',
+                            lat: center.lat,
+                            lng: center.lng,
+                            type: 'attraction'
+                        } as any;
+                        setSelectedItem(centerItem);
+                    }}
                 />
 
                 {sortedItems.map(item => {
@@ -312,7 +329,7 @@ function ExploreMapInner({ items, center, onItemClick, radius, zoom, lang }: Exp
                                     className={`${styles.infoActionBtn} ${styles.infoActionKride}`}
                                     onClick={() => handleKRide(selectedItem)}
                                 >
-                                    🚕 Taxi
+                                    🚕 K.Ride
                                 </button>
                                 <button
                                     className={`${styles.infoActionBtn} ${styles.infoActionTransit}`}

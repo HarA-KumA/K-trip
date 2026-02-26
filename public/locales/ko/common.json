@@ -306,6 +306,10 @@
             "date_time": "날짜 / 시간",
             "area": "지역",
             "price": "가격"
+        },
+        "community": {
+            "title": "내 커뮤니티 활동",
+            "empty": "작성하신 커뮤니티 게시글이 없습니다."
         }
     },
     "fab": {
@@ -451,6 +455,7 @@
         "edit": "수정",
         "delete": "삭제",
         "search_placeholder": "궁금한 키워드를 검색해보세요!",
-        "filter_review": "이용후기"
+        "filter_review": "이용후기",
+        "detail": "포스트 상세"
     }
 }

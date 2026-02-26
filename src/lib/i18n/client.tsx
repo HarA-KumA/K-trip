@@ -15,9 +15,13 @@ import de from "../../../public/locales/de/common.json";
 import th from "../../../public/locales/th/common.json";
 import vi from "../../../public/locales/vi/common.json";
 import ar from "../../../public/locales/ar/common.json";
+import id from "../../../public/locales/id/common.json";
+import ms from "../../../public/locales/ms/common.json";
+import pt from "../../../public/locales/pt/common.json";
+import ru from "../../../public/locales/ru/common.json";
 
 const STORAGE_KEY = "ktrip_lang";
-const SUPPORTED = ["en", "ko", "jp", "cn", "tw", "th", "vi", "ar"];
+const SUPPORTED = ["en", "ko", "jp", "cn", "tw", "es", "fr", "de", "th", "vi", "ar", "id", "ms", "pt", "ru"];
 
 const resources = {
     en: { common: en },
@@ -25,9 +29,16 @@ const resources = {
     jp: { common: jp },
     cn: { common: cn },
     tw: { common: tw },
+    es: { common: es },
+    fr: { common: fr },
+    de: { common: de },
     th: { common: th },
     vi: { common: vi },
     ar: { common: ar },
+    id: { common: id },
+    ms: { common: ms },
+    pt: { common: pt },
+    ru: { common: ru },
 };
 
 // ────────────────────────────────────────────────────────────
@@ -64,8 +75,24 @@ export function initClientLanguage() {
         return;
     }
 
-    // Default to Korean as per test site request
-    const detected = "ko";
+    // Detect browser language
+    let detected = 'ko'; // Default fallback
+    if (navigator.language) {
+        const browserLang = navigator.language.split('-')[0].toLowerCase();
+
+        // Handle specific variations like zh-CN, zh-TW, etc.
+        const fullLang = navigator.language;
+        if (fullLang === 'zh-CN' || fullLang === 'zh' || browserLang === 'zh') {
+            detected = 'cn';
+        } else if (fullLang === 'zh-TW' || fullLang === 'zh-HK') {
+            detected = 'tw';
+        } else if (browserLang === 'ja') {
+            detected = 'jp';
+        } else if (SUPPORTED.includes(browserLang)) {
+            detected = browserLang;
+        }
+    }
+
     applyLanguage(detected);
 }
 

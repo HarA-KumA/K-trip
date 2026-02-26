@@ -114,6 +114,10 @@
             "area": "Lokasi",
             "price": "Harga",
             "new_added": "Pemesanan baru ditambahkan!"
+        },
+        "community": {
+            "title": "Postingan Komunitas Saya",
+            "empty": "Belum ada postingan komunitas yang ditulis."
         }
     },
     "community_page": {
@@ -157,6 +161,7 @@
                 "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
             }
         },
-        "filter_review": "Reviews"
+        "filter_review": "Reviews",
+        "detail": "Detail Postingan"
     }
 }

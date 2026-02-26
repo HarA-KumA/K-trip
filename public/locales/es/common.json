@@ -118,6 +118,10 @@
             "area": "Área",
             "price": "Precio",
             "new_added": "¡Nueva reserva añadida!"
+        },
+        "community": {
+            "title": "Mis Publicaciones de la Comunidad",
+            "empty": "Aún no se han escrito publicaciones."
         }
     },
     "community_page": {
@@ -161,6 +165,7 @@
                 "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
             }
         },
-        "filter_review": "Reviews"
+        "filter_review": "Reviews",
+        "detail": "Detalle de la publicación"
     }
 }

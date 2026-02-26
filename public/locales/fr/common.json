@@ -133,6 +133,10 @@
             "area": "Zone",
             "price": "Prix",
             "new_added": "Nouvelle réservation ajoutée !"
+        },
+        "community": {
+            "title": "Mes Posts de la Communauté",
+            "empty": "Aucun post n'a encore été écrit."
         }
     },
     "community_page": {
@@ -176,6 +180,7 @@
                 "title": "Shopping K-Beauty 💄",
                 "desc": "Je cherche un partenaire de shopping à Olive Young Myeongdong !"
             }
-        }
+        },
+        "detail": "Détail de la publication"
     }
 }

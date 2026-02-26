@@ -45,27 +45,67 @@ export default function HomePage() {
   const [isMapOpen, setIsMapOpen] = useState(false);
   const [isSearchingInSheet, setIsSearchingInSheet] = useState(false);
   const [sheetSearchResults, setSheetSearchResults] = useState<any[]>([]);
+  const [loadingNav, setLoadingNav] = useState(false);
 
   // Merge MOCK_PLACES with MOCK_ITEMS for broader search
   const ALL_SEARCH_ITEMS = useMemo(() => {
-    const items = MOCK_ITEMS.map(i => ({
-      title: i.title,
-      area: i.area,
-      lat: i.lat || 37.5665,
-      lng: i.lng || 126.9780
+    const items = MOCK_ITEMS.map(i => {
+      // Get current language translation
+      const transTitle = t(`explore_items.${i.id}.title`, { defaultValue: i.title });
+      const transArea = t(`explore_items.${i.id}.area`, { defaultValue: i.area });
+
+      return {
+        id: i.id,
+        title: transTitle !== `explore_items.${i.id}.title` ? transTitle : i.title,
+        area: transArea !== `explore_items.${i.id}.area` ? transArea : i.area,
+        searchTerms: [i.title, transTitle, i.area, transArea].join(' ').toLowerCase(),
+        lat: i.lat || 37.5665,
+        lng: i.lng || 126.9780
+      };
+    });
+
+    const mappedPlaces = MOCK_PLACES.map(p => ({
+      ...p,
+      searchTerms: [p.title, p.area].join(' ').toLowerCase()
     }));
-    return [...MOCK_PLACES, ...items];
-  }, []);
+
+    return [...mappedPlaces, ...items];
+  }, [t]);
 
   // Typing suggestions disabled as requested
   useEffect(() => {
     setShowSuggestions(false);
   }, [input]);
 
-  const handleSelectPlace = (place: any) => {
-    setSelectedDest(place);
-    setIsSearchingInSheet(false); // Move to transport selection
-    setOpenNavSheet(true);
+  const handleSelectPlace = async (place: any) => {
+    // If it's a Google Place (prediction), fetch details for coordinates
+    if (place.placeId && !place.lat) {
+      setLoadingNav(true);
+      try {
+        const lang = i18n.language || 'en';
+        const res = await fetch(`/api/places/details?placeId=${place.placeId}&language=${lang}`);
+        const data = await res.json();
+        if (data && data.location) {
+          const selected = {
+            title: data.displayName?.text || place.title,
+            area: data.formattedAddress || place.area,
+            lat: data.location.latitude,
+            lng: data.location.longitude
+          };
+          setSelectedDest(selected);
+          setIsSearchingInSheet(false);
+          setOpenNavSheet(true);
+        }
+      } catch (err) {
+        console.error('Failed to get place details', err);
+      } finally {
+        setLoadingNav(false);
+      }
+    } else {
+      setSelectedDest(place);
+      setIsSearchingInSheet(false);
+      setOpenNavSheet(true);
+    }
   };
 
   // Get next destination for navigation
@@ -190,6 +230,16 @@ export default function HomePage() {
     return () => clearInterval(tInterval);
   }, [VALUE_PROPS.length]);
 
+  // Lock scroll when modal is open
+  useEffect(() => {
+    if (openNavSheet || isMapOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [openNavSheet, isMapOpen]);
+
   const handleKRide = () => {
     if (!destInfo) return;
     const address = destInfo.nameKo || destInfo.name;
@@ -217,9 +267,17 @@ export default function HomePage() {
     };
 
     if (navigator.geolocation) {
+      setLoadingNav(true);
       navigator.geolocation.getCurrentPosition(
-        (pos) => openApp(pos.coords.latitude, pos.coords.longitude),
-        () => openApp()
+        (pos) => {
+          setLoadingNav(false);
+          openApp(pos.coords.latitude, pos.coords.longitude);
+        },
+        () => {
+          setLoadingNav(false);
+          openApp();
+        },
+        { timeout: 5000 }
       );
     } else {
       openApp();
@@ -228,32 +286,47 @@ export default function HomePage() {
     setOpenNavSheet(false);
   };
 
-  const handleTransit = () => {
+  const handleTransit = (provider: 'kakao' | 'google' = 'kakao') => {
     if (!destInfo) return;
-    const address = destInfo.nameKo || destInfo.name;
+    const address = destInfo.name || destInfo.nameKo; // Priority to English name for Google
     const lat = destInfo.lat;
     const lng = destInfo.lng;
 
     const navigateToTransit = (sLat?: number, sLng?: number) => {
-      const appUrl = sLat && sLng
-        ? `kakaomap://route?sp=${sLat},${sLng}&ep=${lat},${lng}&by=PUBLICTRANSIT`
-        : `kakaomap://route?ep=${lat},${lng}&by=PUBLICTRANSIT`;
+      if (provider === 'google') {
+        const origin = sLat && sLng ? `${sLat},${sLng}` : 'My Location';
+        const lang = i18n.language;
+        const googleUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${lat},${lng}&destination_place_id=${encodeURIComponent(address)}&travelmode=transit&hl=${lang}`;
+        window.open(googleUrl, '_blank');
+      } else {
+        const appUrl = sLat && sLng
+          ? `kakaomap://route?sp=${sLat},${sLng}&ep=${lat},${lng}&by=PUBLICTRANSIT`
+          : `kakaomap://route?ep=${lat},${lng}&by=PUBLICTRANSIT`;
 
-      const webUrl = sLat && sLng
-        ? `https://map.kakao.com/link/from/My Location,${sLat},${sLng}/to/${encodeURIComponent(address)},${lat},${lng}`
-        : `https://map.kakao.com/link/to/${encodeURIComponent(address)},${lat},${lng}`;
+        const webUrl = sLat && sLng
+          ? `https://map.kakao.com/link/from/My Location,${sLat},${sLng}/to/${encodeURIComponent(destInfo.nameKo)},${lat},${lng}`
+          : `https://map.kakao.com/link/to/${encodeURIComponent(destInfo.nameKo)},${lat},${lng}`;
 
-      window.location.href = appUrl;
-      setTimeout(() => {
-        if (document.hidden) return;
-        window.open(webUrl, '_blank');
-      }, 2500);
+        window.location.href = appUrl;
+        setTimeout(() => {
+          if (document.hidden) return;
+          window.open(webUrl, '_blank');
+        }, 2500);
+      }
     };
 
     if (navigator.geolocation) {
+      setLoadingNav(true);
       navigator.geolocation.getCurrentPosition(
-        (pos) => navigateToTransit(pos.coords.latitude, pos.coords.longitude),
-        () => navigateToTransit()
+        (pos) => {
+          setLoadingNav(false);
+          navigateToTransit(pos.coords.latitude, pos.coords.longitude);
+        },
+        () => {
+          setLoadingNav(false);
+          navigateToTransit();
+        },
+        { timeout: 5000 }
       );
     } else {
       navigateToTransit();
@@ -277,20 +350,53 @@ export default function HomePage() {
     return isKo ? '좋은 저녁입니다' : 'Good evening';
   };
 
-  const handleStart = () => {
+  const handleStart = async () => {
     const trimmedInput = input.trim();
     if (!trimmedInput) {
       router.push('/explore');
       return;
     }
 
-    const filtered = ALL_SEARCH_ITEMS.filter(p =>
-      p.title.toLowerCase().includes(trimmedInput.toLowerCase()) ||
-      p.area.toLowerCase().includes(trimmedInput.toLowerCase())
-    );
+    setLoadingNav(true);
 
-    if (filtered.length > 0) {
-      setSheetSearchResults(filtered);
+    // 1. Local Mock Search combining translations
+    const localFiltered = ALL_SEARCH_ITEMS.filter(p => {
+      const q = trimmedInput.toLowerCase();
+      return (
+        (p.title && p.title.toLowerCase().includes(q)) ||
+        (p.area && p.area.toLowerCase().includes(q)) ||
+        (p.searchTerms && p.searchTerms.includes(q))
+      );
+    });
+
+    let results = [...localFiltered];
+
+    // 2. Global Google Places Search
+    try {
+      const lang = i18n.language || 'en';
+      const res = await fetch('/api/places/autocomplete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ input: trimmedInput, language: lang }),
+      });
+      const data = await res.json();
+
+      const googleResults = (data.suggestions || []).map((s: any) => ({
+        title: s.placePrediction.structuredFormat.mainText.text,
+        area: s.placePrediction.structuredFormat.secondaryText?.text || '',
+        placeId: s.placePrediction.placeId,
+        isGoogle: true
+      }));
+
+      results = [...results, ...googleResults];
+    } catch (err) {
+      console.error('Google Search failed', err);
+    }
+
+    setLoadingNav(false);
+
+    if (results.length > 0) {
+      setSheetSearchResults(results);
       setIsSearchingInSheet(true);
       setOpenNavSheet(true);
       setSelectedDest(null);
@@ -435,18 +541,19 @@ export default function HomePage() {
 
             {isSearchingInSheet ? (
               <div className={styles.sheetSearchSection}>
-                <div className={styles.sheetHeader} style={{ border: 'none', paddingBottom: '8px' }}>
+                <div className={styles.sheetHeader} style={{ border: 'none', paddingBottom: '0' }}>
                   <div className={styles.sheetTitle}>검색 결과</div>
                   <div className={styles.sheetSubtitle}>'{input}'에 대한 {sheetSearchResults.length}개의 결과</div>
                 </div>
-                <div className={styles.sheetResultList} style={{ maxHeight: '60vh', overflowY: 'auto', padding: '0 24px 24px' }}>
+                <div className={styles.sheetResultList} style={{ maxHeight: '65vh', overflowY: 'auto', padding: '0 24px 20px' }}>
                   {sheetSearchResults.map((item, idx) => (
-                    <div key={idx} className={styles.searchResultItem} onClick={() => handleSelectPlace(item)} style={{ padding: '16px 0' }}>
-                      <span style={{ marginRight: '12px', fontSize: '1.2rem' }}>📍</span>
+                    <div key={idx} className={styles.searchResultItem} onClick={() => handleSelectPlace(item)}>
+                      <span style={{ marginRight: '16px', fontSize: '1.4rem', opacity: 0.7 }}>📍</span>
                       <div style={{ flex: 1 }}>
-                        <div className={styles.searchResultTitle} style={{ fontSize: '16px' }}>{item.title}</div>
+                        <div className={styles.searchResultTitle}>{item.title}</div>
                         <div className={styles.searchResultArea}>{item.area}</div>
                       </div>
+                      <span style={{ color: 'var(--gray-300)', fontSize: '1.2rem' }}>→</span>
                     </div>
                   ))}
                 </div>
@@ -458,16 +565,30 @@ export default function HomePage() {
                   <div className={styles.sheetSubtitle}>{destInfo.nameKo}</div>
                 </div>
 
-                <div className={styles.quickChoices}>
-                  <button className={styles.choiceBtn} onClick={() => { setOpenNavSheet(false); setIsMapOpen(true); }}>
+                <div className={styles.quickChoices} style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
+                  <button className={styles.choiceBtn} onClick={() => { setOpenNavSheet(false); setIsMapOpen(true); }} style={{ gridColumn: 'span 2' }}>
                     <div className={styles.choiceIcon}>📍</div>
-                    <div className={styles.choiceLabel}>위치</div>
-                    <div className={styles.choiceSubText}>지도에서 확인</div>
+                    <div className={styles.choiceLabel}>위치 보기</div>
+                    <div className={styles.choiceSubText}>지도에서 상세 위치 확인</div>
                   </button>
-                  <button className={styles.choiceBtn} onClick={() => { setOpenNavSheet(false); setIsMapOpen(true); }}>
+                  <button className={styles.choiceBtn} onClick={handleKRide}>
                     <div className={styles.choiceIcon}>🚕</div>
-                    <div className={styles.choiceLabel}>이동수단</div>
-                    <div className={styles.choiceSubText}>택시 / 대중교통</div>
+                    <div className={styles.choiceLabel}>K.Ride</div>
+                    <div className={styles.choiceSubText}>택시 호출하기</div>
+                  </button>
+                  <button className={styles.choiceBtn} onClick={() => handleTransit('kakao')}>
+                    <div className={styles.choiceIcon}>🚇</div>
+                    <div className={styles.choiceLabel}>대중교통</div>
+                    <div className={styles.choiceSubText}>카카오맵 길찾기</div>
+                  </button>
+                  <button className={styles.choiceBtn} onClick={() => handleTransit('google')} style={{ gridColumn: 'span 2', flexDirection: 'row', padding: '16px' }}>
+                    <div className={styles.choiceIcon} style={{ width: '40px', height: '40px', fontSize: '20px' }}>
+                      <img src="https://www.google.com/images/branding/product/ico/maps15_bnuw32.ico" width="24" height="24" alt="G" />
+                    </div>
+                    <div style={{ textAlign: 'left', flex: 1, paddingLeft: '12px' }}>
+                      <div className={styles.choiceLabel}>Google Maps Transit</div>
+                      <div className={styles.choiceSubText}>글로벌 유저용 다국어 길찾기</div>
+                    </div>
                   </button>
                 </div>
               </>
@@ -503,10 +624,6 @@ export default function HomePage() {
                 zoom={15}
               />
             </div>
-            <div className={styles.mapFooter}>
-              <button className={styles.navActionBtn} onClick={handleKRide}>🚖 K.Ride</button>
-              <button className={styles.navActionBtn} onClick={handleTransit}>🚇 Transit</button>
-            </div>
           </div>
         </div>
       )}
@@ -520,6 +637,12 @@ export default function HomePage() {
             <button className={styles.cardCopyBtn} onClick={handleCopy}>{copied ? t('fab.copy_done') : t('fab.copy')}</button>
             <button className={styles.cardCloseBtn} onClick={() => setShowCard(false)}>{t('fab.cancel')}</button>
           </div>
+        </div>
+      )}
+
+      {loadingNav && (
+        <div className={styles.toast} style={{ bottom: '120px', background: 'var(--primary)', color: 'white' }}>
+          {t('home.fetching_location', { defaultValue: 'Fetching location...' })}
         </div>
       )}
 

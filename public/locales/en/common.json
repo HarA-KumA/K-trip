@@ -367,6 +367,10 @@
             "date_time": "Date / Time",
             "area": "Area",
             "price": "Price"
+        },
+        "community": {
+            "title": "My Community Posts",
+            "empty": "No community posts written yet."
         }
     },
     "fab": {
@@ -447,6 +451,7 @@
                 "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
             }
         },
-        "filter_review": "Reviews"
+        "filter_review": "Reviews",
+        "detail": "Post Detail"
     }
 }

@@ -216,16 +216,11 @@
     gap: 12px;
     padding: 14px 16px;
     border-radius: 16px;
-    background: rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(37, 99, 235, 0.08);
+    /* Active blueish background */
+    border: 1px solid rgba(37, 99, 235, 0.3);
     cursor: pointer;
     transition: all 0.2s;
-    opacity: 0.5;
-}
-
-.valuePillActive {
-    background: rgba(37, 99, 235, 0.08);
-    border-color: rgba(37, 99, 235, 0.3);
     opacity: 1;
 }
 
@@ -237,13 +232,13 @@
 .valueTitle {
     font-size: 14px;
     font-weight: 700;
-    color: var(--foreground);
+    color: #111827;
     margin-bottom: 2px;
 }
 
 .valueDesc {
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.45);
+    color: #374151;
 }
 
 /* ── Input Section ── */

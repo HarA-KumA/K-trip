@@ -226,9 +226,7 @@ export default function HomePage() {
       }
     }
 
-    const tInterval = setInterval(() => setActiveValueIdx(i => (i + 1) % VALUE_PROPS.length), 3000);
-    return () => clearInterval(tInterval);
-  }, [VALUE_PROPS.length]);
+  }, []);
 
   // Lock scroll when modal is open
   useEffect(() => {
@@ -453,7 +451,7 @@ export default function HomePage() {
 
       <section className={styles.valueSection}>
         {VALUE_PROPS.map((v, i) => (
-          <div key={i} className={`${styles.valuePill} ${i === activeValueIdx ? styles.valuePillActive : ''}`} onClick={() => { setActiveValueIdx(i); if (v.key === 'navigation') setOpenNavSheet(true); else router.push(v.path); }}>
+          <div key={i} className={styles.valuePill} onClick={() => { if (v.key === 'navigation') setOpenNavSheet(true); else router.push(v.path); }}>
             <span className={styles.valueIcon}>{v.icon}</span>
             <div>
               <div className={styles.valueTitle}>{v.label}</div>

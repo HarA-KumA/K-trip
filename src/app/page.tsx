@@ -465,7 +465,18 @@ export default function HomePage() {
         <div className={styles.inputLabel}>{t('home.input_label')}</div>
         <div className={styles.inputWrap}>
           <span className={styles.inputIcon}>📍</span>
-          <input className={styles.inputField} placeholder={t('home.input_placeholder')} value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleStart()} />
+          <input
+            className={styles.inputField}
+            placeholder={t('home.input_placeholder')}
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={e => {
+              if (e.key === 'Enter') {
+                if (e.nativeEvent.isComposing) return; // Prevent double trigger during Korean composition
+                handleStart();
+              }
+            }}
+          />
           {input && <button className={styles.inputClear} onClick={() => setInput('')}>✕</button>}
 
           {/* Place Search Suggestions */}

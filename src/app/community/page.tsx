@@ -15,6 +15,11 @@ interface Post {
     desc: string;
     time: string;
     comments: number;
+    start_time?: string;
+    end_time?: string;
+    place_name?: string;
+    place_lat?: number;
+    place_lng?: number;
 }
 
 export default function CommunityPage() {
@@ -29,6 +34,14 @@ export default function CommunityPage() {
     const [newType, setNewType] = useState('meetup');
     const [newTitle, setNewTitle] = useState('');
     const [newDesc, setNewDesc] = useState('');
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const [placeName, setPlaceName] = useState('');
+
+    // For simplicity, we can default these or let the user choose. We'll set a default Seoul coordinate if a place name is given.
+    const [placeLat, setPlaceLat] = useState<number | null>(null);
+    const [placeLng, setPlaceLng] = useState<number | null>(null);
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [editingPostId, setEditingPostId] = useState<number | null>(null);
 
@@ -81,7 +94,12 @@ export default function CommunityPage() {
             const { error } = await supabase.from('community_posts').update({
                 type: newType,
                 title: newTitle,
-                desc: newDesc
+                desc: newDesc,
+                start_time: startTime || null,
+                end_time: endTime || null,
+                place_name: placeName || null,
+                place_lat: placeName ? (placeLat || 37.5665) : null,
+                place_lng: placeName ? (placeLng || 126.9780) : null
             }).eq('id', editingPostId);
 
             if (!error) {
@@ -89,9 +107,12 @@ export default function CommunityPage() {
                 setEditingPostId(null);
                 setNewTitle('');
                 setNewDesc('');
+                setStartTime('');
+                setEndTime('');
+                setPlaceName('');
                 fetchPosts(); // Reload feed
             } else {
-                alert('Failed to update.');
+                alert('Failed to update. Server might not have these columns yet.');
             }
         } else {
             const { error } = await supabase.from('community_posts').insert([{
@@ -101,16 +122,24 @@ export default function CommunityPage() {
                 title: newTitle,
                 desc: newDesc,
                 time: 'Just now',
-                comments: 0
+                comments: 0,
+                start_time: startTime || null,
+                end_time: endTime || null,
+                place_name: placeName || null,
+                place_lat: placeName ? (placeLat || 37.5665) : null,
+                place_lng: placeName ? (placeLng || 126.9780) : null
             }]);
 
             if (!error) {
                 setIsWriting(false);
                 setNewTitle('');
                 setNewDesc('');
+                setStartTime('');
+                setEndTime('');
+                setPlaceName('');
                 fetchPosts(); // Reload feed
             } else {
-                alert('Failed to post. Have you created the table in Supabase yet?');
+                alert('Failed to post. Server might not have these columns yet. Error: ' + error.message);
             }
         }
         setIsSubmitting(false);
@@ -121,6 +150,11 @@ export default function CommunityPage() {
         setNewType(post.type);
         setNewTitle(post.title);
         setNewDesc(post.desc);
+        setStartTime(post.start_time || '');
+        setEndTime(post.end_time || '');
+        setPlaceName(post.place_name || '');
+        setPlaceLat(post.place_lat || null);
+        setPlaceLng(post.place_lng || null);
         setIsWriting(true);
     };
 
@@ -185,6 +219,12 @@ export default function CommunityPage() {
                             </div>
                             <h2 className={styles.postTitle}>{post.title}</h2>
                             <p className={styles.postDesc}>{post.desc}</p>
+                            {(post.start_time || post.place_name) && (
+                                <div style={{ marginTop: '12px', fontSize: '0.9rem', color: 'var(--gray-600)', background: 'var(--gray-100)', padding: '8px', borderRadius: '8px' }}>
+                                    {post.start_time && <div>🕒 {post.start_time} {post.end_time ? ` ~ ${post.end_time}` : ''}</div>}
+                                    {post.place_name && <div>📍 {post.place_name}</div>}
+                                </div>
+                            )}
                             <div className={styles.cardFooter}>
                                 <button className={styles.actionBtn}>
                                     💬 {post.comments} {t('community_page.comments', { defaultValue: 'Comments' })}
@@ -201,6 +241,11 @@ export default function CommunityPage() {
                 setNewType('meetup');
                 setNewTitle('');
                 setNewDesc('');
+                setStartTime('');
+                setEndTime('');
+                setPlaceName('');
+                setPlaceLat(null);
+                setPlaceLng(null);
                 setIsWriting(true);
             }}>
                 <span>✏️</span> {t('community_page.write_post', { defaultValue: 'Write Post' })}
@@ -216,7 +261,7 @@ export default function CommunityPage() {
                                     : t('community_page.write_post', { defaultValue: 'Write Post' })
                                 }
                             </h2>
-                            <button className={styles.closeBtn} onClick={() => setIsWriting(false)}>×</button>
+                            {/* Home/Close button removed as requested */}
                         </div>
 
                         <div className={styles.formGroup}>
@@ -247,6 +292,40 @@ export default function CommunityPage() {
                                 value={newDesc}
                                 onChange={e => setNewDesc(e.target.value)}
                             />
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '16px' }}>
+                            <div className={styles.formGroup} style={{ marginBottom: 0 }}>
+                                <label className={styles.formLabel}>{t('community_page.form_start_time', { defaultValue: 'Start Time (Optional)' })}</label>
+                                <input
+                                    type="time"
+                                    className={styles.formInput}
+                                    value={startTime}
+                                    onChange={e => setStartTime(e.target.value)}
+                                />
+                            </div>
+                            <div className={styles.formGroup} style={{ marginBottom: 0 }}>
+                                <label className={styles.formLabel}>{t('community_page.form_end_time', { defaultValue: 'End Time (Optional)' })}</label>
+                                <input
+                                    type="time"
+                                    className={styles.formInput}
+                                    value={endTime}
+                                    onChange={e => setEndTime(e.target.value)}
+                                />
+                            </div>
+                        </div>
+
+                        <div className={styles.formGroup}>
+                            <label className={styles.formLabel}>{t('community_page.form_place', { defaultValue: 'Meeting Place (Optional)' })}</label>
+                            <input
+                                className={styles.formInput}
+                                placeholder={t('community_page.form_place_ph', { defaultValue: "E.g. Gangnam Station Exit 11" })}
+                                value={placeName}
+                                onChange={e => setPlaceName(e.target.value)}
+                            />
+                            <small style={{ color: 'var(--gray-500)', fontSize: '0.8rem', marginTop: '4px', display: 'block' }}>
+                                Entering a place name will automatically attach a map view to your post.
+                            </small>
                         </div>
 
                         <button

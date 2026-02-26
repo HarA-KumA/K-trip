@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image"; // For logo if needed
+import styles from "./login.module.css";
 // import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"; // Future integration
 
 export default function LoginPage() {
@@ -46,57 +46,61 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-white text-gray-900 relative overflow-hidden">
-            {/* Background */}
-            <div className="absolute top-0 left-0 w-full h-full z-0">
-                <div className="absolute top-[-20%] right-[-20%] w-[500px] h-[500px] rounded-full bg-blue-200/20 blur-[100px]" />
-                <div className="absolute bottom-[-20%] left-[-20%] w-[500px] h-[500px] rounded-full bg-blue-100/20 blur-[100px]" />
-            </div>
+        <div className={styles.container}>
+            {/* Background Orbs */}
+            <div className={`${styles.orb} ${styles.orbTop}`} />
+            <div className={`${styles.orb} ${styles.orbBottom}`} />
 
-            <div className="z-10 w-full max-w-sm glass-panel p-8 rounded-3xl border border-gray-100 backdrop-blur-xl bg-white/40">
-                <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
-                    <p className="text-gray-400 text-sm">Sign in to access your K-Trip OS</p>
+            <div className={styles.formCard}>
+                <div className={styles.header}>
+                    <h1 className={styles.title}>Welcome Back</h1>
+                    <p className={styles.subTitle}>Sign in to access your K-Trip OS</p>
                 </div>
 
-                <form onSubmit={handleLogin} className="flex flex-col gap-4">
-                    <div>
-                        <label className="block text-xs font-bold text-gray-500 mb-1 uppercase">Email</label>
+                <form onSubmit={handleLogin}>
+                    <div className={styles.inputGroup}>
+                        <label className={styles.label}>Email</label>
                         <input
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-900 focus:outline-none focus:border-blue-500 transition-colors"
-                            style={{ color: '#1e293b', backgroundColor: 'rgba(0, 0, 0, 0.02)' }}
+                            className={styles.input}
                             placeholder="user@example.com"
+                            required
                         />
                     </div>
 
-                    <div>
-                        <label className="block text-xs font-bold text-gray-500 mb-1 uppercase">Password</label>
+                    <div className={styles.inputGroup}>
+                        <label className={styles.label}>Password</label>
                         <input
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-900 focus:outline-none focus:border-blue-500 transition-colors"
-                            style={{ color: '#1e293b', backgroundColor: 'rgba(0, 0, 0, 0.02)' }}
+                            className={styles.input}
                             placeholder="••••••••"
+                            required
                         />
                     </div>
 
-                    {error && <div className="text-red-500 text-sm text-center">{error}</div>}
+                    {error && <div style={{ color: '#ef4444', fontSize: '0.875rem', textAlign: 'center', marginBottom: '16px' }}>{error}</div>}
 
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl mt-4 transition-all active:scale-95 disabled:opacity-50"
+                        className={styles.submitBtn}
                     >
                         {loading ? "Signing in..." : "Sign In"}
                     </button>
                 </form>
 
-                <div className="mt-6 text-center text-sm text-gray-400">
-                    Don't have an account? <span onClick={() => router.push('/auth/signup')} className="text-blue-500 cursor-pointer hover:underline">Sign up</span>
+                <div className={styles.footer} style={{ marginTop: '24px', textAlign: 'center', fontSize: '0.9rem', color: 'var(--gray-500)' }}>
+                    Don't have an account?{" "}
+                    <span
+                        onClick={() => router.push('/auth/signup')}
+                        style={{ color: 'var(--primary)', cursor: 'pointer', fontWeight: '600' }}
+                    >
+                        Sign up
+                    </span>
                 </div>
             </div>
         </div>

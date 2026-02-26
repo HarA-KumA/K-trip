@@ -10,35 +10,39 @@ export default function WeatherWidget() {
 
         // Get current location
         navigator.geolocation.getCurrentPosition(
-            (position) => {
+            async (position) => {
                 const { latitude, longitude } = position.coords;
 
-                // Fetch weather data
-                fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`)
-                    .then((res) => res.json())
-                    .then((data) => {
-                        if (data.current_weather) {
-                            const code = data.current_weather.weathercode;
-                            let icon = '🌤️'; // Default
+                try {
+                    // Fetch weather data
+                    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
+                    if (!res.ok) return;
 
-                            if (code === 0) icon = '☀️'; // Clear
-                            else if (code >= 1 && code <= 3) icon = '⛅'; // Partly cloudy
-                            else if (code >= 45 && code <= 48) icon = '🌫️'; // Fog
-                            else if (code >= 51 && code <= 67) icon = '🌧️'; // Rain
-                            else if (code >= 71 && code <= 77) icon = '❄️'; // Snow
-                            else if (code >= 80 && code <= 82) icon = '🌦️'; // Showers
-                            else if (code >= 95) icon = '⛈️'; // Thunderstorm
+                    const data = await res.json();
+                    if (data.current_weather) {
+                        const code = data.current_weather.weathercode;
+                        let icon = '🌤️'; // Default
 
-                            setWeatherData({
-                                temp: Math.round(data.current_weather.temperature),
-                                icon: icon
-                            });
-                        }
-                    })
-                    .catch((err) => console.error("Failed to fetch weather", err));
+                        if (code === 0) icon = '☀️'; // Clear
+                        else if (code >= 1 && code <= 3) icon = '⛅'; // Partly cloudy
+                        else if (code >= 45 && code <= 48) icon = '🌫️'; // Fog
+                        else if (code >= 51 && code <= 67) icon = '🌧️'; // Rain
+                        else if (code >= 71 && code <= 77) icon = '❄️'; // Snow
+                        else if (code >= 80 && code <= 82) icon = '🌦️'; // Showers
+                        else if (code >= 95) icon = '⛈️'; // Thunderstorm
+
+                        setWeatherData({
+                            temp: Math.round(data.current_weather.temperature),
+                            icon: icon
+                        });
+                    }
+                } catch (err) {
+                    // Silently ignore or warn so the Next.js error overlay is not triggered
+                    console.warn("Failed to fetch weather data, skipping widget.");
+                }
             },
             (error) => {
-                console.error("Error getting location", error);
+                console.warn("Error getting location", error);
             }
         );
     }, []);

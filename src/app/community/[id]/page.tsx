@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import { useTranslation } from 'react-i18next';
 import styles from './detail.module.css';
+import ExploreMap from '@/app/explore/components/ExploreMap';
 
 interface Post {
     id: number;
@@ -15,6 +16,11 @@ interface Post {
     desc: string;
     time: string;
     comments: number;
+    start_time?: string;
+    end_time?: string;
+    place_name?: string;
+    place_lat?: number;
+    place_lng?: number;
 }
 
 interface Comment {
@@ -121,7 +127,38 @@ export default function CommunityDetailPage() {
                     </div>
                     <h2 className={styles.postTitle}>{post.title}</h2>
                     <p className={styles.postDesc}>{post.desc}</p>
-                    <div className={styles.stats}>
+
+                    {(post.start_time || post.place_name) && (
+                        <div style={{ marginTop: '20px', background: 'var(--gray-50)', padding: '16px', borderRadius: '12px', border: '1px solid var(--gray-200)' }}>
+                            <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '12px', color: 'var(--foreground)' }}>
+                                {t('community_page.meetup_info', { defaultValue: 'Meetup Details' })}
+                            </h3>
+                            {post.start_time && (
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', color: 'var(--gray-700)' }}>
+                                    <span>🕒</span>
+                                    <span>{post.start_time} {post.end_time ? ` ~ ${post.end_time}` : ''}</span>
+                                </div>
+                            )}
+                            {post.place_name && (
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px', color: 'var(--gray-700)' }}>
+                                    <span>📍</span>
+                                    <span style={{ fontWeight: 500 }}>{post.place_name}</span>
+                                </div>
+                            )}
+                            {post.place_lat && post.place_lng && (
+                                <div style={{ height: '300px', borderRadius: '8px', overflow: 'hidden' }}>
+                                    <ExploreMap
+                                        items={[]}
+                                        center={{ lat: post.place_lat, lng: post.place_lng, name: post.place_name }}
+                                        zoom={15}
+                                        onItemClick={() => { }}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    <div className={styles.stats} style={{ marginTop: '16px' }}>
                         💬 {comments.length} {t('community_page.comments', { defaultValue: 'Comments' })}
                     </div>
                 </div>

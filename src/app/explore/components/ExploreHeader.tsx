@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import styles from '../explore.module.css';
 import { CITIES, CATEGORIES, CityId } from '../mock/data';
-import HotelSearch from './HotelSearch';
 
 interface ExploreHeaderProps {
     currentCity: CityId;
@@ -11,11 +10,11 @@ interface ExploreHeaderProps {
     onCategoryChange: (catId: string) => void;
     onFilterClick: () => void;
     filterCount: number;
-    onHotelSelect: (location: { lat: number, lng: number, name: string, placeId: string }) => void;
     radius: number;
     onRadiusChange: (r: number) => void;
     searchTerm: string;
     onSearchChange: (val: string) => void;
+    onSearchSubmit: (val: string) => void;
 }
 
 export default function ExploreHeader({
@@ -25,11 +24,11 @@ export default function ExploreHeader({
     onCategoryChange,
     onFilterClick,
     filterCount,
-    onHotelSelect,
     radius,
     onRadiusChange,
     searchTerm,
-    onSearchChange
+    onSearchChange,
+    onSearchSubmit
 }: ExploreHeaderProps) {
     const { t } = useTranslation('common');
     const [isCityModalOpen, setIsCityModalOpen] = useState(false);
@@ -47,12 +46,6 @@ export default function ExploreHeader({
     return (
         <>
             <header className={styles.stickyHeader}>
-                {/* Top Row: Hotel Search */}
-                <div className={styles.headerTop}>
-                    <HotelSearch onSelect={onHotelSelect} />
-                </div>
-
-                {/* Sub Row: Search Bar & Radius / Filter */}
                 <div className={styles.searchContainer}>
                     <div className={styles.searchWrapper}>
                         <span className={styles.searchIcon}>🔍</span>
@@ -62,20 +55,15 @@ export default function ExploreHeader({
                             className={styles.searchInput}
                             value={searchTerm}
                             onChange={(e) => onSearchChange(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    onSearchSubmit(searchTerm);
+                                }
+                            }}
                         />
-                        {searchTerm && (
-                            <button
-                                className={styles.searchMapBtn}
-                                onClick={() => window.open(`https://www.google.com/maps/search/${encodeURIComponent(searchTerm)}`, '_blank')}
-                                title="Search on Google Maps"
-                            >
-                                🌐
-                            </button>
-                        )}
                     </div>
 
                     <div className={styles.headerActions}>
-                        {/* Replaced select with scroll menu below */}
                         <button className={styles.filterBtn} onClick={onFilterClick}>
                             <span className={styles.filterIcon}>⚡</span>
                             {filterCount > 0 && <span className={styles.filterBadge}>{filterCount}</span>}
@@ -118,7 +106,7 @@ export default function ExploreHeader({
                 </div>
             </header>
 
-            {/* City Selection Modal - Keep it for now or remove if it's redundant with HotelSearch */}
+            {/* City Selection Modal */}
             {isCityModalOpen && (
                 <div className={styles.modalOverlay} onClick={() => setIsCityModalOpen(false)}>
                     <div className={styles.modalContent} onClick={e => e.stopPropagation()}>

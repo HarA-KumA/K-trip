@@ -18,7 +18,15 @@
         "payment_completed": "Pagamento concluído",
         "weather_clear": "Limpo",
         "back": "Voltar",
-        "community_nav": "Community"
+        "select_language": "Selecionar idioma",
+        "home_nav": "Início",
+        "explore_nav": "Explorar",
+        "planner_nav": "Itinerário",
+        "today_nav": "Hoje",
+        "my_nav": "Minha conta",
+        "day_unit": "d",
+        "locale": "pt-PT",
+        "community_nav": "Comunidade"
     },
     "transport": {
         "moving_to": "Indo para {{dest}}",
@@ -41,7 +49,44 @@
         }
     },
     "home": {
-        "title_korea": "Coreia Hoje"
+        "title_korea": "Coreia Hoje",
+        "title": "Viagem para Coreia, entendida em 3 segundos",
+        "subtitle": "Reservas de Concierge · Itinerário Automático · Navegação",
+        "create_trip_cta": "Começar Planejamento",
+        "input_label": "Para onde você vai viajar?",
+        "input_placeholder": "Cidade, área ou nome do hotel",
+        "days_label": "Período da viagem",
+        "recommended_plans": "Planos de viagem recomendados",
+        "plans": {
+            "2d": {
+                "title": "2 Dias: O Essencial de Seul",
+                "label": "Plano de 2 Dias"
+            },
+            "3d": {
+                "title": "3 Dias: K-Cultura e Estilo",
+                "label": "Plano de 3 Dias"
+            },
+            "5d": {
+                "title": "5 Dias: O Grande Tour",
+                "label": "Plano de 5 Dias"
+            },
+            "request_custom_label": "Sob medida",
+            "request_custom_title": "Solicitar plano de {{days}} dias",
+            "request_custom_toast": "Solicitado plano de {{days}} dias personalizado! Nosso concierge entrará em contato."
+        }
+    },
+    "explore_items": {
+        "airport_arrival": "Chegada no Aeroporto de Incheon",
+        "hotel_checkin": "Check-in no Hotel / Estadia"
+    },
+    "my_page": {
+        "bookings": {
+            "title": "Minhas Reservas",
+            "date_time": "Data / Hora",
+            "area": "Área",
+            "price": "Preço",
+            "new_added": "Nova reserva adicionada!"
+        }
     },
     "community_page": {
         "title": "Community",

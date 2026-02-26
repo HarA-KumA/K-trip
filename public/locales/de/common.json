@@ -70,7 +70,29 @@
         "create_trip_cta": "Planung beginnen",
         "input_label": "Wohin reisen Sie?",
         "input_placeholder": "Stadt, Viertel, Hotelname",
-        "days_label": "Reisezeitraum"
+        "days_label": "Reisezeitraum",
+        "recommended_plans": "Empfohlene Reisepläne",
+        "plans": {
+            "2d": {
+                "title": "2 Tage: Seoul Essential",
+                "label": "2-Tage-Plan"
+            },
+            "3d": {
+                "title": "3 Tage: K-Kultur & Stil",
+                "label": "3-Tage-Plan"
+            },
+            "5d": {
+                "title": "5 Tage: Die große Tour",
+                "label": "5-Tage-Plan"
+            },
+            "request_custom_label": "Individuell",
+            "request_custom_title": "{{days}}-Tage-Plan anfragen",
+            "request_custom_toast": "Individueller {{days}}-Tage-Plan angefragt! Unser Concierge wird Sie kontaktieren."
+        }
+    },
+    "explore_items": {
+        "airport_arrival": "Ankunft Flughafen Incheon",
+        "hotel_checkin": "Hotel Check-in / Aufenthalt"
     },
     "explore_page": {
         "title": "Erkunden",
@@ -106,7 +128,11 @@
     },
     "my_page": {
         "bookings": {
-            "title": "Meine Buchungen"
+            "title": "Meine Buchungen",
+            "date_time": "Datum / Zeit",
+            "area": "Bereich",
+            "price": "Preis",
+            "new_added": "Neue Buchung hinzugefügt!"
         }
     },
     "community_page": {

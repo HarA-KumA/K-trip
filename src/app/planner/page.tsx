@@ -90,7 +90,7 @@ function SlotSection({ slotType, label, icon, cards, onRemove, onOpenDrawer }: a
 
 export default function PlannerPage() {
     const { t } = useTranslation('common');
-    const { itinerary, removeItineraryItem, setTripStatus } = useTrip();
+    const { itinerary, removeItineraryItem, setTripStatus, tripDays } = useTrip();
     const router = useRouter();
 
     const [activeDay, setActiveDay] = useState(1);
@@ -100,7 +100,13 @@ export default function PlannerPage() {
     const [bookingStatus, setBookingStatus] = useState<'idle' | 'submitting' | 'accepted' | 'unavailable'>("idle");
     const [bookingForm, setBookingForm] = useState({ date: '', people: '2', note: '' });
 
-    const currentDay = MOCK_TRIP_DAYS.find((d) => d.day === activeDay)!;
+    // Generate dynamic day list based on tripDays
+    const daysList = Array.from({ length: tripDays }, (_, i) => ({
+        day: i + 1,
+        city_label: itinerary.find(item => item.day === i + 1)?.type === 'attraction' ? 'Dest' : 'Seoul'
+    }));
+
+    const currentDay = daysList.find((d) => d.day === activeDay) || daysList[0];
 
     const showToast = useCallback((msg: string) => {
         setToast(msg);
@@ -125,7 +131,7 @@ export default function PlannerPage() {
     return (
         <div className={styles.container}>
             <div className={styles.tripStrip}>
-                {MOCK_TRIP_DAYS.map((day) => (
+                {daysList.map((day) => (
                     <div key={day.day} className={`${styles.dayTab} ${activeDay === day.day ? styles.active : ''}`} onClick={() => setActiveDay(day.day)}>
                         <span className={styles.dayLabel}>{t('planner_page.day', { n: day.day })}</span>
                         <span className={styles.cityLabel}>{day.city_label}</span>
@@ -135,7 +141,7 @@ export default function PlannerPage() {
 
             <div className={styles.dayBoard}>
                 <div className={styles.boardActions}>
-                    <button className={`${styles.ctaBtn} ${styles.ctaDiscover}`} onClick={() => router.push(`/explore?city=${currentDay.city_id}`)}>
+                    <button className={`${styles.ctaBtn} ${styles.ctaDiscover}`} onClick={() => router.push(`/explore`)}>
                         {t('planner_page.add_from_discover')}
                     </button>
                     <button className={`${styles.ctaBtn} ${styles.ctaAuto}`} onClick={() => showToast('Auto-build coming soon')}>

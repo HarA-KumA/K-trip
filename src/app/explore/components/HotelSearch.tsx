@@ -70,7 +70,6 @@ export default function HotelSearch({ onSelect }: HotelSearchProps) {
     return (
         <div className={styles.hotelSearchWrapper} ref={wrapperRef}>
             <div className={styles.hotelSearchInputBox}>
-                <span className={styles.searchIcon}>🏠</span>
                 <input
                     type="text"
                     placeholder="Hotel / Address in Korea"

@@ -55,7 +55,29 @@
         "create_trip_cta": "Empezar a planificar",
         "input_label": "¿A dónde viajas ?",
         "input_placeholder": "Ciudad, área, nombre del hotel",
-        "days_label": "Periodo del viaje"
+        "days_label": "Periodo del viaje",
+        "recommended_plans": "Planes de viaje recomendados",
+        "plans": {
+            "2d": {
+                "title": "2 Días: Esencial de Seúl",
+                "label": "Plan de 2 días"
+            },
+            "3d": {
+                "title": "3 Días: K-Cultura y Estilo",
+                "label": "Plan de 3 días"
+            },
+            "5d": {
+                "title": "5 Días: El Gran Tour",
+                "label": "Plan de 5 días"
+            },
+            "request_custom_label": "A medida",
+            "request_custom_title": "Solicitar plan de {{days}} días",
+            "request_custom_toast": "¡Plan de {{days}} días personalizado solicitado! Nuestro conserje te contactará."
+        }
+    },
+    "explore_items": {
+        "airport_arrival": "Llegada al Aeropuerto de Incheon",
+        "hotel_checkin": "Check-in en el hotel / Estancia"
     },
     "explore_page": {
         "title": "Explorar",
@@ -91,7 +113,11 @@
     },
     "my_page": {
         "bookings": {
-            "title": "Mis reservas"
+            "title": "Mis reservas",
+            "date_time": "Fecha / Hora",
+            "area": "Área",
+            "price": "Precio",
+            "new_added": "¡Nueva reserva añadida!"
         }
     },
     "community_page": {

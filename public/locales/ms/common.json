@@ -70,7 +70,29 @@
         "create_trip_cta": "Mula Merancang",
         "input_label": "Ke mana anda melancong?",
         "input_placeholder": "Bandar, kawasan, nama hotel",
-        "days_label": "Tempoh Percutian"
+        "days_label": "Tempoh Percutian",
+        "recommended_plans": "Cadangan Jadual Percutian",
+        "plans": {
+            "2d": {
+                "title": "2 Hari: Inti Pati Seoul",
+                "label": "Jadual 2 Hari"
+            },
+            "3d": {
+                "title": "3 Hari: K-Kultur & Gaya",
+                "label": "Jadual 3 Hari"
+            },
+            "5d": {
+                "title": "5 Hari: Jelajah Hebat",
+                "label": "Jadual 5 Hari"
+            },
+            "request_custom_label": "Tersuai",
+            "request_custom_title": "Mohon Jadual {{days}} Hari",
+            "request_custom_toast": "Memohon jadual {{days}} hari tersuai! Concierge kami akan menghubungi anda."
+        }
+    },
+    "explore_items": {
+        "airport_arrival": "Ketibaan Lapangan Terbang Incheon",
+        "hotel_checkin": "Daftar Masuk Hotel / Menginap"
     },
     "explore_page": {
         "title": "Teroka",
@@ -106,7 +128,11 @@
     },
     "my_page": {
         "bookings": {
-            "title": "Tempahan Saya"
+            "title": "Tempahan Saya",
+            "date_time": "Tarikh / Masa",
+            "area": "Kawasan",
+            "price": "Harga",
+            "new_added": "Tempahan baru ditambah!"
         }
     },
     "community_page": {

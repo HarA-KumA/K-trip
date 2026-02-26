@@ -70,7 +70,29 @@
         "create_trip_cta": "Commencer le planning",
         "input_label": "Où voyagez-vous ?",
         "input_placeholder": "Ville, quartier, nom de l'hôtel",
-        "days_label": "Période du voyage"
+        "days_label": "Période du voyage",
+        "recommended_plans": "Plans de voyage recommandés",
+        "plans": {
+            "2d": {
+                "title": "2 Jours : L'Essentiel de Séoul",
+                "label": "Plan 2 Jours"
+            },
+            "3d": {
+                "title": "3 Jours : K-Culture & Style",
+                "label": "Plan 3 Jours"
+            },
+            "5d": {
+                "title": "5 Jours : Le Grand Tour",
+                "label": "Plan 5 Jours"
+            },
+            "request_custom_label": "Sur mesure",
+            "request_custom_title": "Demander un plan de {{days}} jours",
+            "request_custom_toast": "Plan de {{days}} jours personnalisé demandé ! Notre concierge vous contactera."
+        }
+    },
+    "explore_items": {
+        "airport_arrival": "Arrivée à l'aéroport d'Incheon",
+        "hotel_checkin": "Enregistrement à l'hôtel / Séjour"
     },
     "explore_page": {
         "title": "Explorer",
@@ -106,50 +128,54 @@
     },
     "my_page": {
         "bookings": {
-            "title": "Mes réservations"
+            "title": "Mes réservations",
+            "date_time": "Date / Heure",
+            "area": "Zone",
+            "price": "Prix",
+            "new_added": "Nouvelle réservation ajoutée !"
         }
     },
     "community_page": {
-        "title": "Community",
-        "subtitle": "Connect with locals & travelers",
-        "filter_all": "All",
-        "filter_meetup": "Food & Meetup",
-        "filter_travel": "Travel Mate",
-        "filter_help": "Local Help",
-        "comments": "Comments",
+        "title": "Communauté",
+        "subtitle": "Connectez-vous avec les locaux et les voyageurs",
+        "filter_all": "Tout",
+        "filter_meetup": "Cuisine & Rencontres",
+        "filter_travel": "Compagnon de voyage",
+        "filter_help": "Aide Locale",
+        "filter_review": "Avis",
+        "comments": "Commentaires",
         "message": "Message",
         "type": {
-            "MEETUP": "MEETUP",
-            "TRAVEL": "TRAVEL",
-            "HELP": "HELP",
-            "REVIEW": "REVIEW"
+            "MEETUP": "RENCONTRE",
+            "TRAVEL": "VOYAGE",
+            "HELP": "AIDE",
+            "REVIEW": "AVIS"
         },
         "post": {
             "1": {
-                "author": "Mika (Japan)",
-                "time": "10 mins ago",
-                "title": "Samgyeopsal Meetup 🥓",
-                "desc": "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
+                "author": "Mika (Japon)",
+                "time": "il y a 10 min",
+                "title": "Rencontre Samgyeopsal 🥓",
+                "desc": "Quelqu'un veut manger du Samgyeopsal ce soir à 19h ?"
             },
             "2": {
-                "author": "John (US)",
-                "time": "1 hour ago",
-                "title": "Hongdae Street Performance 🎸",
-                "desc": "Heading to Hongdae right now to watch indie bands. Join me!"
+                "author": "John (États-Unis)",
+                "time": "il y a 1 h",
+                "title": "Spectacle de Rue à Hongdae 🎸",
+                "desc": "Je vais à Hongdae pour voir les groupes indés. Rejoignez-moi !"
             },
             "3": {
-                "author": "Jihoon (Korea)",
-                "time": "2 hours ago",
-                "title": "Need help with subway directions? 🚇",
-                "desc": "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
+                "author": "Jihoon (Corée)",
+                "time": "il y a 2 h",
+                "title": "Besoin d'aide pour le métro ? 🚇",
+                "desc": "J'habite près de Myeongdong et je peux vous aider à traduire ou vous guider."
             },
             "4": {
-                "author": "Li Wei (China)",
-                "time": "3 hours ago",
-                "title": "K-Beauty Shopping 💄",
-                "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
+                "author": "Li Wei (Chine)",
+                "time": "il y a 3 h",
+                "title": "Shopping K-Beauty 💄",
+                "desc": "Je cherche un partenaire de shopping à Olive Young Myeongdong !"
             }
-        },
-        "filter_review": "Reviews"
+        }
     }
 }

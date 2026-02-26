@@ -70,7 +70,25 @@
         "create_trip_cta": "Bắt đầu lập kế hoạch",
         "input_label": "Bạn định đi đâu du lịch?",
         "input_placeholder": "Thành phố, khu vực, tên khách sạn",
-        "days_label": "Thời gian chuyến đi"
+        "days_label": "Thời gian chuyến đi",
+        "recommended_plans": "Kế hoạch du lịch được đề xuất",
+        "plans": {
+            "2d": {
+                "title": "2 Ngày: Seoul Tinh Hoa",
+                "label": "Kế hoạch 2 Ngày"
+            },
+            "3d": {
+                "title": "3 Ngày: Văn hóa & Phong cách K",
+                "label": "Kế hoạch 3 Ngày"
+            },
+            "5d": {
+                "title": "5 Ngày: Khám phá Toàn diện",
+                "label": "Kế hoạch 5 Ngày"
+            },
+            "request_custom_label": "Tùy chỉnh",
+            "request_custom_title": "Yêu cầu kế hoạch {{days}} ngày",
+            "request_custom_toast": "Đã yêu cầu kế hoạch {{days}} ngày tùy chỉnh! Concierge của chúng tôi sẽ liên hệ với bạn."
+        }
     },
     "explore_page": {
         "title": "Khám phá",
@@ -103,7 +121,11 @@
     },
     "my_page": {
         "bookings": {
-            "title": "Lịch đặt của tôi"
+            "title": "Lịch đặt của tôi",
+            "date_time": "Ngày / Giờ",
+            "area": "Khu vực",
+            "price": "Giá",
+            "new_added": "Đã thêm đơn đặt mới!"
         }
     },
     "community_page": {
@@ -148,5 +170,39 @@
             }
         },
         "filter_review": "Reviews"
+    },
+    "explore_items": {
+        "airport_arrival": "Đến sân bay Incheon",
+        "hotel_checkin": "Nhận phòng khách sạn",
+        "f1": {
+            "title": "Plant Cafe Seoul"
+        },
+        "f2": {
+            "title": "Gold Pig BBQ"
+        },
+        "f3": {
+            "title": "Chợ hải sản"
+        },
+        "b1": {
+            "title": "Jenny House Beauty"
+        },
+        "b2": {
+            "title": "PPEUM Clinic Gangnam"
+        },
+        "e1": {
+            "title": "PSY Water Show"
+        },
+        "e2": {
+            "title": "Nanta Show Myeongdong"
+        },
+        "fs1": {
+            "title": "Lễ hội đèn lồng Seoul"
+        },
+        "a1": {
+            "title": "Cung điện Gyeongbokgung"
+        },
+        "a2": {
+            "title": "Lotte World Tower"
+        }
     }
 }

@@ -107,6 +107,24 @@
                 "title": "Real-time Nav",
                 "desc": "Zero language barrier"
             }
+        },
+        "recommended_plans": "Recommended Trip Plans",
+        "plans": {
+            "2d": {
+                "title": "2 Days: Seoul Essential",
+                "label": "2 Days Plan"
+            },
+            "3d": {
+                "title": "3 Days: K-Culture & Style",
+                "label": "3 Days Plan"
+            },
+            "5d": {
+                "title": "5 Days: The Grand Tour",
+                "label": "5 Days Plan"
+            },
+            "request_custom_label": "Custom",
+            "request_custom_title": "Create My Own {{days}}-Day Plan",
+            "request_custom_toast": "Requested a customized {{days}}-day plan! Our concierge will contact you soon."
         }
     },
     "explore_page": {
@@ -173,6 +191,8 @@
         }
     },
     "explore_items": {
+        "airport_arrival": "Incheon Airport Arrival",
+        "hotel_checkin": "Hotel Check-in/Stay",
         "f1": {
             "title": "Plant Cafe Seoul",
             "area": "Itaewon",
@@ -343,7 +363,10 @@
             "today_time": "Today, {{time}}",
             "tomorrow_time": "Tomorrow, {{time}}",
             "next_week_time": "Next Week, {{time}}",
-            "new_added": "New Booking Added!"
+            "new_added": "New Booking Added!",
+            "date_time": "Date / Time",
+            "area": "Area",
+            "price": "Price"
         }
     },
     "fab": {

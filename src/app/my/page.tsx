@@ -1,15 +1,17 @@
 "use client";
 
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState, useEffect, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./my.module.css";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import { useTrip } from "@/lib/contexts/TripContext";
 
 function MyPageContent() {
     const { t } = useTranslation("common");
     const router = useRouter();
     const searchParams = useSearchParams();
+    const { itinerary } = useTrip();
     const hasNewBooking = searchParams.get('booked') === 'true';
 
     const [userName, setUserName] = useState("Jessie Kim");
@@ -26,33 +28,47 @@ function MyPageContent() {
         }
     }, []);
 
+    // Get real confirmed bookings from itinerary
+    const realBookings = useMemo(() => {
+        return itinerary
+            .filter(item => item.status === 'confirmed' || item.status === 'submitted')
+            .map(item => ({
+                id: item.id,
+                title: item.name,
+                date: item.day ? `Day ${item.day} - ${item.time}` : item.time,
+                category: t(`common.categories.${item.type || 'attraction'}`, { defaultValue: item.type || 'Attraction' }),
+                status: item.status,
+                area: (item as any).area,
+                price: (item as any).price,
+                isNew: false
+            }));
+    }, [itinerary, t]);
+
     // Mock Booking Data
-    const bookings = [
+    const mockBookings = [
         ...(hasNewBooking ? [{
-            id: "b1", // Using b1 as it exists in explore_items
-            title: t('explore_items.b1.title', { defaultValue: "Jenny House Cheongdam" }),
+            id: "b-sulwhasoo",
+            title: "Sulwhasoo Spa Flagship",
             date: t('my_page.bookings.tomorrow_time', { time: '14:30' }),
             category: t('common.categories.beauty'),
             status: "confirmed",
+            area: "Gangnam",
+            price: "150,000",
             isNew: true
         }] : []),
         {
-            id: "a1", // Gyeongbokgung
+            id: "a1",
             title: t('explore_items.a1.title', { defaultValue: "Gyeongbokgung Palace" }),
             date: t('my_page.bookings.today_time', { time: '11:00' }),
             category: t('common.categories.attraction'),
             status: "completed",
-            isNew: false
-        },
-        {
-            id: "t1", // Transport (Placeholder)
-            title: t('explore_items.t1.title', { defaultValue: "KTX to Busan" }),
-            date: t('my_page.bookings.next_week_time', { time: '09:00' }),
-            category: t('common.categories.transport'),
-            status: "confirmed",
+            area: "Jongno",
+            price: "3,000",
             isNew: false
         }
     ];
+
+    const allBookings = [...realBookings, ...mockBookings];
 
     return (
         <div className={styles.container}>
@@ -101,8 +117,8 @@ function MyPageContent() {
             <section>
                 <h2 className="text-lg font-bold mb-4">{t('my_page.bookings.title')}</h2>
 
-                {bookings.map((booking) => (
-                    <div key={booking.id} className={`${styles.ticket} animate-slide-up`}>
+                {allBookings.map((booking: any) => (
+                    <div key={booking.id} className={`${styles.ticket} animate-slide-up mb-4`}>
                         <div className={styles.ticketHeader}>
                             <div>
                                 <div className="text-xs text-gray-500 uppercase font-bold">{booking.category}</div>
@@ -114,13 +130,28 @@ function MyPageContent() {
                         </div>
                         <div className={styles.ticketBody}>
                             <h3 className="text-xl font-bold mb-1">{booking.title}</h3>
-                            <div className="text-sm text-gray-600">{booking.date}</div>
+                            <div className="text-sm text-gray-600 mb-2">{booking.date}</div>
+                            {booking.area && (
+                                <div className="text-xs text-gray-400">{t('my_page.bookings.area', { defaultValue: 'Area' })}: {booking.area}</div>
+                            )}
+                            {booking.price && (
+                                <div className="text-xs text-gray-400">{t('my_page.bookings.price', { defaultValue: 'Price' })}: ₩{booking.price}</div>
+                            )}
                             {booking.isNew && (
-                                <div className="mt-2 text-xs text-purple font-bold">✨ {t('my_page.bookings.new_added')}</div>
+                                <div className="mt-2 text-xs text-purple font-bold">✨ {t('my_page.bookings.new_added', { defaultValue: 'New Booking Added!' })}</div>
                             )}
                         </div>
                         {/* Dotted Line */}
-                        <div style={{ position: 'absolute', top: '70%', left: 0, right: 0, borderTop: '2px dashed #ddd' }}></div>
+                        <div style={{ padding: '12px 0 8px 0', borderTop: '1px dashed #eee', marginTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <div style={{ fontSize: '10px', color: '#ccc', letterSpacing: '2px' }}>
+                                ID: {booking.id.toString().slice(0, 8).toUpperCase()}
+                            </div>
+                            <div style={{ height: '20px', display: 'flex', gap: '2px' }}>
+                                {[...Array(12)].map((_, i) => (
+                                    <div key={i} style={{ width: i % 3 === 0 ? '3px' : '1px', height: '100%', background: '#eee' }}></div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 ))}
             </section>

@@ -127,6 +127,24 @@
                 "title": "실시간 이동 안내",
                 "desc": "언어 장벽 없는 길안내"
             }
+        },
+        "recommended_plans": "추천 여행 플랜",
+        "plans": {
+            "2d": {
+                "title": "2일: 서울 핵심 투어",
+                "label": "2일 플랜"
+            },
+            "3d": {
+                "title": "3일: K-컬처 & 스타일",
+                "label": "3일 플랜"
+            },
+            "5d": {
+                "title": "5일: 한국 완전 정복",
+                "label": "5일 플랜"
+            },
+            "request_custom_label": "나만의 일정",
+            "request_custom_title": "나만의 {{days}}일 일정 만들기",
+            "request_custom_toast": "{{days}}일 맞춤 일정을 요청했습니다! 컨시어지가 연락드릴 예정입니다."
         }
     },
     "explore_page": {
@@ -192,6 +210,8 @@
         }
     },
     "explore_items": {
+        "airport_arrival": "인천공항 도착",
+        "hotel_checkin": "호텔 체크인/투숙",
         "f1": {
             "title": "플랜트 카페 서울",
             "area": "이태원",
@@ -278,11 +298,14 @@
             "jeju": "제주"
         },
         "bookings": {
-            "title": "예약 내역",
+            "title": "나의 예약 내역",
             "today_time": "오늘, {{time}}",
             "tomorrow_time": "내일, {{time}}",
-            "next_week_time": "내주, {{time}}",
-            "new_added": "새 예약이 추가되었습니다!"
+            "next_week_time": "다음 주, {{time}}",
+            "new_added": "새 예약이 추가되었습니다!",
+            "date_time": "날짜 / 시간",
+            "area": "지역",
+            "price": "가격"
         }
     },
     "fab": {

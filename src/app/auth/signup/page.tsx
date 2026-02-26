@@ -16,13 +16,44 @@ export default function SignupPage() {
     const handleSignup = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+
+        // Find selected language code
+        const selectedLang = LANGUAGES.find(l => l.code === countryCode);
+        const i18nKey = selectedLang ? toI18nKey(selectedLang.code) : 'en';
+
         // Mock Signup
         setTimeout(() => {
-            // Save user name temporarily so we can auto-fill or use it at login
+            // Save user name and language preference
             localStorage.setItem(`signup_name_${email}`, name);
+            localStorage.setItem(`ktrip_lang`, i18nKey); // Persist language choice
+
+            // Redirect to login
             router.push('/auth/login');
         }, 1000);
     };
+
+    // Country selection mapping (Helper)
+    function toI18nKey(code: string) {
+        const LANG_MAP: Record<string, string> = {
+            'ko': 'ko', 'en': 'en', 'ja': 'jp', 'zh-CN': 'cn', 'zh-TW': 'tw',
+            'vi': 'vi', 'th': 'th', 'id': 'id', 'ms': 'ms'
+        };
+        return LANG_MAP[code] ?? 'en';
+    }
+
+    const LANGUAGES = [
+        { code: 'ko', label: 'South Korea', flag: '🇰🇷' },
+        { code: 'en', label: 'United States / Global', flag: '🇺🇸' },
+        { code: 'ja', label: 'Japan', flag: '🇯🇵' },
+        { code: 'zh-CN', label: 'China', flag: '🇨🇳' },
+        { code: 'zh-TW', label: 'Taiwan / HK', flag: '🇭🇰' },
+        { code: 'vi', label: 'Vietnam', flag: '🇻🇳' },
+        { code: 'th', label: 'Thailand', flag: '🇹🇭' },
+        { code: 'id', label: 'Indonesia', flag: '🇮🇩' },
+        { code: 'ms', label: 'Malaysia', flag: '🇲🇾' },
+    ];
+
+    const [countryCode, setCountryCode] = useState("en");
 
     return (
         <div className={styles.container}>
@@ -59,6 +90,22 @@ export default function SignupPage() {
                             placeholder="user@example.com"
                             required
                         />
+                    </div>
+
+                    <div className={styles.inputGroup}>
+                        <label className={styles.label}>Country</label>
+                        <select
+                            value={countryCode}
+                            onChange={(e) => setCountryCode(e.target.value)}
+                            className={styles.select}
+                            required
+                        >
+                            {LANGUAGES.map(lang => (
+                                <option key={lang.code} value={lang.code}>
+                                    {lang.flag} {lang.label}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     <div className={styles.inputGroup}>

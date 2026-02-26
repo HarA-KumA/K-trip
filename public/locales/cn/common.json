@@ -136,6 +136,24 @@
                 "title": "实时移动导航",
                 "desc": "无语言障碍的路径指引"
             }
+        },
+        "recommended_plans": "推荐旅行方案",
+        "plans": {
+            "2d": {
+                "title": "2日：首尔核心之旅",
+                "label": "2日方案"
+            },
+            "3d": {
+                "title": "3日：K-文化与潮流",
+                "label": "3日方案"
+            },
+            "5d": {
+                "title": "5日：韩国全境游",
+                "label": "5日方案"
+            },
+            "request_custom_label": "定制",
+            "request_custom_title": "申请 {{days}} 日定制方案",
+            "request_custom_toast": "已申请 {{days}} 日定制方案！我们的礼宾人员将尽快与您联系。"
         }
     },
     "explore_page": {
@@ -193,6 +211,8 @@
         }
     },
     "explore_items": {
+        "airport_arrival": "仁川机场到达",
+        "hotel_checkin": "入住酒店",
         "f1": {
             "title": "Plant Cafe Seoul",
             "area": "梨泰院",
@@ -377,6 +397,9 @@
         },
         "bookings": {
             "title": "我的预约",
+            "date_time": "日期 / 时间",
+            "area": "区域",
+            "price": "价格",
             "today_time": "今天, {{time}}",
             "tomorrow_time": "明天, {{time}}",
             "next_week_time": "下周, {{time}}",

@@ -41,7 +41,34 @@
         }
     },
     "home": {
-        "title_korea": "كوريا اليوم"
+        "title_korea": "كوريا اليوم",
+        "recommended_plans": "خطط السفر الموصى بها",
+        "plans": {
+            "2d": {
+                "title": "يومان: أساسيات سيول",
+                "label": "خطة يومين"
+            },
+            "3d": {
+                "title": "3 أيام: الثقافة الكورية والأسلوب",
+                "label": "خطة 3 أيام"
+            },
+            "5d": {
+                "title": "5 أيام: الجولة الكبرى",
+                "label": "خطة 5 أيام"
+            },
+            "request_custom_label": "مخصص",
+            "request_custom_title": "طلب خطة لـ {{days}} أيام",
+            "request_custom_toast": "تم طلب خطة مخصصة لـ {{days}} أيام! سيتواصل معك فريق الاستقبال قريباً."
+        }
+    },
+    "my_page": {
+        "bookings": {
+            "title": "حجوزاتي",
+            "date_time": "التاريخ / الوقت",
+            "area": "المنطقة",
+            "price": "السعر",
+            "new_added": "تم إضافة حجز جديد!"
+        }
     },
     "community_page": {
         "title": "Community",
@@ -85,5 +112,39 @@
             }
         },
         "filter_review": "Reviews"
+    },
+    "explore_items": {
+        "airport_arrival": "الوصول إلى مطار إنتشون",
+        "hotel_checkin": "تسجيل الوصول في الفندق",
+        "f1": {
+            "title": "Plant Cafe Seoul"
+        },
+        "f2": {
+            "title": "Gold Pig BBQ"
+        },
+        "f3": {
+            "title": "سوق المأكولات البحرية"
+        },
+        "b1": {
+            "title": "Jenny House Beauty"
+        },
+        "b2": {
+            "title": "PPEUM Clinic Gangnam"
+        },
+        "e1": {
+            "title": "PSY Water Show"
+        },
+        "e2": {
+            "title": "Nanta Show Myeongdong"
+        },
+        "fs1": {
+            "title": "مهرجان الفوانيس في سيول"
+        },
+        "a1": {
+            "title": "قصر جيونج بوكجونج"
+        },
+        "a2": {
+            "title": "Lotte World Tower"
+        }
     }
 }

@@ -70,7 +70,25 @@
         "create_trip_cta": "เริ่มจัดตารางเวลา",
         "input_label": "คุณกำลังจะไปเที่ยวที่ไหน?",
         "input_placeholder": "เมือง, ย่าน, ชื่อโรงแรม",
-        "days_label": "ระยะเวลาการเดินทาง"
+        "days_label": "ระยะเวลาการเดินทาง",
+        "recommended_plans": "แผนการเดินทางที่แนะนำ",
+        "plans": {
+            "2d": {
+                "title": "2 วัน: โซลที่ต้องไป",
+                "label": "แผน 2 วัน"
+            },
+            "3d": {
+                "title": "3 วัน: เค-คัลเจอร์และสไตล์",
+                "label": "แผน 3 วัน"
+            },
+            "5d": {
+                "title": "5 วัน: ทัวร์เกาหลีแบบจัดเต็ม",
+                "label": "แผน 5 วัน"
+            },
+            "request_custom_label": "กำหนดเอง",
+            "request_custom_title": "ขอแผนการเดินทางแบบ {{days}} วัน",
+            "request_custom_toast": "ขอแผนการเดินทางแบบ {{days}} วันที่กำหนดเองแล้ว! คอนเซียร์จของเราจะติดต่อกลับหาคุณ"
+        }
     },
     "explore_page": {
         "title": "สำรวจ",
@@ -103,7 +121,11 @@
     },
     "my_page": {
         "bookings": {
-            "title": "การจองของฉัน"
+            "title": "การจองของฉัน",
+            "date_time": "วันที่ / เวลา",
+            "area": "ย่าน",
+            "price": "ราคา",
+            "new_added": "เพิ่มหน้าการจองใหม่แล้ว!"
         }
     },
     "community_page": {
@@ -148,5 +170,39 @@
             }
         },
         "filter_review": "Reviews"
+    },
+    "explore_items": {
+        "airport_arrival": "ถึงสนามบินอินชอน",
+        "hotel_checkin": "เช็คอินโรงแรม/ที่พัก",
+        "f1": {
+            "title": "Plant Cafe Seoul"
+        },
+        "f2": {
+            "title": "Gold Pig BBQ"
+        },
+        "f3": {
+            "title": "ตลาดอาหารทะเล"
+        },
+        "b1": {
+            "title": "Jenny House Beauty"
+        },
+        "b2": {
+            "title": "PPEUM Clinic Gangnam"
+        },
+        "e1": {
+            "title": "PSY Water Show"
+        },
+        "e2": {
+            "title": "Nanta Show Myeongdong"
+        },
+        "fs1": {
+            "title": "เทศกาลโคมไฟโซล"
+        },
+        "a1": {
+            "title": "พระราชวังเคียงบกกุง"
+        },
+        "a2": {
+            "title": "Lotte World Tower"
+        }
     }
 }

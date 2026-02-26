@@ -9,11 +9,23 @@ import styles from './home.module.css';
 
 import { useTranslation } from 'react-i18next';
 import { useTrip } from '@/lib/contexts/TripContext';
-import { MOCK_ITEMS } from './explore/mock/data';
+import { MOCK_ITEMS, ServiceItem } from './explore/mock/data';
+import ExploreMap from './explore/components/ExploreMap';
+
+const MOCK_PLACES = [
+  { title: '롯데백화점 본점', area: '서울특별시 중구 남대문로 81', lat: 37.5647, lng: 126.9818 },
+  { title: '롯데월드타워', area: '서울특별시 송파구 올림픽로 300', lat: 37.5125, lng: 127.1025 },
+  { title: '롯데월드 어드벤처', area: '서울특별시 송파구 올림픽로 240', lat: 37.5111, lng: 127.0982 },
+  { title: '롯데호텔 서울', area: '서울특별시 중구 을지로 30', lat: 37.5657, lng: 126.9808 },
+  { title: '남산타워 (N서울타워)', area: '서울특별시 용산구 남산공원길 105', lat: 37.5512, lng: 126.9882 },
+  { title: '남대문 시장', area: '서울특별시 중구 남대문시장4길 21', lat: 37.5591, lng: 126.9776 },
+  { title: '경복궁', area: '서울특별시 종로구 사직로 161', lat: 37.5796, lng: 126.9770 },
+  { title: '명동 예술극장', area: '서울특별시 중구 명동길 35', lat: 37.5645, lng: 126.9845 }
+];
 
 export default function HomePage() {
   const { t, i18n } = useTranslation('common');
-  const { tripStatus, itinerary } = useTrip();
+  const { tripStatus, itinerary, setItinerary, setTripDays } = useTrip();
   const router = useRouter();
   const [input, setInput] = useState('');
   const [days, setDays] = useState(3);
@@ -28,6 +40,33 @@ export default function HomePage() {
   // Navigation Search States
   const [navSearchQuery, setNavSearchQuery] = useState('');
   const [selectedDest, setSelectedDest] = useState<any>(null);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [isMapOpen, setIsMapOpen] = useState(false);
+  const [isSearchingInSheet, setIsSearchingInSheet] = useState(false);
+  const [sheetSearchResults, setSheetSearchResults] = useState<any[]>([]);
+
+  // Merge MOCK_PLACES with MOCK_ITEMS for broader search
+  const ALL_SEARCH_ITEMS = useMemo(() => {
+    const items = MOCK_ITEMS.map(i => ({
+      title: i.title,
+      area: i.area,
+      lat: i.lat || 37.5665,
+      lng: i.lng || 126.9780
+    }));
+    return [...MOCK_PLACES, ...items];
+  }, []);
+
+  // Typing suggestions disabled as requested
+  useEffect(() => {
+    setShowSuggestions(false);
+  }, [input]);
+
+  const handleSelectPlace = (place: any) => {
+    setSelectedDest(place);
+    setIsSearchingInSheet(false); // Move to transport selection
+    setOpenNavSheet(true);
+  };
 
   // Get next destination for navigation
   const nextDest = itinerary.find(item => item.status === 'confirmed');
@@ -80,12 +119,61 @@ export default function HomePage() {
     { icon: '🗓️', key: 'itinerary', path: '/planner', label: t('home.value_props.itinerary.title') },
   ];
 
-  const FEATURED_PLANS = [
-    { icon: '🍜', label: 'Foodie', query: 'restaurant,cafe', days: 2 },
-    { icon: '🏯', label: 'Heritage', query: 'palace,bukchon', days: 2 },
-    { icon: '🎶', label: 'K-pop', query: 'hybe,hongdae', days: 1 },
-    { icon: '🛍️', label: 'Shopping', query: 'myeongdong,seongsu', days: 1 },
+  const RECOMMENDED_PLANS = [
+    {
+      id: 'plan-2d',
+      duration: 2,
+      title: t('home.plans.2d.title', { defaultValue: '2 Days: Seoul Essential' }),
+      label: t('home.plans.2d.label', { defaultValue: '2 Days' }),
+      icon: '⚡',
+      items: [
+        { id: 'p1-1', name: t('explore_items.airport_arrival', { defaultValue: 'Incheon Airport Arrival' }), time: '10:00', lat: 37.4602, lng: 126.4407, day: 1, slot: 'am', status: 'confirmed', type: 'attraction', area: 'Incheon', price: '0', desc: 'Welcome to Korea' },
+        { id: 'p1-2', name: t('explore_items.hotel_checkin', { defaultValue: 'Conrad Seoul (Hotel)' }), time: '13:00', lat: 37.5252, lng: 126.9254, day: 1, slot: 'pm', status: 'confirmed', type: 'attraction', area: 'Yeouido', price: '300,000', desc: 'Luxury stay' },
+        { id: 'f2', name: t('explore_items.f2.title', { defaultValue: 'Gold Pig BBQ (Dinner)' }), time: '18:30', lat: 37.5540, lng: 127.0140, day: 1, slot: 'night', status: 'draft', type: 'food', area: 'Yaksu', price: '20,000' },
+        { id: 'a1', name: t('explore_items.a1.title', { defaultValue: 'Gyeongbokgung Palace' }), time: '10:00', lat: 37.5796, lng: 126.9770, day: 2, slot: 'am', status: 'draft', type: 'attraction', area: 'Jongno', price: '3,000' },
+        { id: 'b1', name: t('explore_items.b1.title', { defaultValue: 'Jenny House Beauty' }), time: '14:30', lat: 37.5240, lng: 127.0440, day: 2, slot: 'pm', status: 'draft', type: 'beauty', area: 'Cheongdam', price: '150,000' }
+      ]
+    },
+    {
+      id: 'plan-3d',
+      duration: 3,
+      title: t('home.plans.3d.title', { defaultValue: '3 Days: K-Culture & Style' }),
+      label: t('home.plans.3d.label', { defaultValue: '3 Days' }),
+      icon: '✨',
+      items: [
+        { id: 'p2-1', name: t('explore_items.airport_arrival', { defaultValue: 'Incheon Airport Arrival' }), time: '09:00', lat: 37.4602, lng: 126.4407, day: 1, slot: 'am', status: 'confirmed', type: 'attraction', area: 'Incheon', price: '0' },
+        { id: 'p2-2', name: t('explore_items.hotel_checkin', { defaultValue: 'Hotel in Myeongdong' }), time: '12:00', lat: 37.5635, lng: 126.9837, day: 1, slot: 'pm', status: 'confirmed', type: 'attraction', area: 'Myeongdong', price: '200,000' },
+        { id: 'f1', name: t('explore_items.f1.title', { defaultValue: 'Plant Cafe Seoul' }), time: '14:00', lat: 37.5340, lng: 126.9940, day: 1, slot: 'pm', status: 'draft', type: 'food', area: 'Itaewon', price: '15,000' },
+        { id: 'e2', name: t('explore_items.e2.title', { defaultValue: 'Nanta Show Myeongdong' }), time: '17:00', lat: 37.5645, lng: 126.9845, day: 1, slot: 'night', status: 'draft', type: 'event', area: 'Myeongdong', price: '40,000' },
+        { id: 'a1', name: t('explore_items.a1.title', { defaultValue: 'Gyeongbokgung Palace' }), time: '10:00', lat: 37.5796, lng: 126.9770, day: 2, slot: 'am', status: 'draft', type: 'attraction', area: 'Jongno', price: '3,000' },
+        { id: 'b2', name: t('explore_items.b2.title', { defaultValue: 'PPEUM Clinic Gangnam' }), time: '14:00', lat: 37.4980, lng: 127.0276, day: 2, slot: 'pm', status: 'draft', type: 'beauty', area: 'Gangnam', price: '50,000' },
+        { id: 'e1', name: t('explore_items.e1.title', { defaultValue: 'PSY Water Show' }), time: '19:00', lat: 37.5148, lng: 127.0736, day: 2, slot: 'night', status: 'draft', type: 'event', area: 'Jamsil', price: '140,000' },
+        { id: 'a2', name: t('explore_items.a2.title', { defaultValue: 'Lotte World Tower' }), time: '11:00', lat: 37.5125, lng: 127.1025, day: 3, slot: 'am', status: 'draft', type: 'attraction', area: 'Jamsil', price: '27,000' },
+        { id: 'f3', name: t('explore_items.f3.title', { defaultValue: 'Seafood Market' }), time: '14:00', lat: 37.5140, lng: 126.9240, day: 3, slot: 'pm', status: 'draft', type: 'food', area: 'Nampo', price: '40,000' }
+      ]
+    },
+    {
+      id: 'plan-5d',
+      duration: 5,
+      title: t('home.plans.5d.title', { defaultValue: '5 Days: The Grand Tour' }),
+      label: t('home.plans.5d.label', { defaultValue: '5 Days' }),
+      icon: '🏯',
+      items: [
+        { id: 'p3-1', name: t('explore_items.airport_arrival', { defaultValue: 'Incheon Airport Arrival' }), time: '10:00', lat: 37.4602, lng: 126.4407, day: 1, slot: 'am', status: 'confirmed', type: 'attraction', area: 'Incheon', price: '0' },
+        { id: 'p3-2', name: t('explore_items.hotel_checkin', { defaultValue: 'Stay in Hanok Village' }), time: '14:00', lat: 37.5826, lng: 126.9836, day: 1, slot: 'pm', status: 'confirmed', type: 'attraction', area: 'Jongno', price: '150,000' },
+        { id: 'a1', name: t('explore_items.a1.title', { defaultValue: 'Gyeongbokgung Palace' }), time: '10:00', lat: 37.5796, lng: 126.9770, day: 2, slot: 'am', status: 'draft', type: 'attraction', area: 'Jongno', price: '3,000' },
+        { id: 'fs1', name: t('explore_items.fs1.title', { defaultValue: 'Seoul Lantern Festival' }), time: '19:00', lat: 37.5724, lng: 126.9768, day: 2, slot: 'night', status: 'draft', type: 'festival', area: 'Gwanghwamun', price: 'Free' },
+        { id: 'b1', name: t('explore_items.b1.title', { defaultValue: 'Jenny House Beauty' }), time: '11:00', lat: 37.5240, lng: 127.0440, day: 3, slot: 'am', status: 'draft', type: 'beauty', area: 'Cheongdam', price: '150,000' },
+        { id: 'f2', name: t('explore_items.f2.title', { defaultValue: 'Gold Pig BBQ' }), time: '18:00', lat: 37.5540, lng: 127.0140, day: 3, slot: 'night', status: 'draft', type: 'food', area: 'Yaksu', price: '20,000' },
+        { id: 'a2', name: t('explore_items.a2.title', { defaultValue: 'Lotte World Tower' }), time: '14:30', lat: 37.5125, lng: 127.1025, day: 4, slot: 'pm', status: 'draft', type: 'attraction', area: 'Jamsil', price: '27,000' },
+        { id: 'f1', name: t('explore_items.f1.title', { defaultValue: 'Plant Cafe Seoul' }), time: '12:00', lat: 37.5340, lng: 126.9940, day: 5, slot: 'am', status: 'draft', type: 'food', area: 'Itaewon', price: '15,000' }
+      ]
+    }
   ];
+
+  const filteredPlans = useMemo(() => {
+    return RECOMMENDED_PLANS.filter(p => p.duration === days);
+  }, [RECOMMENDED_PLANS, days]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -105,15 +193,38 @@ export default function HomePage() {
   const handleKRide = () => {
     if (!destInfo) return;
     const address = destInfo.nameKo || destInfo.name;
-    navigator.clipboard.writeText(address).catch(() => { });
-    const deeplink = `kride://route?dest_lat=${destInfo.lat}&dest_lng=${destInfo.lng}&dest_name=${encodeURIComponent(address)}`;
-    window.location.href = deeplink;
-    setTimeout(() => {
-      if (document.hidden) return;
-      const ua = navigator.userAgent;
-      const isiOS = ua.includes('iPhone') || ua.includes('iPad');
-      window.open(isiOS ? 'https://apps.apple.com/kr/app/kakao-t/id981110422' : 'https://play.google.com/store/apps/details?id=com.kakao.taxi', '_blank');
-    }, 2500);
+
+    const openApp = (sLat?: number, sLng?: number) => {
+      let deeplink = `kride://route?dest_lat=${destInfo.lat}&dest_lng=${destInfo.lng}&dest_name=${encodeURIComponent(address)}`;
+      if (sLat && sLng) {
+        deeplink += `&origin_lat=${sLat}&origin_lng=${sLng}&origin_name=${encodeURIComponent('My Location')}`;
+      }
+
+      window.location.href = deeplink;
+
+      setTimeout(() => {
+        if (document.hidden) return;
+        const ua = navigator.userAgent;
+        const isiOS = ua.includes('iPhone') || ua.includes('iPad');
+        const isAndroid = ua.includes('Android');
+
+        if (isiOS) {
+          window.open('https://apps.apple.com/app/k-ride/id6478148574', '_blank');
+        } else if (isAndroid) {
+          window.open('https://play.google.com/store/apps/details?id=com.kakaomobility.kride', '_blank');
+        }
+      }, 2500);
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => openApp(pos.coords.latitude, pos.coords.longitude),
+        () => openApp()
+      );
+    } else {
+      openApp();
+    }
+
     setOpenNavSheet(false);
   };
 
@@ -123,30 +234,29 @@ export default function HomePage() {
     const lat = destInfo.lat;
     const lng = destInfo.lng;
 
-    // Use browser geolocation to get current position for better app deep linking
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        const sLat = pos.coords.latitude;
-        const sLng = pos.coords.longitude;
-        // KakaoMap: sp = start point, ep = end point
-        const appUrl = `kakaomap://route?sp=${sLat},${sLng}&ep=${lat},${lng}&by=PUBLICTRANSIT`;
-        const webUrl = `https://map.kakao.com/link/to/${encodeURIComponent(address)},${lat},${lng}`;
+    const navigateToTransit = (sLat?: number, sLng?: number) => {
+      const appUrl = sLat && sLng
+        ? `kakaomap://route?sp=${sLat},${sLng}&ep=${lat},${lng}&by=PUBLICTRANSIT`
+        : `kakaomap://route?ep=${lat},${lng}&by=PUBLICTRANSIT`;
 
-        window.location.href = appUrl;
-        setTimeout(() => {
-          if (document.hidden) return;
-          window.open(webUrl, '_blank');
-        }, 2500);
-      }, () => {
-        // Fallback if location permission denied
-        const appUrl = `kakaomap://route?ep=${lat},${lng}&by=PUBLICTRANSIT`;
-        const webUrl = `https://map.kakao.com/link/to/${encodeURIComponent(address)},${lat},${lng}`;
-        window.location.href = appUrl;
-        setTimeout(() => {
-          if (document.hidden) return;
-          window.open(webUrl, '_blank');
-        }, 2500);
-      });
+      const webUrl = sLat && sLng
+        ? `https://map.kakao.com/link/from/My Location,${sLat},${sLng}/to/${encodeURIComponent(address)},${lat},${lng}`
+        : `https://map.kakao.com/link/to/${encodeURIComponent(address)},${lat},${lng}`;
+
+      window.location.href = appUrl;
+      setTimeout(() => {
+        if (document.hidden) return;
+        window.open(webUrl, '_blank');
+      }, 2500);
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => navigateToTransit(pos.coords.latitude, pos.coords.longitude),
+        () => navigateToTransit()
+      );
+    } else {
+      navigateToTransit();
     }
 
     setOpenNavSheet(false);
@@ -168,15 +278,41 @@ export default function HomePage() {
   };
 
   const handleStart = () => {
-    if (input.trim()) {
-      router.push(`/explore?city=${encodeURIComponent(input)}&days=${days}`);
-    } else {
+    const trimmedInput = input.trim();
+    if (!trimmedInput) {
       router.push('/explore');
+      return;
+    }
+
+    const filtered = ALL_SEARCH_ITEMS.filter(p =>
+      p.title.toLowerCase().includes(trimmedInput.toLowerCase()) ||
+      p.area.toLowerCase().includes(trimmedInput.toLowerCase())
+    );
+
+    if (filtered.length > 0) {
+      setSheetSearchResults(filtered);
+      setIsSearchingInSheet(true);
+      setOpenNavSheet(true);
+      setSelectedDest(null);
+    } else {
+      router.push(`/explore?city=${encodeURIComponent(trimmedInput)}&days=${days}`);
     }
   };
 
-  const handlePreset = (preset: any) => {
-    router.push(`/explore?q=${encodeURIComponent(preset.query)}&days=${preset.days}`);
+  const handleApplyPlan = (plan: any) => {
+    const formattedItems = plan.items.map((item: any) => ({
+      ...item,
+      id: `${plan.id}_${item.id}_${Date.now()}`
+    }));
+    setTripDays(plan.duration);
+    setItinerary(formattedItems);
+    router.push('/planner');
+  };
+
+  const handleCreateCustomPlan = () => {
+    setTripDays(days);
+    setItinerary([]); // Start with empty itinerary
+    router.push('/planner');
   };
 
   return (
@@ -221,107 +357,156 @@ export default function HomePage() {
         ))}
       </section>
 
-      <section className={styles.featuredSection}>
-        <div className={styles.featuredGrid}>
-          {FEATURED_PLANS.map(preset => (
-            <button key={preset.label} className={styles.featuredCard} onClick={() => handlePreset(preset)}>
-              <span className={styles.featuredIcon}>{preset.icon}</span>
-              <span className={styles.featuredLabel}>{t(`home.presets.${preset.label.toLowerCase().replace(' ', '_')}`, { defaultValue: preset.label })}</span>
-            </button>
-          ))}
-        </div>
-      </section>
-
       <section className={styles.inputSection}>
         <div className={styles.inputLabel}>{t('home.input_label')}</div>
         <div className={styles.inputWrap}>
           <span className={styles.inputIcon}>📍</span>
           <input className={styles.inputField} placeholder={t('home.input_placeholder')} value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleStart()} />
           {input && <button className={styles.inputClear} onClick={() => setInput('')}>✕</button>}
+
+          {/* Place Search Suggestions */}
+          {showSuggestions && suggestions.length > 0 && (
+            <div className={styles.suggestions}>
+              {suggestions.map((p, idx) => (
+                <div key={idx} className={styles.suggestionItem} onClick={() => handleSelectPlace(p)}>
+                  <span className={styles.suggestIcon}>🏢</span>
+                  <div className={styles.suggestText}>
+                    <div className={styles.suggestName}>{p.title}</div>
+                    <div className={styles.suggestSub}>{p.area}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-        <div className={styles.daysRow}>
-          <span className={styles.daysLabel}>{t('home.days_label')}</span>
-          <div className={styles.daysChips}>
-            {[1, 2, 3, 4, 5, 7].map(d => (
-              <button key={d} className={`${styles.dayChip} ${days === d ? styles.dayChipActive : ''}`} onClick={() => setDays(d)}>{d}</button>
-            ))}
+        <div className={styles.daysSliderSection}>
+          <div className={styles.daysSliderInfo}>
+            <span className={styles.daysLabel}>{t('home.days_label')}</span>
+            <span className={styles.daysValue}>{days}{t('common.day_unit', { defaultValue: 'd' })}</span>
+          </div>
+          <div className={styles.sliderContainer}>
+            <input
+              type="range"
+              min="1"
+              max="7"
+              value={days}
+              onChange={(e) => setDays(parseInt(e.target.value))}
+              className={styles.daysRangeInput}
+            />
+            <div className={styles.sliderTicks}>
+              {[1, 2, 3, 4, 5, 6, 7].map(d => (
+                <span key={d} className={`${styles.tick} ${days === d ? styles.tickActive : ''}`} onClick={() => setDays(d)}>{d}</span>
+              ))}
+            </div>
           </div>
         </div>
         <button className={styles.ctaBtn} onClick={handleStart}><span>{t('home.create_trip_cta')}</span><span className={styles.ctaArrow}>→</span></button>
+      </section>
+
+      <section className={styles.featuredSection}>
+        <h2 className={styles.sectionTitle}>{t('home.recommended_plans', { defaultValue: 'Recommended Trip Plans' })}</h2>
+        <div className={styles.featuredGrid}>
+          {filteredPlans.map(plan => (
+            <button key={plan.id} className={styles.featuredCard} onClick={() => handleApplyPlan(plan)}>
+              <span className={styles.featuredIcon}>{plan.icon}</span>
+              <div className={styles.planInfo}>
+                <span className={styles.featuredLabel}>{plan.label}</span>
+                <span className={styles.planTitle}>{plan.title}</span>
+              </div>
+            </button>
+          ))}
+          <button
+            className={`${styles.featuredCard} ${styles.requestCard}`}
+            onClick={handleCreateCustomPlan}
+          >
+            <span className={styles.featuredIcon}>✍️</span>
+            <div className={styles.planInfo}>
+              <span className={styles.featuredLabel}>{t('home.plans.request_custom_label', { defaultValue: 'Custom' })}</span>
+              <span className={styles.planTitle}>{t('home.plans.request_custom_title', { days, defaultValue: `Create My Own ${days}-Day Plan` })}</span>
+            </div>
+          </button>
+        </div>
       </section>
 
       {openNavSheet && (
         <div className={styles.overlay} onClick={() => setOpenNavSheet(false)}>
           <div className={styles.sheet} onClick={e => e.stopPropagation()}>
             <div className={styles.sheetHandle} />
-            <div className={styles.navSearchBox}>
-              <div className={styles.inputWrap} style={{ marginBottom: '8px' }}>
-                <span className={styles.inputIcon}>🔍</span>
-                <input className={styles.inputField} placeholder={t('explore_page.search_placeholders.all')} value={navSearchQuery} onChange={e => setNavSearchQuery(e.target.value)} />
-                {navSearchQuery && (
-                  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                    <button
-                      className={styles.searchMapBtn}
-                      onClick={() => window.open(`https://www.google.com/maps/search/${encodeURIComponent(navSearchQuery)}`, '_blank')}
-                      title="Search on Google Maps"
-                    >
-                      🌐
-                    </button>
-                    <button className={styles.inputClear} onClick={() => setNavSearchQuery('')}>✕</button>
-                  </div>
-                )}
-              </div>
-              {navSearchResults.length > 0 && (
-                <div className={styles.searchResultsDropdown}>
-                  {navSearchResults.map(item => (
-                    <div key={item.id} className={styles.searchResultItem} onClick={() => { setSelectedDest(item); setNavSearchQuery(''); }}>
-                      <span style={{ marginRight: '8px' }}>📍</span>
-                      <div>
-                        <div className={styles.searchResultTitle}>{item.title}</div>
+
+            {isSearchingInSheet ? (
+              <div className={styles.sheetSearchSection}>
+                <div className={styles.sheetHeader} style={{ border: 'none', paddingBottom: '8px' }}>
+                  <div className={styles.sheetTitle}>검색 결과</div>
+                  <div className={styles.sheetSubtitle}>'{input}'에 대한 {sheetSearchResults.length}개의 결과</div>
+                </div>
+                <div className={styles.sheetResultList} style={{ maxHeight: '60vh', overflowY: 'auto', padding: '0 24px 24px' }}>
+                  {sheetSearchResults.map((item, idx) => (
+                    <div key={idx} className={styles.searchResultItem} onClick={() => handleSelectPlace(item)} style={{ padding: '16px 0' }}>
+                      <span style={{ marginRight: '12px', fontSize: '1.2rem' }}>📍</span>
+                      <div style={{ flex: 1 }}>
+                        <div className={styles.searchResultTitle} style={{ fontSize: '16px' }}>{item.title}</div>
                         <div className={styles.searchResultArea}>{item.area}</div>
                       </div>
                     </div>
                   ))}
                 </div>
+              </div>
+            ) : (
+              <>
+                <div className={styles.sheetHeader}>
+                  <div className={styles.sheetTitle}>{destInfo.name}</div>
+                  <div className={styles.sheetSubtitle}>{destInfo.nameKo}</div>
+                </div>
+
+                <div className={styles.quickChoices}>
+                  <button className={styles.choiceBtn} onClick={() => { setOpenNavSheet(false); setIsMapOpen(true); }}>
+                    <div className={styles.choiceIcon}>📍</div>
+                    <div className={styles.choiceLabel}>위치</div>
+                    <div className={styles.choiceSubText}>지도에서 확인</div>
+                  </button>
+                  <button className={styles.choiceBtn} onClick={() => { setOpenNavSheet(false); setIsMapOpen(true); }}>
+                    <div className={styles.choiceIcon}>🚕</div>
+                    <div className={styles.choiceLabel}>이동수단</div>
+                    <div className={styles.choiceSubText}>택시 / 대중교통</div>
+                  </button>
+                </div>
+              </>
+            )}
+
+            <div className={styles.footerActions}>
+              {destInfo && !isSearchingInSheet && (
+                <button className={styles.footerBtn} onClick={handleCopy}>
+                  <span>📋 {copied ? t('fab.copy_done') : t('fab.copy')}</span>
+                </button>
               )}
+              <button className={styles.footerBtn} onClick={() => setOpenNavSheet(false)}>{t('fab.cancel')}</button>
             </div>
+          </div>
+        </div>
+      )}
 
-            <button className={`${styles.option} ${styles.optionKride}`} onClick={handleKRide}>
-              <span className={styles.optionIcon}>🚕</span>
-              <div className={styles.optionText}>
-                <span className={styles.optionTitle}>{t('fab.kride')}</span>
-                <span className={styles.optionSub}>{t('fab.kride_sub', { mins: destInfo.travelMinutes })}</span>
+      {isMapOpen && destInfo && (
+        <div className={styles.modalOverlay} onClick={() => setIsMapOpen(false)}>
+          <div className={styles.mapModal} onClick={e => e.stopPropagation()}>
+            <div className={styles.mapModalHeader}>
+              <div className={styles.mapModalInfo}>
+                <div className={styles.mapModalTitle}>{destInfo.nameKo}</div>
+                <div className={styles.mapModalAddr}>{destInfo.name}</div>
               </div>
-              <span className={styles.optionArrow}>→</span>
-            </button>
-
-            <button className={styles.option} onClick={handleTransit}>
-              <span className={styles.optionIcon}>🚇</span>
-              <div className={styles.optionText}>
-                <span className={styles.optionTitle}>{t('fab.transit')}</span>
-                <span className={styles.optionSub}>{t('fab.transit_sub')}</span>
-              </div>
-              <span className={styles.optionArrow}>→</span>
-            </button>
-
-            <button className={styles.option} onClick={handleCopy}>
-              <span className={styles.optionIcon}>📋</span>
-              <div className={styles.optionText}>
-                <span className={styles.optionTitle}>{t('fab.copy')}</span>
-                <span className={styles.optionSub}>{copied ? t('fab.copy_done') : t('fab.copy')}</span>
-              </div>
-            </button>
-
-            <button className={styles.option} onClick={() => { setOpenNavSheet(false); setShowCard(true); }}>
-              <span className={styles.optionIcon}>🗺️</span>
-              <div className={styles.optionText}>
-                <span className={styles.optionTitle}>{t('fab.card')}</span>
-                <span className={styles.optionSub}>{t('fab.card_sub')}</span>
-              </div>
-              <span className={styles.optionArrow}>→</span>
-            </button>
-
-            <button className={styles.cancelBtn} onClick={() => setOpenNavSheet(false)}>{t('fab.cancel')}</button>
+              <button className={styles.mapCloseBtn} onClick={() => setIsMapOpen(false)}>✕</button>
+            </div>
+            <div className={styles.mapContainer}>
+              <ExploreMap
+                items={[]}
+                center={{ lat: destInfo.lat, lng: destInfo.lng, name: destInfo.nameKo }}
+                onItemClick={() => { }}
+                zoom={15}
+              />
+            </div>
+            <div className={styles.mapFooter}>
+              <button className={styles.navActionBtn} onClick={handleKRide}>🚖 K.Ride</button>
+              <button className={styles.navActionBtn} onClick={handleTransit}>🚇 Transit</button>
+            </div>
           </div>
         </div>
       )}

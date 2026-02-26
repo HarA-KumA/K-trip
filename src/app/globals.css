@@ -38,8 +38,14 @@
   /* Z-Index Layers */
   --z-bg: 0;
   --z-content: 10;
-  --z-nav: 50;
-  --z-modal: 100;
+  --z-nav: 1000;
+  --z-modal: 2000;
+
+  /* Layout Constants */
+  --nav-height: 72px;
+  --safe-area-bottom: env(safe-area-inset-bottom, 12px);
+  --total-nav-height: 72px;
+  /* BottomNav.module.css calculates this */
 }
 
 * {
@@ -92,6 +98,8 @@ button {
   -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
+  padding-bottom: 20px;
+  /* Base padding */
 }
 
 /* Typography Utilities */

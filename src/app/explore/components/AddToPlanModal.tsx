@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useTrip } from '@/lib/contexts/TripContext';
 import styles from '../explore.module.css';
 
 interface AddToPlanModalProps {
@@ -10,9 +11,10 @@ interface AddToPlanModalProps {
 
 export default function AddToPlanModal({ isOpen, onClose, onSelectDay, itemTitle }: AddToPlanModalProps) {
     const { t } = useTranslation('common');
+    const { tripDays } = useTrip();
     if (!isOpen) return null;
 
-    const days = [1, 2, 3, 4, 5]; // MVP hardcoded
+    const days = Array.from({ length: tripDays }, (_, i) => i + 1);
 
     return (
         <div className={styles.modalOverlay} onClick={onClose}>

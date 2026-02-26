@@ -11,48 +11,21 @@ export interface LangOption {
 }
 
 export const LANGUAGES: LangOption[] = [
-    // Column 1
-    { code: 'en-AU', label: 'English (Australia)', flag: '🇦🇺' },
-    { code: 'en-IN', label: 'English (India)', flag: '🇮🇳' },
-    { code: 'en-PH', label: 'English (Philippines)', flag: '🇵🇭' },
-    { code: 'en-GB', label: 'English (UK)', flag: '🇬🇧' },
-    { code: 'zh-TW', label: '繁體中文', flag: '🇭🇰' },
-    { code: 'th', label: 'ไทย', flag: '🇹🇭' },
-    { code: 'ms', label: 'Bahasa Malaysia', flag: '🇲🇾' },
-    { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
-    { code: 'nl', label: 'Nederlands', flag: '🇳🇱' },
-
-    // Column 2
-    { code: 'en-CA', label: 'English (Canada)', flag: '🇨🇦' },
-    { code: 'en-MY', label: 'English (Malaysia)', flag: '🇲🇾' },
-    { code: 'en-SG', label: 'English (Singapore)', flag: '🇸🇬' },
-    { code: 'en', label: 'English (International)', flag: '🌐' },
-    { code: 'ja', label: '日本語', flag: '🇯🇵' },
-    { code: 'vi', label: 'Tiếng Việt', flag: '🇻🇳' },
-    { code: 'fr', label: 'Français', flag: '🇫🇷' },
-    { code: 'it', label: 'Italiano', flag: '🇮🇹' },
-    { code: 'tl', label: 'Tagalog', flag: '🇵🇭' },
-
-    // Column 3
-    { code: 'en-HK', label: 'English (Hong Kong, SAR)', flag: '🇭🇰' },
-    { code: 'en-NZ', label: 'English (New Zealand)', flag: '🇳🇿' },
-    { code: 'en-US', label: 'English (US)', flag: '🇺🇸' },
-    { code: 'zh-CN', label: '简体中文', flag: '🇨🇳' },
     { code: 'ko', label: '한국어', flag: '🇰🇷' },
+    { code: 'en', label: 'English', flag: '🇺🇸' },
+    { code: 'ja', label: '日本語', flag: '🇯🇵' },
+    { code: 'zh-CN', label: '简体中文', flag: '🇨🇳' },
+    { code: 'zh-TW', label: '繁體中文', flag: '🇭🇰' },
+    { code: 'vi', label: 'Tiếng Việt', flag: '🇻🇳' },
+    { code: 'th', label: 'ไทย', flag: '🇹🇭' },
     { code: 'id', label: 'Bahasa Indonesia', flag: '🇮🇩' },
-    { code: 'es', label: 'Español (España)', flag: '🇪🇸' },
-    { code: 'ru', label: 'Русский', flag: '🇷🇺' },
+    { code: 'ms', label: 'Bahasa Melayu', flag: '🇲🇾' },
 ];
 
 // 언어코드 → i18n 키 매핑 (실제 지원하는 키로 라우팅)
 const LANG_MAP: Record<string, string> = {
-    'zh-CN': 'cn', 'zh-TW': 'tw', 'ja': 'jp', 'ko': 'ko', 'en': 'en',
-    'en-AU': 'en', 'en-CA': 'en', 'en-HK': 'en', 'en-IN': 'en',
-    'en-MY': 'en', 'en-NZ': 'en', 'en-PH': 'en', 'en-SG': 'en',
-    'en-US': 'en', 'en-GB': 'en',
-    'th': 'th', 'vi': 'vi', 'ms': 'ms', 'fr': 'fr', 'es': 'es',
-    'de': 'de', 'it': 'en', 'ru': 'ru', 'nl': 'en', 'id': 'id', 'tl': 'en',
-    'ar': 'ar', 'pt': 'pt'
+    'ko': 'ko', 'en': 'en', 'ja': 'jp', 'zh-CN': 'cn', 'zh-TW': 'tw',
+    'vi': 'vi', 'th': 'th', 'id': 'id', 'ms': 'ms'
 };
 
 function toI18nKey(code: string) {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './explore.module.css';
 import { MOCK_ITEMS, ServiceItem, CityId } from './mock/data';
@@ -8,6 +8,7 @@ import ExploreHeader from './components/ExploreHeader';
 import FilterSheet from './components/FilterSheet';
 import AddToPlanModal from './components/AddToPlanModal';
 import ExploreMap from './components/ExploreMap';
+import HotelSearch from './components/HotelSearch';
 
 import { useTrip } from '@/lib/contexts/TripContext';
 import { useTranslation } from 'react-i18next';
@@ -40,6 +41,7 @@ export default function ExplorePage() {
     // Filters
     const [activeFilters, setActiveFilters] = useState<ActiveFilters>({});
     const [searchTerm, setSearchTerm] = useState("");
+    const [appliedSearchTerm, setAppliedSearchTerm] = useState("");
 
     // -- Effects --
     useEffect(() => {
@@ -167,6 +169,10 @@ export default function ExplorePage() {
         setActiveFilters(filters);
     };
 
+    const handleSearchSubmit = (val: string) => {
+        setAppliedSearchTerm(val);
+    };
+
     const showToast = (msg: string) => {
         setToastMessage(msg);
         setTimeout(() => setToastMessage(null), 3000);
@@ -183,8 +189,8 @@ export default function ExplorePage() {
 
     // Apply search term filter
     const itemsToShow = categorizedItems.filter(item => {
-        if (!searchTerm) return true;
-        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        if (!appliedSearchTerm) return true;
+        const lowerCaseSearchTerm = appliedSearchTerm.toLowerCase();
         return item.title.toLowerCase().includes(lowerCaseSearchTerm) ||
             item.area.toLowerCase().includes(lowerCaseSearchTerm);
     });
@@ -196,6 +202,13 @@ export default function ExplorePage() {
         return bScore - aScore;
     });
 
+    let finalZoom = 14; // Default zoom
+    if (radius) {
+        if (radius <= 500) finalZoom = 16;
+        else if (radius <= 1000) finalZoom = 15;
+        else if (radius <= 3000) finalZoom = 13;
+    }
+
     return (
         <div className={styles.container}>
             <ExploreHeader
@@ -205,11 +218,11 @@ export default function ExplorePage() {
                 onCategoryChange={handleCategoryChange}
                 onFilterClick={() => setIsFilterOpen(true)}
                 filterCount={Object.keys(activeFilters).length}
-                onHotelSelect={handleHotelSelect}
                 radius={radius}
                 onRadiusChange={setRadius}
                 searchTerm={searchTerm}
                 onSearchChange={setSearchTerm}
+                onSearchSubmit={handleSearchSubmit}
             />
 
             <main style={{ paddingBottom: '80px', flex: 1, display: 'flex', flexDirection: 'column', position: 'relative', height: '100%', minHeight: '500px' }}>
@@ -225,6 +238,7 @@ export default function ExplorePage() {
                         center={hotelLocation ? { lat: hotelLocation.lat, lng: hotelLocation.lng } : { lat: 37.5665, lng: 126.9780 }} // Default to Seoul City Hall
                         onItemClick={handleDetails}
                         radius={radius}
+                        zoom={finalZoom} // Added zoom prop
                     />
                 </div>
             </main>

@@ -136,6 +136,24 @@
                 "title": "リアルタイム移動案内",
                 "desc": "言語の壁がないルート案内"
             }
+        },
+        "recommended_plans": "おすすめの旅行プラン",
+        "plans": {
+            "2d": {
+                "title": "2日：ソウル必須ツアー",
+                "label": "2日間プラン"
+            },
+            "3d": {
+                "title": "3日：K-カルチャー＆スタイル",
+                "label": "3日間プラン"
+            },
+            "5d": {
+                "title": "5日：韓国完全制覇ツアー",
+                "label": "5日間プラン"
+            },
+            "request_custom_label": "カスタム",
+            "request_custom_title": "{{days}}日間のプランをリクエスト",
+            "request_custom_toast": "{{days}}日間のカスタムプランをリクエストしました！コンシェルジュからご連絡いたします。"
         }
     },
     "explore_page": {
@@ -193,6 +211,8 @@
         }
     },
     "explore_items": {
+        "airport_arrival": "仁川空港到着",
+        "hotel_checkin": "ホテルチェックイン/滞在",
         "f1": {
             "title": "プラントカフェ ソウル",
             "area": "梨泰院",
@@ -377,6 +397,9 @@
         },
         "bookings": {
             "title": "予約履歴",
+            "date_time": "日付 / 時間",
+            "area": "エリア",
+            "price": "価格",
             "today_time": "今日, {{time}}",
             "tomorrow_time": "明日, {{time}}",
             "next_week_time": "来週, {{time}}",

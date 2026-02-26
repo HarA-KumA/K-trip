@@ -21,26 +21,31 @@ export interface ItineraryItem {
 
 interface TripContextType {
     tripStatus: TripMode;
+    tripDays: number;
     itinerary: ItineraryItem[];
     setTripStatus: (status: TripMode) => void;
+    setTripDays: (days: number) => void;
     addItineraryItem: (item: ItineraryItem) => void;
     removeItineraryItem: (id: string) => void;
+    setItinerary: (items: ItineraryItem[]) => void;
 }
 
 const TripContext = createContext<TripContextType | undefined>(undefined);
 
 export function TripProvider({ children }: { children: React.ReactNode }) {
     const [tripStatus, setTripStatus] = useState<TripMode>('idle');
+    const [tripDays, setTripDays] = useState<number>(3);
     const [itinerary, setItinerary] = useState<ItineraryItem[]>([]);
 
     useEffect(() => {
-        const saved = localStorage.getItem('trip_itinerary');
-        if (saved) {
-            setItinerary(JSON.parse(saved));
-        } else {
-            // Initial mock data - Empty as requested
-            const mockItinerary: ItineraryItem[] = [];
-            setItinerary(mockItinerary);
+        const savedItinerary = localStorage.getItem('trip_itinerary');
+        if (savedItinerary) {
+            setItinerary(JSON.parse(savedItinerary));
+        }
+
+        const savedDays = localStorage.getItem('trip_days');
+        if (savedDays) {
+            setTripDays(parseInt(savedDays));
         }
     }, []);
 
@@ -50,6 +55,10 @@ export function TripProvider({ children }: { children: React.ReactNode }) {
             if (tripStatus === 'idle') setTripStatus('pre-trip');
         }
     }, [itinerary, tripStatus]);
+
+    useEffect(() => {
+        localStorage.setItem('trip_days', tripDays.toString());
+    }, [tripDays]);
 
     const addItineraryItem = (item: ItineraryItem) => {
         setItinerary(prev => [...prev, item]);
@@ -62,10 +71,13 @@ export function TripProvider({ children }: { children: React.ReactNode }) {
     return (
         <TripContext.Provider value={{
             tripStatus,
+            tripDays,
             itinerary,
             setTripStatus,
+            setTripDays,
             addItineraryItem,
-            removeItineraryItem
+            removeItineraryItem,
+            setItinerary
         }}>
             {children}
         </TripContext.Provider>

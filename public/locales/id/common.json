@@ -51,15 +51,28 @@
         "input_label": "Ke mana Anda akan berwisata?",
         "input_placeholder": "Kota, daerah, nama hotel",
         "days_label": "Durasi Perjalanan",
-        "how_it_works": {
-            "title": "Cara kerja",
-            "step1": "Permintaan",
-            "step1_desc": "Pilih tempat kecantikan/makanan Anda",
-            "step2": "Proses",
-            "step2_desc": "Kami memesankan melalui saluran lokal",
-            "step3": "Dikonfirmasi",
-            "step3_desc": "Sinkronisasi otomatis ke jadwal Anda"
+        "recommended_plans": "Rekomendasi Rencana Perjalanan",
+        "plans": {
+            "2d": {
+                "title": "2 Hari: Esensial Seoul",
+                "label": "Rencana 2 Hari"
+            },
+            "3d": {
+                "title": "3 Hari: K-Culture & Gaya",
+                "label": "Rencana 3 Hari"
+            },
+            "5d": {
+                "title": "5 Hari: Tur Besar",
+                "label": "Rencana 5 Hari"
+            },
+            "request_custom_label": "Kustom",
+            "request_custom_title": "Minta Rencana {{days}} Hari",
+            "request_custom_toast": "Meminta rencana {{days}} hari kustom! Concierge kami akan menghubungi Anda."
         }
+    },
+    "explore_items": {
+        "airport_arrival": "Kedatangan Bandara Incheon",
+        "hotel_checkin": "Check-in Hotel / Menginap"
     },
     "explore_page": {
         "title": "Eksplorasi",
@@ -96,7 +109,11 @@
     },
     "my_page": {
         "bookings": {
-            "title": "Pemesanan Saya"
+            "title": "Pemesanan Saya",
+            "date_time": "Tanggal / Waktu",
+            "area": "Lokasi",
+            "price": "Harga",
+            "new_added": "Pemesanan baru ditambahkan!"
         }
     },
     "community_page": {

@@ -499,7 +499,8 @@
     font-weight: 800;
     cursor: pointer;
     margin-top: 4px;
-    margin-bottom: 100px;
+    margin-bottom: 84px;
+    /* nav height 72px + margin 12px */
     box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
     transition: opacity 0.15s, transform 0.12s;
 }
@@ -514,7 +515,8 @@
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
-    z-index: 200;
+    z-index: 900;
+    /* BottomNav(1000)보다 아래에 두어 메뉴가 보이게 함 */
     display: flex;
     align-items: flex-end;
     animation: fadeIn 0.2s ease;
@@ -539,7 +541,9 @@
     border-top-right-radius: 24px;
     padding: 0 20px 40px;
     animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    max-height: 85vh;
+    max-height: calc(100vh - 120px);
+    margin-bottom: 72px;
+    /* 하단 메뉴 높이만큼 띄움 */
     overflow-y: auto;
 }
 

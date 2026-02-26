@@ -3,46 +3,55 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./login.module.css";
-// import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"; // Future integration
+import { supabase } from "@/lib/supabaseClient";
 
 export default function LoginPage() {
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const [googleLoading, setGoogleLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    // --- Real Supabase Google OAuth ---
+    const handleGoogleLogin = async () => {
+        setGoogleLoading(true);
+        setError(null);
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: `${window.location.origin}/auth/callback`,
+            },
+        });
+        if (error) {
+            setError(error.message);
+            setGoogleLoading(false);
+        }
+        // On success, browser redirects to Google — no need to setLoading(false)
+    };
+
+    // --- Real Supabase Email/Password Sign-in ---
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
 
-        // Mock Login for MVP
-        setTimeout(() => {
-            if (email && password) {
-                // Success
-                console.log("Logged in mock");
-                // Attempt to get name from signup, otherwise use email handle
-                const savedName = localStorage.getItem(`signup_name_${email}`);
-                const userName = savedName || email.split('@')[0];
-                localStorage.setItem('user', JSON.stringify({ name: userName, email }));
-                setLoading(false);
-                router.push('/');
-            } else {
-                setError("Please fill in all fields.");
-                setLoading(false);
-            }
-        }, 1000);
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
-        /* Real Integration Code:
-        const supabase = createClientComponentClient();
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        if (error) setError(error.message);
-        else router.push('/');
-        */
+        if (error) {
+            setError(error.message);
+            setLoading(false);
+            return;
+        }
+
+        if (data.user) {
+            // Persist basic info to localStorage for backward compat with existing UI
+            const name = data.user.user_metadata?.full_name || data.user.user_metadata?.name || email.split('@')[0];
+            localStorage.setItem('user', JSON.stringify({ name, email: data.user.email }));
+        }
+
+        setLoading(false);
+        router.push('/');
     };
 
     return (
@@ -55,6 +64,44 @@ export default function LoginPage() {
                 <div className={styles.header}>
                     <h1 className={styles.title}>Welcome Back</h1>
                     <p className={styles.subTitle}>Sign in to access your K-Trip OS</p>
+                </div>
+
+                {/* Google Login Button */}
+                <button
+                    type="button"
+                    onClick={handleGoogleLogin}
+                    disabled={googleLoading || loading}
+                    style={{
+                        width: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '10px',
+                        padding: '12px',
+                        borderRadius: '12px',
+                        border: '1.5px solid #e2e8f0',
+                        background: '#fff',
+                        cursor: 'pointer',
+                        fontWeight: 600,
+                        fontSize: '0.95rem',
+                        marginBottom: '20px',
+                        color: '#374151',
+                        boxShadow: '0 1px 3px rgba(0,0,0,0.07)',
+                    }}
+                >
+                    <svg width="20" height="20" viewBox="0 0 48 48">
+                        <path fill="#FFC107" d="M43.6 20H24v8h11.3C33.7 33.1 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20c11 0 20-8 20-20 0-1.3-.1-2.7-.4-4z" />
+                        <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 19 13 24 13c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z" />
+                        <path fill="#4CAF50" d="M24 44c5.2 0 10-1.9 13.7-5l-6.3-5.2C29.6 35.6 26.9 36.5 24 36.5c-5.3 0-9.7-3-11.2-7.3l-6.5 5C9.5 40.3 16.3 44 24 44z" />
+                        <path fill="#1976D2" d="M43.6 20H24v8h11.3c-.8 2.3-2.3 4.2-4.2 5.5l6.3 5.2C41.3 35.3 44 30.1 44 24c0-1.3-.1-2.7-.4-4z" />
+                    </svg>
+                    {googleLoading ? "Redirecting..." : "Sign in with Google"}
+                </button>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+                    <div style={{ flex: 1, height: '1px', background: '#e2e8f0' }} />
+                    <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>or</span>
+                    <div style={{ flex: 1, height: '1px', background: '#e2e8f0' }} />
                 </div>
 
                 <form onSubmit={handleLogin}>
@@ -86,7 +133,7 @@ export default function LoginPage() {
 
                     <button
                         type="submit"
-                        disabled={loading}
+                        disabled={loading || googleLoading}
                         className={styles.submitBtn}
                     >
                         {loading ? "Signing in..." : "Sign In"}

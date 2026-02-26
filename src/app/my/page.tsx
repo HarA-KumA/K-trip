@@ -105,7 +105,7 @@ function MyPageContent() {
                 </div>
                 <h1 className="text-2xl font-bold">{userName}</h1>
                 <div className={styles.trustScore}>
-                    {t('my_page.profile.trust_score')}: <span className="text-white font-bold">850</span> ({t('my_page.profile.trust_level_excellent')})
+                    {t('my_page.profile.trust_score')}: <span className="text-black font-bold">850</span> ({t('my_page.profile.trust_level_excellent')})
                 </div>
             </div>
 
@@ -114,7 +114,7 @@ function MyPageContent() {
                 <h2 className="text-lg font-bold mb-4">{t('my_page.bookings.title')}</h2>
 
                 {allBookings.map((booking: any) => (
-                    <div key={booking.id} className={`${styles.ticket} animate-slide-up mb-4`}>
+                    <div key={booking.id} className={`${styles.ticket} mb-4`}>
                         <div className={styles.ticketHeader}>
                             <div>
                                 <div className="text-xs text-gray-500 uppercase font-bold">{booking.category}</div>

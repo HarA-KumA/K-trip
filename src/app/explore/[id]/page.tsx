@@ -40,17 +40,17 @@ export default function BookingDetailPage() {
     };
 
     return (
-        <div className="min-h-screen bg-black text-white pb-24">
+        <div className="min-h-screen bg-white text-black pb-24">
             {/* Header Image */}
-            <div className="relative h-64 w-full bg-gray-800">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black" />
+            <div className="relative h-64 w-full bg-gray-200">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
                 <div className="absolute top-4 left-4 z-10">
                     <button onClick={() => router.back()} className="glass-btn">← {t('common.back')}</button>
                 </div>
                 <div className="absolute bottom-4 left-4 right-4 z-10">
-                    <div className="text-xs text-purple-400 font-bold uppercase mb-1">{t('common.categories.beauty')}</div>
+                    <div className="text-xs text-purple-600 font-bold uppercase mb-1">{t('common.categories.beauty')}</div>
                     <h1 className="text-2xl font-bold">{service.title}</h1>
-                    <p className="text-gray-300 text-sm mt-1">{service.desc}</p>
+                    <p className="text-gray-600 text-sm mt-1">{service.desc}</p>
                 </div>
             </div>
 
@@ -65,7 +65,7 @@ export default function BookingDetailPage() {
                                 onClick={() => setSelectedDate(d.full)}
                                 className={`flex flex-col items-center justify-center min-w-[60px] h-[80px] rounded-2xl border transition-all cursor-pointer ${selectedDate === d.full
                                     ? 'bg-purple-600 border-purple-500 text-white shadow-lg shadow-purple-900/50'
-                                    : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'
+                                    : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50'
                                     }`}
                             >
                                 <span className="text-xs">{d.day}</span>
@@ -77,7 +77,7 @@ export default function BookingDetailPage() {
 
                 {/* Step 2: Select Time */}
                 {selectedDate && (
-                    <div className="mb-8 animate-slide-up">
+                    <div className="mb-8">
                         <h2 className="text-lg font-bold mb-4">{t('booking_detail.select_time')}</h2>
                         <div className="grid grid-cols-3 gap-3">
                             {timeSlots.map(time => (
@@ -85,8 +85,8 @@ export default function BookingDetailPage() {
                                     key={time}
                                     onClick={() => setSelectedTime(time)}
                                     className={`py-3 rounded-xl border text-sm font-medium transition-all ${selectedTime === time
-                                        ? 'bg-white text-black border-white'
-                                        : 'bg-transparent border-gray-700 text-gray-300 hover:border-gray-500'
+                                        ? 'bg-purple-600 text-white border-purple-600'
+                                        : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'
                                         }`}
                                 >
                                     {time}
@@ -98,10 +98,10 @@ export default function BookingDetailPage() {
             </div>
 
             {/* Bottom Sticky Action */}
-            <div className="fixed bottom-0 left-0 w-full bg-black/80 backdrop-blur-xl border-t border-white/10 p-6 flex justify-between items-center z-50">
+            <div className="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-xl border-t border-gray-200 p-6 flex justify-between items-center z-50">
                 <div>
-                    <div className="text-xs text-gray-400">{t('booking_detail.total_price')}</div>
-                    <div className="text-lg font-bold text-white">₩{service.price}</div>
+                    <div className="text-xs text-gray-500">{t('booking_detail.total_price')}</div>
+                    <div className="text-lg font-bold text-black">₩{service.price}</div>
                 </div>
                 <button
                     disabled={!selectedDate || !selectedTime}

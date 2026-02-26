@@ -39,7 +39,12 @@ export default function LoginPage() {
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
         if (error) {
-            setError(error.message);
+            // Supabase returns 'Invalid login credentials' when email is unconfirmed
+            if (error.message.toLowerCase().includes('invalid login credentials')) {
+                setError('로그인 실패: 이메일/비밀번호를 확인하거나, Supabase에서 "Confirm email" 설정을 꺼주세요.');
+            } else {
+                setError(error.message);
+            }
             setLoading(false);
             return;
         }

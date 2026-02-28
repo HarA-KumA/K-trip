@@ -6,6 +6,7 @@ import LanguagePicker from './components/LanguagePicker';
 import CurrencySelector from './components/CurrencySelector';
 import WeatherWidget from './components/WeatherWidget';
 import styles from './home.module.css';
+import { supabase } from '@/lib/supabaseClient';
 
 import { useTranslation } from 'react-i18next';
 import { useTrip } from '@/lib/contexts/TripContext';
@@ -216,6 +217,7 @@ export default function HomePage() {
   }, [RECOMMENDED_PLANS, days]);
 
   useEffect(() => {
+    // Read localStorage immediately for fast initial render
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('user');
       if (stored) {
@@ -226,6 +228,24 @@ export default function HomePage() {
       }
     }
 
+    // Keep in sync with Supabase session in real-time
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        const user = session.user;
+        const name =
+          user.user_metadata?.full_name ||
+          user.user_metadata?.name ||
+          user.email?.split('@')[0] ||
+          'User';
+        localStorage.setItem('user', JSON.stringify({ name, email: user.email }));
+        setUserName(name);
+      } else {
+        localStorage.removeItem('user');
+        setUserName(null);
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   // Lock scroll when modal is open
@@ -432,7 +452,7 @@ export default function HomePage() {
             <button className={`${styles.navBtn} ${styles.navBtnPrimary}`} onClick={() => router.push('/auth/login')}>{t('common.login')}</button>
           </>
         ) : (
-          <button className={styles.navBtn} onClick={() => { localStorage.removeItem('user'); setUserName(null); }}>{userName}</button>
+          <button className={styles.navBtn} onClick={async () => { await supabase.auth.signOut(); localStorage.removeItem('user'); setUserName(null); }}>{userName}</button>
         )}
       </div>
 

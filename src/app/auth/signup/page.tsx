@@ -36,11 +36,13 @@ export default function SignupPage() {
     const [countryCode, setCountryCode] = useState("en");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
 
     const handleSignup = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
+        setSuccess(null);
 
         const selectedLang = LANGUAGES.find(l => l.code === countryCode);
         const i18nKey = selectedLang ? toI18nKey(selectedLang.code) : 'en';
@@ -51,7 +53,7 @@ export default function SignupPage() {
             password,
             options: {
                 data: {
-                    full_name: name,   // stored in raw_user_meta_data → picked up by the trigger
+                    full_name: name, // stored in raw_user_meta_data
                 },
             },
         });
@@ -62,36 +64,25 @@ export default function SignupPage() {
             return;
         }
 
-        // 2. If Supabase returns a session immediately (email confirmation disabled),
-        //    the user is already logged in — save to localStorage and go home.
+        // 2. Supabase returns a session immediately when email confirmation is disabled.
+        //    In that case the user is already logged in — save to localStorage and go home.
         if (data.session) {
             localStorage.setItem('user', JSON.stringify({ name, email }));
             localStorage.setItem('ktrip_lang', i18nKey);
-            router.push('/');
-            return;
-        }
-
-        // 3. If email confirmation is enabled, Supabase won't return a session yet.
-        //    Sign in immediately after sign-up so the user doesn't have to log in again.
-        const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
-            email,
-            password,
-        });
-
-        if (signInError) {
-            // Sign-in failed (e.g. email not confirmed yet). Send to login page with message.
-            setError("Account created! Please check your email to verify, then log in.");
             setLoading(false);
+            router.push('/');
             return;
         }
 
-        if (signInData.session) {
-            localStorage.setItem('user', JSON.stringify({ name, email }));
-            localStorage.setItem('ktrip_lang', i18nKey);
-            router.push('/');
-        }
-
+        // 3. Email confirmation is enabled: session is null.
+        //    Do NOT attempt an immediate signInWithPassword — it will always fail
+        //    because the email hasn't been verified yet.
+        //    Just show a clear message and redirect to login.
         setLoading(false);
+        setSuccess("계정이 생성됐어요! 이메일을 확인하고 인증 후 로그인해주세요.");
+        setTimeout(() => {
+            router.push('/auth/login');
+        }, 3000);
     };
 
     return (
@@ -166,9 +157,15 @@ export default function SignupPage() {
                         </div>
                     )}
 
+                    {success && (
+                        <div style={{ color: '#22c55e', fontSize: '0.875rem', textAlign: 'center', marginBottom: '16px', padding: '10px', background: '#f0fdf4', borderRadius: '8px' }}>
+                            ✅ {success}
+                        </div>
+                    )}
+
                     <button
                         type="submit"
-                        disabled={loading}
+                        disabled={loading || !!success}
                         className={styles.submitBtn}
                     >
                         {loading ? "Creating Account..." : t('common.signup')}

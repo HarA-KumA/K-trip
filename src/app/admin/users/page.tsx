@@ -11,6 +11,7 @@ interface Profile {
     nickname: string | null;
     is_admin: boolean;
     created_at: string;
+    partnerStatus?: 'pending' | 'approved' | 'rejected' | null;
 }
 
 function AdminUsersContent() {
@@ -20,8 +21,8 @@ function AdminUsersContent() {
     const [myId, setMyId] = useState<string>('');
     const [profiles, setProfiles] = useState<Profile[]>([]);
     const [loading, setLoading] = useState(true);
-    const [tab, setTab] = useState<'all' | 'admin'>(
-        (searchParams.get('tab') as 'all' | 'admin') ?? 'all'
+    const [tab, setTab] = useState<'all' | 'admin' | 'partner' | 'normal'>(
+        (searchParams.get('tab') as 'all' | 'admin' | 'partner' | 'normal') ?? 'all'
     );
     const [search, setSearch] = useState('');
     const [confirmTarget, setConfirmTarget] = useState<Profile | null>(null);
@@ -46,17 +47,30 @@ function AdminUsersContent() {
 
     const fetchProfiles = useCallback(async () => {
         setLoading(true);
-        let query = supabase
-            .from('profiles')
-            .select('id, email, nickname, is_admin, created_at')
-            .order('created_at', { ascending: false });
 
-        if (tab === 'admin') query = query.eq('is_admin', true);
+        // profiles + partners 동시 조회
+        const [{ data: profileData }, { data: partnerData }] = await Promise.all([
+            supabase
+                .from('profiles')
+                .select('id, email, nickname, is_admin, created_at')
+                .order('created_at', { ascending: false }),
+            supabase
+                .from('partners')
+                .select('email, status'),
+        ]);
 
-        const { data } = await query;
-        setProfiles((data as Profile[]) || []);
+        // partners 이메일 → 상태 맵
+        const partnerMap = new Map<string, string>();
+        (partnerData ?? []).forEach((p: any) => partnerMap.set(p.email, p.status));
+
+        const merged: Profile[] = (profileData ?? []).map((p: any) => ({
+            ...p,
+            partnerStatus: partnerMap.get(p.email) ?? null,
+        }));
+
+        setProfiles(merged);
         setLoading(false);
-    }, [tab]);
+    }, []);
 
     useEffect(() => {
         if (isAdmin) fetchProfiles();
@@ -83,11 +97,20 @@ function AdminUsersContent() {
         .filter(p =>
             p.email?.toLowerCase().includes(search.toLowerCase()) ||
             (p.nickname ?? '').toLowerCase().includes(search.toLowerCase())
-        )
-        .sort((a, b) => Number(b.is_admin) - Number(a.is_admin)); // 관리자 먼저
+        );
 
-    const adminList = filtered.filter(p => p.is_admin);
-    const normalList = filtered.filter(p => !p.is_admin);
+    // 탭 필터링
+    const tabFiltered = tab === 'admin'
+        ? filtered.filter(p => p.is_admin)
+        : tab === 'partner'
+            ? filtered.filter(p => !p.is_admin && p.partnerStatus === 'approved')
+            : tab === 'normal'
+                ? filtered.filter(p => !p.is_admin && p.partnerStatus !== 'approved')
+                : filtered;
+
+    const adminList = tabFiltered.filter(p => p.is_admin);
+    const partnerList = tabFiltered.filter(p => !p.is_admin && p.partnerStatus === 'approved');
+    const normalList = tabFiltered.filter(p => !p.is_admin && p.partnerStatus !== 'approved');
 
     // 접근 제어
     if (isAdmin === null) {
@@ -121,10 +144,16 @@ function AdminUsersContent() {
             {/* Tab */}
             <div className={styles.tabBar}>
                 <button className={`${styles.tab} ${tab === 'all' ? styles.tabActive : ''}`} onClick={() => setTab('all')}>
-                    👥 전체 회원
+                    👥 전체
                 </button>
                 <button className={`${styles.tab} ${tab === 'admin' ? styles.tabActive : ''}`} onClick={() => setTab('admin')}>
-                    🛡️ 관리자만
+                    🛡️ 관리자
+                </button>
+                <button className={`${styles.tab} ${tab === 'partner' ? styles.tabActive : ''}`} onClick={() => setTab('partner')}>
+                    🤝 협력업체
+                </button>
+                <button className={`${styles.tab} ${tab === 'normal' ? styles.tabActive : ''}`} onClick={() => setTab('normal')}>
+                    👤 일반
                 </button>
             </div>
 
@@ -207,8 +236,44 @@ function AdminUsersContent() {
                     </>
                 )}
 
+                {/* 협력업체 섹션 */}
+                {!loading && partnerList.length > 0 && tab !== 'admin' && (
+                    <>
+                        <div style={{
+                            fontSize: '0.72rem', fontWeight: 700, color: '#d97706',
+                            textTransform: 'uppercase', letterSpacing: '0.08em',
+                            margin: '16px 0 8px', display: 'flex', alignItems: 'center', gap: 6,
+                        }}>
+                            🤝 협력업체 &nbsp;
+                            <span style={{ background: '#fef3c7', color: '#92400e', padding: '1px 8px', borderRadius: 999, fontSize: '0.7rem' }}>{partnerList.length}명</span>
+                        </div>
+                        {partnerList.map((profile, idx) => (
+                            <div key={profile.id} className={styles.card} style={{
+                                borderLeft: '4px solid #f59e0b',
+                                background: 'rgba(245,158,11,0.04)',
+                            }}>
+                                <div className={styles.avatar} style={{ background: 'linear-gradient(135deg, #f59e0b, #d97706)' }}>
+                                    {(profile.nickname || profile.email || '?')[0].toUpperCase()}
+                                </div>
+                                <div className={styles.userInfo}>
+                                    <div className={styles.userName}>{profile.nickname || '(닉네임 없음)'}</div>
+                                    <div className={styles.userEmail}>{profile.email}</div>
+                                    <div style={{ fontSize: '0.72rem', color: '#d97706', marginTop: 2 }}>
+                                        가입: {formatDate(profile.created_at)}
+                                    </div>
+                                </div>
+                                <span style={{
+                                    background: '#fef3c7', color: '#92400e',
+                                    fontSize: '0.72rem', fontWeight: 700,
+                                    padding: '4px 10px', borderRadius: 999, flexShrink: 0,
+                                }}>🤝 협력업체</span>
+                            </div>
+                        ))}
+                    </>
+                )}
+
                 {/* 일반 사용자 섹션 */}
-                {!loading && normalList.length > 0 && tab !== 'admin' && (
+                {!loading && normalList.length > 0 && tab !== 'admin' && tab !== 'partner' && (
                     <>
                         <div style={{
                             fontSize: '0.72rem', fontWeight: 700, color: 'var(--gray-400)',

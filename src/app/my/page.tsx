@@ -18,6 +18,8 @@ function MyPageContent() {
     const [userName, setUserName] = useState("Jessie Kim");
     const [myPosts, setMyPosts] = useState<any[]>([]);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [partnerStatus, setPartnerStatus] = useState<null | 'pending' | 'approved' | 'rejected' | 'none'>(null);
+    const [userEmail, setUserEmail] = useState<string>('');
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -30,16 +32,29 @@ function MyPageContent() {
             }
         }
 
-        // 관리자 여부 확인
+        // 관리자 여부 확인 + 협력업체 신청 상태 확인
         const checkAdmin = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) return;
-            const { data } = await supabase
+
+            const email = user.email ?? '';
+            setUserEmail(email);
+
+            const { data: profile } = await supabase
                 .from('profiles')
                 .select('is_admin')
                 .eq('id', user.id)
                 .maybeSingle();
-            if (data?.is_admin) setIsAdmin(true);
+            if (profile?.is_admin) setIsAdmin(true);
+
+            // 협력업체 신청 상태 확인
+            const { data: partner } = await supabase
+                .from('partners')
+                .select('status')
+                .eq('email', email)
+                .maybeSingle();
+
+            setPartnerStatus(partner ? partner.status : 'none');
         };
         checkAdmin();
     }, []);
@@ -193,6 +208,91 @@ function MyPageContent() {
                     </div>
                 )}
             </section>
+
+            {/* 협력업체 신청 섹션 */}
+            {partnerStatus !== null && (
+                <section style={{ marginTop: 28, marginBottom: 4 }}>
+                    <h2 className="text-lg font-bold" style={{ marginBottom: 12 }}>🤝 협력업체 신청</h2>
+
+                    {partnerStatus === 'none' && (
+                        <div
+                            onClick={() => router.push('/auth/partner-signup')}
+                            style={{
+                                display: 'flex', alignItems: 'center', gap: 12,
+                                background: 'linear-gradient(135deg, rgba(245,158,11,0.08), rgba(217,119,6,0.05))',
+                                border: '1.5px solid rgba(245,158,11,0.3)',
+                                borderRadius: 16, padding: '16px 18px',
+                                cursor: 'pointer', transition: 'transform 0.15s',
+                            }}
+                            onMouseDown={e => (e.currentTarget.style.transform = 'scale(0.98)')}
+                            onMouseUp={e => (e.currentTarget.style.transform = 'scale(1)')}
+                        >
+                            <div style={{
+                                width: 44, height: 44, borderRadius: 12,
+                                background: 'rgba(245,158,11,0.12)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                fontSize: '1.4rem', flexShrink: 0,
+                            }}>🤝</div>
+                            <div style={{ flex: 1 }}>
+                                <div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: 2 }}>파트너로 등록하기</div>
+                                <div style={{ fontSize: '0.78rem', color: 'var(--gray-500)' }}>K-Trip 협력업체로 가입해 더 많은 여행객에게 소개되세요</div>
+                            </div>
+                            <span style={{ color: '#f59e0b', fontSize: '1rem', fontWeight: 700 }}>›</span>
+                        </div>
+                    )}
+
+                    {partnerStatus === 'pending' && (
+                        <div style={{
+                            display: 'flex', alignItems: 'center', gap: 12,
+                            background: 'rgba(245,158,11,0.06)', border: '1.5px solid rgba(245,158,11,0.2)',
+                            borderRadius: 16, padding: '16px 18px',
+                        }}>
+                            <div style={{ fontSize: '1.6rem' }}>⏳</div>
+                            <div>
+                                <div style={{ fontWeight: 700, fontSize: '0.92rem', marginBottom: 2 }}>심사 중</div>
+                                <div style={{ fontSize: '0.78rem', color: '#92400e' }}>신청서를 검토 중입니다. 관리자 승인 후 안내드립니다.</div>
+                            </div>
+                        </div>
+                    )}
+
+                    {partnerStatus === 'approved' && (
+                        <div style={{
+                            display: 'flex', alignItems: 'center', gap: 12,
+                            background: 'rgba(16,185,129,0.06)', border: '1.5px solid rgba(16,185,129,0.25)',
+                            borderRadius: 16, padding: '16px 18px',
+                        }}>
+                            <div style={{ fontSize: '1.6rem' }}>✅</div>
+                            <div>
+                                <div style={{ fontWeight: 700, fontSize: '0.92rem', color: '#065f46', marginBottom: 2 }}>협력업체 승인 완료</div>
+                                <div style={{ fontSize: '0.78rem', color: '#065f46' }}>K-Trip 파트너로 등록되었습니다.</div>
+                            </div>
+                        </div>
+                    )}
+
+                    {partnerStatus === 'rejected' && (
+                        <div style={{
+                            background: 'rgba(239,68,68,0.05)', border: '1.5px solid rgba(239,68,68,0.2)',
+                            borderRadius: 16, padding: '16px 18px',
+                        }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
+                                <div style={{ fontSize: '1.6rem' }}>❌</div>
+                                <div>
+                                    <div style={{ fontWeight: 700, fontSize: '0.92rem', color: '#dc2626', marginBottom: 2 }}>신청 거절됨</div>
+                                    <div style={{ fontSize: '0.78rem', color: '#dc2626' }}>신청이 거절되었습니다. 내용 수정 후 재신청하세요.</div>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => router.push('/auth/partner-signup')}
+                                style={{
+                                    width: '100%', padding: '10px', background: '#dc2626', color: 'white',
+                                    border: 'none', borderRadius: 10, fontWeight: 700, fontSize: '0.88rem',
+                                    cursor: 'pointer',
+                                }}
+                            >재신청하기</button>
+                        </div>
+                    )}
+                </section>
+            )}
 
             {/* 관리자 전용 섹션 - isAdmin일 때만 표시 */}
             {isAdmin && (

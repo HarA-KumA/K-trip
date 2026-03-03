@@ -76,10 +76,15 @@ export default function AdminUsersPage() {
         catch { return iso; }
     };
 
-    const filtered = profiles.filter(p =>
-        p.email?.toLowerCase().includes(search.toLowerCase()) ||
-        (p.nickname ?? '').toLowerCase().includes(search.toLowerCase())
-    );
+    const filtered = profiles
+        .filter(p =>
+            p.email?.toLowerCase().includes(search.toLowerCase()) ||
+            (p.nickname ?? '').toLowerCase().includes(search.toLowerCase())
+        )
+        .sort((a, b) => Number(b.is_admin) - Number(a.is_admin)); // 관리자 먼저
+
+    const adminList = filtered.filter(p => p.is_admin);
+    const normalList = filtered.filter(p => !p.is_admin);
 
     // 접근 제어
     if (isAdmin === null) {
@@ -151,43 +156,87 @@ export default function AdminUsersPage() {
                     <div className={styles.empty}>검색 결과가 없습니다.</div>
                 )}
 
-                {!loading && filtered.map((profile, idx) => (
-                    <div key={profile.id} className={styles.card}>
-                        {/* 아바타 */}
-                        <div
-                            className={styles.avatar}
-                            style={{ background: `hsl(${(idx * 53) % 360}, 65%, 58%)` }}
-                        >
-                            {(profile.nickname || profile.email || '?')[0].toUpperCase()}
-                        </div>
+                {!loading && filtered.length === 0 && (
+                    <div className={styles.empty}>검색 결과가 없습니다.</div>
+                )}
 
-                        <div className={styles.userInfo}>
-                            <div className={styles.userName}>
-                                {profile.nickname || '(닉네임 없음)'}
-                                {profile.id === myId && (
-                                    <span style={{ marginLeft: 6, fontSize: '0.7rem', background: '#dbeafe', color: '#1d4ed8', padding: '1px 6px', borderRadius: 999, fontWeight: 700 }}>나</span>
-                                )}
-                            </div>
-                            <div className={styles.userEmail}>{profile.email}</div>
-                            <div style={{ fontSize: '0.72rem', color: 'var(--gray-400)', marginTop: 2 }}>
-                                가입: {formatDate(profile.created_at)}
-                            </div>
+                {/* 관리자 섹션 */}
+                {!loading && adminList.length > 0 && (
+                    <>
+                        <div style={{
+                            fontSize: '0.72rem', fontWeight: 700, color: '#7c3aed',
+                            textTransform: 'uppercase', letterSpacing: '0.08em',
+                            marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6,
+                        }}>
+                            🛡️ 관리자 &nbsp;
+                            <span style={{ background: '#ede9fe', color: '#7c3aed', padding: '1px 8px', borderRadius: 999, fontSize: '0.7rem' }}>{adminList.length}명</span>
                         </div>
+                        {adminList.map((profile, idx) => (
+                            <div key={profile.id} className={styles.card} style={{
+                                borderLeft: '4px solid #7c3aed',
+                                background: 'rgba(124,58,237,0.04)',
+                            }}>
+                                <div className={styles.avatar} style={{ background: `linear-gradient(135deg, #7c3aed, #6d28d9)` }}>
+                                    {(profile.nickname || profile.email || '?')[0].toUpperCase()}
+                                </div>
+                                <div className={styles.userInfo}>
+                                    <div className={styles.userName}>
+                                        {profile.nickname || '(닉네임 없음)'}
+                                        {profile.id === myId && (
+                                            <span style={{ marginLeft: 6, fontSize: '0.7rem', background: '#dbeafe', color: '#1d4ed8', padding: '1px 6px', borderRadius: 999, fontWeight: 700 }}>나</span>
+                                        )}
+                                    </div>
+                                    <div className={styles.userEmail}>{profile.email}</div>
+                                    <div style={{ fontSize: '0.72rem', color: '#a78bfa', marginTop: 2 }}>
+                                        가입: {formatDate(profile.created_at)}
+                                    </div>
+                                </div>
+                                <button
+                                    className={`${styles.adminToggle} ${styles.adminOn}`}
+                                    onClick={() => { if (profile.id !== myId) setConfirmTarget(profile); }}
+                                    disabled={profile.id === myId}
+                                    title={profile.id === myId ? '본인 권한은 변경할 수 없습니다' : '권한 해제'}
+                                >
+                                    🛡️ 관리자
+                                </button>
+                            </div>
+                        ))}
+                    </>
+                )}
 
-                        {/* 관리자 토글 버튼 */}
-                        <button
-                            className={`${styles.adminToggle} ${profile.is_admin ? styles.adminOn : styles.adminOff}`}
-                            onClick={() => {
-                                if (profile.id === myId) return; // 본인 권한 해제 방지
-                                setConfirmTarget(profile);
-                            }}
-                            disabled={profile.id === myId}
-                            title={profile.id === myId ? '본인 권한은 변경할 수 없습니다' : ''}
-                        >
-                            {profile.is_admin ? '🛡️ 관리자' : '일반'}
-                        </button>
-                    </div>
-                ))}
+                {/* 일반 사용자 섹션 */}
+                {!loading && normalList.length > 0 && tab !== 'admin' && (
+                    <>
+                        <div style={{
+                            fontSize: '0.72rem', fontWeight: 700, color: 'var(--gray-400)',
+                            textTransform: 'uppercase', letterSpacing: '0.08em',
+                            margin: '16px 0 8px', display: 'flex', alignItems: 'center', gap: 6,
+                        }}>
+                            👤 일반 사용자 &nbsp;
+                            <span style={{ background: 'var(--gray-100)', color: 'var(--gray-500)', padding: '1px 8px', borderRadius: 999, fontSize: '0.7rem' }}>{normalList.length}명</span>
+                        </div>
+                        {normalList.map((profile, idx) => (
+                            <div key={profile.id} className={styles.card}>
+                                <div className={styles.avatar} style={{ background: `hsl(${(idx * 53) % 360}, 60%, 58%)` }}>
+                                    {(profile.nickname || profile.email || '?')[0].toUpperCase()}
+                                </div>
+                                <div className={styles.userInfo}>
+                                    <div className={styles.userName}>{profile.nickname || '(닉네임 없음)'}</div>
+                                    <div className={styles.userEmail}>{profile.email}</div>
+                                    <div style={{ fontSize: '0.72rem', color: 'var(--gray-400)', marginTop: 2 }}>
+                                        가입: {formatDate(profile.created_at)}
+                                    </div>
+                                </div>
+                                <button
+                                    className={`${styles.adminToggle} ${styles.adminOff}`}
+                                    onClick={() => setConfirmTarget(profile)}
+                                >
+                                    일반
+                                </button>
+                            </div>
+                        ))}
+                    </>
+                )}
             </div>
 
             {/* 확인 모달 */}

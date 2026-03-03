@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
-import styles from './admin-partners.module.css';
+import styles from '../admin.module.css';
 
 const BUSINESS_TYPE_LABELS: Record<string, string> = {
     hotel: '🏨 호텔/숙박',
@@ -175,26 +175,11 @@ export default function AdminPartnersPage() {
             {/* Header */}
             <header className={styles.header}>
                 <button
-                    onClick={() => router.back()}
+                    onClick={() => router.push('/admin')}
                     style={{ background: 'none', border: 'none', fontSize: '1.4rem', cursor: 'pointer', color: 'var(--foreground)' }}
                 >←</button>
                 <h1 className={styles.headerTitle}>🤝 협력업체 관리</h1>
-                <button
-                    onClick={() => router.push('/admin/accounts')}
-                    style={{
-                        marginLeft: 'auto',
-                        background: 'rgba(99,102,241,0.08)',
-                        border: '1.5px solid rgba(99,102,241,0.25)',
-                        borderRadius: '10px',
-                        padding: '6px 12px',
-                        cursor: 'pointer',
-                        fontSize: '0.78rem',
-                        fontWeight: 700,
-                        color: '#6366f1',
-                    }}
-                >
-                    👤 계정관리
-                </button>
+                <span className={styles.adminBadge}>ADMIN</span>
             </header>
 
             {/* Tab Bar */}

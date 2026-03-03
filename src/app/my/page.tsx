@@ -17,6 +17,7 @@ function MyPageContent() {
 
     const [userName, setUserName] = useState("Jessie Kim");
     const [myPosts, setMyPosts] = useState<any[]>([]);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -28,6 +29,19 @@ function MyPageContent() {
                 // Ignore parse errors
             }
         }
+
+        // 관리자 여부 확인
+        const checkAdmin = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) return;
+            const { data } = await supabase
+                .from('profiles')
+                .select('is_admin')
+                .eq('id', user.id)
+                .maybeSingle();
+            if (data?.is_admin) setIsAdmin(true);
+        };
+        checkAdmin();
     }, []);
 
     useEffect(() => {
@@ -179,6 +193,56 @@ function MyPageContent() {
                     </div>
                 )}
             </section>
+
+            {/* 관리자 전용 섹션 - isAdmin일 때만 표시 */}
+            {isAdmin && (
+                <section style={{ marginTop: 28 }}>
+                    <div style={{
+                        display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12,
+                    }}>
+                        <h2 className="text-lg font-bold" style={{ margin: 0 }}>⚙️ 관리자 메뉴</h2>
+                        <span style={{
+                            background: 'linear-gradient(135deg, #7c3aed, #6d28d9)',
+                            color: 'white', fontSize: '0.68rem', fontWeight: 700,
+                            padding: '2px 8px', borderRadius: 999,
+                        }}>ADMIN</span>
+                    </div>
+
+                    {[
+                        { icon: '📊', label: '관리자 대시보드', desc: '통계 및 전체 메뉴', path: '/admin' },
+                        { icon: '🤝', label: '협력업체 관리', desc: '가입 신청 승인 · 거절', path: '/admin/partners' },
+                        { icon: '🛡️', label: '관리자 계정 관리', desc: '권한 부여 · 해제', path: '/admin/users' },
+                    ].map((item) => (
+                        <div
+                            key={item.path}
+                            onClick={() => router.push(item.path)}
+                            style={{
+                                display: 'flex', alignItems: 'center', gap: 12,
+                                background: 'white', borderRadius: 14,
+                                border: '1px solid rgba(124,58,237,0.15)',
+                                padding: '13px 16px', marginBottom: 8,
+                                cursor: 'pointer',
+                                boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+                                transition: 'transform 0.15s',
+                            }}
+                            onMouseDown={e => (e.currentTarget.style.transform = 'scale(0.98)')}
+                            onMouseUp={e => (e.currentTarget.style.transform = 'scale(1)')}
+                        >
+                            <div style={{
+                                width: 40, height: 40, borderRadius: 10,
+                                background: 'rgba(124,58,237,0.08)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                fontSize: '1.2rem', flexShrink: 0,
+                            }}>{item.icon}</div>
+                            <div style={{ flex: 1 }}>
+                                <div style={{ fontWeight: 700, fontSize: '0.92rem' }}>{item.label}</div>
+                                <div style={{ fontSize: '0.75rem', color: 'var(--gray-400)', marginTop: 1 }}>{item.desc}</div>
+                            </div>
+                            <span style={{ color: 'var(--gray-300)', fontSize: '1rem' }}>›</span>
+                        </div>
+                    ))}
+                </section>
+            )}
         </div>
     );
 }

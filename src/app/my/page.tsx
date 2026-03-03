@@ -119,11 +119,6 @@ function MyPageContent() {
 
     return (
         <div className={styles.container}>
-            {/* Settings Icon */}
-            <div style={{ position: 'absolute', top: 24, right: 24 }}>
-                ⚙️
-            </div>
-
             {/* Profile Header */}
             <div className={styles.profileSection}>
                 <div className={styles.avatarContainer}>

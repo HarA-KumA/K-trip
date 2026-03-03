@@ -9,17 +9,20 @@ export async function POST(request: Request) {
     }
 
     try {
+        // language 파라미터가 없으면 Google이 현지 언어로 장소명 반환
+        const headers: Record<string, string> = {
+            'Content-Type': 'application/json',
+            'X-Goog-Api-Key': apiKey,
+        };
+        // 알파 인터페이스 언어(language)를 넘기면 해당 언어로 들어오므로 생략 → 현지어 표시
+        // (ex. 도쿠 검색 → 東京, 볼리비아 검색 → Bali)
+
         const response = await fetch('https://places.googleapis.com/v1/places:autocomplete', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Goog-Api-Key': apiKey,
-                'X-Goog-Language-Code': language || 'en',
-            },
+            headers,
             body: JSON.stringify({
                 input: input,
-                includedRegionCodes: ['kr'],
-                // Optional: locationBias or locationRestriction
+                // includedRegionCodes 제거: 전 세계 장소 검색 허용
             }),
         });
 

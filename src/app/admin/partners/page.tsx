@@ -179,7 +179,22 @@ export default function AdminPartnersPage() {
                     style={{ background: 'none', border: 'none', fontSize: '1.4rem', cursor: 'pointer', color: 'var(--foreground)' }}
                 >←</button>
                 <h1 className={styles.headerTitle}>🤝 협력업체 관리</h1>
-                <span className={styles.badge}>관리자</span>
+                <button
+                    onClick={() => router.push('/admin/accounts')}
+                    style={{
+                        marginLeft: 'auto',
+                        background: 'rgba(99,102,241,0.08)',
+                        border: '1.5px solid rgba(99,102,241,0.25)',
+                        borderRadius: '10px',
+                        padding: '6px 12px',
+                        cursor: 'pointer',
+                        fontSize: '0.78rem',
+                        fontWeight: 700,
+                        color: '#6366f1',
+                    }}
+                >
+                    👤 계정관리
+                </button>
             </header>
 
             {/* Tab Bar */}
@@ -225,8 +240,8 @@ export default function AdminPartnersPage() {
                                 </div>
                             </div>
                             <span className={`${styles.statusBadge} ${partner.status === 'pending' ? styles.statusPending :
-                                    partner.status === 'approved' ? styles.statusApproved :
-                                        styles.statusRejected
+                                partner.status === 'approved' ? styles.statusApproved :
+                                    styles.statusRejected
                                 }`}>
                                 {partner.status === 'pending' ? '대기' : partner.status === 'approved' ? '승인' : '거절'}
                             </span>

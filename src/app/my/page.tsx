@@ -118,21 +118,21 @@ function MyPageContent() {
                     <div className={styles.levelBadge}>Lv.3</div>
                 </div>
                 <h1 className="text-2xl font-bold">{userName}</h1>
-                <div className={styles.trustScore}>
+                <div className={styles.trustScore} suppressHydrationWarning>
                     {t('my_page.profile.trust_score')}: <span className="text-black font-bold">850</span> ({t('my_page.profile.trust_level_excellent')})
                 </div>
             </div>
 
             {/* My Bookings */}
             <section className="mb-8">
-                <h2 className="text-lg font-bold mb-4">{t('my_page.bookings.title')}</h2>
+                <h2 className="text-lg font-bold mb-4" suppressHydrationWarning>{t('my_page.bookings.title')}</h2>
 
                 {allBookings.map((booking: any) => (
                     <div key={booking.id} className={`${styles.ticket} mb-4`}>
                         <div className={styles.ticketHeader}>
                             <div>
                                 <div className="text-xs text-gray-500 uppercase font-bold">{booking.category}</div>
-                                <div className={`${styles.statusLabel} ${booking.status === 'confirmed' ? styles.confirmed : ''}`}>
+                                <div className={`${styles.statusLabel} ${booking.status === 'confirmed' ? styles.confirmed : ''}`} suppressHydrationWarning>
                                     {t(`planner_page.status.${booking.status}`)}
                                 </div>
                             </div>
@@ -142,13 +142,13 @@ function MyPageContent() {
                             <h3 className="text-xl font-bold mb-1">{booking.title}</h3>
                             <div className="text-sm text-gray-600 mb-2">{booking.date}</div>
                             {booking.area && (
-                                <div className="text-xs text-gray-400">{t('my_page.bookings.area', { defaultValue: 'Area' })}: {booking.area}</div>
+                                <div className="text-xs text-gray-400" suppressHydrationWarning>{t('my_page.bookings.area', { defaultValue: 'Area' })}: {booking.area}</div>
                             )}
                             {booking.price && (
-                                <div className="text-xs text-gray-400">{t('my_page.bookings.price', { defaultValue: 'Price' })}: ₩{booking.price}</div>
+                                <div className="text-xs text-gray-400" suppressHydrationWarning>{t('my_page.bookings.price', { defaultValue: 'Price' })}: ₩{booking.price}</div>
                             )}
                             {booking.isNew && (
-                                <div className="mt-2 text-xs text-purple font-bold">✨ {t('my_page.bookings.new_added', { defaultValue: 'New Booking Added!' })}</div>
+                                <div className="mt-2 text-xs text-purple font-bold" suppressHydrationWarning>✨ {t('my_page.bookings.new_added', { defaultValue: 'New Booking Added!' })}</div>
                             )}
                         </div>
                         {/* Dotted Line */}
@@ -168,9 +168,9 @@ function MyPageContent() {
 
             {/* My Community Posts */}
             <section>
-                <h2 className="text-lg font-bold mb-4">{t('my_page.community.title', { defaultValue: 'My Community Posts' })}</h2>
+                <h2 className="text-lg font-bold mb-4" suppressHydrationWarning>{t('my_page.community.title', { defaultValue: 'My Community Posts' })}</h2>
                 {myPosts.length === 0 ? (
-                    <div className="text-sm text-gray-500 text-center py-6 bg-white rounded-xl shadow-sm border border-gray-100">
+                    <div className="text-sm text-gray-500 text-center py-6 bg-white rounded-xl shadow-sm border border-gray-100" suppressHydrationWarning>
                         {t('my_page.community.empty', { defaultValue: 'No community posts written yet.' })}
                     </div>
                 ) : (
@@ -178,7 +178,7 @@ function MyPageContent() {
                         {myPosts.map(post => (
                             <div key={post.id} className={styles.postCard} onClick={() => router.push(`/community/${post.id}`)}>
                                 <div className={styles.postHeader}>
-                                    <div className={`${styles.badge} ${styles['badge_' + post.type]}`}>
+                                    <div className={`${styles.badge} ${styles['badge_' + post.type]}`} suppressHydrationWarning>
                                         {t(`community_page.type.${post.type.toUpperCase()}`, { defaultValue: post.type.toUpperCase() })}
                                     </div>
                                     <div className={styles.postTime}>{post.time}</div>

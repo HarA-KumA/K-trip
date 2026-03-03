@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, useCallback, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import styles from '../admin.module.css';
 
@@ -33,11 +33,14 @@ interface Partner {
     reviewed_at: string | null;
 }
 
-export default function AdminPartnersPage() {
+function AdminPartnersContent() {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [partners, setPartners] = useState<Partner[]>([]);
     const [loading, setLoading] = useState(true);
-    const [tab, setTab] = useState<PartnerStatus | 'all'>('pending');
+    const [tab, setTab] = useState<PartnerStatus | 'all'>(
+        (searchParams.get('tab') as PartnerStatus | 'all') ?? 'pending'
+    );
     const [actionLoading, setActionLoading] = useState<number | null>(null);
     const [rejectTarget, setRejectTarget] = useState<Partner | null>(null);
     const [rejectReason, setRejectReason] = useState('');
@@ -331,5 +334,18 @@ export default function AdminPartnersPage() {
                 </div>
             )}
         </div>
+    );
+}
+
+export default function AdminPartnersPage() {
+    return (
+        <Suspense fallback={
+            <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--background)' }}>
+                <div style={{ width: 36, height: 36, border: '3px solid var(--primary)', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+                <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+            </div>
+        }>
+            <AdminPartnersContent />
+        </Suspense>
     );
 }

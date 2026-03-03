@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
-import styles from '../admin.module.css';
+import styles from './admin.module.css';
 
 interface Stats {
     totalUsers: number;
@@ -70,10 +70,10 @@ export default function AdminDashboard() {
     }
 
     const STAT_CARDS = [
-        { icon: '👥', value: stats.totalUsers, label: '전체 회원', color: '#3b82f6' },
-        { icon: '🛡️', value: stats.adminUsers, label: '관리자', color: '#7c3aed' },
-        { icon: '⏳', value: stats.pendingPartners, label: '승인 대기', color: '#f59e0b' },
-        { icon: '✅', value: stats.approvedPartners, label: '승인 업체', color: '#10b981' },
+        { icon: '👥', value: stats.totalUsers, label: '전체 회원', color: '#3b82f6', path: '/admin/users?tab=all' },
+        { icon: '🛡️', value: stats.adminUsers, label: '관리자', color: '#7c3aed', path: '/admin/users?tab=admin' },
+        { icon: '⏳', value: stats.pendingPartners, label: '승인 대기', color: '#f59e0b', path: '/admin/partners?tab=pending' },
+        { icon: '✅', value: stats.approvedPartners, label: '승인 업체', color: '#10b981', path: '/admin/partners?tab=approved' },
     ];
 
     const MENU_ITEMS = [
@@ -101,10 +101,18 @@ export default function AdminDashboard() {
                 {/* 통계 */}
                 <div className={styles.grid}>
                     {STAT_CARDS.map((s) => (
-                        <div key={s.label} className={styles.statCard}>
+                        <div
+                            key={s.label}
+                            className={styles.statCard}
+                            onClick={() => router.push(s.path)}
+                            style={{ cursor: 'pointer', transition: 'transform 0.15s, box-shadow 0.15s' }}
+                            onMouseDown={e => (e.currentTarget.style.transform = 'scale(0.96)')}
+                            onMouseUp={e => (e.currentTarget.style.transform = 'scale(1)')}
+                        >
                             <div className={styles.statIcon}>{s.icon}</div>
                             <div className={styles.statValue} style={{ color: s.color }}>{s.value}</div>
                             <div className={styles.statLabel}>{s.label}</div>
+                            <div style={{ fontSize: '0.68rem', color: s.color, marginTop: 4, fontWeight: 600, opacity: 0.7 }}>바로가기 →</div>
                         </div>
                     ))}
                 </div>

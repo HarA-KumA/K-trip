@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, useCallback, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import styles from '../admin.module.css';
 
@@ -13,13 +13,16 @@ interface Profile {
     created_at: string;
 }
 
-export default function AdminUsersPage() {
+function AdminUsersContent() {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
     const [myId, setMyId] = useState<string>('');
     const [profiles, setProfiles] = useState<Profile[]>([]);
     const [loading, setLoading] = useState(true);
-    const [tab, setTab] = useState<'all' | 'admin'>('all');
+    const [tab, setTab] = useState<'all' | 'admin'>(
+        (searchParams.get('tab') as 'all' | 'admin') ?? 'all'
+    );
     const [search, setSearch] = useState('');
     const [confirmTarget, setConfirmTarget] = useState<Profile | null>(null);
     const [actionLoading, setActionLoading] = useState(false);
@@ -262,5 +265,18 @@ export default function AdminUsersPage() {
                 </div>
             )}
         </div>
+    );
+}
+
+export default function AdminUsersPage() {
+    return (
+        <Suspense fallback={
+            <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--background)' }}>
+                <div style={{ width: 36, height: 36, border: '3px solid #7c3aed', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+                <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+            </div>
+        }>
+            <AdminUsersContent />
+        </Suspense>
     );
 }

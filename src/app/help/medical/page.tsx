@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/navigation';
 
 const symptoms = [
@@ -71,6 +72,7 @@ const medicines = [
 
 export default function MedicalPage() {
     const router = useRouter();
+    const { t } = useTranslation('common');
     const [selectedSymptom, setSelectedSymptom] = useState<string | null>(null);
     const selected = symptoms.find(s => s.id === selectedSymptom);
 
@@ -79,23 +81,23 @@ export default function MedicalPage() {
             {/* Header */}
             <header style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)', padding: '20px 20px 24px', color: 'white' }}>
                 <button onClick={() => router.back()} style={{ background: 'none', border: 'none', color: 'white', fontSize: '1.4rem', cursor: 'pointer', marginBottom: 8 }}>←</button>
-                <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 800 }}>🏥 Medical Help</h1>
-                <p style={{ margin: '4px 0 0', opacity: 0.85, fontSize: '0.9rem' }}>Clinics, symptoms & pharmacy guide</p>
+                <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 800 }}>🏥 {t('help_page.medical_title')}</h1>
+                <p style={{ margin: '4px 0 0', opacity: 0.85, fontSize: '0.9rem' }}>{t('help_page.medical_desc')}</p>
             </header>
 
             {/* Quick call */}
             <div style={{ background: '#fef2f2', margin: '0 20px', marginTop: -8, borderRadius: 16, padding: '14px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: '1.5px solid #fecaca' }}>
                 <div>
-                    <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#dc2626' }}>🚑 Emergency?</div>
-                    <div style={{ fontSize: '0.82rem', color: '#64748b' }}>Call 119 immediately</div>
+                    <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#dc2626' }}>🚑 {t('help_page.emergency_call')}</div>
+                    <div style={{ fontSize: '0.82rem', color: '#64748b' }}>{t('help_page.emergency_hint')}</div>
                 </div>
                 <a href="tel:119" style={{ background: '#ef4444', color: 'white', padding: '10px 20px', borderRadius: 30, fontWeight: 700, textDecoration: 'none' }}>📞 119</a>
             </div>
 
             {/* Symptom Cards */}
             <div style={{ padding: '24px 20px 0' }}>
-                <h2 style={{ fontSize: '1rem', fontWeight: 700, margin: '0 0 12px' }}>🗣 Symptom Phrase Cards</h2>
-                <p style={{ fontSize: '0.82rem', color: '#64748b', margin: '0 0 14px' }}>Tap a symptom to show Korean phrase to your doctor</p>
+                <h2 style={{ fontSize: '1rem', fontWeight: 700, margin: '0 0 12px' }}>🗣 {t('help_page.symptom_title')}</h2>
+                <p style={{ fontSize: '0.82rem', color: '#64748b', margin: '0 0 14px' }}>{t('help_page.symptom_hint')}</p>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
                     {symptoms.map(s => (
                         <button
@@ -139,7 +141,7 @@ export default function MedicalPage() {
 
             {/* Nearby Clinics */}
             <div style={{ padding: '24px 20px 0' }}>
-                <h2 style={{ fontSize: '1rem', fontWeight: 700, margin: '0 0 12px' }}>📍 International Clinics & ER</h2>
+                <h2 style={{ fontSize: '1rem', fontWeight: 700, margin: '0 0 12px' }}>📍 {t('help_page.clinic_title')}</h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                     {clinics.map((c, i) => (
                         <div key={i} style={{ background: 'white', borderRadius: 14, padding: '14px 16px', border: '1px solid #e2e8f0', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
@@ -160,8 +162,8 @@ export default function MedicalPage() {
 
             {/* Pharmacy / OTC Medicines */}
             <div style={{ padding: '24px 20px 0' }}>
-                <h2 style={{ fontSize: '1rem', fontWeight: 700, margin: '0 0 4px' }}>💊 Convenience Store Medicines</h2>
-                <p style={{ fontSize: '0.82rem', color: '#64748b', margin: '0 0 12px' }}>Available 24/7 at GS25, CU, 7-Eleven</p>
+                <h2 style={{ fontSize: '1rem', fontWeight: 700, margin: '0 0 4px' }}>💊 {t('help_page.med_title')}</h2>
+                <p style={{ fontSize: '0.82rem', color: '#64748b', margin: '0 0 12px' }}>{t('help_page.med_hint')}</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                     {medicines.map((m, i) => (
                         <div key={i} style={{ background: 'white', borderRadius: 14, padding: '14px 16px', border: '1px solid #e2e8f0', display: 'flex', gap: 14, alignItems: 'center' }}>

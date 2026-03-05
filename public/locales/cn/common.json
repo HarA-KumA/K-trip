@@ -1,457 +1,457 @@
 {
-    "header": {
-        "view_app": "在APP中查看",
-        "faq": "常见问题",
-        "recent": "最近浏览"
-    },
-    "common": {
-        "welcome": "欢迎，旅行者。",
-        "greeting": "早上好",
-        "login": "登录",
-        "signup": "注册",
-        "today": "今天",
-        "move": "移动",
-        "book": "预约",
-        "chat": "咨询",
-        "my": "我的",
-        "min_unit": "分钟",
-        "current_operation": "当前行程",
-        "live": "直播",
-        "recommended": "周边推荐",
-        "based_on_location": "基于当前位置",
-        "start_nav": "开始导航",
-        "delay_10m": "延迟10分钟",
-        "confirmed": "预约确认",
-        "payment_completed": "支付完成",
-        "weather_clear": "晴朗",
-        "back": "返回",
-        "select_language": "选择语言",
-        "home_nav": "首页",
-        "explore_nav": "探索",
-        "planner_nav": "行程",
-        "today_nav": "今日",
-        "my_nav": "我的",
-        "day_unit": "日",
-        "locale": "zh-CN",
-        "cities": {
-            "seoul": "首尔",
-            "busan": "釜山",
-            "jeju": "济州",
-            "gyeongju": "庆州"
-        },
-        "categories": {
-            "all": "全部",
-            "food": "美食",
-            "beauty": "美容",
-            "event": "演出",
-            "festival": "庆典",
-            "attraction": "景点",
-            "transport": "交通"
-        },
-        "badges": {
-            "english_friendly": "英语友好",
-            "vegan_certified": "纯素认证",
-            "michelin": "米其林",
-            "wait_free": "免排队",
-            "local_experience": "当地体验",
-            "k_idol_style": "K-Idol风格",
-            "tax_refund": "退税",
-            "summer_must_go": "夏季必选",
-            "non_verbal": "非语言秀",
-            "family": "家庭亲子",
-            "night_view": "夜景",
-            "photo_spot": "打卡点",
-            "hanbok_free_entry": "韩服免费入场",
-            "history": "历史",
-            "city_view": "城市景观"
-        },
-        "ingredients": {
-            "vegetables": "蔬菜",
-            "soy": "豆类",
-            "pork": "猪肉",
-            "kimchi": "泡菜",
-            "seafood": "海鲜"
-        },
-        "diet": {
-            "vegan": "纯素",
-            "gluten_free": "无麸质",
-            "meat_lover": "肉食爱好者",
-            "pescatarian": "鱼素"
-        },
-        "community_nav": "社区"
-    },
-    "transport": {
-        "moving_to": "正在前往 {{dest}}",
-        "remaining": "剩余",
-        "line_2_direction": "2号线 • 往市厅方向",
-        "departed": "已出发",
-        "passing_now": "正在经过...",
-        "current": "当前",
-        "get_off_at": "下车出口:",
-        "exit_3": "3号出口",
-        "getting_off_here": "在这里下车",
-        "stations": {
-            "samseong": "三成",
-            "seolleung": "宣陵",
-            "yeoksam": "驿三",
-            "gangnam": "江南",
-            "gyodae": "教大",
-            "seocho": "瑞草",
-            "seongsu": "圣水"
-        }
-    },
-    "home": {
-        "presets": {
-            "beauty_tour": "美容之旅",
-            "foodie": "美食探秘",
-            "heritage": "传统文化",
-            "k_pop": "K-POP"
-        },
-        "badge": "✦ Korea Travel OS",
-        "title": "韩国旅行，3秒理解",
-        "subtitle": "代办预约 · 自动整理行程 · 实时导航",
-        "create_trip_cta": "开始策划旅行",
-        "how_it_works": {
-            "title": "使用方法",
-            "step1": "请求",
-            "step1_desc": "选择心仪的美容/美食",
-            "step2": "进行中",
-            "step2_desc": "通过当地渠道代办预约",
-            "step3": "确认",
-            "step3_desc": "自动同步到行程表"
-        },
-        "input_label": "您想去哪里旅行？",
-        "input_placeholder": "城市、地区、酒店名称",
-        "days_label": "旅行时间",
-        "value_props": {
-            "itinerary": {
-                "title": "自动整理行程",
-                "desc": "AI构筑最佳路径"
+    "header":  {
+                   "view_app":  "在APP中查看",
+                   "faq":  "常见问题",
+                   "recent":  "最近浏览"
+               },
+    "common":  {
+                   "welcome":  "欢迎，旅行者。",
+                   "greeting":  "早上好",
+                   "login":  "登录",
+                   "signup":  "注册",
+                   "today":  "今天",
+                   "move":  "移动",
+                   "book":  "预约",
+                   "chat":  "咨询",
+                   "my":  "我的",
+                   "min_unit":  "分钟",
+                   "current_operation":  "当前行程",
+                   "live":  "直播",
+                   "recommended":  "周边推荐",
+                   "based_on_location":  "基于当前位置",
+                   "start_nav":  "开始导航",
+                   "delay_10m":  "延迟10分钟",
+                   "confirmed":  "预约确认",
+                   "payment_completed":  "支付完成",
+                   "weather_clear":  "晴朗",
+                   "back":  "返回",
+                   "select_language":  "选择语言",
+                   "home_nav":  "首页",
+                   "explore_nav":  "探索",
+                   "planner_nav":  "行程",
+                   "today_nav":  "今日",
+                   "my_nav":  "我的",
+                   "day_unit":  "日",
+                   "locale":  "zh-CN",
+                   "cities":  {
+                                  "seoul":  "首尔",
+                                  "busan":  "釜山",
+                                  "jeju":  "济州",
+                                  "gyeongju":  "庆州"
+                              },
+                   "categories":  {
+                                      "all":  "全部",
+                                      "food":  "美食",
+                                      "beauty":  "美容",
+                                      "event":  "演出",
+                                      "festival":  "庆典",
+                                      "attraction":  "景点",
+                                      "transport":  "交通"
+                                  },
+                   "badges":  {
+                                  "english_friendly":  "英语友好",
+                                  "vegan_certified":  "纯素认证",
+                                  "michelin":  "米其林",
+                                  "wait_free":  "免排队",
+                                  "local_experience":  "当地体验",
+                                  "k_idol_style":  "K-Idol风格",
+                                  "tax_refund":  "退税",
+                                  "summer_must_go":  "夏季必选",
+                                  "non_verbal":  "非语言秀",
+                                  "family":  "家庭亲子",
+                                  "night_view":  "夜景",
+                                  "photo_spot":  "打卡点",
+                                  "hanbok_free_entry":  "韩服免费入场",
+                                  "history":  "历史",
+                                  "city_view":  "城市景观"
+                              },
+                   "ingredients":  {
+                                       "vegetables":  "蔬菜",
+                                       "soy":  "豆类",
+                                       "pork":  "猪肉",
+                                       "kimchi":  "泡菜",
+                                       "seafood":  "海鲜"
+                                   },
+                   "diet":  {
+                                "vegan":  "纯素",
+                                "gluten_free":  "无麸质",
+                                "meat_lover":  "肉食爱好者",
+                                "pescatarian":  "鱼素"
+                            },
+                   "community_nav":  "社区"
+               },
+    "transport":  {
+                      "moving_to":  "正在前往 {{dest}}",
+                      "remaining":  "剩余",
+                      "line_2_direction":  "2号线 • 往市厅方向",
+                      "departed":  "已出发",
+                      "passing_now":  "正在经过...",
+                      "current":  "当前",
+                      "get_off_at":  "下车出口:",
+                      "exit_3":  "3号出口",
+                      "getting_off_here":  "在这里下车",
+                      "stations":  {
+                                       "samseong":  "三成",
+                                       "seolleung":  "宣陵",
+                                       "yeoksam":  "驿三",
+                                       "gangnam":  "江南",
+                                       "gyodae":  "教大",
+                                       "seocho":  "瑞草",
+                                       "seongsu":  "圣水"
+                                   }
+                  },
+    "home":  {
+                 "presets":  {
+                                 "beauty_tour":  "美容之旅",
+                                 "foodie":  "美食探秘",
+                                 "heritage":  "传统文化",
+                                 "k_pop":  "K-POP"
+                             },
+                 "badge":  "✦ Korea Travel OS",
+                 "title":  "韩国旅行，3秒理解",
+                 "subtitle":  "代办预约 · 自动整理行程 · 实时导航",
+                 "create_trip_cta":  "开始策划旅行",
+                 "how_it_works":  {
+                                      "title":  "使用方法",
+                                      "step1":  "请求",
+                                      "step1_desc":  "选择心仪的美容/美食",
+                                      "step2":  "进行中",
+                                      "step2_desc":  "通过当地渠道代办预约",
+                                      "step3":  "确认",
+                                      "step3_desc":  "自动同步到行程表"
+                                  },
+                 "input_label":  "您想去哪里旅行？",
+                 "input_placeholder":  "城市、地区、酒店名称",
+                 "days_label":  "旅行时间",
+                 "value_props":  {
+                                     "itinerary":  {
+                                                       "title":  "自动整理行程",
+                                                       "desc":  "AI构筑最佳路径"
+                                                   },
+                                     "booking":  {
+                                                     "title":  "代办预约",
+                                                     "desc":  "美容店、水疗等代办预约"
+                                                 },
+                                     "navigation":  {
+                                                        "title":  "实时移动导航",
+                                                        "desc":  "无语言障碍的路径指引"
+                                                    }
+                                 },
+                 "recommended_plans":  "推荐旅行方案",
+                 "plans":  {
+                               "2d":  {
+                                          "title":  "2日：首尔核心之旅",
+                                          "label":  "2日方案"
+                                      },
+                               "3d":  {
+                                          "title":  "3日：K-文化与潮流",
+                                          "label":  "3日方案"
+                                      },
+                               "5d":  {
+                                          "title":  "5日：韩国全境游",
+                                          "label":  "5日方案"
+                                      },
+                               "request_custom_label":  "定制",
+                               "request_custom_title":  "申请 {{days}} 日定制方案",
+                               "request_custom_toast":  "已申请 {{days}} 日定制方案！我们的礼宾人员将尽快与您联系。"
+                           }
+             },
+    "explore_page":  {
+                         "title":  "探索",
+                         "city_changed":  "城市已更改为 {{city}}",
+                         "added_to":  "已添加到第 {{day}} 天行程",
+                         "no_items":  "在 {{city}} 未找到项目",
+                         "try_changing":  "请尝试更改类别或城市。",
+                         "add_to_plan":  "+ 添加到行程",
+                         "today":  "今天",
+                         "tonight":  "今晚",
+                         "starts_from":  "₩{{price}} 起",
+                         "indoor":  "室内",
+                         "outdoor":  "室外",
+                         "badges":  {
+                                        "vegan_only":  "仅限纯素",
+                                        "vegan_option":  "纯素可选"
+                                    },
+                         "filters_title":  "筛选",
+                         "apply":  "应用",
+                         "reset":  "重置",
+                         "adding_item_to":  "正在将 \u003cstrong\u003e{{title}}\u003c/strong\u003e 添加到:",
+                         "no_specific_filters":  "此类别没有特定的筛选条件。",
+                         "filters":  {
+                                         "show":  "类别",
+                                         "price":  "价格",
+                                         "diet":  "饮食",
+                                         "ingredients":  "食材",
+                                         "date":  "日期",
+                                         "type":  "类型",
+                                         "options":  {
+                                                         "skin_care":  "皮肤护理",
+                                                         "hair_makeup":  "美发/化妆",
+                                                         "spa":  "水疗",
+                                                         "nails":  "美甲",
+                                                         "vegan":  "纯素",
+                                                         "vegetarian":  "素食",
+                                                         "no_pork":  "无猪肉",
+                                                         "halal":  "清真",
+                                                         "beef":  "牛肉",
+                                                         "pork":  "猪肉",
+                                                         "chicken":  "鸡肉",
+                                                         "seafood":  "海鲜",
+                                                         "dairy":  "乳制品",
+                                                         "egg":  "蛋类",
+                                                         "today":  "今天",
+                                                         "weekend":  "本周末",
+                                                         "select":  "选择日期",
+                                                         "concert":  "演唱会",
+                                                         "show":  "演出",
+                                                         "popup":  "快闪店",
+                                                         "club":  "俱乐部",
+                                                         "exhibition":  "展览"
+                                                     }
+                                     }
+                     },
+    "explore_items":  {
+                          "airport_arrival":  "仁川机场到达",
+                          "hotel_checkin":  "入住酒店",
+                          "f1":  {
+                                     "title":  "Plant Cafe Seoul",
+                                     "area":  "梨泰院",
+                                     "desc":  "使用新鲜蔬菜和健康食材制作的100%纯素料理",
+                                     "price":  "15,000"
+                                 },
+                          "f2":  {
+                                     "title":  "金猪食堂",
+                                     "area":  "药水",
+                                     "desc":  "入选米其林指南的韩国顶级五花肉美食店",
+                                     "price":  "20,000"
+                                 },
+                          "f3":  {
+                                     "title":  "札嘎其市场 生鱼片套餐",
+                                     "area":  "南浦",
+                                     "desc":  "可以感受釜山大海新鲜感的丰盛生鱼片套餐",
+                                     "price":  "40,000"
+                                 },
+                          "b1":  {
+                                     "title":  "Jenny House 清潭",
+                                     "area":  "清潭",
+                                     "desc":  "K-Pop偶像们经常光顾的高端美发化妆沙龙",
+                                     "price":  "150,000"
+                                 },
+                          "b2":  {
+                                     "title":  "PPEUM Clinic 江南",
+                                     "area":  "江南",
+                                     "desc":  "外国人访问量最大、性价比最高的美容诊所",
+                                     "price":  "50,000"
+                                 },
+                          "e1":  {
+                                     "title":  "PSY 泼水秀 2024",
+                                     "area":  "蚕室体育场",
+                                     "desc":  "PSY清凉激情的演出，带走夏日酷暑",
+                                     "price":  "140,000"
+                                 },
+                          "e2":  {
+                                     "title":  "乱打秀 明洞",
+                                     "area":  "明洞",
+                                     "desc":  "融合了韩国传统节奏与现代表演的非语言类演出",
+                                     "price":  "40,000"
+                                 },
+                          "fs1":  {
+                                      "title":  "首尔灯会",
+                                      "area":  "光化门",
+                                      "desc":  "点缀光化门广场的绚丽精美的花灯盛宴",
+                                      "price":  "免费"
+                                  },
+                          "fs2":  {
+                                      "title":  "电影节",
+                                      "area":  "Centum City",
+                                      "desc":  "亚洲最大规模的电影节，全球电影人的聚会",
+                                      "price":  "10,000"
+                                  },
+                          "a1":  {
+                                     "title":  "景福宫",
+                                     "area":  "钟路",
+                                     "desc":  "作为朝鲜王朝的正宫，珍藏着韩国历史与美学的地方",
+                                     "price":  "3,000"
+                                 },
+                          "a2":  {
+                                     "title":  "乐天世界塔",
+                                     "area":  "蚕室",
+                                     "desc":  "可以将首尔幻丽夜景尽收眼底的韩国最高建筑",
+                                     "price":  "27,000"
+                                 },
+                          "t1":  {
+                                     "title":  "往釜山 KTX",
+                                     "area":  "首尔站",
+                                     "desc":  "从首尔前往釜山最快最便捷的方式",
+                                     "price":  "59,800"
+                                 }
+                      },
+    "fab":  {
+                "idle":  "创建行程",
+                "pre_trip":  "后天出发",
+                "on_trip":  "下一站去哪？",
+                "near_deadline":  "迟到风险！",
+                "to":  "往 {{dest}}",
+                "kride":  "呼叫 K.Ride",
+                "kride_sub":  "{{mins}}分钟后到达",
+                "transit":  "公共交通指南",
+                "transit_sub":  "最快路线指引",
+                "copy":  "复制地址",
+                "copy_done":  "复制成功！",
+                "card":  "给司机看",
+                "card_sub":  "出租车司机用卡片",
+                "card_modal_title":  "🗺️ 请前往这个地址",
+                "cancel":  "关闭"
             },
-            "booking": {
-                "title": "代办预约",
-                "desc": "美容店、水疗等代办预约"
-            },
-            "navigation": {
-                "title": "实时移动导航",
-                "desc": "无语言障碍的路径指引"
-            }
-        },
-        "recommended_plans": "推荐旅行方案",
-        "plans": {
-            "2d": {
-                "title": "2日：首尔核心之旅",
-                "label": "2日方案"
-            },
-            "3d": {
-                "title": "3日：K-文化与潮流",
-                "label": "3日方案"
-            },
-            "5d": {
-                "title": "5日：韩国全境游",
-                "label": "5日方案"
-            },
-            "request_custom_label": "定制",
-            "request_custom_title": "申请 {{days}} 日定制方案",
-            "request_custom_toast": "已申请 {{days}} 日定制方案！我们的礼宾人员将尽快与您联系。"
-        }
-    },
-    "explore_page": {
-        "title": "探索",
-        "city_changed": "城市已更改为 {{city}}",
-        "added_to": "已添加到第 {{day}} 天行程",
-        "no_items": "在 {{city}} 未找到项目",
-        "try_changing": "请尝试更改类别或城市。",
-        "add_to_plan": "+ 添加到行程",
-        "today": "今天",
-        "tonight": "今晚",
-        "starts_from": "₩{{price}} 起",
-        "indoor": "室内",
-        "outdoor": "室外",
-        "badges": {
-            "vegan_only": "仅限纯素",
-            "vegan_option": "纯素可选"
-        },
-        "filters_title": "筛选",
-        "apply": "应用",
-        "reset": "重置",
-        "adding_item_to": "正在将 <strong>{{title}}</strong> 添加到:",
-        "no_specific_filters": "此类别没有特定的筛选条件。",
-        "filters": {
-            "show": "类别",
-            "price": "价格",
-            "diet": "饮食",
-            "ingredients": "食材",
-            "date": "日期",
-            "type": "类型",
-            "options": {
-                "skin_care": "皮肤护理",
-                "hair_makeup": "美发/化妆",
-                "spa": "水疗",
-                "nails": "美甲",
-                "vegan": "纯素",
-                "vegetarian": "素食",
-                "no_pork": "无猪肉",
-                "halal": "清真",
-                "beef": "牛肉",
-                "pork": "猪肉",
-                "chicken": "鸡肉",
-                "seafood": "海鲜",
-                "dairy": "乳制品",
-                "egg": "蛋类",
-                "today": "今天",
-                "weekend": "本周末",
-                "select": "选择日期",
-                "concert": "演唱会",
-                "show": "演出",
-                "popup": "快闪店",
-                "club": "俱乐部",
-                "exhibition": "展览"
-            }
-        }
-    },
-    "explore_items": {
-        "airport_arrival": "仁川机场到达",
-        "hotel_checkin": "入住酒店",
-        "f1": {
-            "title": "Plant Cafe Seoul",
-            "area": "梨泰院",
-            "desc": "使用新鲜蔬菜和健康食材制作的100%纯素料理",
-            "price": "15,000"
-        },
-        "f2": {
-            "title": "金猪食堂",
-            "area": "药水",
-            "desc": "入选米其林指南的韩国顶级五花肉美食店",
-            "price": "20,000"
-        },
-        "f3": {
-            "title": "札嘎其市场 生鱼片套餐",
-            "area": "南浦",
-            "desc": "可以感受釜山大海新鲜感的丰盛生鱼片套餐",
-            "price": "40,000"
-        },
-        "b1": {
-            "title": "Jenny House 清潭",
-            "area": "清潭",
-            "desc": "K-Pop偶像们经常光顾的高端美发化妆沙龙",
-            "price": "150,000"
-        },
-        "b2": {
-            "title": "PPEUM Clinic 江南",
-            "area": "江南",
-            "desc": "外国人访问量最大、性价比最高的美容诊所",
-            "price": "50,000"
-        },
-        "e1": {
-            "title": "PSY 泼水秀 2024",
-            "area": "蚕室体育场",
-            "desc": "PSY清凉激情的演出，带走夏日酷暑",
-            "price": "140,000"
-        },
-        "e2": {
-            "title": "乱打秀 明洞",
-            "area": "明洞",
-            "desc": "融合了韩国传统节奏与现代表演的非语言类演出",
-            "price": "40,000"
-        },
-        "fs1": {
-            "title": "首尔灯会",
-            "area": "光化门",
-            "desc": "点缀光化门广场的绚丽精美的花灯盛宴",
-            "price": "免费"
-        },
-        "fs2": {
-            "title": "电影节",
-            "area": "Centum City",
-            "desc": "亚洲最大规模的电影节，全球电影人的聚会",
-            "price": "10,000"
-        },
-        "a1": {
-            "title": "景福宫",
-            "area": "钟路",
-            "desc": "作为朝鲜王朝的正宫，珍藏着韩国历史与美学的地方",
-            "price": "3,000"
-        },
-        "a2": {
-            "title": "乐天世界塔",
-            "area": "蚕室",
-            "desc": "可以将首尔幻丽夜景尽收眼底的韩国最高建筑",
-            "price": "27,000"
-        },
-        "t1": {
-            "title": "往釜山 KTX",
-            "area": "首尔站",
-            "desc": "从首尔前往釜山最快最便捷的方式",
-            "price": "59,800"
-        }
-    },
-    "fab": {
-        "idle": "创建行程",
-        "pre_trip": "后天出发",
-        "on_trip": "下一站去哪？",
-        "near_deadline": "迟到风险！",
-        "to": "往 {{dest}}",
-        "kride": "呼叫 K.Ride",
-        "kride_sub": "{{mins}}分钟后到达",
-        "transit": "公共交通指南",
-        "transit_sub": "最快路线指引",
-        "copy": "复制地址",
-        "copy_done": "复制成功！",
-        "card": "给司机看",
-        "card_sub": "出租车司机用卡片",
-        "card_modal_title": "🗺️ 请前往这个地址",
-        "cancel": "关闭"
-    },
-    "today_page": {
-        "title": "今日日程",
-        "active_now": "进行中",
-        "navigate": "路线指引",
-        "booking_ref": "订单号: {{ref}}",
-        "next_up": "下一项日程",
-        "minutes_left": "{{mins}}分钟后开始",
-        "depart_early": "现在出发",
-        "timeline": "时间轴",
-        "empty": {
-            "title": "今日暂无日程",
-            "desc": "去探索想要去的地方并添加吧！",
-            "cta": "探索地点"
-        }
-    },
-    "booking_detail": {
-        "select_date": "选择日期",
-        "select_time": "选择时间",
-        "total_price": "总金额",
-        "request_booking": "提交预订请求"
-    },
-    "navigation_page": {
-        "title": "今日行程",
-        "status": {
-            "on_trip": "旅行中",
-            "pre_trip": "准备中",
-            "idle": "暂无行程"
-        },
-        "countdown": {
-            "today": "今天",
-            "starts_in": "{{mins}}分钟后开始",
-            "traveling_to": "正在前往 {{dest}}"
-        },
-        "empty": {
-            "title": "今天没有行程",
-            "subtitle": "探索想去的地方并添加到行程中！",
-            "cta": "探索地点"
-        },
-        "actions": {
-            "directions": "查找路线",
-            "booking": "查看预约",
-            "late_risk": "有迟到风险！",
-            "booking_ref": "预约号: {{ref}}",
-            "departure_warning": "⚠️ {{title}} 将在 {{mins}}分钟内开始 — 请立即出发！"
-        }
-    },
-    "planner_page": {
-        "title": "行程表",
-        "day": "第 {{n}} 天",
-        "add_from_discover": "🔍 添加地点",
-        "auto_build": "✨ 自动完成",
-        "add_to": "添加到 {{slot}}",
-        "book_all": "🎫 请求代办预约",
-        "booking_modal": {
-            "title": "预约请求",
-            "date": "日期",
-            "people": "人数",
-            "people_count": "{{n}} 人",
-            "notes": "特别要求 (选填)",
-            "submit": "提交请求",
-            "submitting": "正在提交...",
-            "success_title": "已收到请求！",
-            "success_desc": "我们的礼宾人员将在24小时内联系您。",
-            "unavailable_title": "该时段不可预约",
-            "unavailable_desc": "我们为您推荐以下替代方案：",
-            "view_status": "查看状态"
-        },
-        "status": {
-            "draft": "草稿",
-            "submitted": "已提交",
-            "confirmed": "已确认",
-            "unavailable": "不可预约",
-            "completed": "已完成"
-        },
-        "slots": {
-            "am": "上午",
-            "pm": "下午",
-            "night": "晚上"
-        }
-    },
-    "my_page": {
-        "profile": {
-            "trust_score": "💎 信任分数",
-            "trust_level_excellent": "极好"
-        },
-        "passport": {
-            "title": "我的护照",
-            "view_all": "查看全部",
-            "seoul": "首尔",
-            "beauty": "美容",
-            "jeju": "济州"
-        },
-        "bookings": {
-            "title": "我的预约",
-            "date_time": "日期 / 时间",
-            "area": "区域",
-            "price": "价格",
-            "today_time": "今天, {{time}}",
-            "tomorrow_time": "明天, {{time}}",
-            "next_week_time": "下周, {{time}}",
-            "new_added": "新预约已添加！"
-        },
-        "community": {
-            "title": "我的社区动态",
-            "empty": "还没有撰写任何社区动态。"
-        }
-    },
-    "community_page": {
-        "title": "社区",
-        "subtitle": "与当地人和旅行者交流",
-        "filter_all": "全部",
-        "filter_meetup": "美食与聚会",
-        "filter_travel": "旅行伙伴",
-        "filter_help": "当地帮助",
-        "comments": "评论",
-        "message": "发信息",
-        "type": {
-            "MEETUP": "聚会",
-            "TRAVEL": "旅行",
-            "HELP": "帮助",
-            "REVIEW": "REVIEW"
-        },
-        "post": {
-            "1": {
-                "author": "Mika (日本)",
-                "time": "10分钟前",
-                "title": "一起吃五花肉 🥓",
-                "desc": "今晚7点在金猪食堂有人想一起吃五花肉吗？"
-            },
-            "2": {
-                "author": "John (美国)",
-                "time": "1小时前",
-                "title": "弘大街头表演 🎸",
-                "desc": "我正要去弘大看独立乐队表演，一起来吧！"
-            },
-            "3": {
-                "author": "Jihoon (韩国)",
-                "time": "2小时前",
-                "title": "需要地铁方向的帮助吗？ 🚇",
-                "desc": "我住在明洞附近，如果您迷路了，我可以帮您翻译或指路。随时给我发信息！"
-            },
-            "4": {
-                "author": "Li Wei (中国)",
-                "time": "3小时前",
-                "title": "K-Beauty 化妆品购物 💄",
-                "desc": "找个在明洞Olive Young一起购物的伙伴。我知道很多好用的牌子！"
-            }
-        },
-        "filter_review": "Reviews",
-        "detail": "帖子详情"
-    }
+    "today_page":  {
+                       "title":  "今日日程",
+                       "active_now":  "进行中",
+                       "navigate":  "路线指引",
+                       "booking_ref":  "订单号: {{ref}}",
+                       "next_up":  "下一项日程",
+                       "minutes_left":  "{{mins}}分钟后开始",
+                       "depart_early":  "现在出发",
+                       "timeline":  "时间轴",
+                       "empty":  {
+                                     "title":  "今日暂无日程",
+                                     "desc":  "去探索想要去的地方并添加吧！",
+                                     "cta":  "探索地点"
+                                 }
+                   },
+    "booking_detail":  {
+                           "select_date":  "选择日期",
+                           "select_time":  "选择时间",
+                           "total_price":  "总金额",
+                           "request_booking":  "提交预订请求"
+                       },
+    "navigation_page":  {
+                            "title":  "今日行程",
+                            "status":  {
+                                           "on_trip":  "旅行中",
+                                           "pre_trip":  "准备中",
+                                           "idle":  "暂无行程"
+                                       },
+                            "countdown":  {
+                                              "today":  "今天",
+                                              "starts_in":  "{{mins}}分钟后开始",
+                                              "traveling_to":  "正在前往 {{dest}}"
+                                          },
+                            "empty":  {
+                                          "title":  "今天没有行程",
+                                          "subtitle":  "探索想去的地方并添加到行程中！",
+                                          "cta":  "探索地点"
+                                      },
+                            "actions":  {
+                                            "directions":  "查找路线",
+                                            "booking":  "查看预约",
+                                            "late_risk":  "有迟到风险！",
+                                            "booking_ref":  "预约号: {{ref}}",
+                                            "departure_warning":  "⚠️ {{title}} 将在 {{mins}}分钟内开始 — 请立即出发！"
+                                        }
+                        },
+    "planner_page":  {
+                         "title":  "行程表",
+                         "day":  "第 {{n}} 天",
+                         "add_from_discover":  "🔍 添加地点",
+                         "auto_build":  "✨ 自动完成",
+                         "add_to":  "添加到 {{slot}}",
+                         "book_all":  "🎫 请求代办预约",
+                         "booking_modal":  {
+                                               "title":  "预约请求",
+                                               "date":  "日期",
+                                               "people":  "人数",
+                                               "people_count":  "{{n}} 人",
+                                               "notes":  "特别要求 (选填)",
+                                               "submit":  "提交请求",
+                                               "submitting":  "正在提交...",
+                                               "success_title":  "已收到请求！",
+                                               "success_desc":  "我们的礼宾人员将在24小时内联系您。",
+                                               "unavailable_title":  "该时段不可预约",
+                                               "unavailable_desc":  "我们为您推荐以下替代方案：",
+                                               "view_status":  "查看状态"
+                                           },
+                         "status":  {
+                                        "draft":  "草稿",
+                                        "submitted":  "已提交",
+                                        "confirmed":  "已确认",
+                                        "unavailable":  "不可预约",
+                                        "completed":  "已完成"
+                                    },
+                         "slots":  {
+                                       "am":  "上午",
+                                       "pm":  "下午",
+                                       "night":  "晚上"
+                                   }
+                     },
+    "my_page":  {
+                    "profile":  {
+                                    "trust_score":  "💎 信任分数",
+                                    "trust_level_excellent":  "极好"
+                                },
+                    "passport":  {
+                                     "title":  "我的护照",
+                                     "view_all":  "查看全部",
+                                     "seoul":  "首尔",
+                                     "beauty":  "美容",
+                                     "jeju":  "济州"
+                                 },
+                    "bookings":  {
+                                     "title":  "我的预约",
+                                     "date_time":  "日期 / 时间",
+                                     "area":  "区域",
+                                     "price":  "价格",
+                                     "today_time":  "今天, {{time}}",
+                                     "tomorrow_time":  "明天, {{time}}",
+                                     "next_week_time":  "下周, {{time}}",
+                                     "new_added":  "新预约已添加！"
+                                 },
+                    "community":  {
+                                      "title":  "我的社区动态",
+                                      "empty":  "还没有撰写任何社区动态。"
+                                  }
+                },
+    "community_page":  {
+                           "title":  "社区",
+                           "subtitle":  "与当地人和旅行者交流",
+                           "filter_all":  "全部",
+                           "filter_meetup":  "美食与聚会",
+                           "filter_travel":  "旅行伙伴",
+                           "filter_help":  "当地帮助",
+                           "comments":  "评论",
+                           "message":  "发信息",
+                           "type":  {
+                                        "MEETUP":  "聚会",
+                                        "TRAVEL":  "旅行",
+                                        "HELP":  "帮助",
+                                        "REVIEW":  "REVIEW"
+                                    },
+                           "post":  {
+                                        "1":  {
+                                                  "author":  "Mika (日本)",
+                                                  "time":  "10分钟前",
+                                                  "title":  "一起吃五花肉 🥓",
+                                                  "desc":  "今晚7点在金猪食堂有人想一起吃五花肉吗？"
+                                              },
+                                        "2":  {
+                                                  "author":  "John (美国)",
+                                                  "time":  "1小时前",
+                                                  "title":  "弘大街头表演 🎸",
+                                                  "desc":  "我正要去弘大看独立乐队表演，一起来吧！"
+                                              },
+                                        "3":  {
+                                                  "author":  "Jihoon (韩国)",
+                                                  "time":  "2小时前",
+                                                  "title":  "需要地铁方向的帮助吗？ 🚇",
+                                                  "desc":  "我住在明洞附近，如果您迷路了，我可以帮您翻译或指路。随时给我发信息！"
+                                              },
+                                        "4":  {
+                                                  "author":  "Li Wei (中国)",
+                                                  "time":  "3小时前",
+                                                  "title":  "K-Beauty 化妆品购物 💄",
+                                                  "desc":  "找个在明洞Olive Young一起购物的伙伴。我知道很多好用的牌子！"
+                                              }
+                                    },
+                           "filter_review":  "Reviews",
+                           "detail":  "帖子详情"
+                       }
 }

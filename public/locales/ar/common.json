@@ -1,155 +1,155 @@
-{
-    "common": {
-        "welcome": "مرحباً أيها المسافر",
-        "greeting": "صباح الخير",
-        "login": "تسجيل الدخول",
-        "today": "اليوم",
-        "move": "تنقل",
-        "book": "حجز",
-        "chat": "دردشة",
-        "my": "حسابي",
-        "current_operation": "يعمل الآن",
-        "live": "مباشر",
-        "recommended": "قريب منك",
-        "based_on_location": "بناءً على موقعك",
-        "start_nav": "بدء الملاحة",
-        "delay_10m": "تأخير +10 دقائق",
-        "confirmed": "تم التأكيد",
-        "payment_completed": "اكتملت الدفعة",
-        "weather_clear": "صافٍ",
-        "back": "رجوع",
-        "community_nav": "Community"
-    },
-    "transport": {
-        "moving_to": "متجه إلى {{dest}}",
-        "remaining": "متبقي",
-        "line_2_direction": "الخط 2 • اتجاه City Hall",
-        "departed": "غادر",
-        "passing_now": "يمر الآن...",
-        "current": "الحالي",
-        "get_off_at": "انزل في",
-        "exit_3": "مخرج 3",
-        "getting_off_here": "سأنزل هنا",
-        "stations": {
-            "samseong": "سامسيونغ",
-            "seolleung": "سيولونغ",
-            "yeoksam": "يوكسام",
-            "gangnam": "كانغنام",
-            "gyodae": "كيوداي",
-            "seocho": "سيوتشو",
-            "seongsu": "سيونغسو"
-        }
-    },
-    "home": {
-        "title_korea": "كوريا اليوم",
-        "recommended_plans": "خطط السفر الموصى بها",
-        "plans": {
-            "2d": {
-                "title": "يومان: أساسيات سيول",
-                "label": "خطة يومين"
-            },
-            "3d": {
-                "title": "3 أيام: الثقافة الكورية والأسلوب",
-                "label": "خطة 3 أيام"
-            },
-            "5d": {
-                "title": "5 أيام: الجولة الكبرى",
-                "label": "خطة 5 أيام"
-            },
-            "request_custom_label": "مخصص",
-            "request_custom_title": "طلب خطة لـ {{days}} أيام",
-            "request_custom_toast": "تم طلب خطة مخصصة لـ {{days}} أيام! سيتواصل معك فريق الاستقبال قريباً."
-        }
-    },
-    "my_page": {
-        "bookings": {
-            "title": "حجوزاتي",
-            "date_time": "التاريخ / الوقت",
-            "area": "المنطقة",
-            "price": "السعر",
-            "new_added": "تم إضافة حجز جديد!"
-        },
-        "community": {
-            "title": "مشاركاتي في المجتمع",
-            "empty": "لم تتم كتابة مشاركات بعد."
-        }
-    },
-    "community_page": {
-        "title": "Community",
-        "subtitle": "Connect with locals & travelers",
-        "filter_all": "All",
-        "filter_meetup": "Food & Meetup",
-        "filter_travel": "Travel Mate",
-        "filter_help": "Local Help",
-        "comments": "Comments",
-        "message": "Message",
-        "type": {
-            "MEETUP": "MEETUP",
-            "TRAVEL": "TRAVEL",
-            "HELP": "HELP",
-            "REVIEW": "REVIEW"
-        },
-        "post": {
-            "1": {
-                "author": "Mika (Japan)",
-                "time": "10 mins ago",
-                "title": "Samgyeopsal Meetup 🥓",
-                "desc": "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
-            },
-            "2": {
-                "author": "John (US)",
-                "time": "1 hour ago",
-                "title": "Hongdae Street Performance 🎸",
-                "desc": "Heading to Hongdae right now to watch indie bands. Join me!"
-            },
-            "3": {
-                "author": "Jihoon (Korea)",
-                "time": "2 hours ago",
-                "title": "Need help with subway directions? 🚇",
-                "desc": "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
-            },
-            "4": {
-                "author": "Li Wei (China)",
-                "time": "3 hours ago",
-                "title": "K-Beauty Shopping 💄",
-                "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
-            }
-        },
-        "filter_review": "Reviews",
-        "detail": "تفاصيل المشاركة"
-    },
-    "explore_items": {
-        "airport_arrival": "الوصول إلى مطار إنتشون",
-        "hotel_checkin": "تسجيل الوصول في الفندق",
-        "f1": {
-            "title": "Plant Cafe Seoul"
-        },
-        "f2": {
-            "title": "Gold Pig BBQ"
-        },
-        "f3": {
-            "title": "سوق المأكولات البحرية"
-        },
-        "b1": {
-            "title": "Jenny House Beauty"
-        },
-        "b2": {
-            "title": "PPEUM Clinic Gangnam"
-        },
-        "e1": {
-            "title": "PSY Water Show"
-        },
-        "e2": {
-            "title": "Nanta Show Myeongdong"
-        },
-        "fs1": {
-            "title": "مهرجان الفوانيس في سيول"
-        },
-        "a1": {
-            "title": "قصر جيونج بوكجونج"
-        },
-        "a2": {
-            "title": "Lotte World Tower"
-        }
-    }
+﻿{
+    "common":  {
+                   "welcome":  "مرحباً أيها المسافر",
+                   "greeting":  "صباح الخير",
+                   "login":  "تسجيل الدخول",
+                   "today":  "اليوم",
+                   "move":  "تنقل",
+                   "book":  "حجز",
+                   "chat":  "دردشة",
+                   "my":  "حسابي",
+                   "current_operation":  "يعمل الآن",
+                   "live":  "مباشر",
+                   "recommended":  "قريب منك",
+                   "based_on_location":  "بناءً على موقعك",
+                   "start_nav":  "بدء الملاحة",
+                   "delay_10m":  "تأخير +10 دقائق",
+                   "confirmed":  "تم التأكيد",
+                   "payment_completed":  "اكتملت الدفعة",
+                   "weather_clear":  "صافٍ",
+                   "back":  "رجوع",
+                   "community_nav":  "Community"
+               },
+    "transport":  {
+                      "moving_to":  "متجه إلى {{dest}}",
+                      "remaining":  "متبقي",
+                      "line_2_direction":  "الخط 2 • اتجاه City Hall",
+                      "departed":  "غادر",
+                      "passing_now":  "يمر الآن...",
+                      "current":  "الحالي",
+                      "get_off_at":  "انزل في",
+                      "exit_3":  "مخرج 3",
+                      "getting_off_here":  "سأنزل هنا",
+                      "stations":  {
+                                       "samseong":  "سامسيونغ",
+                                       "seolleung":  "سيولونغ",
+                                       "yeoksam":  "يوكسام",
+                                       "gangnam":  "كانغنام",
+                                       "gyodae":  "كيوداي",
+                                       "seocho":  "سيوتشو",
+                                       "seongsu":  "سيونغسو"
+                                   }
+                  },
+    "home":  {
+                 "title_korea":  "كوريا اليوم",
+                 "recommended_plans":  "خطط السفر الموصى بها",
+                 "plans":  {
+                               "2d":  {
+                                          "title":  "يومان: أساسيات سيول",
+                                          "label":  "خطة يومين"
+                                      },
+                               "3d":  {
+                                          "title":  "3 أيام: الثقافة الكورية والأسلوب",
+                                          "label":  "خطة 3 أيام"
+                                      },
+                               "5d":  {
+                                          "title":  "5 أيام: الجولة الكبرى",
+                                          "label":  "خطة 5 أيام"
+                                      },
+                               "request_custom_label":  "مخصص",
+                               "request_custom_title":  "طلب خطة لـ {{days}} أيام",
+                               "request_custom_toast":  "تم طلب خطة مخصصة لـ {{days}} أيام! سيتواصل معك فريق الاستقبال قريباً."
+                           }
+             },
+    "my_page":  {
+                    "bookings":  {
+                                     "title":  "حجوزاتي",
+                                     "date_time":  "التاريخ / الوقت",
+                                     "area":  "المنطقة",
+                                     "price":  "السعر",
+                                     "new_added":  "تم إضافة حجز جديد!"
+                                 },
+                    "community":  {
+                                      "title":  "مشاركاتي في المجتمع",
+                                      "empty":  "لم تتم كتابة مشاركات بعد."
+                                  }
+                },
+    "community_page":  {
+                           "title":  "Community",
+                           "subtitle":  "Connect with locals \u0026 travelers",
+                           "filter_all":  "All",
+                           "filter_meetup":  "Food \u0026 Meetup",
+                           "filter_travel":  "Travel Mate",
+                           "filter_help":  "Local Help",
+                           "comments":  "Comments",
+                           "message":  "Message",
+                           "type":  {
+                                        "MEETUP":  "MEETUP",
+                                        "TRAVEL":  "TRAVEL",
+                                        "HELP":  "HELP",
+                                        "REVIEW":  "REVIEW"
+                                    },
+                           "post":  {
+                                        "1":  {
+                                                  "author":  "Mika (Japan)",
+                                                  "time":  "10 mins ago",
+                                                  "title":  "Samgyeopsal Meetup 🥓",
+                                                  "desc":  "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
+                                              },
+                                        "2":  {
+                                                  "author":  "John (US)",
+                                                  "time":  "1 hour ago",
+                                                  "title":  "Hongdae Street Performance 🎸",
+                                                  "desc":  "Heading to Hongdae right now to watch indie bands. Join me!"
+                                              },
+                                        "3":  {
+                                                  "author":  "Jihoon (Korea)",
+                                                  "time":  "2 hours ago",
+                                                  "title":  "Need help with subway directions? 🚇",
+                                                  "desc":  "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
+                                              },
+                                        "4":  {
+                                                  "author":  "Li Wei (China)",
+                                                  "time":  "3 hours ago",
+                                                  "title":  "K-Beauty Shopping 💄",
+                                                  "desc":  "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
+                                              }
+                                    },
+                           "filter_review":  "Reviews",
+                           "detail":  "تفاصيل المشاركة"
+                       },
+    "explore_items":  {
+                          "airport_arrival":  "الوصول إلى مطار إنتشون",
+                          "hotel_checkin":  "تسجيل الوصول في الفندق",
+                          "f1":  {
+                                     "title":  "Plant Cafe Seoul"
+                                 },
+                          "f2":  {
+                                     "title":  "Gold Pig BBQ"
+                                 },
+                          "f3":  {
+                                     "title":  "سوق المأكولات البحرية"
+                                 },
+                          "b1":  {
+                                     "title":  "Jenny House Beauty"
+                                 },
+                          "b2":  {
+                                     "title":  "PPEUM Clinic Gangnam"
+                                 },
+                          "e1":  {
+                                     "title":  "PSY Water Show"
+                                 },
+                          "e2":  {
+                                     "title":  "Nanta Show Myeongdong"
+                                 },
+                          "fs1":  {
+                                      "title":  "مهرجان الفوانيس في سيول"
+                                  },
+                          "a1":  {
+                                     "title":  "قصر جيونج بوكجونج"
+                                 },
+                          "a2":  {
+                                     "title":  "Lotte World Tower"
+                                 }
+                      }
 }

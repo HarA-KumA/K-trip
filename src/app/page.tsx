@@ -460,12 +460,31 @@ export default function HomePage() {
       <div className={styles.orbBlue} />
 
       <section className={styles.hero}>
-        <div className={styles.badge} suppressHydrationWarning>{t('home.badge')}</div>
+        <div className={styles.heroBadgePill}>✦ Korea Travel OS</div>
         {userName ? (
-          <h1 className={styles.heroTitle} style={{ fontSize: '2rem', marginBottom: '8px', fontWeight: 'bold' }}>{getGreeting()}, {userName}님! 👋</h1>
+          <>
+            <h1 className={styles.heroKello}>Kello</h1>
+            <p className={styles.heroGreeting} suppressHydrationWarning>{getGreeting()}, {userName}님! 👋</p>
+          </>
         ) : (
-          <h1 className={styles.heroTitle} suppressHydrationWarning dangerouslySetInnerHTML={{ __html: t('home.title') }} />
+          <h1 className={styles.heroKello}>Kello</h1>
         )}
+        <div className={styles.heroServices}>
+          <div className={styles.heroServiceRow}>
+            <span className={styles.heroServiceIcon}>🎫</span>
+            <span className={styles.heroServiceLabel} suppressHydrationWarning>{t('home.value_props.booking.title')}</span>
+          </div>
+          <div className={styles.heroServiceDivider} />
+          <div className={styles.heroServiceRow}>
+            <span className={styles.heroServiceIcon}>🗓️</span>
+            <span className={styles.heroServiceLabel} suppressHydrationWarning>{t('home.value_props.itinerary.title')}</span>
+          </div>
+          <div className={styles.heroServiceDivider} />
+          <div className={styles.heroServiceRow}>
+            <span className={styles.heroServiceIcon}>🗺️</span>
+            <span className={styles.heroServiceLabel} suppressHydrationWarning>{t('home.value_props.navigation.title')}</span>
+          </div>
+        </div>
       </section>
 
 

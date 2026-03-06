@@ -460,26 +460,14 @@ export default function HomePage() {
       <div className={styles.orbBlue} />
 
       <section className={styles.hero}>
-        <div className={styles.badge}>{t('home.badge')}</div>
+        <div className={styles.badge} suppressHydrationWarning>{t('home.badge')}</div>
         {userName ? (
           <h1 className={styles.heroTitle} style={{ fontSize: '2rem', marginBottom: '8px', fontWeight: 'bold' }}>{getGreeting()}, {userName}님! 👋</h1>
         ) : (
-          <h1 className={styles.heroTitle} dangerouslySetInnerHTML={{ __html: t('home.title').replace(',', ',<br />') }} />
+          <h1 className={styles.heroTitle} suppressHydrationWarning dangerouslySetInnerHTML={{ __html: t('home.title') }} />
         )}
-        <p className={styles.heroSub}>{t('home.subtitle')}</p>
       </section>
 
-      <section className={styles.valueSection}>
-        {VALUE_PROPS.map((v, i) => (
-          <div key={i} className={styles.valuePill} onClick={() => { if (v.key === 'navigation') setOpenNavSheet(true); else router.push(v.path); }}>
-            <span className={styles.valueIcon}>{v.icon}</span>
-            <div>
-              <div className={styles.valueTitle}>{v.label}</div>
-              <div className={styles.valueDesc}>{t(`home.value_props.${v.key}.desc`)}</div>
-            </div>
-          </div>
-        ))}
-      </section>
 
       <section className={styles.inputSection}>
         <div className={styles.inputLabel}>{t('home.input_label')}</div>

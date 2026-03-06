@@ -146,11 +146,13 @@
 
 /* Kello logo image */
 .heroLogo {
-    width: 220px;
+    width: 100%;
+    max-width: 340px;
     height: auto;
     object-fit: contain;
     margin: 0 auto 12px;
     display: block;
+    border-radius: 16px;
 }
 
 /* Greeting text when logged in */

@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "K-TRIP | Korea Travel OS",
+  title: "Kello | Korea Travel OS",
   description: "Operating your Korea trip with AI. Not just searching.",
   manifest: "/manifest.json",
 };
@@ -26,6 +26,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  viewportFit: "cover",
 };
 
 import { TripProvider } from "@/lib/contexts/TripContext";

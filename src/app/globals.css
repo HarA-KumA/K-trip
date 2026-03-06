@@ -63,6 +63,13 @@ body {
   overflow-x: hidden;
   overscroll-behavior-y: none;
   /* Prevent pull-to-refresh on mobile web */
+  /* Fix for mobile browsers with dynamic toolbars */
+  height: 100%;
+}
+
+html {
+  height: 100%;
+  height: -webkit-fill-available;
 }
 
 a {
@@ -81,7 +88,10 @@ button {
 .mobile-wrapper {
   max-width: 480px;
   margin: 0 auto;
+  /* 100dvh = dynamic viewport height (주소창 제외한 실제 높이) */
   height: 100vh;
+  height: 100dvh;
+  min-height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -101,6 +111,7 @@ button {
   padding-bottom: 20px;
   /* Base padding */
 }
+
 
 /* Typography Utilities */
 .text-xs {

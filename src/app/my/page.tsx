@@ -230,7 +230,7 @@ function MyPageContent() {
                             }}>🤝</div>
                             <div style={{ flex: 1 }}>
                                 <div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: 2 }}>파트너로 등록하기</div>
-                                <div style={{ fontSize: '0.78rem', color: 'var(--gray-500)' }}>K-Trip 협력업체로 가입해 더 많은 여행객에게 소개되세요</div>
+                                <div style={{ fontSize: '0.78rem', color: 'var(--gray-500)' }}>Kello 협력업체로 가입해 더 많은 여행객에게 소개되세요</div>
                             </div>
                             <span style={{ color: '#f59e0b', fontSize: '1rem', fontWeight: 700 }}>›</span>
                         </div>
@@ -259,7 +259,7 @@ function MyPageContent() {
                             <div style={{ fontSize: '1.6rem' }}>✅</div>
                             <div>
                                 <div style={{ fontWeight: 700, fontSize: '0.92rem', color: '#065f46', marginBottom: 2 }}>협력업체 승인 완료</div>
-                                <div style={{ fontSize: '0.78rem', color: '#065f46' }}>K-Trip 파트너로 등록되었습니다.</div>
+                                <div style={{ fontSize: '0.78rem', color: '#065f46' }}>Kello 파트너로 등록되었습니다.</div>
                             </div>
                         </div>
                     )}

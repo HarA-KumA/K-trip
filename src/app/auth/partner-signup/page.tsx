@@ -54,7 +54,7 @@ export default function PartnerSignupPage() {
             } else if (existing.status === 'approved') {
                 setError('이미 승인된 이메일입니다. 협력업체 로그인을 이용해주세요.');
             } else {
-                setError('이 이메일로 이미 가입 신청 이력이 있습니다. 문의: admin@k-trip.com');
+                setError('이 이메일로 이미 가입 신청 이력이 있습니다. 문의: admin@kello.app');
             }
             setLoading(false);
             return;
@@ -176,7 +176,7 @@ export default function PartnerSignupPage() {
                 <div className={styles.header}>
                     <div className={styles.badge}>🤝 협력업체 신청</div>
                     <h1 className={styles.title}>파트너 가입 신청</h1>
-                    <p className={styles.subTitle}>K-Trip과 함께 더 많은 여행객에게 소개되세요</p>
+                    <p className={styles.subTitle}>Kello과 함께 더 많은 여행객에게 소개되세요</p>
                 </div>
 
                 <div className={styles.infoBox}>

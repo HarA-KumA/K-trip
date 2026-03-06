@@ -68,7 +68,7 @@ export default function LoginPage() {
             <div className={styles.formCard}>
                 <div className={styles.header}>
                     <h1 className={styles.title}>Welcome Back</h1>
-                    <p className={styles.subTitle}>Sign in to access your K-Trip OS</p>
+                    <p className={styles.subTitle}>Sign in to access your Kello OS</p>
                 </div>
 
                 {/* Google Login Button */}

@@ -6,14 +6,17 @@ import { supabase } from '@/lib/supabaseClient';
 import styles from '../admin.module.css';
 
 const BUSINESS_TYPE_LABELS: Record<string, string> = {
-    hotel: '🏨 호텔/숙박',
-    restaurant: '🍽️ 레스토랑/카페',
-    tour: '🗺️ 투어/액티비티',
-    shopping: '🛍️ 쇼핑',
-    transport: '🚌 교통/렌터카',
-    beauty: '💆 뷰티/스파',
+    beauty_hair: '✂️ 뷰티 · 헤어',
+    beauty_nail: '💅 뷰티 · 네일',
+    beauty_body: '🛁 뷰티 · 바디',
+    beauty_makeup: '💄 뷰티 · 메이크업',
+    food_general: '🍽️ 맛집 · 일반',
+    food_vegan: '🥗 맛집 · 비건',
+    food_halal: '🕌 맛집 · 할랄',
+    landmark: '🗺️ 랜드마크',
     other: '📋 기타',
 };
+
 
 type PartnerStatus = 'pending' | 'approved' | 'rejected';
 

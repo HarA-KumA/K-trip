@@ -6,14 +6,17 @@ import styles from './partner-signup.module.css';
 import { supabase } from '@/lib/supabaseClient';
 
 const BUSINESS_TYPES = [
-    { value: 'hotel', label: '🏨 호텔 / 숙박' },
-    { value: 'restaurant', label: '🍽️ 레스토랑 / 카페' },
-    { value: 'tour', label: '🗺️ 투어 / 액티비티' },
-    { value: 'shopping', label: '🛍️ 쇼핑' },
-    { value: 'transport', label: '🚌 교통 / 렌터카' },
-    { value: 'beauty', label: '💆 뷰티 / 스파' },
-    { value: 'other', label: '📋 기타' },
+    { value: 'beauty_hair', label: '✂️ 뷰티 · 헤어', group: '💅 뷰티' },
+    { value: 'beauty_nail', label: '💅 뷰티 · 네일', group: '💅 뷰티' },
+    { value: 'beauty_body', label: '🛁 뷰티 · 바디', group: '💅 뷰티' },
+    { value: 'beauty_makeup', label: '💄 뷰티 · 메이크업', group: '💅 뷰티' },
+    { value: 'food_general', label: '🍽️ 맛집 · 일반', group: '🍽️ 맛집' },
+    { value: 'food_vegan', label: '🥗 맛집 · 비건', group: '🍽️ 맛집' },
+    { value: 'food_halal', label: '🕌 맛집 · 할랄', group: '🍽️ 맛집' },
+    { value: 'landmark', label: '🗺️ 랜드마크', group: '랜드마크' },
+    { value: 'other', label: '📋 기타', group: '기타' },
 ];
+
 
 export default function PartnerSignupPage() {
     const router = useRouter();
@@ -218,11 +221,22 @@ export default function PartnerSignupPage() {
                             required
                         >
                             <option value="">업종을 선택해주세요</option>
-                            {BUSINESS_TYPES.map(bt => (
-                                <option key={bt.value} value={bt.value}>{bt.label}</option>
-                            ))}
+                            <optgroup label="💅 뷰티">
+                                <option value="beauty_hair">✂️ 헤어</option>
+                                <option value="beauty_nail">💅 네일</option>
+                                <option value="beauty_body">🛁 바디</option>
+                                <option value="beauty_makeup">💄 메이크업</option>
+                            </optgroup>
+                            <optgroup label="🍽️ 맛집">
+                                <option value="food_general">🍽️ 일반</option>
+                                <option value="food_vegan">🥗 비건</option>
+                                <option value="food_halal">🕌 할랄</option>
+                            </optgroup>
+                            <option value="landmark">🗺️ 랜드마크</option>
+                            <option value="other">📋 기타</option>
                         </select>
                     </div>
+
 
                     <div className={styles.inputGroup}>
                         <label className={styles.label}>주소</label>

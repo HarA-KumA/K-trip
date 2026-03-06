@@ -141,7 +141,7 @@ function MyPageContent() {
                     <div key={booking.id} className={`${styles.ticket} mb-4`}>
                         <div className={styles.ticketHeader}>
                             <div>
-                                <div className="text-xs text-gray-500 uppercase font-bold">{booking.category}</div>
+                                <div className="text-xs text-gray-500 uppercase font-bold" suppressHydrationWarning>{booking.category}</div>
                                 <div className={`${styles.statusLabel} ${booking.status === 'confirmed' ? styles.confirmed : ''}`} suppressHydrationWarning>
                                     {t(`planner_page.status.${booking.status}`)}
                                 </div>
@@ -149,8 +149,8 @@ function MyPageContent() {
                             <div className={styles.qrCode}></div>
                         </div>
                         <div className={styles.ticketBody}>
-                            <h3 className="text-xl font-bold mb-1">{booking.title}</h3>
-                            <div className="text-sm text-gray-600 mb-2">{booking.date}</div>
+                            <h3 className="text-xl font-bold mb-1" suppressHydrationWarning>{booking.title}</h3>
+                            <div className="text-sm text-gray-600 mb-2" suppressHydrationWarning>{booking.date}</div>
                             {booking.area && (
                                 <div className="text-xs text-gray-400" suppressHydrationWarning>{t('my_page.bookings.area', { defaultValue: 'Area' })}: {booking.area}</div>
                             )}
@@ -158,6 +158,7 @@ function MyPageContent() {
                                 <div className="text-xs text-gray-400" suppressHydrationWarning>{t('my_page.bookings.price', { defaultValue: 'Price' })}: ₩{booking.price}</div>
                             )}
                             {booking.isNew && (
+
                                 <div className="mt-2 text-xs text-purple font-bold" suppressHydrationWarning>✨ {t('my_page.bookings.new_added', { defaultValue: 'New Booking Added!' })}</div>
                             )}
                         </div>

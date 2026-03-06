@@ -109,18 +109,12 @@ export default function TodayPage() {
     const minutesToNext = nextEvent ? getMinutes(nextEvent.time) - nowMinutes : null;
 
     const handleNavigate = useCallback((lat: number, lng: number, title: string) => {
-        const deeplink = `kride://route?dest_lat=${lat}&dest_lng=${lng}&dest_name=${encodeURIComponent(title)}`;
-        window.location.href = deeplink;
-
-        // Fallback to store if app not installed
-        setTimeout(() => {
-            const ua = navigator.userAgent;
-            const storeUrl = (ua.includes('iPhone') || ua.includes('iPad'))
-                ? 'https://apps.apple.com/kr/app/kakao-t/id981110422'
-                : 'https://play.google.com/store/apps/details?id=com.kakao.taxi';
-            window.open(storeUrl, '_blank');
-        }, 1200);
-    }, []);
+        const origin = 'My Location'; // Or real coordinates if available
+        const dest = `${lat},${lng}`;
+        const lang = i18n.language;
+        const googleUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}&destination_place_id=${encodeURIComponent(title)}&travelmode=transit&hl=${lang}`;
+        window.open(googleUrl, '_blank');
+    }, [i18n.language]);
 
     const toggleCheck = useCallback((id: string) => {
         setCheckedIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);

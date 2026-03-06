@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 const HIDE_ROUTES = ['/auth', '/my', '/lang-test', '/community'];
 
 export default function KRideGlobalFAB() {
-    const { t } = useTranslation('common');
+    const { t, i18n } = useTranslation('common');
     const { tripStatus, itinerary } = useTrip();
     const pathname = usePathname();
     const router = useRouter();
@@ -74,12 +74,13 @@ export default function KRideGlobalFAB() {
 
     const handleTransit = useCallback(() => {
         if (!destInfo) return;
-        window.open(`kakaomap://route?ep=${destInfo.lat},${destInfo.lng}&by=PUBLICTRANSIT`, '_blank');
-        setTimeout(() => {
-            window.open(`https://map.kakao.com/link/to/${encodeURIComponent(destInfo.name)},${destInfo.lat},${destInfo.lng}`, '_blank');
-        }, 500);
+        const origin = 'My Location';
+        const dest = `${destInfo.lat},${destInfo.lng}`;
+        const lang = i18n.language;
+        const googleUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}&destination_place_id=${encodeURIComponent(destInfo.name)}&travelmode=transit&hl=${lang}`;
+        window.open(googleUrl, '_blank');
         setOpen(false);
-    }, [destInfo]);
+    }, [destInfo, i18n.language]);
 
     const handleCopy = useCallback(async () => {
         if (!destInfo) return;

@@ -304,7 +304,7 @@ export default function HomePage() {
     setOpenNavSheet(false);
   };
 
-  const handleTransit = (provider: 'kakao' | 'google' = 'kakao') => {
+  const handleTransit = (provider: 'kakao' | 'google' = 'google') => {
     if (!destInfo) return;
     const address = destInfo.name || destInfo.nameKo; // Priority to English name for Google
     const lat = destInfo.lat;
@@ -599,10 +599,10 @@ export default function HomePage() {
                     <div className={styles.choiceLabel}>K.Ride</div>
                     <div className={styles.choiceSubText}>택시 호출하기</div>
                   </button>
-                  <button className={styles.choiceBtn} onClick={() => handleTransit('kakao')}>
+                  <button className={styles.choiceBtn} onClick={() => handleTransit('google')}>
                     <div className={styles.choiceIcon}>🚇</div>
-                    <div className={styles.choiceLabel}>대중교통</div>
-                    <div className={styles.choiceSubText}>카카오맵 길찾기</div>
+                    <div className={styles.choiceLabel}>{t('fab.transit')}</div>
+                    <div className={styles.choiceSubText}>Google Maps</div>
                   </button>
                   <button className={styles.choiceBtn} onClick={() => handleTransit('google')} style={{ gridColumn: 'span 2', flexDirection: 'row', padding: '16px' }}>
                     <div className={styles.choiceIcon} style={{ width: '40px', height: '40px', fontSize: '20px' }}>

@@ -67,7 +67,7 @@ function ExploreMapInner({ items, center, onItemClick, radius, zoom, lang }: Exp
         language: lang,
     });
 
-    const { t } = useTranslation('common');
+    const { t, i18n } = useTranslation('common');
     const [selectedItem, setSelectedItem] = useState<ServiceItem | null>(null);
 
     // Routing states
@@ -214,19 +214,11 @@ function ExploreMapInner({ items, center, onItemClick, radius, zoom, lang }: Exp
     };
 
     const handleTransit = (item: ServiceItem) => {
-        const appUrl = currentLocation
-            ? `kakaomap://route?sp=${currentLocation.lat},${currentLocation.lng}&ep=${item.lat},${item.lng}&by=PUBLICTRANSIT`
-            : `kakaomap://route?ep=${item.lat},${item.lng}&by=PUBLICTRANSIT`;
-
-        const webUrl = currentLocation
-            ? `https://map.kakao.com/link/from/My Location,${currentLocation.lat},${currentLocation.lng}/to/${encodeURIComponent(item.title)},${item.lat},${item.lng}`
-            : `https://map.kakao.com/link/to/${encodeURIComponent(item.title)},${item.lat},${item.lng}`;
-
-        window.location.href = appUrl;
-        setTimeout(() => {
-            if (document.hidden) return;
-            window.open(webUrl, '_blank');
-        }, 500);
+        const origin = currentLocation ? `${currentLocation.lat},${currentLocation.lng}` : 'My Location';
+        const dest = `${item.lat},${item.lng}`;
+        const lang = i18n.language;
+        const googleUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}&destination_place_id=${encodeURIComponent(item.title)}&travelmode=transit&hl=${lang}`;
+        window.open(googleUrl, '_blank');
     };
 
     const handleGoogleMaps = (item: ServiceItem) => {

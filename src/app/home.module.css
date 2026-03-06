@@ -182,61 +182,41 @@
     margin: 0 0 16px;
 }
 
-/* Service rows container */
-.heroServices {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-    margin-top: 20px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(37, 99, 235, 0.12);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.06);
-    backdrop-filter: blur(8px);
-}
-
-/* Each service row */
-.heroServiceRow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    padding: 16px 24px;
-    transition: background 0.18s;
-}
-
-.heroServiceRow:hover {
-    background: rgba(37, 99, 235, 0.04);
-}
-
-/* Icon bubble */
-.heroServiceIcon {
-    font-size: 22px;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(37, 99, 235, 0.08);
-    border-radius: 14px;
-    flex-shrink: 0;
-}
-
-/* Service label */
-.heroServiceLabel {
-    font-size: 16px;
-    font-weight: 700;
-    color: #111827;
+/* Promo description under Kello */
+.heroDesc {
+    font-size: 15px;
+    font-weight: 600;
+    color: #6b7280;
+    margin: 4px 0 0;
     letter-spacing: -0.01em;
 }
 
-/* Thin divider between rows */
-.heroServiceDivider {
-    width: calc(100% - 48px);
-    height: 1px;
-    background: rgba(37, 99, 235, 0.08);
+/* Horizontal feature chips */
+.heroChips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+/* Individual chip */
+.heroChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1d4ed8;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.05));
+    border: 1.5px solid rgba(37, 99, 235, 0.18);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    cursor: default;
+    pointer-events: none;
+    user-select: none;
 }
 
 /* Legacy selectors (kept for compatibility) */

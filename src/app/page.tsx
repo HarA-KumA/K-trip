@@ -467,25 +467,20 @@ export default function HomePage() {
             <p className={styles.heroGreeting} suppressHydrationWarning>{getGreeting()}, {userName}님! 👋</p>
           </>
         ) : (
-          <h1 className={styles.heroKello}>Kello</h1>
+          <>
+            <h1 className={styles.heroKello}>Kello</h1>
+            <p className={styles.heroDesc} suppressHydrationWarning>
+              {t('home.hero_desc', { defaultValue: 'AI가 대신하는 한국 여행의 모든 것' })}
+            </p>
+          </>
         )}
-        <div className={styles.heroServices}>
-          <div className={styles.heroServiceRow}>
-            <span className={styles.heroServiceIcon}>🎫</span>
-            <span className={styles.heroServiceLabel} suppressHydrationWarning>{t('home.value_props.booking.title')}</span>
-          </div>
-          <div className={styles.heroServiceDivider} />
-          <div className={styles.heroServiceRow}>
-            <span className={styles.heroServiceIcon}>🗓️</span>
-            <span className={styles.heroServiceLabel} suppressHydrationWarning>{t('home.value_props.itinerary.title')}</span>
-          </div>
-          <div className={styles.heroServiceDivider} />
-          <div className={styles.heroServiceRow}>
-            <span className={styles.heroServiceIcon}>🗺️</span>
-            <span className={styles.heroServiceLabel} suppressHydrationWarning>{t('home.value_props.navigation.title')}</span>
-          </div>
+        <div className={styles.heroChips}>
+          <span className={styles.heroChip}>🎫 <span suppressHydrationWarning>{t('home.value_props.booking.title')}</span></span>
+          <span className={styles.heroChip}>🗓️ <span suppressHydrationWarning>{t('home.value_props.itinerary.title')}</span></span>
+          <span className={styles.heroChip}>🗺️ <span suppressHydrationWarning>{t('home.value_props.navigation.title')}</span></span>
         </div>
       </section>
+
 
 
       <section className={styles.inputSection}>

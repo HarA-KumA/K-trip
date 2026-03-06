@@ -144,34 +144,13 @@
     background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
 }
 
-/* "✦ Korea Travel OS" pill */
-.heroBadgePill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 16px;
-    border-radius: 24px;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.10), rgba(124, 58, 237, 0.10));
-    border: 1px solid rgba(37, 99, 235, 0.22);
-    color: var(--primary);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    margin-bottom: 18px;
-    text-transform: uppercase;
-}
-
-/* Big "Kello" brand text */
-.heroKello {
-    font-size: 64px;
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    line-height: 1;
-    margin: 0 0 6px;
-    background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 60%, #2563eb 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+/* Kello logo image */
+.heroLogo {
+    width: 220px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto 12px;
+    display: block;
 }
 
 /* Greeting text when logged in */

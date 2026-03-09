@@ -61,3 +61,82 @@
     border-radius: 2px;
     box-shadow: 0 0 8px var(--primary);
 }
+
+@media (min-width: 768px) {
+    .navBar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80px;
+        /* Tablet collapsed width */
+        height: 100vh;
+        height: 100dvh;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 40px;
+        border-top: none;
+        border-right: 1px solid var(--gray-200);
+        gap: 12px;
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+        overflow-x: hidden;
+        z-index: 1000;
+        background: var(--background);
+    }
+
+    .navBar:hover {
+        width: var(--nav-width-desktop);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.05);
+        /* Fly-out illusion on hover */
+    }
+
+    .navItem {
+        width: var(--nav-width-desktop);
+        /* Ensure child doesn't squish when wrapper shrinks */
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 16px 28px;
+        /* 28px centers a 24px icon perfectly in 80px */
+        gap: 20px;
+    }
+
+    .navItem.active {
+        transform: translateX(8px);
+    }
+
+    .navLabel {
+        font-size: 1rem;
+        font-weight: 500;
+        opacity: 0.8;
+    }
+
+    .navItem.active .navLabel {
+        font-weight: 700;
+    }
+
+    .navIcon {
+        font-size: 1.5rem;
+    }
+
+    .indicator {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 24px;
+    }
+
+    .navItem.active .indicator {
+        transform: translateY(-50%);
+    }
+}
+
+@media (min-width: 1024px) {
+    .navBar {
+        width: var(--nav-width-desktop);
+    }
+
+    .navBar:hover {
+        box-shadow: none;
+        /* No shadow needed on PC since it is always expanded */
+    }
+}

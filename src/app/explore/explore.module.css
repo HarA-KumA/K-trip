@@ -236,6 +236,19 @@
     border-top: 1px solid var(--gray-200);
 }
 
+@media (min-width: 768px) {
+    .modalOverlay {
+        align-items: center;
+        /* Center on large screens */
+    }
+
+    .bottomSheet {
+        border-radius: 24px;
+        margin-bottom: 0;
+        max-height: 90vh;
+    }
+}
+
 @keyframes slideUp {
     from {
         transform: translateY(100%);
@@ -425,6 +438,8 @@
     cursor: pointer;
     font-size: 14px;
     transition: opacity 0.2s;
+    min-height: 44px;
+    /* Touch target */
 }
 
 .addToPlanBtn:active {

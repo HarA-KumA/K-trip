@@ -41,9 +41,21 @@
 /* Dashboard Cards */
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 12px;
     margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .statCard {
@@ -122,17 +134,38 @@
     font-size: 1rem;
 }
 
-/* User list */
+/* User list / Table-like rows on PC */
+.cardList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .card {
     background: white;
     border-radius: 16px;
     border: 1px solid var(--gray-100);
     padding: 14px 16px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
     display: flex;
     align-items: center;
     gap: 12px;
+}
+
+@media (min-width: 768px) {
+    .card {
+        flex-direction: row;
+        border-radius: 8px;
+    }
+
+    .userName {
+        min-width: 150px;
+    }
+
+    .userEmail {
+        min-width: 200px;
+    }
 }
 
 .avatar {

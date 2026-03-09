@@ -41,7 +41,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <TripProvider>
           <LanguageInitializer />
-          <div className="mobile-wrapper">
+          <div className="app-wrapper">
             <main className="scroll-container">
               {children}
             </main>

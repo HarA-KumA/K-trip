@@ -43,9 +43,9 @@
 
   /* Layout Constants */
   --nav-height: 72px;
+  --nav-width-desktop: 250px;
   --safe-area-bottom: env(safe-area-inset-bottom, 12px);
   --total-nav-height: 72px;
-  /* BottomNav.module.css calculates this */
 }
 
 * {
@@ -84,20 +84,25 @@ button {
   background: none;
 }
 
-/* Mobile Wrapper */
-.mobile-wrapper {
-  max-width: 480px;
-  margin: 0 auto;
-  /* 100dvh = dynamic viewport height (주소창 제외한 실제 높이) */
+/* App Wrapper (Responsive layout container) */
+.app-wrapper {
+  width: 100%;
   height: 100vh;
   height: 100dvh;
-  min-height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
   position: relative;
   background-color: var(--background);
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .app-wrapper {
+    flex-direction: row;
+    /* Sidebar on left, content on right */
+    padding-left: 80px;
+    /* Tablet collapsed drawer width */
+  }
 }
 
 .scroll-container {
@@ -304,18 +309,58 @@ button {
   animation: slideInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Mobile Specific Optimizations */
-@media (max-width: 480px) {
+/* Responsive Breakpoints & Overrides */
+/* Mobile First is default, Tablet begins at 768px, PC begins at 1024px */
 
-  input,
-  select,
-  textarea {
-    font-size: 16px !important;
-    /* Prevent iOS zoom */
+@media (min-width: 768px) {
+  .glass-panel {
+    border-radius: var(--radius-lg);
   }
 
-  .glass-panel {
-    border-radius: var(--radius-md);
+  /* Typography scale up for tablet/PC */
+  .text-xs {
+    font-size: 0.8rem;
+  }
+
+  .text-sm {
+    font-size: 0.95rem;
+  }
+
+  .text-md {
+    font-size: 1.1rem;
+  }
+
+  .text-lg {
+    font-size: 1.25rem;
+  }
+
+  .text-xl {
+    font-size: 1.75rem;
+  }
+
+  .text-2xl {
+    font-size: 2rem;
+  }
+
+  /* Common UI Elements: responsive grid adjustments */
+  .responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+  }
+
+  .app-wrapper {
+    padding-left: var(--nav-width-desktop);
+    max-width: 1440px;
+    margin: 0 auto;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
   }
 }
 

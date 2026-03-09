@@ -5,7 +5,11 @@
 }
 
 .sectionTitle {
-  display: none;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #0f172a;
+  text-align: left;
 }
 
 .tabContainer {

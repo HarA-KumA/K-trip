@@ -105,7 +105,7 @@
             "foodie": "맛집 탐방",
             "heritage": "전통 문화",
             "k_pop": "K-팝 투어",
-            "shopping": "쇼핑 \u0026 패션"
+            "shopping": "쇼핑 & 패션"
         },
         "badge": "Kello",
         "title": "예약대행 · 일정자동정리 · 실시간안내",
@@ -135,7 +135,7 @@
                 "label": "2일 플랜"
             },
             "3d": {
-                "title": "3일: K-컬처 \u0026 스타일",
+                "title": "3일: K-컬처 & 스타일",
                 "label": "3일 플랜"
             },
             "5d": {
@@ -175,7 +175,7 @@
         "filters_title": "필터",
         "apply": "적용",
         "reset": "초기화",
-        "adding_item_to": "\u003cstrong\u003e{{title}}\u003c/strong\u003e 장소를 다음에 추가:",
+        "adding_item_to": "<strong>{{title}}</strong> 장소를 다음에 추가:",
         "no_specific_filters": "이 카테고리에는 특별한 필터가 없습니다.",
         "filters": {
             "show": "종류",
@@ -233,7 +233,7 @@
         "b1": {
             "title": "제니하우스 청담",
             "area": "청담",
-            "desc": "K-아이돌들이 즐겨찾는 프리미엄 헤어 \u0026 메이크업 숍",
+            "desc": "K-아이돌들이 즐겨찾는 프리미엄 헤어 & 메이크업 숍",
             "price": "150,000"
         },
         "b2": {
@@ -406,7 +406,7 @@
         "title": "커뮤니티",
         "subtitle": "현지인 및 여행자와 소통하세요",
         "filter_all": "전체",
-        "filter_meetup": "식사 \u0026 모임",
+        "filter_meetup": "식사 & 모임",
         "filter_travel": "여행 메이트",
         "filter_help": "로컬 도움 요청",
         "comments": "댓글",
@@ -464,16 +464,16 @@
         "badge": "긴급",
         "numbers_title": "긴급 전화번호",
         "medical_title": "의료 도움",
-        "medical_desc": "근처 병원 \u0026 증상 카드",
+        "medical_desc": "근처 병원 & 증상 카드",
         "lost_title": "분실물",
         "lost_desc": "단계별 분실물 찾기 가이드",
         "police_title": "경찰 / 범죄",
         "police_desc": "신고 및 도움 받기",
         "interp_title": "통역",
-        "interp_desc": "1330 여행 도움말 \u0026 번역 앱",
+        "interp_desc": "1330 여행 도움말 & 번역 앱",
         "symptom_title": "증상 문구 카드",
         "symptom_hint": "증상을 누르면 의사에게 보여줄 한국어 문구가 표시됩니다",
-        "clinic_title": "국제 병원 \u0026 응급실",
+        "clinic_title": "국제 병원 & 응급실",
         "med_title": "편의점 상비약",
         "med_hint": "GS25, CU, 7-Eleven에서 24시간 구매 가능",
         "lost_step1": "1단계: 어디서 잃어버렸나요?",
@@ -491,5 +491,47 @@
         "airport": "공항",
         "street": "길거리",
         "lost_in": "분실 장소:"
+    },
+    "home_new": {
+        "hero_title": "한국 여행, 일정부터 예약까지 한 번에",
+        "hero_subtitle": "여행 일정 추천부터 예약 지원까지 빠르게. 한국 여행 초보자도 쉽게 사용하는 파트너.",
+        "features": {
+            "booking": "예약까지 한 번에",
+            "ai_plan": "AI로 일정 완성",
+            "navi": "길찾기 걱정 없이"
+        },
+        "input": {
+            "where": "어디로 갈까요?",
+            "where_placeholder": "서울, 부산, 제주...",
+            "when": "얼마나 머무르시나요?",
+            "days_suffix": "일",
+            "who": "누구와 함께 가나요?",
+            "who_options": {
+                "solo": "혼자서",
+                "couple": "커플",
+                "friends": "친구와",
+                "family": "가족과"
+            },
+            "interests": "어떤 테마를 원하시나요?",
+            "interests_options": {
+                "food": "맛집 탐방",
+                "shopping": "쇼핑",
+                "beauty": "K-뷰티",
+                "sightseeing": "관광명소",
+                "night": "나이트라이프",
+                "experience": "이색 체험"
+            }
+        },
+        "cta_helper": "1분 안에 꼭 맞는 여행 코스 받기",
+        "cta_btn": "일정 생성 시작",
+        "trust": {
+            "title": "Kello와 함께하는 안심 여행",
+            "items": [
+                "한국 여행 특화 전문 앱",
+                "AI 맞춤형 일정 추천",
+                "언어 장벽 없는 길찾기",
+                "어려운 장소도 예약 지원"
+            ]
+        }
     }
 }

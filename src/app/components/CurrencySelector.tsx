@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './CurrencySelector.module.css';
 
 interface Rates {
@@ -50,7 +50,6 @@ export default function CurrencySelector() {
         setSelected(code);
         localStorage.setItem('ktrip_currency', code);
         setIsOpen(false);
-        // Dispatch an event to notify other components if needed
         window.dispatchEvent(new CustomEvent('ktrip_currency_change', { detail: code }));
     };
 
@@ -65,21 +64,30 @@ export default function CurrencySelector() {
                 <>
                     <div className={styles.backdrop} onClick={() => setIsOpen(false)} />
                     <div className={styles.dropdown}>
-                        {SUPPORTED_CURRENCIES.map(curr => (
-                            <button
-                                key={curr.code}
-                                className={`${styles.item} ${selected === curr.code ? styles.active : ''}`}
-                                onClick={() => handleSelect(curr.code)}
-                            >
-                                <span className={styles.code}>{curr.code}</span>
-                                <span className={styles.symbol}>{curr.symbol}</span>
-                                {curr.code !== 'KRW' && rates[curr.code] && (
-                                    <span className={styles.rate}>
-                                        1k ₩ ≈ {(rates[curr.code] * 1000).toFixed(2)} {curr.code}
-                                    </span>
-                                )}
-                            </button>
-                        ))}
+                        <div className={styles.dropdownHandle} />
+                        <div className={styles.dropdownHeader}>
+                            <h2>통화 선택</h2>
+                        </div>
+                        <div className={styles.itemList}>
+                            {SUPPORTED_CURRENCIES.map(curr => (
+                                <button
+                                    key={curr.code}
+                                    className={`${styles.item} ${selected === curr.code ? styles.active : ''}`}
+                                    onClick={() => handleSelect(curr.code)}
+                                >
+                                    <span className={styles.symbol}>{curr.symbol}</span>
+                                    <span className={styles.code}>{curr.code}</span>
+                                    {curr.code !== 'KRW' && rates[curr.code] && (
+                                        <span className={styles.rate}>
+                                            1k ₩ ≈ {(rates[curr.code] * 1000).toFixed(2)}
+                                        </span>
+                                    )}
+                                    {selected === curr.code && (
+                                        <span className={styles.check}>✓</span>
+                                    )}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </>
             )}

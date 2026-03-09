@@ -31,7 +31,9 @@ export default function TravelPlanTemplates() {
 
     return (
         <section className={styles.templatesSection}>
-            <h2 className={styles.sectionTitle} style={{ display: 'none' }}>Travel Plan Templates</h2>
+            <h2 className={styles.sectionTitle}>
+                {currentLang.startsWith('ko') ? '인기 추천 플랜' : currentLang.startsWith('th') ? 'แพ็กเกจยอดนิยม' : 'Popular Recommended Plans'}
+            </h2>
 
             <div className={styles.tabContainer}>
                 {templates.map((plan) => (

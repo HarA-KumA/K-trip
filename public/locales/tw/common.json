@@ -175,7 +175,7 @@
         "filters_title": "篩選",
         "apply": "應用",
         "reset": "重置",
-        "adding_item_to": "正在將 \u003cstrong\u003e{{title}}\u003c/strong\u003e 添加到:",
+        "adding_item_to": "正在將 <strong>{{title}}</strong> 添加到:",
         "no_specific_filters": "此類別沒有特定的篩選條件。",
         "filters": {
             "show": "類別",
@@ -453,5 +453,46 @@
         },
         "filter_review": "Reviews",
         "detail": "貼文詳情"
+    },
+    "home_new": {
+        "hero_title": "韓國旅行，從行程規劃到預訂一站搞定",
+        "hero_subtitle": "快速取得行程推薦與預訂支援，新手也能輕鬆使用的旅行助手。",
+        "features": {
+            "booking": "一站式預訂",
+            "ai_plan": "AI智慧規劃",
+            "navi": "無憂導航"
+        },
+        "input": {
+            "where": "去哪裡？",
+            "where_placeholder": "首爾、釜山、濟州...",
+            "when": "去幾天？",
+            "days_suffix": " 天",
+            "who": "和誰一起？",
+            "who_options": {
+                "solo": "獨自",
+                "couple": "情侶",
+                "friends": "朋友",
+                "family": "家庭"
+            },
+            "interests": "您想體驗什麼？",
+            "interests_options": {
+                "food": "美食",
+                "shopping": "購物",
+                "beauty": "K-美容",
+                "sightseeing": "觀光打卡",
+                "night": "夜景",
+                "experience": "特色體驗"
+            }
+        },
+        "cta_helper": "1分鐘獲取專屬行程推薦",
+        "cta_btn": "開始定制行程",
+        "trust": {
+            "items": [
+                "專注韓國旅行",
+                "AI個人化推薦",
+                "無語言障礙導航",
+                "輕鬆搞定預訂"
+            ]
+        }
     }
 }

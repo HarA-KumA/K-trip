@@ -1,0 +1,28 @@
+﻿git : To https://github.com/H
+arA-KumA/K-trip.git
+위치 줄:1 문자:1
++ git push origin feature/hom
+e/main-homepage-000 2>&1 | Ou
+t-File -Encod ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (To http  
+  s://gith...KumA/K-trip.g   
+ it:String) [], RemoteExc    
+eption
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+ ! [remote rejected] feature/
+home/main-homepage-000 -> fea
+ture/home/main-homepage-000 (
+cannot lock ref 'refs/heads/f
+eature/home/main-homepage-000
+': 'refs/heads/feature/home' 
+exists; cannot create 'refs/h
+eads/feature/home/main-homepa
+ge-000')
+error: failed to push some re
+fs to 'https://github.com/Har
+A-KumA/K-trip.git'

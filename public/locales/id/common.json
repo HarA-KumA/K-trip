@@ -58,7 +58,7 @@
                 "label": "Rencana 2 Hari"
             },
             "3d": {
-                "title": "3 Hari: K-Culture \u0026 Gaya",
+                "title": "3 Hari: K-Culture & Gaya",
                 "label": "Rencana 3 Hari"
             },
             "5d": {
@@ -122,9 +122,9 @@
     },
     "community_page": {
         "title": "Community",
-        "subtitle": "Connect with locals \u0026 travelers",
+        "subtitle": "Connect with locals & travelers",
         "filter_all": "All",
-        "filter_meetup": "Food \u0026 Meetup",
+        "filter_meetup": "Food & Meetup",
         "filter_travel": "Travel Mate",
         "filter_help": "Local Help",
         "comments": "Comments",
@@ -163,5 +163,46 @@
         },
         "filter_review": "Reviews",
         "detail": "Detail Postingan"
+    },
+    "home_new": {
+        "hero_title": "Korea Travel: Plans & Bookings All in One",
+        "hero_subtitle": "From itinerary recommendations to booking support. Your ultimate travel concierge for Korea.",
+        "features": {
+            "booking": "Seamless Bookings",
+            "ai_plan": "AI Itineraries",
+            "navi": "Easy Navigation"
+        },
+        "input": {
+            "where": "Where to?",
+            "where_placeholder": "Seoul, Busan, Jeju...",
+            "when": "How long?",
+            "days_suffix": " Days",
+            "who": "Who are you traveling with?",
+            "who_options": {
+                "solo": "Solo",
+                "couple": "Couple",
+                "friends": "Friends",
+                "family": "Family"
+            },
+            "interests": "What are your interests?",
+            "interests_options": {
+                "food": "Food",
+                "shopping": "Shopping",
+                "beauty": "K-Beauty",
+                "sightseeing": "Sightseeing",
+                "night": "Nightlife",
+                "experience": "Experiences"
+            }
+        },
+        "cta_helper": "Get your personalized plan in 1 minute",
+        "cta_btn": "Start Creating Itinerary",
+        "trust": {
+            "items": [
+                "Korea Travel Specialized",
+                "AI Personalized Plans",
+                "Zero Language Barrier",
+                "Hassle-free Bookings"
+            ]
+        }
     }
 }

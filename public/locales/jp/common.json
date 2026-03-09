@@ -175,7 +175,7 @@
         "filters_title": "フィルター",
         "apply": "適用",
         "reset": "リセット",
-        "adding_item_to": "\u003cstrong\u003e{{title}}\u003c/strong\u003e を次の日程に追加:",
+        "adding_item_to": "<strong>{{title}}</strong> を次の日程に追加:",
         "no_specific_filters": "このカテゴリーには特定のフィルターがありません。",
         "filters": {
             "show": "種類",
@@ -453,5 +453,46 @@
         },
         "filter_review": "Reviews",
         "detail": "投稿の詳細"
+    },
+    "home_new": {
+        "hero_title": "韓国旅行、プラン作成から予約まで一度に",
+        "hero_subtitle": "プランの推薦から予約サポートまで早く簡単に。初心者向け旅行アシスタント。",
+        "features": {
+            "booking": "予約も一度に",
+            "ai_plan": "AIで簡単プラン",
+            "navi": "迷わない道案内"
+        },
+        "input": {
+            "where": "どこへ行きますか？",
+            "where_placeholder": "ソウル、釜山、済州...",
+            "when": "何日間ですか？",
+            "days_suffix": " 日間",
+            "who": "誰と行きますか？",
+            "who_options": {
+                "solo": "一人",
+                "couple": "カップル",
+                "friends": "友達",
+                "family": "家族"
+            },
+            "interests": "どんなテーマがいいですか？",
+            "interests_options": {
+                "food": "グルメ",
+                "shopping": "ショッピング",
+                "beauty": "K-ビューティー",
+                "sightseeing": "観光名所",
+                "night": "ナイトライフ",
+                "experience": "特別体験"
+            }
+        },
+        "cta_helper": "1分でピッタリの旅行プランを作成",
+        "cta_btn": "プラン作成スタート",
+        "trust": {
+            "items": [
+                "韓国旅行特化",
+                "AIがおすすめプラン作成",
+                "言語の壁がない道案内",
+                "難しい予約もサポート"
+            ]
+        }
     }
 }

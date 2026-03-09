@@ -163,7 +163,7 @@ export default function HomePage() {
           <div className={styles.inputGroup}>
             <label className={styles.inputLabel}>✨ {homeTrans('input.interests', '어떤 여행을 원하시나요?')}</label>
             <div className={styles.chipGrid3}>
-              {['food', 'shopping', 'beauty', 'sightseeing', 'night', 'experience'].map((key) => {
+              {['beauty', 'shopping', 'food', 'night'].map((key) => {
                 const isActive = interests.includes(key);
                 return (
                   <button

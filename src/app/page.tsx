@@ -90,8 +90,10 @@ export default function HomePage() {
         )}
       </div>
 
-      <div className={styles.orbPurple} />
-      <div className={styles.orbBlue} />
+      <div className={styles.backgroundEffects}>
+        <div className={styles.orbPurple} />
+        <div className={styles.orbBlue} />
+      </div>
 
       {/* Hero Section */}
       <section className={styles.hero}>

@@ -73,10 +73,22 @@ export default function HomePage() {
     return [...mappedPlaces, ...items];
   }, [t]);
 
-  // Typing suggestions disabled as requested
+  // Live suggestions as user types
   useEffect(() => {
-    setShowSuggestions(false);
-  }, [input]);
+    if (!input.trim()) {
+      setShowSuggestions(false);
+      setSuggestions([]);
+      return;
+    }
+    const q = input.trim().toLowerCase();
+    const localResults = ALL_SEARCH_ITEMS.filter(p =>
+      (p.title && p.title.toLowerCase().includes(q)) ||
+      (p.area && p.area.toLowerCase().includes(q)) ||
+      (p.searchTerms && p.searchTerms.includes(q))
+    ).slice(0, 8);
+    setSuggestions(localResults);
+    setShowSuggestions(localResults.length > 0);
+  }, [input, ALL_SEARCH_ITEMS]);
 
   const handleSelectPlace = async (place: any) => {
     // If it's a Google Place (prediction), fetch details for coordinates
@@ -491,18 +503,23 @@ export default function HomePage() {
               }
             }}
           />
-          {input && <button className={styles.inputClear} onClick={() => setInput('')}>✕</button>}
+          {input && <button className={styles.inputClear} onClick={() => { setInput(''); setShowSuggestions(false); setSuggestions([]); }}>✕</button>}
 
-          {/* Place Search Suggestions */}
+          {/* Live Place Search Suggestions */}
           {showSuggestions && suggestions.length > 0 && (
             <div className={styles.suggestions}>
               {suggestions.map((p, idx) => (
-                <div key={idx} className={styles.suggestionItem} onClick={() => handleSelectPlace(p)}>
-                  <span className={styles.suggestIcon}>🏢</span>
+                <div key={idx} className={styles.suggestionItem} onClick={() => {
+                  setShowSuggestions(false);
+                  setInput(p.title);
+                  handleSelectPlace(p);
+                }}>
+                  <span className={styles.suggestIcon}>📍</span>
                   <div className={styles.suggestText}>
                     <div className={styles.suggestName}>{p.title}</div>
                     <div className={styles.suggestSub}>{p.area}</div>
                   </div>
+                  <span style={{ color: 'var(--gray-400)', fontSize: '0.8rem' }}>→</span>
                 </div>
               ))}
             </div>
@@ -554,6 +571,7 @@ export default function HomePage() {
             <div className={styles.sheetHandle} />
 
             {isSearchingInSheet ? (
+              /* ── 검색 결과 목록 ── */
               <div className={styles.sheetSearchSection}>
                 <div className={styles.sheetHeader} style={{ border: 'none', paddingBottom: '0' }}>
                   <div className={styles.sheetTitle}>검색 결과</div>
@@ -573,36 +591,65 @@ export default function HomePage() {
                 </div>
               </div>
             ) : (
+              /* ── 목적지 + 이동수단 선택 ── */
               <>
                 <div className={styles.sheetHeader}>
-                  <div className={styles.sheetTitle}>{destInfo.name}</div>
+                  <div className={styles.sheetTitle}>📍 {destInfo.name}</div>
                   <div className={styles.sheetSubtitle}>{destInfo.nameKo}</div>
                 </div>
 
-                <div className={styles.quickChoices} style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-                  <button className={styles.choiceBtn} onClick={() => { setOpenNavSheet(false); setIsMapOpen(true); }} style={{ gridColumn: 'span 2' }}>
-                    <div className={styles.choiceIcon}>📍</div>
-                    <div className={styles.choiceLabel}>위치 보기</div>
-                    <div className={styles.choiceSubText}>지도에서 상세 위치 확인</div>
-                  </button>
-                  <button className={styles.choiceBtn} onClick={handleKRide}>
-                    <div className={styles.choiceIcon}>🚕</div>
-                    <div className={styles.choiceLabel}>K.Ride</div>
-                    <div className={styles.choiceSubText}>택시 호출하기</div>
-                  </button>
-                  <button className={styles.choiceBtn} onClick={() => handleTransit('google')}>
-                    <div className={styles.choiceIcon}>🚇</div>
-                    <div className={styles.choiceLabel}>{t('fab.transit')}</div>
-                    <div className={styles.choiceSubText}>Google Maps</div>
-                  </button>
-                  <button className={styles.choiceBtn} onClick={() => handleTransit('google')} style={{ gridColumn: 'span 2', flexDirection: 'row', padding: '16px' }}>
-                    <div className={styles.choiceIcon} style={{ width: '40px', height: '40px', fontSize: '20px' }}>
-                      <img src="https://www.google.com/images/branding/product/ico/maps15_bnuw32.ico" width="24" height="24" alt="G" />
+                <div style={{ padding: '0 20px' }}>
+                  <p style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--gray-400)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>이동 수단 선택</p>
+
+                  {/* 지도에서 위치보기 */}
+                  <button className={styles.choiceBtn} style={{ width: '100%', marginBottom: 10, flexDirection: 'row', padding: '14px 16px', gap: 14 }}
+                    onClick={() => { setOpenNavSheet(false); setIsMapOpen(true); }}>
+                    <div className={styles.choiceIcon} style={{ width: 44, height: 44, fontSize: '1.4rem', flexShrink: 0 }}>🗺️</div>
+                    <div style={{ textAlign: 'left', flex: 1 }}>
+                      <div className={styles.choiceLabel}>목적지 지도 보기</div>
+                      <div className={styles.choiceSubText}>상세 위치 및 주변 확인</div>
                     </div>
-                    <div style={{ textAlign: 'left', flex: 1, paddingLeft: '12px' }}>
-                      <div className={styles.choiceLabel}>Google Maps Transit</div>
-                      <div className={styles.choiceSubText}>글로벌 유저용 다국어 길찾기</div>
+                    <span style={{ color: 'var(--gray-300)' }}>›</span>
+                  </button>
+
+                  {/* 대중교통 */}
+                  <button className={styles.choiceBtn} style={{ width: '100%', marginBottom: 10, flexDirection: 'row', padding: '14px 16px', gap: 14 }}
+                    onClick={() => handleTransit('google')}>
+                    <div className={styles.choiceIcon} style={{ width: 44, height: 44, fontSize: '1.4rem', flexShrink: 0 }}>🚇</div>
+                    <div style={{ textAlign: 'left', flex: 1 }}>
+                      <div className={styles.choiceLabel}>대중교통</div>
+                      <div className={styles.choiceSubText}>지하철 · 버스 경로 안내 (Google Maps)</div>
                     </div>
+                    <span style={{ color: 'var(--gray-300)' }}>›</span>
+                  </button>
+
+                  {/* 택시 (K.Ride) */}
+                  <button className={styles.choiceBtn} style={{ width: '100%', marginBottom: 10, flexDirection: 'row', padding: '14px 16px', gap: 14 }}
+                    onClick={handleKRide}>
+                    <div className={styles.choiceIcon} style={{ width: 44, height: 44, fontSize: '1.4rem', flexShrink: 0 }}>🚕</div>
+                    <div style={{ textAlign: 'left', flex: 1 }}>
+                      <div className={styles.choiceLabel}>택시 (K.Ride)</div>
+                      <div className={styles.choiceSubText}>카카오 택시 앱으로 호출하기</div>
+                    </div>
+                    <span style={{ color: 'var(--gray-300)' }}>›</span>
+                  </button>
+
+                  {/* 자가용 / 렌트카 */}
+                  <button className={styles.choiceBtn} style={{ width: '100%', marginBottom: 10, flexDirection: 'row', padding: '14px 16px', gap: 14 }}
+                    onClick={() => {
+                      const { lat, lng, name, nameKo } = destInfo;
+                      const lang = i18n.language || 'en';
+                      const origin = 'My Location';
+                      const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${lat},${lng}&travelmode=driving&hl=${lang}`;
+                      window.open(url, '_blank');
+                      setOpenNavSheet(false);
+                    }}>
+                    <div className={styles.choiceIcon} style={{ width: 44, height: 44, fontSize: '1.4rem', flexShrink: 0 }}>🚗</div>
+                    <div style={{ textAlign: 'left', flex: 1 }}>
+                      <div className={styles.choiceLabel}>자가용 · 렌트카</div>
+                      <div className={styles.choiceSubText}>자동차 경로 안내 (Google Maps)</div>
+                    </div>
+                    <span style={{ color: 'var(--gray-300)' }}>›</span>
                   </button>
                 </div>
               </>

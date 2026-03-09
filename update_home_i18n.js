@@ -19,6 +19,7 @@ const trans = {
         cta_helper: "1분 안에 꼭 맞는 여행 코스 받기",
         cta_btn: "일정 생성 시작",
         trust: {
+            title: "Kello와 함께하는 안심 여행",
             items: ["한국 여행 특화 전문 앱", "AI 맞춤형 일정 추천", "언어 장벽 없는 길찾기", "어려운 장소도 예약 지원"]
         }
     },
@@ -37,6 +38,7 @@ const trans = {
         cta_helper: "Get your personalized plan in 1 minute",
         cta_btn: "Start Creating Itinerary",
         trust: {
+            title: "Safe Travels with Kello",
             items: ["Korea Travel Specialized", "AI Personalized Plans", "Zero Language Barrier", "Hassle-free Bookings"]
         }
     },
@@ -55,6 +57,7 @@ const trans = {
         cta_helper: "รับแผนการเดินทางใน 1 นาที",
         cta_btn: "เริ่มสร้างแพลน",
         trust: {
+            title: "เที่ยวอย่างปลอดภัยกับ Kello",
             items: ["แอปเฉพาะเกาหลี", "แผนจัดตามความชอบ", "ไม่มีอุปสรรคทางภาษา", "รองรับการจอง"]
         }
     },
@@ -73,6 +76,7 @@ const trans = {
         cta_helper: "1分でピッタリの旅行プランを作成",
         cta_btn: "プラン作成スタート",
         trust: {
+            title: "Kelloと一緒の安心旅行",
             items: ["韓国旅行特化", "AIがおすすめプラン作成", "言語の壁がない道案内", "難しい予約もサポート"]
         }
     },
@@ -91,6 +95,7 @@ const trans = {
         cta_helper: "1分钟获取专属行程推荐",
         cta_btn: "开始定制行程",
         trust: {
+            title: "与Kello同行的安心之旅",
             items: ["专注韩国旅行", "AI个性化推荐", "无语言障碍导航", "轻松搞定预订"]
         }
     },
@@ -109,6 +114,7 @@ const trans = {
         cta_helper: "1分鐘獲取專屬行程推薦",
         cta_btn: "開始定制行程",
         trust: {
+            title: "與Kello同行的安心之旅",
             items: ["專注韓國旅行", "AI個人化推薦", "無語言障礙導航", "輕鬆搞定預訂"]
         }
     }

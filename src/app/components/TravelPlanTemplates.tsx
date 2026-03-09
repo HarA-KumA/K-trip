@@ -1,41 +1,70 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './TravelPlanTemplates.module.css';
-import { TRAVEL_PLAN_TEMPLATES } from './travelPlanData';
+import { getTravelPlanTemplatesByLanguage } from './travelPlanData';
 
 export default function TravelPlanTemplates() {
-    const [activeTab, setActiveTab] = useState(TRAVEL_PLAN_TEMPLATES[0].id);
+    const { i18n } = useTranslation('common');
 
-    const activePlan = TRAVEL_PLAN_TEMPLATES.find(p => p.id === activeTab) || TRAVEL_PLAN_TEMPLATES[0];
+    // Use current language or fallback to 'ko'
+    const currentLang = i18n.language || 'ko';
+    const templates = getTravelPlanTemplatesByLanguage(currentLang);
+
+    // Initialize selected tab and handle updates tracking language changes
+    const [activeTab, setActiveTab] = useState(templates[0].id);
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    // Reset expanded state and ensure active tab is synced when language or templates change
+    useEffect(() => {
+        setActiveTab(templates[0].id);
+        setIsExpanded(false);
+    }, [currentLang, templates]);
+
+    const activePlan = templates.find(p => p.id === activeTab) || templates[0];
+
+    const handleTabSwitch = (id: string) => {
+        setActiveTab(id);
+        setIsExpanded(false);
+    };
 
     return (
         <section className={styles.templatesSection}>
             <h2 className={styles.sectionTitle} style={{ display: 'none' }}>Travel Plan Templates</h2>
 
             <div className={styles.tabContainer}>
-                {TRAVEL_PLAN_TEMPLATES.map((plan) => (
+                {templates.map((plan) => (
                     <button
                         key={plan.id}
                         className={`${styles.tabBtn} ${activeTab === plan.id ? styles.tabBtnActive : ''}`}
-                        onClick={() => setActiveTab(plan.id)}
+                        onClick={() => handleTabSwitch(plan.id)}
                     >
-                        {plan.id.includes('3') ? '3일차 코스' : '5일차 코스'}
+                        {plan.tabLabel}
                     </button>
                 ))}
             </div>
 
             <div className={styles.planCardContainer}>
-                <div className={styles.planContentScroll}>
-                    <h3 className={styles.planTitle}>{activePlan.title}</h3>
-                    <p className={styles.planIntro}>{activePlan.shortIntro}</p>
+                <h3 className={styles.planTitle}>{activePlan.title}</h3>
+                <p className={styles.planIntro}>{activePlan.shortIntro}</p>
 
-                    <div className={styles.keywords}>
-                        {activePlan.keywords.map((kw, idx) => (
-                            <span key={idx} className={styles.keywordChip}>{kw}</span>
-                        ))}
-                    </div>
+                <div className={styles.keywords}>
+                    {activePlan.keywords.map((kw, idx) => (
+                        <span key={idx} className={styles.keywordChip}>{kw}</span>
+                    ))}
+                </div>
 
+                <button
+                    className={styles.actionBtn}
+                    onClick={() => setIsExpanded(!isExpanded)}
+                >
+                    {isExpanded
+                        ? (currentLang.startsWith('ko') ? '일정 닫기' : currentLang.startsWith('th') ? 'ปิดดูรายละเอียด' : 'Close Schedule')
+                        : (currentLang.startsWith('ko') ? '전체 일정 열기' : currentLang.startsWith('th') ? 'ดูรายละเอียดทั้งหมด' : 'View Full Schedule')}
+                </button>
+
+                <div className={`${styles.collapsibleContent} ${isExpanded ? styles.expanded : ''}`}>
                     <div className={styles.itineraryTitle}>📅 Schedule</div>
                     <div className={styles.itineraryList}>
                         {activePlan.itinerary.map((item, idx) => (
@@ -45,12 +74,6 @@ export default function TravelPlanTemplates() {
                             </div>
                         ))}
                     </div>
-                </div>
-
-                <div className={styles.cardFooter}>
-                    <button className={styles.actionBtn}>
-                        View Details <span className={styles.actionArrow}>→</span>
-                    </button>
                 </div>
             </div>
         </section>

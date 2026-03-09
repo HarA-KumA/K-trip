@@ -6,7 +6,6 @@
 
 .sectionTitle {
   display: none;
-  /* Already defined in page.tsx if needed, but we can hide it here or keep it */
 }
 
 .tabContainer {
@@ -44,31 +43,10 @@
   background: #ffffff;
   border: 1px solid var(--gray-100);
   border-radius: 20px;
-  padding: 0;
+  padding: 24px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-}
-
-.planContentScroll {
-  max-height: 48vh;
-  overflow-y: auto;
-  padding: 24px;
-}
-
-/* Custom Scrollbar */
-.planContentScroll::-webkit-scrollbar {
-  width: 6px;
-}
-
-.planContentScroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.planContentScroll::-webkit-scrollbar-thumb {
-  background-color: var(--gray-200);
-  border-radius: 8px;
 }
 
 .planTitle {
@@ -114,12 +92,28 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  border-top: 1px solid var(--gray-100);
+  padding-top: 24px;
+}
+
+.collapsibleContent {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+.collapsibleContent.expanded {
+  max-height: 1500px;
+  /* Big enough to fit any content */
+  opacity: 1;
 }
 
 .itineraryList {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 24px;
 }
 
 .itineraryItem {
@@ -149,19 +143,13 @@
   flex: 1;
 }
 
-.cardFooter {
-  padding: 16px 24px 24px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 20%);
-  border-top: 1px solid var(--gray-50);
-}
-
 .actionBtn {
   width: 100%;
   padding: 16px 20px;
   border-radius: 14px;
-  background: linear-gradient(135deg, #7c3aed, #4f46e5);
-  border: none;
-  color: #fff;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05));
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
   font-size: 1rem;
   font-weight: 800;
   cursor: pointer;
@@ -169,21 +157,16 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: all 0.2s;
   letter-spacing: -0.01em;
-  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
+}
+
+.actionBtn:hover {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
 }
 
 .actionBtn:active {
   transform: scale(0.98);
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
-}
-
-.actionArrow {
-  font-size: 1.2rem;
-  transition: transform 0.2s;
-}
-
-.actionBtn:hover .actionArrow {
-  transform: translateX(4px);
 }

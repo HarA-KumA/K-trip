@@ -533,17 +533,8 @@ export default function HomePage() {
       </section>
 
       <section className={styles.featuredSection}>
-        <h2 className={styles.sectionTitle}>{t('home.recommended_plans', { defaultValue: 'Recommended Trip Plans' })}</h2>
+        <h2 className={styles.sectionTitle}>{t('home.plans.request_custom_label', { defaultValue: '나만의 일정' })}</h2>
         <div className={styles.featuredGrid}>
-          {filteredPlans.map(plan => (
-            <button key={plan.id} className={styles.featuredCard} onClick={() => handleApplyPlan(plan)}>
-              <span className={styles.featuredIcon}>{plan.icon}</span>
-              <div className={styles.planInfo}>
-                <span className={styles.featuredLabel}>{plan.label}</span>
-                <span className={styles.planTitle}>{plan.title}</span>
-              </div>
-            </button>
-          ))}
           <button
             className={`${styles.featuredCard} ${styles.requestCard}`}
             onClick={handleCreateCustomPlan}

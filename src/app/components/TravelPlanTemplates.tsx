@@ -59,9 +59,7 @@ export default function TravelPlanTemplates() {
                     className={styles.actionBtn}
                     onClick={() => setIsExpanded(!isExpanded)}
                 >
-                    {isExpanded
-                        ? (currentLang.startsWith('ko') ? '일정 닫기' : currentLang.startsWith('th') ? 'ปิดดูรายละเอียด' : 'Close Schedule')
-                        : (currentLang.startsWith('ko') ? '전체 일정 열기' : currentLang.startsWith('th') ? 'ดูรายละเอียดทั้งหมด' : 'View Full Schedule')}
+                    {isExpanded ? activePlan.closeFull : activePlan.viewFull}
                 </button>
 
                 <div className={`${styles.collapsibleContent} ${isExpanded ? styles.expanded : ''}`}>

@@ -1,0 +1,1 @@
+﻿src/app/navigation/page.tsx(21,18): error TS2307: Cannot find module '../../components/Map' or its corresponding type declarations.

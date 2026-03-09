@@ -1,0 +1,10 @@
+{
+    "name": "Kello",
+    "short_name": "Kello",
+    "description": "Operating your Korea trip with AI. Not just searching.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2563eb",
+    "orientation": "portrait"
+}

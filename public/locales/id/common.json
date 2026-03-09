@@ -1,0 +1,167 @@
+{
+    "common": {
+        "welcome": "Selamat datang, Pelancong.",
+        "greeting": "Selamat Pagi",
+        "login": "Masuk",
+        "today": "Hari Ini",
+        "move": "Pindah",
+        "book": "Pesan",
+        "chat": "Chat",
+        "my": "Saya",
+        "current_operation": "Operasi Saat Ini",
+        "live": "LIVE",
+        "recommended": "Rekomendasi Terdekat",
+        "based_on_location": "Berdasarkan lokasi Anda",
+        "start_nav": "Mulai Navigasi",
+        "delay_10m": "Tunda +10m",
+        "confirmed": "Dikonfirmasi",
+        "payment_completed": "Pembayaran Selesai",
+        "weather_clear": "Cerah",
+        "back": "Kembali",
+        "select_language": "Pilih Bahasa",
+        "home_nav": "Utama",
+        "explore_nav": "Eksplorasi",
+        "planner_nav": "Jadwal",
+        "today_nav": "Hari Ini",
+        "my_nav": "Saya",
+        "day_unit": "h",
+        "locale": "id-ID",
+        "cities": {
+            "seoul": "Seoul",
+            "busan": "Busan",
+            "jeju": "Jeju",
+            "gyeongju": "Gyeongju"
+        },
+        "categories": {
+            "all": "Semua",
+            "food": "Makanan",
+            "beauty": "Kecantikan",
+            "event": "Acara",
+            "festival": "Festival",
+            "attraction": "Wisata",
+            "transport": "Transportasi"
+        },
+        "community_nav": "Community"
+    },
+    "home": {
+        "badge": "Kello",
+        "title": "Pemesanan Concierge · Jadwal Otomatis · Navigasi",
+        "subtitle": "",
+        "create_trip_cta": "Mulai Membuat Jadwal",
+        "input_label": "Ke mana Anda akan berwisata?",
+        "input_placeholder": "Kota, daerah, nama hotel",
+        "days_label": "Durasi Perjalanan",
+        "recommended_plans": "Rekomendasi Rencana Perjalanan",
+        "plans": {
+            "2d": {
+                "title": "2 Hari: Esensial Seoul",
+                "label": "Rencana 2 Hari"
+            },
+            "3d": {
+                "title": "3 Hari: K-Culture \u0026 Gaya",
+                "label": "Rencana 3 Hari"
+            },
+            "5d": {
+                "title": "5 Hari: Tur Besar",
+                "label": "Rencana 5 Hari"
+            },
+            "request_custom_label": "Kustom",
+            "request_custom_title": "Minta Rencana {{days}} Hari",
+            "request_custom_toast": "Meminta rencana {{days}} hari kustom! Concierge kami akan menghubungi Anda."
+        }
+    },
+    "explore_items": {
+        "airport_arrival": "Kedatangan Bandara Incheon",
+        "hotel_checkin": "Check-in Hotel / Menginap"
+    },
+    "explore_page": {
+        "title": "Eksplorasi",
+        "city_changed": "Kota diubah ke {{city}}",
+        "added_to": "Ditambahkan ke Hari {{day}}",
+        "no_items": "Tidak ada item ditemukan di {{city}}",
+        "try_changing": "Coba ubah kategori atau kota.",
+        "select_city": "Pilih Kota"
+    },
+    "planner_page": {
+        "title": "Jadwal",
+        "day": "Hari {{n}}"
+    },
+    "today_page": {
+        "title": "Jadwal Hari Ini",
+        "active_now": "Sedang Aktif",
+        "navigate": "Navigasi",
+        "booking_ref": "Ref Pemesanan: {{ref}}",
+        "next_up": "Selanjutnya",
+        "minutes_left": "Mulai dalam {{mins}}mnt",
+        "depart_early": "Berangkat Sekarang",
+        "timeline": "Timeline",
+        "empty": {
+            "title": "Tidak ada jadwal untuk hari ini",
+            "desc": "Eksplorasi tempat dan tambahkan ke perjalanan Anda!",
+            "cta": "Eksplorasi Tempat"
+        }
+    },
+    "booking_detail": {
+        "select_date": "Pilih Tanggal",
+        "select_time": "Pilih Waktu",
+        "total_price": "Total Harga",
+        "request_booking": "Ajukan Pemesanan"
+    },
+    "my_page": {
+        "bookings": {
+            "title": "Pemesanan Saya",
+            "date_time": "Tanggal / Waktu",
+            "area": "Lokasi",
+            "price": "Harga",
+            "new_added": "Pemesanan baru ditambahkan!"
+        },
+        "community": {
+            "title": "Postingan Komunitas Saya",
+            "empty": "Belum ada postingan komunitas yang ditulis."
+        }
+    },
+    "community_page": {
+        "title": "Community",
+        "subtitle": "Connect with locals \u0026 travelers",
+        "filter_all": "All",
+        "filter_meetup": "Food \u0026 Meetup",
+        "filter_travel": "Travel Mate",
+        "filter_help": "Local Help",
+        "comments": "Comments",
+        "message": "Message",
+        "type": {
+            "MEETUP": "MEETUP",
+            "TRAVEL": "TRAVEL",
+            "HELP": "HELP",
+            "REVIEW": "REVIEW"
+        },
+        "post": {
+            "1": {
+                "author": "Mika (Japan)",
+                "time": "10 mins ago",
+                "title": "Samgyeopsal Meetup 🥓",
+                "desc": "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
+            },
+            "2": {
+                "author": "John (US)",
+                "time": "1 hour ago",
+                "title": "Hongdae Street Performance 🎸",
+                "desc": "Heading to Hongdae right now to watch indie bands. Join me!"
+            },
+            "3": {
+                "author": "Jihoon (Korea)",
+                "time": "2 hours ago",
+                "title": "Need help with subway directions? 🚇",
+                "desc": "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
+            },
+            "4": {
+                "author": "Li Wei (China)",
+                "time": "3 hours ago",
+                "title": "K-Beauty Shopping 💄",
+                "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
+            }
+        },
+        "filter_review": "Reviews",
+        "detail": "Detail Postingan"
+    }
+}

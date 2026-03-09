@@ -1,0 +1,186 @@
+{
+    "common":  {
+                   "welcome":  "Selamat Datang, Pelancong.",
+                   "greeting":  "Selamat Pagi",
+                   "login":  "Log Masuk",
+                   "today":  "Hari Ini",
+                   "move":  "Pergi",
+                   "book":  "Tempah",
+                   "chat":  "Sembang",
+                   "my":  "Saya",
+                   "current_operation":  "Sedang Beroperasi",
+                   "live":  "LANGSUNG",
+                   "recommended":  "Cadangan Berdekatan",
+                   "based_on_location":  "Berdasarkan lokasi anda",
+                   "start_nav":  "Mulakan Navigasi",
+                   "delay_10m":  "Lewat +10 min",
+                   "confirmed":  "Disahkan",
+                   "payment_completed":  "Pembayaran Selesai",
+                   "weather_clear":  "Cerah",
+                   "back":  "Kembali",
+                   "select_language":  "Pilih Bahasa",
+                   "home_nav":  "Utama",
+                   "explore_nav":  "Teroka",
+                   "planner_nav":  "Jadual",
+                   "today_nav":  "Hari Ini",
+                   "my_nav":  "Saya",
+                   "day_unit":  "h",
+                   "locale":  "ms-MY",
+                   "cities":  {
+                                  "seoul":  "Seoul",
+                                  "busan":  "Busan",
+                                  "jeju":  "Jeju",
+                                  "gyeongju":  "Gyeongju"
+                              },
+                   "categories":  {
+                                      "all":  "Semua",
+                                      "food":  "Makanan",
+                                      "beauty":  "Kecantikan",
+                                      "event":  "Acara",
+                                      "festival":  "Festival",
+                                      "attraction":  "Tarikan",
+                                      "transport":  "Pengangkutan"
+                                  },
+                   "community_nav":  "Community"
+               },
+    "transport":  {
+                      "moving_to":  "Menuju {{dest}}",
+                      "remaining":  "Berbaki",
+                      "line_2_direction":  "Laluan 2 • Hala City Hall",
+                      "departed":  "telah bertolak",
+                      "passing_now":  "Sedang melalui...",
+                      "current":  "Semasa",
+                      "get_off_at":  "Turun di",
+                      "exit_3":  "Pintu keluar 3",
+                      "getting_off_here":  "Saya turun di sini",
+                      "stations":  {
+                                       "samseong":  "Samseong",
+                                       "seolleung":  "Seolleung",
+                                       "yeoksam":  "Yeoksam",
+                                       "gangnam":  "Gangnam",
+                                       "gyodae":  "Gyodae",
+                                       "seocho":  "Seocho",
+                                       "seongsu":  "Seongsu"
+                                   }
+                  },
+    "home":  {
+                 "title_korea":  "Korea Hari Ini",
+                 "title":  "Percutian Korea, Difahami dalam 3 Saat",
+                 "subtitle":  "Tempahan Concierge · Jadual Automatik · Navigasi",
+                 "create_trip_cta":  "Mula Merancang",
+                 "input_label":  "Ke mana anda melancong?",
+                 "input_placeholder":  "Bandar, kawasan, nama hotel",
+                 "days_label":  "Tempoh Percutian",
+                 "recommended_plans":  "Cadangan Jadual Percutian",
+                 "plans":  {
+                               "2d":  {
+                                          "title":  "2 Hari: Inti Pati Seoul",
+                                          "label":  "Jadual 2 Hari"
+                                      },
+                               "3d":  {
+                                          "title":  "3 Hari: K-Kultur \u0026 Gaya",
+                                          "label":  "Jadual 3 Hari"
+                                      },
+                               "5d":  {
+                                          "title":  "5 Hari: Jelajah Hebat",
+                                          "label":  "Jadual 5 Hari"
+                                      },
+                               "request_custom_label":  "Tersuai",
+                               "request_custom_title":  "Mohon Jadual {{days}} Hari",
+                               "request_custom_toast":  "Memohon jadual {{days}} hari tersuai! Concierge kami akan menghubungi anda."
+                           }
+             },
+    "explore_items":  {
+                          "airport_arrival":  "Ketibaan Lapangan Terbang Incheon",
+                          "hotel_checkin":  "Daftar Masuk Hotel / Menginap"
+                      },
+    "explore_page":  {
+                         "title":  "Teroka",
+                         "select_city":  "Pilih Bandar"
+                     },
+    "planner_page":  {
+                         "title":  "Jadual",
+                         "day":  "Hari {{n}}"
+                     },
+    "today_page":  {
+                       "title":  "Hari Ini",
+                       "active_now":  "Sedang Berlangsung",
+                       "navigate":  "Navigasi",
+                       "booking_ref":  "Ref Tempahan: {{ref}}",
+                       "next_up":  "Seterusnya",
+                       "minutes_left":  "Bermula dalam {{mins}}m",
+                       "depart_early":  "Bertolak Sekarang",
+                       "timeline":  "Timeline",
+                       "empty":  {
+                                     "title":  "Tiada jadual untuk hari ini",
+                                     "desc":  "Teroka tempat dan tambahkan ke percutian anda!",
+                                     "cta":  "Teroka Tempat"
+                                 }
+                   },
+    "booking_detail":  {
+                           "select_date":  "Pilih Tarikh",
+                           "select_time":  "Pilih Masa",
+                           "total_price":  "Jumlah Harga",
+                           "request_booking":  "Mohon Tempahan"
+                       },
+    "navigation_page":  {
+                            "title":  "Hari Ini"
+                        },
+    "my_page":  {
+                    "bookings":  {
+                                     "title":  "Tempahan Saya",
+                                     "date_time":  "Tarikh / Masa",
+                                     "area":  "Kawasan",
+                                     "price":  "Harga",
+                                     "new_added":  "Tempahan baru ditambah!"
+                                 },
+                    "community":  {
+                                      "title":  "Kiriman Komuniti Saya",
+                                      "empty":  "Belum ada kiriman komuniti."
+                                  }
+                },
+    "community_page":  {
+                           "title":  "Community",
+                           "subtitle":  "Connect with locals \u0026 travelers",
+                           "filter_all":  "All",
+                           "filter_meetup":  "Food \u0026 Meetup",
+                           "filter_travel":  "Travel Mate",
+                           "filter_help":  "Local Help",
+                           "comments":  "Comments",
+                           "message":  "Message",
+                           "type":  {
+                                        "MEETUP":  "MEETUP",
+                                        "TRAVEL":  "TRAVEL",
+                                        "HELP":  "HELP",
+                                        "REVIEW":  "REVIEW"
+                                    },
+                           "post":  {
+                                        "1":  {
+                                                  "author":  "Mika (Japan)",
+                                                  "time":  "10 mins ago",
+                                                  "title":  "Samgyeopsal Meetup 🥓",
+                                                  "desc":  "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
+                                              },
+                                        "2":  {
+                                                  "author":  "John (US)",
+                                                  "time":  "1 hour ago",
+                                                  "title":  "Hongdae Street Performance 🎸",
+                                                  "desc":  "Heading to Hongdae right now to watch indie bands. Join me!"
+                                              },
+                                        "3":  {
+                                                  "author":  "Jihoon (Korea)",
+                                                  "time":  "2 hours ago",
+                                                  "title":  "Need help with subway directions? 🚇",
+                                                  "desc":  "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
+                                              },
+                                        "4":  {
+                                                  "author":  "Li Wei (China)",
+                                                  "time":  "3 hours ago",
+                                                  "title":  "K-Beauty Shopping 💄",
+                                                  "desc":  "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
+                                              }
+                                    },
+                           "filter_review":  "Reviews",
+                           "detail":  "Butiran Kiriman"
+                       }
+}

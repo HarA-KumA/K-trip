@@ -4,6 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import styles from "./BottomNav.module.css";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { navItems } from "./navigationConfig";
 
 export default function BottomNav() {
     const { t } = useTranslation('common');
@@ -11,17 +12,13 @@ export default function BottomNav() {
     const pathname = usePathname();
     const [activeTab, setActiveTab] = useState("/");
 
-    const navItems = [
-        { path: "/", icon: "✦", label: t('common.home_nav', { defaultValue: 'Home' }), activeKey: "/" },
-        { path: "/explore", icon: "🔍", label: t('common.explore_nav', { defaultValue: 'Explore' }), activeKey: "/explore" },
-        { path: "/navigation", icon: "📍", label: t('common.today_nav', { defaultValue: 'Itinerary' }), activeKey: "/navigation" },
-        { path: "/community", icon: "💬", label: t('common.community_nav', { defaultValue: 'Community' }), activeKey: "/community" },
-        { path: "/help", icon: "🆘", label: t('common.help_nav', { defaultValue: 'Help' }), activeKey: "/help" },
-        { path: "/my", icon: "👤", label: t('common.my_nav', { defaultValue: 'My Info' }), activeKey: "/my" },
-    ];
+    const localizedNavItems = navItems.map(item => ({
+        ...item,
+        label: t(item.labelKey, { defaultValue: item.defaultLabel })
+    }));
 
     useEffect(() => {
-        const matched = navItems.find(item => {
+        const matched = localizedNavItems.find(item => {
             if (item.activeKey === "/") return pathname === "/";
             return pathname.startsWith(item.activeKey);
         });
@@ -33,7 +30,7 @@ export default function BottomNav() {
 
     return (
         <nav className={styles.navBar}>
-            {navItems.map((item) => {
+            {localizedNavItems.map((item) => {
                 const isActive = activeTab === item.activeKey;
                 return (
                     <div

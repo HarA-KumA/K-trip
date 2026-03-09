@@ -1,0 +1,105 @@
+
+> ktrip-os@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 5 errors:
+./src/app/components/BottomNav.tsx:18:12
+Ecmascript file had an error
+[0m [90m 16 |[39m     [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m 17 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m
+[31m[1m>[22m[39m[90m 18 |[39m     [36mconst[39m [activeTab[33m,[39m setActiveTab] [33m=[39m useState([32m"/"[39m)[33m;[39m
+ [90m    |[39m            [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 19 |[39m
+ [90m 20 |[39m     [36mconst[39m localizedNavItems [33m=[39m navItems[33m.[39mmap(item [33m=>[39m ({
+ [90m 21 |[39m         [33m...[39mitem[33m,[39m[0m
+
+the name `activeTab` is defined multiple times
+
+Import trace:
+  Server Component:
+    ./src/app/components/BottomNav.tsx
+    ./src/app/layout.tsx
+
+
+./src/app/components/BottomNav.tsx:17:11
+Ecmascript file had an error
+[0m [90m 15 |[39m     [36mconst[39m { t } [33m=[39m useTranslation([32m'common'[39m)[33m;[39m
+ [90m 16 |[39m     [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+[31m[1m>[22m[39m[90m 17 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m
+ [90m    |[39m           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 18 |[39m     [36mconst[39m [activeTab[33m,[39m setActiveTab] [33m=[39m useState([32m"/"[39m)[33m;[39m
+ [90m 19 |[39m
+ [90m 20 |[39m     [36mconst[39m localizedNavItems [33m=[39m navItems[33m.[39mmap(item [33m=>[39m ({[0m
+
+the name `pathname` is defined multiple times
+
+Import trace:
+  Server Component:
+    ./src/app/components/BottomNav.tsx
+    ./src/app/layout.tsx
+
+
+./src/app/components/BottomNav.tsx:16:11
+Ecmascript file had an error
+[0m [90m 14 |[39m
+ [90m 15 |[39m     [36mconst[39m { t } [33m=[39m useTranslation([32m'common'[39m)[33m;[39m
+[31m[1m>[22m[39m[90m 16 |[39m     [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m    |[39m           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 17 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m
+ [90m 18 |[39m     [36mconst[39m [activeTab[33m,[39m setActiveTab] [33m=[39m useState([32m"/"[39m)[33m;[39m
+ [90m 19 |[39m[0m
+
+the name `router` is defined multiple times
+
+Import trace:
+  Server Component:
+    ./src/app/components/BottomNav.tsx
+    ./src/app/layout.tsx
+
+
+./src/app/components/BottomNav.tsx:18:23
+Ecmascript file had an error
+[0m [90m 16 |[39m     [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m 17 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m
+[31m[1m>[22m[39m[90m 18 |[39m     [36mconst[39m [activeTab[33m,[39m setActiveTab] [33m=[39m useState([32m"/"[39m)[33m;[39m
+ [90m    |[39m                       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 19 |[39m
+ [90m 20 |[39m     [36mconst[39m localizedNavItems [33m=[39m navItems[33m.[39mmap(item [33m=>[39m ({
+ [90m 21 |[39m         [33m...[39mitem[33m,[39m[0m
+
+the name `setActiveTab` is defined multiple times
+
+Import trace:
+  Server Component:
+    ./src/app/components/BottomNav.tsx
+    ./src/app/layout.tsx
+
+
+./src/app/components/BottomNav.tsx:15:13
+Ecmascript file had an error
+[0m [90m 13 |[39m     [36mconst[39m [activeTab[33m,[39m setActiveTab] [33m=[39m useState([32m"/"[39m)[33m;[39m
+ [90m 14 |[39m
+[31m[1m>[22m[39m[90m 15 |[39m     [36mconst[39m { t } [33m=[39m useTranslation([32m'common'[39m)[33m;[39m
+ [90m    |[39m             [31m[1m^[22m[39m
+ [90m 16 |[39m     [36mconst[39m router [33m=[39m useRouter()[33m;[39m
+ [90m 17 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m
+ [90m 18 |[39m     [36mconst[39m [activeTab[33m,[39m setActiveTab] [33m=[39m useState([32m"/"[39m)[33m;[39m[0m
+
+the name `t` is defined multiple times
+
+Import trace:
+  Server Component:
+    ./src/app/components/BottomNav.tsx
+    ./src/app/layout.tsx
+
+
+    at <unknown> (./src/app/components/BottomNav.tsx:18:12)
+    at <unknown> (./src/app/components/BottomNav.tsx:17:11)
+    at <unknown> (./src/app/components/BottomNav.tsx:16:11)
+    at <unknown> (./src/app/components/BottomNav.tsx:18:23)
+    at <unknown> (./src/app/components/BottomNav.tsx:15:13)

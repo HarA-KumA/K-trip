@@ -73,22 +73,11 @@ export default function HomePage() {
     return [...mappedPlaces, ...items];
   }, [t]);
 
-  // Live suggestions as user types
+  // 입력 중에는 드롭다운 표시 안 함 - 검색(Enter/버튼) 시에만 결과 표시
   useEffect(() => {
-    if (!input.trim()) {
-      setShowSuggestions(false);
-      setSuggestions([]);
-      return;
-    }
-    const q = input.trim().toLowerCase();
-    const localResults = ALL_SEARCH_ITEMS.filter(p =>
-      (p.title && p.title.toLowerCase().includes(q)) ||
-      (p.area && p.area.toLowerCase().includes(q)) ||
-      (p.searchTerms && p.searchTerms.includes(q))
-    ).slice(0, 8);
-    setSuggestions(localResults);
-    setShowSuggestions(localResults.length > 0);
-  }, [input, ALL_SEARCH_ITEMS]);
+    setShowSuggestions(false);
+    setSuggestions([]);
+  }, [input]);
 
   const handleSelectPlace = async (place: any) => {
     // If it's a Google Place (prediction), fetch details for coordinates
@@ -387,21 +376,22 @@ export default function HomePage() {
       return;
     }
 
+    // 1. 즉시 로컬 결과로 시트 열기
+    const q = trimmedInput.toLowerCase();
+    const localFiltered = ALL_SEARCH_ITEMS.filter(p =>
+      (p.title && p.title.toLowerCase().includes(q)) ||
+      (p.area && p.area.toLowerCase().includes(q)) ||
+      (p.searchTerms && p.searchTerms.includes(q))
+    );
+
+    // 로컬 결과 즉시 표시
+    setSheetSearchResults(localFiltered);
+    setIsSearchingInSheet(true);
+    setOpenNavSheet(true);
+    setSelectedDest(null);
+
+    // 2. Google Places 결과 비동기로 추가
     setLoadingNav(true);
-
-    // 1. Local Mock Search combining translations
-    const localFiltered = ALL_SEARCH_ITEMS.filter(p => {
-      const q = trimmedInput.toLowerCase();
-      return (
-        (p.title && p.title.toLowerCase().includes(q)) ||
-        (p.area && p.area.toLowerCase().includes(q)) ||
-        (p.searchTerms && p.searchTerms.includes(q))
-      );
-    });
-
-    let results = [...localFiltered];
-
-    // 2. Global Google Places Search
     try {
       const lang = i18n.language || 'en';
       const res = await fetch('/api/places/autocomplete', {
@@ -410,28 +400,19 @@ export default function HomePage() {
         body: JSON.stringify({ input: trimmedInput, language: lang }),
       });
       const data = await res.json();
-
       const googleResults = (data.suggestions || []).map((s: any) => ({
         title: s.placePrediction.structuredFormat.mainText.text,
         area: s.placePrediction.structuredFormat.secondaryText?.text || '',
         placeId: s.placePrediction.placeId,
         isGoogle: true
       }));
-
-      results = [...results, ...googleResults];
+      if (googleResults.length > 0) {
+        setSheetSearchResults(prev => [...prev, ...googleResults]);
+      }
     } catch (err) {
-      console.error('Google Search failed', err);
-    }
-
-    setLoadingNav(false);
-
-    if (results.length > 0) {
-      setSheetSearchResults(results);
-      setIsSearchingInSheet(true);
-      setOpenNavSheet(true);
-      setSelectedDest(null);
-    } else {
-      router.push(`/explore?city=${encodeURIComponent(trimmedInput)}&days=${days}`);
+      // Google 실패 시 로컬 결과만 사용
+    } finally {
+      setLoadingNav(false);
     }
   };
 

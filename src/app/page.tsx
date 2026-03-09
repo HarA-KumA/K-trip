@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { useTrip } from '@/lib/contexts/TripContext';
 import { MOCK_ITEMS, ServiceItem } from './explore/mock/data';
 import ExploreMap from './explore/components/ExploreMap';
+import TravelPlanTemplates from './components/TravelPlanTemplates';
 
 const MOCK_PLACES = [
   { title: '롯데백화점 본점', area: '서울특별시 중구 남대문로 81', lat: 37.5647, lng: 126.9818 },
@@ -556,6 +557,8 @@ export default function HomePage() {
           </button>
         </div>
       </section>
+
+      <TravelPlanTemplates />
 
       {openNavSheet && (
         <div className={styles.overlay} onClick={() => setOpenNavSheet(false)}>

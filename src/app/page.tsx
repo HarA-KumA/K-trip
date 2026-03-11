@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import LanguagePicker from './components/LanguagePicker';
 import CurrencySelector from './components/CurrencySelector';
+import WeatherWidget from './components/WeatherWidget';
 import styles from './home.module.css';
 import { supabase } from '@/lib/supabaseClient';
 import { useTrip } from '@/lib/contexts/TripContext';
@@ -74,6 +75,7 @@ export default function HomePage() {
     <main className={styles.main}>
       <div className={styles.topNav}>
         <div className={styles.navTools}>
+          <WeatherWidget />
           <LanguagePicker compact />
           <CurrencySelector />
         </div>

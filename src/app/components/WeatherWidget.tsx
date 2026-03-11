@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 export default function WeatherWidget() {
-    const [weatherData, setWeatherData] = useState<{ temp: number; icon: string } | null>(null);
+    const [weatherData, setWeatherData] = useState<{ temp: number; icon: string; city: string } | null>(null);
 
     useEffect(() => {
         if (!navigator.geolocation) return;
@@ -14,9 +14,19 @@ export default function WeatherWidget() {
                 const { latitude, longitude } = position.coords;
 
                 try {
-                    // Fetch weather data
-                    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
+                    // Fetch weather and location data
+                    const [res, geoRes] = await Promise.all([
+                        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`),
+                        fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=ko`)
+                    ]);
+                    
                     if (!res.ok) return;
+
+                    let city = '';
+                    if (geoRes.ok) {
+                        const geoData = await geoRes.json();
+                        city = geoData.city || geoData.locality || geoData.principalSubdivision || '';
+                    }
 
                     const data = await res.json();
                     if (data.current_weather) {
@@ -33,7 +43,8 @@ export default function WeatherWidget() {
 
                         setWeatherData({
                             temp: Math.round(data.current_weather.temperature),
-                            icon: icon
+                            icon: icon,
+                            city: city
                         });
                     }
                 } catch (err) {
@@ -62,6 +73,7 @@ export default function WeatherWidget() {
             border: '1px solid var(--gray-200)',
             fontWeight: 600
         }}>
+            {weatherData.city && <span style={{ marginRight: '2px' }}>{weatherData.city}</span>}
             <span>{weatherData.icon}</span>
             <span style={{ fontWeight: 600 }}>{weatherData.temp}°C</span>
         </div>

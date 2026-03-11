@@ -41,7 +41,13 @@
             "attraction": "Wisata",
             "transport": "Transportasi"
         },
-        "community_nav": "Community"
+        "community_nav": "Komunitas",
+        "help_nav": "Bantuan",
+        "greeting_morning": "Selamat pagi",
+        "greeting_afternoon": "Selamat siang",
+        "greeting_evening": "Selamat malam",
+        "search_results": "Hasil pencarian",
+        "search_results_for": "{{count}} hasil untuk '{{query}}'"
     },
     "home": {
         "badge": "Kello",

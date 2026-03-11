@@ -41,7 +41,13 @@
                                       "attraction":  "สถานที่",
                                       "transport":  "การเดินทาง"
                                   },
-                   "community_nav":  "Community"
+                   "community_nav":  "ชุมชน",
+                   "help_nav":  "ช่วยเหลือ",
+                   "greeting_morning":  "สวัสดีตอนเช้า",
+                   "greeting_afternoon":  "สวัสดีตอนบ่าย",
+                   "greeting_evening":  "สวัสดีตอนเย็น",
+                   "search_results":  "ผลลัพธ์การค้นหา",
+                   "search_results_for":  "{{count}} ผลลัพธ์สำหรับ '{{query}}'"
                },
     "transport":  {
                       "moving_to":  "กำลังไปที่ {{dest}}",

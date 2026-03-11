@@ -78,7 +78,20 @@
             "meat_lover": "고기 중심",
             "pescatarian": "페스카테리언"
         },
-        "community_nav": "커뮤니티"
+        "community_nav": "커뮤니티",
+        "help_nav": "도움",
+        "greeting_morning": "좋은 아침입니다",
+        "greeting_afternoon": "좋은 오후입니다",
+        "greeting_evening": "좋은 저녁입니다",
+        "search_results": "검색 결과",
+        "search_results_for": "'{{query}}'에 대한 {{count}}개의 결과",
+        "view_map": "위치 보기",
+        "view_map_desc": "지도에서 상세 위치 확인",
+        "taxi_call": "택시 호출하기",
+        "route_nav": "경로 안내",
+        "transit_nav_desc": "대중교통 길찾기",
+        "copy_address": "주소 복사",
+        "copied": "복사됨!"
     },
     "transport": {
         "moving_to": "{{dest}}(으)로 이동 중",

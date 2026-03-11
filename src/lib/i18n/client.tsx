@@ -1,58 +1,50 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-// Existing languages
-import en from "../../../public/locales/en/common.json";
+// Required languages
 import ko from "../../../public/locales/ko/common.json";
-import jp from "../../../public/locales/jp/common.json";
-import cn from "../../../public/locales/cn/common.json";
-import tw from "../../../public/locales/tw/common.json";
-import es from "../../../public/locales/es/common.json";
-import fr from "../../../public/locales/fr/common.json";
-import de from "../../../public/locales/de/common.json";
-
-// New languages
-import th from "../../../public/locales/th/common.json";
+import en from "../../../public/locales/en/common.json";
+import ja from "../../../public/locales/ja/common.json";
+import zhCN from "../../../public/locales/zh-CN/common.json";
+import zhHK from "../../../public/locales/zh-HK/common.json";
 import vi from "../../../public/locales/vi/common.json";
-import ar from "../../../public/locales/ar/common.json";
+import th from "../../../public/locales/th/common.json";
 import id from "../../../public/locales/id/common.json";
 import ms from "../../../public/locales/ms/common.json";
-import pt from "../../../public/locales/pt/common.json";
-import ru from "../../../public/locales/ru/common.json";
 
 const STORAGE_KEY = "ktrip_lang";
-const SUPPORTED = ["en", "ko", "jp", "cn", "tw", "es", "fr", "de", "th", "vi", "ar", "id", "ms", "pt", "ru"];
+const SUPPORTED = ["ko", "en", "ja", "zh-CN", "zh-HK", "vi", "th", "id", "ms"];
 
 const resources = {
-    en: { common: en },
-    ko: { common: ko },
-    jp: { common: jp },
-    cn: { common: cn },
-    tw: { common: tw },
-    es: { common: es },
-    fr: { common: fr },
-    de: { common: de },
-    th: { common: th },
-    vi: { common: vi },
-    ar: { common: ar },
-    id: { common: id },
-    ms: { common: ms },
-    pt: { common: pt },
-    ru: { common: ru },
+    "ko": { common: ko },
+    "en": { common: en },
+    "ja": { common: ja },
+    "zh-CN": { common: zhCN },
+    "zh-HK": { common: zhHK },
+    "vi": { common: vi },
+    "th": { common: th },
+    "id": { common: id },
+    "ms": { common: ms },
 };
 
 // ────────────────────────────────────────────────────────────
-// IMPORTANT: Always initialize with "en" so SSR and the first
-// client render both produce identical HTML (no hydration mismatch).
-// The real user language is applied AFTER hydration via
-// `initClientLanguage()` which is called in a useEffect.
+// Extract locale synchronously from document.cookie so that
+// the very first client render matches the SSR render exactly.
 // ────────────────────────────────────────────────────────────
+let initialLang = "en";
+if (typeof document !== "undefined") {
+    const match = document.cookie.match(/(?:^|; )ktrip_lang=([^;]*)/);
+    if (match && match[1] && SUPPORTED.includes(match[1])) {
+        initialLang = match[1];
+    }
+}
+
 if (!i18n.isInitialized) {
     i18n
         .use(initReactI18next)
         .init({
             resources,
-            lng: "en",          // ← always "en" for SSR match
+            lng: initialLang,
             fallbackLng: "en",
             ns: ["common"],
             defaultNS: "common",
@@ -63,47 +55,62 @@ if (!i18n.isInitialized) {
 export default i18n;
 
 /**
- * Call this inside a useEffect (client-only) to switch to the
- * user's preferred language after hydration is complete.
+ * Switch to the user's preferred language after hydration.
+ * Still useful if cookie was missing initially.
  */
 export function initClientLanguage() {
     if (typeof window === "undefined") return;
 
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored && SUPPORTED.includes(stored)) {
-        applyLanguage(stored);
+    // Check cookie
+    const match = document.cookie.match(/(?:^|; )ktrip_lang=([^;]*)/);
+    if (match && match[1] && SUPPORTED.includes(match[1])) {
+        applyLanguage(match[1]);
         return;
     }
 
-    // Detect browser language
-    let detected = 'ko'; // Default fallback
-    if (navigator.language) {
-        const browserLang = navigator.language.split('-')[0].toLowerCase();
+    applyLanguage("en");
+}
 
-        // Handle specific variations like zh-CN, zh-TW, etc.
-        const fullLang = navigator.language;
-        if (fullLang === 'zh-CN' || fullLang === 'zh' || browserLang === 'zh') {
-            detected = 'cn';
-        } else if (fullLang === 'zh-TW' || fullLang === 'zh-HK') {
-            detected = 'tw';
-        } else if (browserLang === 'ja') {
-            detected = 'jp';
-        } else if (SUPPORTED.includes(browserLang)) {
-            detected = browserLang;
-        }
-    }
 
-    applyLanguage(detected);
+function getLocaleFromBrowser(browserLang: string): string | null {
+    const l = browserLang.toLowerCase();
+    if (l === 'ko' || l.startsWith('ko-')) return 'ko';
+    if (l === 'ja' || l.startsWith('ja-')) return 'ja';
+    if (l === 'zh-cn' || l === 'zh-sg' || l === 'zh-hans') return 'zh-CN';
+    if (l === 'zh-tw' || l === 'zh-hk' || l === 'zh-mo' || l === 'zh-hant') return 'zh-HK';
+    if (l === 'zh') return 'zh-CN';
+    if (l === 'vi' || l.startsWith('vi-')) return 'vi';
+    if (l === 'th' || l.startsWith('th-')) return 'th';
+    if (l === 'id' || l.startsWith('id-')) return 'id';
+    if (l === 'ms' || l.startsWith('ms-')) return 'ms';
+    if (l === 'en' || l.startsWith('en-')) return 'en';
+    return null;
+}
+
+function getLocaleFromCountry(country: string): string {
+    const c = country.toUpperCase();
+    const map: Record<string, string> = {
+        'KR': 'ko',
+        'US': 'en',
+        'JP': 'ja',
+        'CN': 'zh-CN',
+        'HK': 'zh-HK',
+        'VN': 'vi',
+        'TH': 'th',
+        'ID': 'id',
+        'MY': 'ms'
+    };
+    return map[c] || 'en';
 }
 
 function applyLanguage(lang: string) {
     i18n.changeLanguage(lang);
     localStorage.setItem(STORAGE_KEY, lang);
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    document.cookie = `${STORAGE_KEY}=${lang}; path=/; max-age=31536000; SameSite=Lax`;
     document.documentElement.lang = lang;
 }
 
-/** Change language and persist (for use in UI pickers) */
+/** Change language and persist */
 export function changeLanguage(lang: string) {
     applyLanguage(lang);
     if (typeof window !== 'undefined') {

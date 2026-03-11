@@ -362,10 +362,9 @@ export default function HomePage() {
 
   const getGreeting = () => {
     const hour = new Date().getHours();
-    const isKo = i18n.language?.startsWith('ko');
-    if (hour < 12) return isKo ? '좋은 아침입니다' : 'Good morning';
-    if (hour < 18) return isKo ? '좋은 오후입니다' : 'Good afternoon';
-    return isKo ? '좋은 저녁입니다' : 'Good evening';
+    if (hour < 12) return t('common.greeting_morning', { defaultValue: 'Good morning' });
+    if (hour < 18) return t('common.greeting_afternoon', { defaultValue: 'Good afternoon' });
+    return t('common.greeting_evening', { defaultValue: 'Good evening' });
   };
 
   const handleStart = async () => {
@@ -462,7 +461,7 @@ export default function HomePage() {
       <section className={styles.hero}>
         <img src="/kello-logo.png" alt="Kello" className={styles.heroLogo} />
         {userName ? (
-          <p className={styles.heroGreeting} suppressHydrationWarning>{getGreeting()}, {userName}님! 👋</p>
+          <p className={styles.heroGreeting} suppressHydrationWarning>{getGreeting()}, {userName}!</p>
         ) : null}
         <div className={styles.heroChips}>
           <span className={styles.heroChip}>🎫 <span suppressHydrationWarning>{t('home.value_props.booking.title')}</span></span>
@@ -565,8 +564,8 @@ export default function HomePage() {
             {isSearchingInSheet ? (
               <div className={styles.sheetSearchSection}>
                 <div className={styles.sheetHeader} style={{ border: 'none', paddingBottom: '0' }}>
-                  <div className={styles.sheetTitle}>검색 결과</div>
-                  <div className={styles.sheetSubtitle}>'{input}'에 대한 {sheetSearchResults.length}개의 결과</div>
+                  <div className={styles.sheetTitle}>{t('common.search_results', { defaultValue: 'Search Results' })}</div>
+                  <div className={styles.sheetSubtitle}>{t('common.search_results_for', { query: input, count: sheetSearchResults.length, defaultValue: `${sheetSearchResults.length} results for '${input}'` })}</div>
                 </div>
                 <div className={styles.sheetResultList} style={{ maxHeight: '65vh', overflowY: 'auto', padding: '0 24px 20px' }}>
                   {sheetSearchResults.map((item, idx) => (
@@ -591,18 +590,23 @@ export default function HomePage() {
                 <div className={styles.quickChoices} style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
                   <button className={styles.choiceBtn} onClick={() => { setOpenNavSheet(false); setIsMapOpen(true); }} style={{ gridColumn: 'span 2' }}>
                     <div className={styles.choiceIcon}>📍</div>
-                    <div className={styles.choiceLabel}>위치 보기</div>
-                    <div className={styles.choiceSubText}>지도에서 상세 위치 확인</div>
+                    <div className={styles.choiceLabel}>{t('common.view_map')}</div>
+                    <div className={styles.choiceSubText}>{t('common.view_map_desc')}</div>
                   </button>
                   <button className={styles.choiceBtn} onClick={handleKRide}>
                     <div className={styles.choiceIcon}>🚕</div>
                     <div className={styles.choiceLabel}>K.Ride</div>
-                    <div className={styles.choiceSubText}>택시 호출하기</div>
+                    <div className={styles.choiceSubText}>{t('common.taxi_call')}</div>
                   </button>
                   <button className={styles.choiceBtn} onClick={() => handleTransit('google')}>
                     <div className={styles.choiceIcon}>🚇</div>
-                    <div className={styles.choiceLabel}>{t('fab.transit')}</div>
-                    <div className={styles.choiceSubText}>Google Maps</div>
+                    <div className={styles.choiceLabel}>{t('common.route_nav')}</div>
+                    <div className={styles.choiceSubText}>{t('common.transit_nav_desc')}</div>
+                  </button>
+                  <button className={styles.choiceBtn} onClick={handleCopy} style={{ gridColumn: 'span 2' }}>
+                    <div className={styles.choiceIcon}>📋</div>
+                    <div className={styles.choiceLabel}>{copied ? t('common.copied') : t('common.copy_address')}</div>
+                    <div className={styles.choiceSubText}>{destInfo.nameKo}</div>
                   </button>
                   <button className={styles.choiceBtn} onClick={() => handleTransit('google')} style={{ gridColumn: 'span 2', flexDirection: 'row', padding: '16px' }}>
                     <div className={styles.choiceIcon} style={{ width: '40px', height: '40px', fontSize: '20px' }}>
@@ -610,7 +614,7 @@ export default function HomePage() {
                     </div>
                     <div style={{ textAlign: 'left', flex: 1, paddingLeft: '12px' }}>
                       <div className={styles.choiceLabel}>Google Maps Transit</div>
-                      <div className={styles.choiceSubText}>글로벌 유저용 다국어 길찾기</div>
+                      <div className={styles.choiceSubText}>{t('common.transit_nav_desc')}</div>
                     </div>
                   </button>
                 </div>

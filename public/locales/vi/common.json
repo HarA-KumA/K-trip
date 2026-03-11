@@ -41,7 +41,13 @@
                                       "attraction":  "Địa điểm",
                                       "transport":  "Giao thông"
                                   },
-                   "community_nav":  "Community"
+                   "community_nav":  "Cộng đồng",
+                   "help_nav":  "Trợ giúp",
+                   "greeting_morning":  "Chào buổi sáng",
+                   "greeting_afternoon":  "Chào buổi chiều",
+                   "greeting_evening":  "Chào buổi tối",
+                   "search_results":  "Kết quả tìm kiếm",
+                   "search_results_for":  "{{count}} kết quả cho '{{query}}'"
                },
     "transport":  {
                       "moving_to":  "Đang đến {{dest}}",

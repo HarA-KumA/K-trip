@@ -41,7 +41,13 @@
                                       "attraction":  "Tarikan",
                                       "transport":  "Pengangkutan"
                                   },
-                   "community_nav":  "Community"
+                   "community_nav":  "Komuniti",
+                   "help_nav":  "Bantuan",
+                   "greeting_morning":  "Selamat pagi",
+                   "greeting_afternoon":  "Selamat tengah hari",
+                   "greeting_evening":  "Selamat malam",
+                   "search_results":  "Hasil carian",
+                   "search_results_for":  "{{count}} keputusan untuk '{{query}}'"
                },
     "transport":  {
                       "moving_to":  "Menuju {{dest}}",

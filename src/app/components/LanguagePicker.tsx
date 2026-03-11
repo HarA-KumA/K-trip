@@ -11,26 +11,16 @@ export interface LangOption {
 }
 
 export const LANGUAGES: LangOption[] = [
-    { code: 'ko', label: '한국어', flag: '🇰🇷' },
-    { code: 'en', label: 'English', flag: '🇺🇸' },
-    { code: 'ja', label: '日本語', flag: '🇯🇵' },
-    { code: 'zh-CN', label: '简体中文', flag: '🇨🇳' },
-    { code: 'zh-TW', label: '繁體中文', flag: '🇭🇰' },
-    { code: 'vi', label: 'Tiếng Việt', flag: '🇻🇳' },
-    { code: 'th', label: 'ไทย', flag: '🇹🇭' },
-    { code: 'id', label: 'Bahasa Indonesia', flag: '🇮🇩' },
-    { code: 'ms', label: 'Bahasa Melayu', flag: '🇲🇾' },
+    { code: 'ko', label: '한국어', flag: 'KR' },
+    { code: 'en', label: 'English', flag: 'US' },
+    { code: 'ja', label: '日本語', flag: 'JP' },
+    { code: 'zh-CN', label: '简体中文', flag: 'CN' },
+    { code: 'zh-HK', label: '繁體中文', flag: 'HK' },
+    { code: 'vi', label: 'Tiếng Việt', flag: 'VN' },
+    { code: 'th', label: 'ไทย', flag: 'TH' },
+    { code: 'id', label: 'Bahasa Indonesia', flag: 'ID' },
+    { code: 'ms', label: 'Bahasa Melayu', flag: 'MY' },
 ];
-
-// 언어코드 → i18n 키 매핑 (실제 지원하는 키로 라우팅)
-const LANG_MAP: Record<string, string> = {
-    'ko': 'ko', 'en': 'en', 'ja': 'jp', 'zh-CN': 'cn', 'zh-TW': 'tw',
-    'vi': 'vi', 'th': 'th', 'id': 'id', 'ms': 'ms'
-};
-
-function toI18nKey(code: string) {
-    return LANG_MAP[code] ?? 'en';
-}
 
 import { useTranslation } from 'react-i18next';
 
@@ -44,25 +34,24 @@ export default function LanguagePicker({ compact = false }: LanguagePickerProps)
     const [isOpen, setIsOpen] = useState(false);
 
     // Default to Korean
-    const [current, setCurrent] = useState<LangOption>(LANGUAGES.find(l => l.code === 'ko') || LANGUAGES[14]);
+    const [current, setCurrent] = useState<LangOption>(LANGUAGES.find(l => l.code === 'ko') || LANGUAGES[0]);
 
     // load saved lang from localStorage
     useEffect(() => {
         const stored = localStorage.getItem('ktrip_lang');
         if (stored) {
-            const found = LANGUAGES.find(l => toI18nKey(l.code) === stored || l.code === stored);
+            const found = LANGUAGES.find(l => l.code === stored);
             if (found) setCurrent(found);
         } else {
-            // Default is Korean as requested
-            setCurrent(LANGUAGES.find(l => l.code === 'ko') || LANGUAGES[14]);
+            // Default is Korean
+            setCurrent(LANGUAGES.find(l => l.code === 'ko') || LANGUAGES[0]);
         }
     }, []);
 
     const handleSelect = (lang: LangOption) => {
         setCurrent(lang);
         setIsOpen(false);
-        const i18nKey = toI18nKey(lang.code);
-        changeLanguage(i18nKey);
+        changeLanguage(lang.code);
     };
 
     return (

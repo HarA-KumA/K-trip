@@ -4,6 +4,7 @@ import "./globals.css";
 import BottomNav from "./components/BottomNav";
 import KRideGlobalFAB from "./components/KRideGlobalFAB";
 import LanguageInitializer from "./components/LanguageInitializer";
+import GlobalLangButton from "./components/GlobalLangButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,22 +31,29 @@ export const viewport: Viewport = {
 };
 
 import { TripProvider } from "@/lib/contexts/TripContext";
+import { headers, cookies } from "next/headers";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const reqHeaders = await headers();
+  const reqCookies = await cookies();
+  const locale = reqHeaders.get('x-resolved-locale') || reqCookies.get('ktrip_lang')?.value || "en";
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <TripProvider>
           <LanguageInitializer />
           <div className="mobile-wrapper">
+            <GlobalLangButton />
             <main className="scroll-container">
               {children}
             </main>
             <BottomNav />
+            <KRideGlobalFAB />
           </div>
         </TripProvider>
       </body>

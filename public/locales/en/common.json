@@ -128,7 +128,7 @@
                 "label": "2 Days Plan"
             },
             "3d": {
-                "title": "3 Days: K-Culture \u0026 Style",
+                "title": "3 Days: K-Culture & Style",
                 "label": "3 Days Plan"
             },
             "5d": {
@@ -168,7 +168,7 @@
         "filters_title": "Filters",
         "apply": "Apply",
         "reset": "Reset",
-        "adding_item_to": "Adding \u003cstrong\u003e{{title}}\u003c/strong\u003e to...",
+        "adding_item_to": "Adding <strong>{{title}}</strong> to...",
         "no_specific_filters": "No specific filters for this category.",
         "filters": {
             "show": "Show",
@@ -179,7 +179,7 @@
             "type": "Type",
             "options": {
                 "skin_care": "Skin Care",
-                "hair_makeup": "Hair \u0026 Makeup",
+                "hair_makeup": "Hair & Makeup",
                 "spa": "Spa",
                 "nails": "Nails",
                 "vegan": "Vegan",
@@ -227,7 +227,7 @@
         "b1": {
             "title": "Jenny House Cheongdam",
             "area": "Cheongdam",
-            "desc": "Premium hair \u0026 makeup shop frequented by K-idols",
+            "desc": "Premium hair & makeup shop frequented by K-idols",
             "price": "150,000"
         },
         "b2": {
@@ -239,7 +239,7 @@
         "e1": {
             "title": "PSY Water Show 2024",
             "area": "Jamsil Stadium",
-            "desc": "PSY\u0027s cool and passionate performance to blow away the summer heat",
+            "desc": "PSY's cool and passionate performance to blow away the summer heat",
             "price": "140,000"
         },
         "e2": {
@@ -257,7 +257,7 @@
         "fs2": {
             "title": "Film Festival",
             "area": "Centum City",
-            "desc": "Asia\u0027s largest film festival, a meeting of film professionals from around the world",
+            "desc": "Asia's largest film festival, a meeting of film professionals from around the world",
             "price": "10,000"
         },
         "a1": {
@@ -269,7 +269,7 @@
         "a2": {
             "title": "Lotte World Tower",
             "area": "Jamsil",
-            "desc": "Korea\u0027s tallest building where you can see the fantastic night view of Seoul at a glance",
+            "desc": "Korea's tallest building where you can see the fantastic night view of Seoul at a glance",
             "price": "27,000"
         },
         "t1": {
@@ -280,7 +280,7 @@
         }
     },
     "today_page": {
-        "title": "Today\u0027s Schedule",
+        "title": "Today's Schedule",
         "active_now": "Active Now",
         "navigate": "Navigate",
         "booking_ref": "Booking Ref: {{ref}}",
@@ -301,7 +301,7 @@
         "request_booking": "Request Booking"
     },
     "navigation_page": {
-        "title": "Today\u0027s Schedule",
+        "title": "Today's Schedule",
         "status": {
             "on_trip": "Traveling",
             "pre_trip": "Preparing",
@@ -412,7 +412,7 @@
         "current": "Current",
         "get_off_at": "Get off at",
         "exit_3": "Exit 3",
-        "getting_off_here": "I\u0027m Getting Off Here",
+        "getting_off_here": "I'm Getting Off Here",
         "stations": {
             "samseong": "Samseong",
             "seolleung": "Seolleung",
@@ -425,9 +425,9 @@
     },
     "community_page": {
         "title": "Community",
-        "subtitle": "Connect with locals \u0026 travelers",
+        "subtitle": "Connect with locals & travelers",
         "filter_all": "All",
-        "filter_meetup": "Food \u0026 Meetup",
+        "filter_meetup": "Food & Meetup",
         "filter_travel": "Travel Mate",
         "filter_help": "Local Help",
         "comments": "Comments",
@@ -473,16 +473,16 @@
         "badge": "Emergency",
         "numbers_title": "Emergency Numbers",
         "medical_title": "Medical Help",
-        "medical_desc": "Nearby clinics \u0026 symptom cards",
-        "lost_title": "Lost \u0026 Found",
+        "medical_desc": "Nearby clinics & symptom cards",
+        "lost_title": "Lost & Found",
         "lost_desc": "Step-by-step recovery guide",
         "police_title": "Police / Crime",
-        "police_desc": "Report \u0026 get assistance",
+        "police_desc": "Report & get assistance",
         "interp_title": "Interpretation",
-        "interp_desc": "1330 helpline \u0026 translation apps",
+        "interp_desc": "1330 helpline & translation apps",
         "symptom_title": "Symptom Phrase Cards",
         "symptom_hint": "Tap a symptom to show the Korean phrase to your doctor",
-        "clinic_title": "International Clinics \u0026 ER",
+        "clinic_title": "International Clinics & ER",
         "med_title": "Convenience Store Medicines",
         "med_hint": "Available 24/7 at GS25, CU, 7-Eleven",
         "lost_step1": "Step 1: Where did you lose it?",
@@ -500,5 +500,47 @@
         "airport": "Airport",
         "street": "Street",
         "lost_in": "Lost item in:"
+    },
+    "home_new": {
+        "hero_title": "Korea Travel: Plans & Bookings All in One",
+        "hero_subtitle": "From itinerary recommendations to booking support. Your ultimate travel concierge for Korea.",
+        "features": {
+            "booking": "Seamless Bookings",
+            "ai_plan": "AI Itineraries",
+            "navi": "Easy Navigation"
+        },
+        "input": {
+            "where": "Where to?",
+            "where_placeholder": "Seoul, Busan, Jeju...",
+            "when": "How long?",
+            "days_suffix": " Days",
+            "who": "Who are you traveling with?",
+            "who_options": {
+                "solo": "Solo",
+                "couple": "Couple",
+                "friends": "Friends",
+                "family": "Family"
+            },
+            "interests": "What are your interests?",
+            "interests_options": {
+                "food": "Food",
+                "shopping": "Shopping",
+                "beauty": "K-Beauty",
+                "sightseeing": "Sightseeing",
+                "night": "Nightlife",
+                "experience": "Experiences"
+            }
+        },
+        "cta_helper": "Get your personalized plan in 1 minute",
+        "cta_btn": "Start Creating Itinerary",
+        "trust": {
+            "title": "Safe Travels with Kello",
+            "items": [
+                "Korea Travel Specialized",
+                "AI Personalized Plans",
+                "Zero Language Barrier",
+                "Hassle-free Bookings"
+            ]
+        }
     }
 }

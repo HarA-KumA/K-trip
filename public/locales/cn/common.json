@@ -175,7 +175,7 @@
         "filters_title": "筛选",
         "apply": "应用",
         "reset": "重置",
-        "adding_item_to": "正在将 \u003cstrong\u003e{{title}}\u003c/strong\u003e 添加到:",
+        "adding_item_to": "正在将 <strong>{{title}}</strong> 添加到:",
         "no_specific_filters": "此类别没有特定的筛选条件。",
         "filters": {
             "show": "类别",
@@ -453,5 +453,47 @@
         },
         "filter_review": "Reviews",
         "detail": "帖子详情"
+    },
+    "home_new": {
+        "hero_title": "韩国旅行，从行程规划到代订一站式服务",
+        "hero_subtitle": "快速获取行程推荐与预订支持，新手也能轻松使用的旅行助手。",
+        "features": {
+            "booking": "一站式代订",
+            "ai_plan": "AI智能规划",
+            "navi": "无忧导航"
+        },
+        "input": {
+            "where": "去哪里？",
+            "where_placeholder": "首尔、釜山、济州...",
+            "when": "去几天？",
+            "days_suffix": " 天",
+            "who": "和谁一起？",
+            "who_options": {
+                "solo": "独自",
+                "couple": "情侣",
+                "friends": "朋友",
+                "family": "家庭"
+            },
+            "interests": "您想体验什么？",
+            "interests_options": {
+                "food": "探店美食",
+                "shopping": "买买买",
+                "beauty": "K-美容",
+                "sightseeing": "地标打卡",
+                "night": "夜景夜生活",
+                "experience": "特色体验"
+            }
+        },
+        "cta_helper": "1分钟获取专属行程推荐",
+        "cta_btn": "开始定制行程",
+        "trust": {
+            "title": "与Kello同行的安心之旅",
+            "items": [
+                "专注韩国旅行",
+                "AI个性化推荐",
+                "无语言障碍导航",
+                "轻松搞定预订"
+            ]
+        }
     }
 }

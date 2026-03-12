@@ -1,0 +1,512 @@
+{
+    "header": {
+        "view_app": "在APP中查看",
+        "faq": "常見問題",
+        "recent": "最近瀏覽"
+    },
+    "common": {
+        "welcome": "歡迎，旅行者。",
+        "greeting": "早安",
+        "login": "登入",
+        "signup": "註冊",
+        "today": "今天",
+        "move": "移動",
+        "book": "預約",
+        "chat": "諮詢",
+        "my": "我的",
+        "min_unit": "分鐘",
+        "current_operation": "目前行程",
+        "live": "直播",
+        "recommended": "周邊推薦",
+        "based_on_location": "基於目前位置",
+        "start_nav": "開始導航",
+        "delay_10m": "延遲10分鐘",
+        "confirmed": "預約確認",
+        "payment_completed": "支付完成",
+        "weather_clear": "晴朗",
+        "back": "返回",
+        "select_language": "選擇語言",
+        "home_nav": "首頁",
+        "explore_nav": "探索",
+        "planner_nav": "行程",
+        "today_nav": "今日",
+        "my_nav": "我的",
+        "day_unit": "日",
+        "locale": "zh-TW",
+        "cities": {
+            "seoul": "首爾",
+            "busan": "釜山",
+            "jeju": "濟州",
+            "gyeongju": "慶州"
+        },
+        "categories": {
+            "all": "全部",
+            "food": "美食",
+            "beauty": "美容",
+            "event": "演出",
+            "festival": "慶典",
+            "attraction": "景點",
+            "transport": "交通"
+        },
+        "badges": {
+            "english_friendly": "英語友善",
+            "vegan_certified": "純素認證",
+            "michelin": "米其林",
+            "wait_free": "免排隊",
+            "local_experience": "在地體驗",
+            "k_idol_style": "K-Idol風格",
+            "tax_refund": "退稅",
+            "summer_must_go": "夏季必選",
+            "non_verbal": "非語言秀",
+            "family": "家庭親子",
+            "night_view": "夜景",
+            "photo_spot": "打卡點",
+            "hanbok_free_entry": "韓服免費入場",
+            "history": "歷史",
+            "city_view": "城市景觀"
+        },
+        "ingredients": {
+            "vegetables": "蔬菜",
+            "soy": "豆類",
+            "pork": "豬肉",
+            "kimchi": "泡菜",
+            "seafood": "海鮮"
+        },
+        "diet": {
+            "vegan": "純素",
+            "gluten_free": "無麩質",
+            "meat_lover": "肉食愛好者",
+            "pescatarian": "魚素"
+        },
+        "community_nav": "社區",
+        "help_nav": "幫助",
+        "greeting_morning": "早晨",
+        "greeting_afternoon": "下午好",
+        "greeting_evening": "晚安",
+        "search_results": "搜尋結果",
+        "search_results_for": "'{{query}}'的{{count}}個結果",
+        "view_map": "查看位置",
+        "view_map_desc": "在地圖上查看詳細位置",
+        "taxi_call": "呼叫的士",
+        "route_nav": "路徑指引",
+        "transit_nav_desc": "公共交通導航",
+        "copy_address": "複製地址",
+        "copied": "已複製！"
+    },
+    "transport": {
+        "moving_to": "正在前往 {{dest}}",
+        "remaining": "剩餘",
+        "line_2_direction": "2號線 • 往市廳方向",
+        "departed": "已出發",
+        "passing_now": "正在經過...",
+        "current": "目前",
+        "get_off_at": "下車出口:",
+        "exit_3": "3號出口",
+        "getting_off_here": "在這裡下車",
+        "stations": {
+            "samseong": "三成",
+            "seolleung": "宣陵",
+            "yeoksam": "驛三",
+            "gangnam": "江南",
+            "gyodae": "教大",
+            "seocho": "瑞草",
+            "seongsu": "聖水"
+        }
+    },
+    "home": {
+        "presets": {
+            "beauty_tour": "美容之旅",
+            "foodie": "美食探秘",
+            "heritage": "傳統文化",
+            "k_pop": "K-POP"
+        },
+        "badge": "Kello",
+        "title": "代辦預約 · 自動整理行程 · 實時導航",
+        "subtitle": "",
+        "create_trip_cta": "開始策劃旅行",
+        "how_it_works": {
+            "title": "使用方法",
+            "step1": "請求",
+            "step1_desc": "選擇心儀的美容/美食",
+            "step2": "進行中",
+            "step2_desc": "透過當地管道代辦預約",
+            "step3": "確認",
+            "step3_desc": "自動同步到行程表"
+        },
+        "input_label": "您想去哪裡旅行？",
+        "input_placeholder": "城市、地區、酒店名稱",
+        "days_label": "旅行時間",
+        "value_props": {
+            "itinerary": {
+                "title": "自動整理行程",
+                "desc": "AI構築最佳路徑"
+            },
+            "booking": {
+                "title": "代辦預約",
+                "desc": "美容店、水療等代辦預約"
+            },
+            "navigation": {
+                "title": "實時移動導航",
+                "desc": "無語言障礙的路徑指引"
+            }
+        },
+        "recommended_plans": "推薦旅行方案",
+        "plans": {
+            "2d": {
+                "title": "2日：首爾核心之旅",
+                "label": "2日方案"
+            },
+            "3d": {
+                "title": "3日：K-文化與潮流",
+                "label": "3日方案"
+            },
+            "5d": {
+                "title": "5日：韓國全境遊",
+                "label": "5日方案"
+            },
+            "request_custom_label": "定製",
+            "request_custom_title": "申請 {{days}} 日定製方案",
+            "request_custom_toast": "已申請 {{days}} 日定製方案！我們的禮賓人員將盡快與您聯繫。"
+        }
+    },
+    "explore_page": {
+        "title": "探索",
+        "city_changed": "城市已更改為 {{city}}",
+        "added_to": "已添加到第 {{day}} 天行程",
+        "no_items": "在 {{city}} 未找到項目",
+        "try_changing": "請嘗試更改類別或城市。",
+        "add_to_plan": "+ 添加到行程",
+        "today": "今天",
+        "tonight": "今晚",
+        "starts_from": "₩{{price}} 起",
+        "indoor": "室內",
+        "outdoor": "室外",
+        "badges": {
+            "vegan_only": "僅限純素",
+            "vegan_option": "純素可選"
+        },
+        "filters_title": "篩選",
+        "apply": "應用",
+        "reset": "重置",
+        "adding_item_to": "正在將 <strong>{{title}}</strong> 添加到:",
+        "no_specific_filters": "此類別沒有特定的篩選條件。",
+        "filters": {
+            "show": "類別",
+            "price": "價格",
+            "diet": "飲食",
+            "ingredients": "食材",
+            "date": "日期",
+            "type": "類型",
+            "options": {
+                "skin_care": "皮膚護理",
+                "hair_makeup": "美髮/化妝",
+                "spa": "水療",
+                "nails": "美甲",
+                "vegan": "純素",
+                "vegetarian": "素食",
+                "no_pork": "無豬肉",
+                "halal": "清真",
+                "beef": "牛肉",
+                "pork": "豬肉",
+                "chicken": "雞肉",
+                "seafood": "海鮮",
+                "dairy": "乳製品",
+                "egg": "蛋類",
+                "today": "今天",
+                "weekend": "本週末",
+                "select": "選擇日期",
+                "concert": "演唱會",
+                "show": "演出",
+                "popup": "快閃店",
+                "club": "俱樂部",
+                "exhibition": "展覽"
+            }
+        }
+    },
+    "explore_items": {
+        "airport_arrival": "仁川機場到達",
+        "hotel_checkin": "入住酒店",
+        "f1": {
+            "title": "Plant Cafe Seoul",
+            "area": "梨泰院",
+            "desc": "使用新鮮蔬菜和健康食材製作的100%純素料理",
+            "price": "15,000"
+        },
+        "f2": {
+            "title": "金豬食堂",
+            "area": "藥水",
+            "desc": "入選米其林指南的韓國頂級五花肉美食店",
+            "price": "20,000"
+        },
+        "f3": {
+            "title": "札嘎其市場 生魚片套餐",
+            "area": "南浦",
+            "desc": "可以感受釜山大海新鮮感的豐盛生魚片套餐",
+            "price": "40,000"
+        },
+        "b1": {
+            "title": "Jenny House 清潭",
+            "area": "清潭",
+            "desc": "K-Pop偶像們經常光顧的高端美髮化妝沙龍",
+            "price": "150,000"
+        },
+        "b2": {
+            "title": "PPEUM Clinic 江南",
+            "area": "江南",
+            "desc": "外國人訪問量最大、性價比最高的美容診所",
+            "price": "50,000"
+        },
+        "e1": {
+            "title": "PSY 潑水秀 2024",
+            "area": "蠶室體育場",
+            "desc": "PSY清涼激情的演出，帶走夏日酷暑",
+            "price": "140,000"
+        },
+        "e2": {
+            "title": "亂打秀 明洞",
+            "area": "明洞",
+            "desc": "融合了韓國傳統節奏與現代表演的非語言類演出",
+            "price": "40,000"
+        },
+        "fs1": {
+            "title": "首爾燈會",
+            "area": "光化門",
+            "desc": "點綴光化門廣場的絢麗精美的花燈盛宴",
+            "price": "免費"
+        },
+        "fs2": {
+            "title": "電影節",
+            "area": "Centum City",
+            "desc": "亞洲最大規模的電影節，全球電影人的聚會",
+            "price": "10,000"
+        },
+        "a1": {
+            "title": "景福宮",
+            "area": "鍾路",
+            "desc": "作為朝鮮王朝的正宮，珍藏著韓國歷史與美學的地方",
+            "price": "3,000"
+        },
+        "a2": {
+            "title": "樂天世界塔",
+            "area": "蠶室",
+            "desc": "可以將首爾幻麗夜景盡收眼底的韓國最高建築",
+            "price": "27,000"
+        },
+        "t1": {
+            "title": "往釜山 KTX",
+            "area": "首爾站",
+            "desc": "從首爾前往釜山最快最便捷的方式",
+            "price": "59,800"
+        }
+    },
+    "fab": {
+        "idle": "創建行程",
+        "pre_trip": "後天出發",
+        "on_trip": "下一站去哪？",
+        "near_deadline": "遲到風險！",
+        "to": "往 {{dest}}",
+        "kride": "呼叫 K.Ride",
+        "kride_sub": "{{mins}}分鐘後到達",
+        "transit": "公共交通指南",
+        "transit_sub": "最快路線指引",
+        "copy": "複製地址",
+        "copy_done": "複製成功！",
+        "card": "給司機看",
+        "card_sub": "計程車司機用卡片",
+        "card_modal_title": "🗺️ 請前往這個地址",
+        "cancel": "關閉"
+    },
+    "today_page": {
+        "title": "今日日程",
+        "active_now": "進行中",
+        "navigate": "路線指引",
+        "booking_ref": "訂單號: {{ref}}",
+        "next_up": "下一項日程",
+        "minutes_left": "{{mins}}分鐘後開始",
+        "depart_early": "現在出發",
+        "timeline": "時間軸",
+        "empty": {
+            "title": "今日暫無日程",
+            "desc": "去探索想要去的地方並添加吧！",
+            "cta": "探索地點"
+        }
+    },
+    "booking_detail": {
+        "select_date": "選擇日期",
+        "select_time": "選擇時間",
+        "total_price": "總金額",
+        "request_booking": "提交預訂請求"
+    },
+    "navigation_page": {
+        "title": "今日行程",
+        "status": {
+            "on_trip": "旅行中",
+            "pre_trip": "準備中",
+            "idle": "暫無行程"
+        },
+        "countdown": {
+            "today": "今天",
+            "starts_in": "{{mins}}分鐘後開始",
+            "traveling_to": "正在前往 {{dest}}"
+        },
+        "empty": {
+            "title": "今天沒有行程",
+            "subtitle": "探索想去的地方並添加到行程中！",
+            "cta": "探索地點"
+        },
+        "actions": {
+            "directions": "查找路線",
+            "booking": "查看預約",
+            "late_risk": "有遲到風險！",
+            "booking_ref": "預約號: {{ref}}",
+            "departure_warning": "⚠️ {{title}} 將在 {{mins}}分鐘內開始 — 請立即出發！"
+        }
+    },
+    "planner_page": {
+        "title": "行程表",
+        "day": "第 {{n}} 天",
+        "add_from_discover": "🔍 添加地點",
+        "auto_build": "✨ 自動完成",
+        "add_to": "添加到 {{slot}}",
+        "book_all": "🎫 請求代辦預約",
+        "booking_modal": {
+            "title": "預約請求",
+            "date": "日期",
+            "people": "人數",
+            "people_count": "{{n}} 人",
+            "notes": "特別要求 (選填)",
+            "submit": "提交請求",
+            "submitting": "正在提交...",
+            "success_title": "已收到請求！",
+            "success_desc": "我們的禮賓人員將在24小時內聯繫您。",
+            "unavailable_title": "該時段不可預約",
+            "unavailable_desc": "我們為您推薦以下替代方案：",
+            "view_status": "查看狀態"
+        },
+        "status": {
+            "draft": "草稿",
+            "submitted": "已提交",
+            "confirmed": "已確認",
+            "unavailable": "不可預約",
+            "completed": "已完成"
+        },
+        "slots": {
+            "am": "上午",
+            "pm": "下午",
+            "night": "晚上"
+        }
+    },
+    "my_page": {
+        "profile": {
+            "trust_score": "💎 信任分數",
+            "trust_level_excellent": "極好"
+        },
+        "passport": {
+            "title": "我的護照",
+            "view_all": "查看全部",
+            "seoul": "首爾",
+            "beauty": "美容",
+            "jeju": "濟州"
+        },
+        "bookings": {
+            "title": "我的預約",
+            "date_time": "日期 / 時間",
+            "area": "區域",
+            "price": "價格",
+            "today_time": "今天, {{time}}",
+            "tomorrow_time": "明天, {{time}}",
+            "next_week_time": "下週, {{time}}",
+            "new_added": "新預約已添加！"
+        },
+        "community": {
+            "title": "我的社群動態",
+            "empty": "還沒有撰寫任何社群動態。"
+        }
+    },
+    "community_page": {
+        "title": "社区",
+        "subtitle": "与当地人和旅行者交流",
+        "filter_all": "全部",
+        "filter_meetup": "美食与聚会",
+        "filter_travel": "旅行伙伴",
+        "filter_help": "当地帮助",
+        "comments": "评论",
+        "message": "发信息",
+        "type": {
+            "MEETUP": "聚会",
+            "TRAVEL": "旅行",
+            "HELP": "帮助",
+            "REVIEW": "REVIEW"
+        },
+        "post": {
+            "1": {
+                "author": "Mika (日本)",
+                "time": "10分钟前",
+                "title": "一起吃五花肉 🥓",
+                "desc": "今晚7点在金猪食堂有人想一起吃五花肉吗？"
+            },
+            "2": {
+                "author": "John (美国)",
+                "time": "1小时前",
+                "title": "弘大街头表演 🎸",
+                "desc": "我正要去弘大看独立乐队表演，一起来吧！"
+            },
+            "3": {
+                "author": "Jihoon (韩国)",
+                "time": "2小时前",
+                "title": "需要地铁方向的帮助吗？ 🚇",
+                "desc": "我住在明洞附近，如果您迷路了，我可以帮您翻译或指路。随时给我发信息！"
+            },
+            "4": {
+                "author": "Li Wei (中国)",
+                "time": "3小时前",
+                "title": "K-Beauty 化妆品购物 💄",
+                "desc": "找个在明洞Olive Young一起购物的伙伴。我知道很多好用的牌子！"
+            }
+        },
+        "filter_review": "Reviews",
+        "detail": "貼文詳情"
+    },
+    "home_new": {
+        "hero_title": "韓國旅行，從行程到預訂一站式完成",
+        "hero_subtitle": "從行程推薦到預訂支持，快速開啟。即使是韓國旅行初學者也能輕鬆使用的夥伴。",
+        "features": {
+            "booking": "一站式預訂",
+            "ai_plan": "AI完成行程",
+            "navi": "無需擔心迷路"
+        },
+        "input": {
+            "where": "去哪裡？",
+            "where_placeholder": "首爾, 釜山, 濟州...",
+            "when": "停留多久？",
+            "days_suffix": "天",
+            "who": "和誰一起去？",
+            "who_options": {
+                "solo": "獨自一人",
+                "couple": "情侶",
+                "friends": "和朋友",
+                "family": "和家人"
+            },
+            "interests": "想要什麼樣的主題？",
+            "interests_options": {
+                "food": "美食探訪",
+                "shopping": "購物",
+                "beauty": "K-美容",
+                "sightseeing": "觀光景點",
+                "night": "夜生活",
+                "experience": "獨特體驗"
+            }
+        },
+        "cta_helper": "1分鐘內獲得專屬旅行路線",
+        "cta_btn": "開始創建行程",
+        "trust": {
+            "title": "與 Kello 一起的安心旅行",
+            "items": [
+                "韓國旅行專業應用",
+                "AI個性化方案",
+                "無語言障礙導覽",
+                "協助預訂困難地點"
+            ]
+        }
+    }
+}

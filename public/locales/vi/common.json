@@ -41,7 +41,20 @@
             "attraction": "Địa điểm",
             "transport": "Giao thông"
         },
-        "community_nav": "Community"
+        "community_nav": "Cộng đồng",
+        "help_nav": "Trợ giúp",
+        "greeting_morning": "Chào buổi sáng",
+        "greeting_afternoon": "Chào buổi chiều",
+        "greeting_evening": "Chào buổi tối",
+        "search_results": "Kết quả tìm kiếm",
+        "search_results_for": "{{count}} kết quả cho '{{query}}'",
+        "view_map": "Xem vị trí",
+        "view_map_desc": "Xem vị trí chi tiết trên bản đồ",
+        "taxi_call": "Gọi taxi",
+        "route_nav": "Chỉ đường",
+        "transit_nav_desc": "Dẫn đường phương tiện công cộng",
+        "copy_address": "Sao chép địa chỉ",
+        "copied": "Đã sao chép!"
     },
     "transport": {
         "moving_to": "Đang đến {{dest}}",
@@ -211,44 +224,44 @@
         }
     },
     "home_new": {
-        "hero_title": "Korea Travel: Plans & Bookings All in One",
-        "hero_subtitle": "From itinerary recommendations to booking support. Your ultimate travel concierge for Korea.",
+        "hero_title": "Du lịch Hàn Quốc, từ lịch trình đến đặt chỗ tất cả trong một",
+        "hero_subtitle": "Từ đề xuất lịch trình đến hỗ trợ đặt chỗ nhanh chóng. Đối tác dễ sử dụng ngay cả với người mới đến Hàn Quốc.",
         "features": {
-            "booking": "Seamless Bookings",
-            "ai_plan": "AI Itineraries",
-            "navi": "Easy Navigation"
+            "booking": "Đặt chỗ trọn gói",
+            "ai_plan": "Hoàn thành lịch trình bằng AI",
+            "navi": "Không lo lạc đường"
         },
         "input": {
-            "where": "Where to?",
+            "where": "Bạn đi đâu?",
             "where_placeholder": "Seoul, Busan, Jeju...",
-            "when": "How long?",
-            "days_suffix": " Days",
-            "who": "Who are you traveling with?",
+            "when": "Bạn ở lại bao lâu?",
+            "days_suffix": " Ngày",
+            "who": "Bạn đi cùng ai?",
             "who_options": {
-                "solo": "Solo",
-                "couple": "Couple",
-                "friends": "Friends",
-                "family": "Family"
+                "solo": "Đi một mình",
+                "couple": "Cặp đôi",
+                "friends": "Cùng bạn bè",
+                "family": "Cùng gia đình"
             },
-            "interests": "What are your interests?",
+            "interests": "Bạn muốn chủ đề gì?",
             "interests_options": {
-                "food": "Food",
-                "shopping": "Shopping",
+                "food": "Khám phá ẩm thực",
+                "shopping": "Mua sắm",
                 "beauty": "K-Beauty",
-                "sightseeing": "Sightseeing",
-                "night": "Nightlife",
-                "experience": "Experiences"
+                "sightseeing": "Danh lam thắng cảnh",
+                "night": "Đời sống về đêm",
+                "experience": "Trải nghiệm độc đáo"
             }
         },
-        "cta_helper": "Get your personalized plan in 1 minute",
-        "cta_btn": "Start Creating Itinerary",
+        "cta_helper": "Nhận lộ trình du lịch phù hợp trong 1 phút",
+        "cta_btn": "Bắt đầu tạo lịch trình",
         "trust": {
-            "title": "Safe Travels with Kello",
+            "title": "Du lịch an tâm cùng Kello",
             "items": [
-                "Korea Travel Specialized",
-                "AI Personalized Plans",
-                "Zero Language Barrier",
-                "Hassle-free Bookings"
+                "Ứng dụng chuyên biệt cho du lịch Hàn Quốc",
+                "Đề xuất lịch trình AI cá nhân hóa",
+                "Chỉ đường không rào cản ngôn ngữ",
+                "Hỗ trợ đặt chỗ ở những nơi khó khăn"
             ]
         }
     }

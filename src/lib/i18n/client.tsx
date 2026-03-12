@@ -1,112 +1,187 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-// Existing languages
-import en from "../../../public/locales/en/common.json";
+// Required languages
 import ko from "../../../public/locales/ko/common.json";
-import jp from "../../../public/locales/jp/common.json";
-import cn from "../../../public/locales/cn/common.json";
-import tw from "../../../public/locales/tw/common.json";
-import es from "../../../public/locales/es/common.json";
-import fr from "../../../public/locales/fr/common.json";
-import de from "../../../public/locales/de/common.json";
-
-// New languages
-import th from "../../../public/locales/th/common.json";
+import en from "../../../public/locales/en/common.json";
+import ja from "../../../public/locales/ja/common.json";
+import zhCN from "../../../public/locales/zh-CN/common.json";
+import zhHK from "../../../public/locales/zh-HK/common.json";
 import vi from "../../../public/locales/vi/common.json";
-import ar from "../../../public/locales/ar/common.json";
+import th from "../../../public/locales/th/common.json";
 import id from "../../../public/locales/id/common.json";
 import ms from "../../../public/locales/ms/common.json";
-import pt from "../../../public/locales/pt/common.json";
-import ru from "../../../public/locales/ru/common.json";
 
 const STORAGE_KEY = "ktrip_lang";
-const SUPPORTED = ["en", "ko", "jp", "cn", "tw", "es", "fr", "de", "th", "vi", "ar", "id", "ms", "pt", "ru"];
+const COUNTRY_COOKIE = "user_country";
+
+export const SUPPORTED = ["ko", "en", "ja", "zh-CN", "zh-HK", "vi", "th", "id", "ms"] as const;
+export type Locale = (typeof SUPPORTED)[number];
 
 const resources = {
-    en: { common: en },
-    ko: { common: ko },
-    jp: { common: jp },
-    cn: { common: cn },
-    tw: { common: tw },
-    es: { common: es },
-    fr: { common: fr },
-    de: { common: de },
-    th: { common: th },
-    vi: { common: vi },
-    ar: { common: ar },
-    id: { common: id },
-    ms: { common: ms },
-    pt: { common: pt },
-    ru: { common: ru },
+    "ko": { common: ko },
+    "en": { common: en },
+    "ja": { common: ja },
+    "zh-CN": { common: zhCN },
+    "zh-HK": { common: zhHK },
+    "vi": { common: vi },
+    "th": { common: th },
+    "id": { common: id },
+    "ms": { common: ms },
 };
 
-// ────────────────────────────────────────────────────────────
-// IMPORTANT: Always initialize with "en" so SSR and the first
-// client render both produce identical HTML (no hydration mismatch).
-// The real user language is applied AFTER hydration via
-// `initClientLanguage()` which is called in a useEffect.
-// ────────────────────────────────────────────────────────────
+/** Utility: Check if value is a supported locale */
+export function isSupportedLocale(value: any): value is Locale {
+    return SUPPORTED.includes(value);
+}
+
+/** Utility: Read cookie by name */
+export function readCookie(name: string): string | null {
+    if (typeof document === "undefined") return null;
+    const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
+    return match ? decodeURIComponent(match[1]) : null;
+}
+
+/** 
+ * Module-level initial detection for synchronous i18next init.
+ * Prioritizes Cookie to match SSR/Middleware result for zero hydration mismatch.
+ */
+function getInitialLang(): Locale {
+    const cookieLang = readCookie(STORAGE_KEY);
+    if (isSupportedLocale(cookieLang)) return cookieLang;
+    return "en";
+}
+
 if (!i18n.isInitialized) {
     i18n
         .use(initReactI18next)
         .init({
             resources,
-            lng: "en",          // ← always "en" for SSR match
+            lng: getInitialLang(),
             fallbackLng: "en",
             ns: ["common"],
             defaultNS: "common",
             interpolation: { escapeValue: false },
+            react: { useSuspense: false }
         });
 }
 
 export default i18n;
 
 /**
- * Call this inside a useEffect (client-only) to switch to the
- * user's preferred language after hydration is complete.
+ * Normalizes browser language strings to supported locales.
+ */
+function normalizeLocale(input: string): Locale | null {
+    const l = input.toLowerCase();
+    if (l === 'ko' || l.startsWith('ko-')) return 'ko';
+    if (l === 'ja' || l.startsWith('ja-')) return 'ja';
+    if (l === 'zh-cn' || l === 'zh-sg' || l === 'zh-hans') return 'zh-CN';
+    if (l === 'zh-tw' || l === 'zh-hk' || l === 'zh-mo' || l === 'zh-hant') return 'zh-HK';
+    if (l === 'zh') return 'zh-CN';
+    if (l === 'vi' || l.startsWith('vi-')) return 'vi';
+    if (l === 'th' || l.startsWith('th-')) return 'th';
+    if (l === 'id' || l.startsWith('id-')) return 'id';
+    if (l === 'ms' || l.startsWith('ms-')) return 'ms';
+    if (l === 'en' || l.startsWith('en-')) return 'en';
+    return null;
+}
+
+/**
+ * Maps country codes to preferred locales.
+ */
+function getLocaleFromCountry(country: string): Locale {
+    const c = country.toUpperCase();
+    const map: Record<string, Locale> = {
+        'KR': 'ko', 'US': 'en', 'JP': 'ja', 'CN': 'zh-CN', 'HK': 'zh-HK',
+        'VN': 'vi', 'TH': 'th', 'ID': 'id', 'MY': 'ms'
+    };
+    return map[c] || 'en';
+}
+
+/**
+ * Core Logic: Determines the best locale based on priority.
+ * 1. Cookie (Explicit User Choice or Middleware Resolve)
+ * 2. LocalStorage (Previous User Choice)
+ * 3. Browser Languages (navigator.languages)
+ * 4. Country Cookie (set by middleware from IP)
+ * 5. Default Fallback ('en')
  */
 export function initClientLanguage() {
     if (typeof window === "undefined") return;
 
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored && SUPPORTED.includes(stored)) {
-        applyLanguage(stored);
+    // 1. Saved choice - Cookie
+    const cookieLang = readCookie(STORAGE_KEY);
+    if (isSupportedLocale(cookieLang)) {
+        applyLanguage(cookieLang, false);
         return;
     }
 
-    // Detect browser language
-    let detected = 'ko'; // Default fallback
-    if (navigator.language) {
-        const browserLang = navigator.language.split('-')[0].toLowerCase();
+    // 2. Saved choice - LocalStorage
+    const storedLang = localStorage.getItem(STORAGE_KEY);
+    if (isSupportedLocale(storedLang)) {
+        applyLanguage(storedLang, true);
+        return;
+    }
 
-        // Handle specific variations like zh-CN, zh-TW, etc.
-        const fullLang = navigator.language;
-        if (fullLang === 'zh-CN' || fullLang === 'zh' || browserLang === 'zh') {
-            detected = 'cn';
-        } else if (fullLang === 'zh-TW' || fullLang === 'zh-HK') {
-            detected = 'tw';
-        } else if (browserLang === 'ja') {
-            detected = 'jp';
-        } else if (SUPPORTED.includes(browserLang)) {
-            detected = browserLang;
+    // 3. Browser Language
+    const browserLangs = navigator.languages || [navigator.language];
+    for (const bl of browserLangs) {
+        const normalized = normalizeLocale(bl);
+        if (normalized) {
+            applyLanguage(normalized, true);
+            return;
         }
     }
 
-    applyLanguage(detected);
+    // 4. Country-based detection (via cookie set by middleware)
+    const country = readCookie(COUNTRY_COOKIE);
+    if (country) {
+        const countryLang = getLocaleFromCountry(country);
+        applyLanguage(countryLang, true);
+        return;
+    }
+
+    // 5. Final fallback
+    applyLanguage("en", false);
 }
 
-function applyLanguage(lang: string) {
-    i18n.changeLanguage(lang);
-    localStorage.setItem(STORAGE_KEY, lang);
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = lang;
+/**
+ * Applies the language to the app state and persistence layers.
+ * @param lang The locale to apply
+ * @param persist Whether to update cookie/localStorage (default true)
+ */
+function applyLanguage(lang: string, persist = true) {
+    if (!isSupportedLocale(lang)) return;
+
+    if (i18n.language !== lang) {
+        i18n.changeLanguage(lang);
+    }
+
+    if (typeof document !== "undefined") {
+        document.documentElement.lang = lang;
+        if (persist) {
+            // Persist to LocalStorage
+            localStorage.setItem(STORAGE_KEY, lang);
+            // Persist to Cookie
+            const encodedValue = encodeURIComponent(lang);
+            document.cookie = `${STORAGE_KEY}=${encodedValue}; path=/; max-age=31536000; SameSite=Lax`;
+        }
+    }
 }
 
-/** Change language and persist (for use in UI pickers) */
+/** 
+ * Public API to change language.
+ * Triggers a full page reload to ensure absolute consistency across Server/Client state.
+ */
 export function changeLanguage(lang: string) {
-    applyLanguage(lang);
+    if (!isSupportedLocale(lang)) return;
+    
+    applyLanguage(lang, true);
+    
     if (typeof window !== 'undefined') {
+        // window.location.reload() is preferred over router.refresh() for i18n
+        // to ensure all client-side state, providers, and HTML attributes 
+        // are fully re-initialized with the new locale from the server.
         window.location.reload();
     }
 }

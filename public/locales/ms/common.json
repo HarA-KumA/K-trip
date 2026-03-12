@@ -41,7 +41,20 @@
             "attraction": "Tarikan",
             "transport": "Pengangkutan"
         },
-        "community_nav": "Community"
+        "community_nav": "Komuniti",
+        "help_nav": "Bantuan",
+        "greeting_morning": "Selamat pagi",
+        "greeting_afternoon": "Selamat tengah hari",
+        "greeting_evening": "Selamat malam",
+        "search_results": "Hasil carian",
+        "search_results_for": "{{count}} keputusan untuk '{{query}}'",
+        "view_map": "Lihat Lokasi",
+        "view_map_desc": "Lihat lokasi terperinci pada peta",
+        "taxi_call": "Panggil Teksi",
+        "route_nav": "Panduan Laluan",
+        "transit_nav_desc": "Navigasi pengangkutan awam",
+        "copy_address": "Salin Alamat",
+        "copied": "Disalin!"
     },
     "transport": {
         "moving_to": "Menuju {{dest}}",
@@ -184,44 +197,44 @@
         "detail": "Butiran Kiriman"
     },
     "home_new": {
-        "hero_title": "Korea Travel: Plans & Bookings All in One",
-        "hero_subtitle": "From itinerary recommendations to booking support. Your ultimate travel concierge for Korea.",
+        "hero_title": "Percutian Korea, dari jadual hingga tempahan semua dalam satu",
+        "hero_subtitle": "Dari cadangan jadual perjalanan hingga sokongan tempahan dengan pantas. Rakan kongsi yang mudah digunakan walaupun untuk pemula di Korea.",
         "features": {
-            "booking": "Seamless Bookings",
-            "ai_plan": "AI Itineraries",
-            "navi": "Easy Navigation"
+            "booking": "Tempahan serentak",
+            "ai_plan": "Jadual siap dengan AI",
+            "navi": "Tanpa risau sesat jalan"
         },
         "input": {
-            "where": "Where to?",
+            "where": "Hendak ke mana?",
             "where_placeholder": "Seoul, Busan, Jeju...",
-            "when": "How long?",
-            "days_suffix": " Days",
-            "who": "Who are you traveling with?",
+            "when": "Berapa lama menginap?",
+            "days_suffix": " Hari",
+            "who": "Pergi dengan siapa?",
             "who_options": {
-                "solo": "Solo",
-                "couple": "Couple",
-                "friends": "Friends",
-                "family": "Family"
+                "solo": "Bersendirian",
+                "couple": "Pasangan",
+                "friends": "Bersama kawan",
+                "family": "Bersama keluarga"
             },
-            "interests": "What are your interests?",
+            "interests": "Tema apa yang anda mahukan?",
             "interests_options": {
-                "food": "Food",
-                "shopping": "Shopping",
+                "food": "Jelajah Makanan",
+                "shopping": "Membeli-belah",
                 "beauty": "K-Beauty",
-                "sightseeing": "Sightseeing",
-                "night": "Nightlife",
-                "experience": "Experiences"
+                "sightseeing": "Tempat Tarikan",
+                "night": "Kehidupan Malam",
+                "experience": "Pengalaman Unik"
             }
         },
-        "cta_helper": "Get your personalized plan in 1 minute",
-        "cta_btn": "Start Creating Itinerary",
+        "cta_helper": "Dapatkan laluan pelancongan yang sesuai dalam 1 minit",
+        "cta_btn": "Mula buat jadual",
         "trust": {
-            "title": "Safe Travels with Kello",
+            "title": "Percutian Tenang bersama Kello",
             "items": [
-                "Korea Travel Specialized",
-                "AI Personalized Plans",
-                "Zero Language Barrier",
-                "Hassle-free Bookings"
+                "Aplikasi khusus pelancongan Korea",
+                "Cadangan jadual AI yang diperibadikan",
+                "Panduan arah tanpa halangan bahasa",
+                "Sokongan tempahan di tempat yang sukar"
             ]
         }
     }

@@ -78,7 +78,20 @@
             "meat_lover": "Meat-lover",
             "pescatarian": "Pescatarian"
         },
-        "community_nav": "Community"
+        "community_nav": "Community",
+        "help_nav": "Help",
+        "greeting_morning": "Good morning",
+        "greeting_afternoon": "Good afternoon",
+        "greeting_evening": "Good evening",
+        "search_results": "Search Results",
+        "search_results_for": "{{count}} results for '{{query}}'",
+        "view_map": "View Map",
+        "view_map_desc": "See detailed location on map",
+        "taxi_call": "Call a Taxi",
+        "route_nav": "Get Directions",
+        "transit_nav_desc": "Find transit routes",
+        "copy_address": "Copy Address",
+        "copied": "Copied!"
     },
     "home": {
         "presets": {

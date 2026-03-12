@@ -84,7 +84,14 @@
         "greeting_afternoon": "下午好",
         "greeting_evening": "晚安",
         "search_results": "搜尋結果",
-        "search_results_for": "'{{query}}'的{{count}}個結果"
+        "search_results_for": "'{{query}}'的{{count}}個結果",
+        "view_map": "查看位置",
+        "view_map_desc": "在地圖上查看詳細位置",
+        "taxi_call": "呼叫的士",
+        "route_nav": "路徑指引",
+        "transit_nav_desc": "公共交通導航",
+        "copy_address": "複製地址",
+        "copied": "已複製！"
     },
     "transport": {
         "moving_to": "正在前往 {{dest}}",
@@ -181,7 +188,7 @@
         "filters_title": "篩選",
         "apply": "應用",
         "reset": "重置",
-        "adding_item_to": "正在將 \u003cstrong\u003e{{title}}\u003c/strong\u003e 添加到:",
+        "adding_item_to": "正在將 <strong>{{title}}</strong> 添加到:",
         "no_specific_filters": "此類別沒有特定的篩選條件。",
         "filters": {
             "show": "類別",
@@ -459,5 +466,47 @@
         },
         "filter_review": "Reviews",
         "detail": "貼文詳情"
+    },
+    "home_new": {
+        "hero_title": "韓國旅行，從行程到預訂一站式完成",
+        "hero_subtitle": "從行程推薦到預訂支持，快速開啟。即使是韓國旅行初學者也能輕鬆使用的夥伴。",
+        "features": {
+            "booking": "一站式預訂",
+            "ai_plan": "AI完成行程",
+            "navi": "無需擔心迷路"
+        },
+        "input": {
+            "where": "去哪裡？",
+            "where_placeholder": "首爾, 釜山, 濟州...",
+            "when": "停留多久？",
+            "days_suffix": "天",
+            "who": "和誰一起去？",
+            "who_options": {
+                "solo": "獨自一人",
+                "couple": "情侶",
+                "friends": "和朋友",
+                "family": "和家人"
+            },
+            "interests": "想要什麼樣的主題？",
+            "interests_options": {
+                "food": "美食探訪",
+                "shopping": "購物",
+                "beauty": "K-美容",
+                "sightseeing": "觀光景點",
+                "night": "夜生活",
+                "experience": "獨特體驗"
+            }
+        },
+        "cta_helper": "1分鐘內獲得專屬旅行路線",
+        "cta_btn": "開始創建行程",
+        "trust": {
+            "title": "與 Kello 一起的安心旅行",
+            "items": [
+                "韓國旅行專業應用",
+                "AI個性化方案",
+                "無語言障礙導覽",
+                "協助預訂困難地點"
+            ]
+        }
     }
 }

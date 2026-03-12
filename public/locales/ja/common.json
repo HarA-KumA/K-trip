@@ -84,7 +84,14 @@
         "greeting_afternoon": "こんにちは",
         "greeting_evening": "こんばんは",
         "search_results": "検索結果",
-        "search_results_for": "'{{query}}'の結果 {{count}}件"
+        "search_results_for": "'{{query}}'の結果 {{count}}件",
+        "view_map": "場所を確認",
+        "view_map_desc": "地図で詳細位置を確認",
+        "taxi_call": "タクシーを呼ぶ",
+        "route_nav": "ルート案内",
+        "transit_nav_desc": "公共交通機関ルート",
+        "copy_address": "住所をコピー",
+        "copied": "コピーしました！"
     },
     "transport": {
         "moving_to": "{{dest}}へ移動中",
@@ -181,7 +188,7 @@
         "filters_title": "フィルター",
         "apply": "適用",
         "reset": "リセット",
-        "adding_item_to": "\u003cstrong\u003e{{title}}\u003c/strong\u003e を次の日程に追加:",
+        "adding_item_to": "<strong>{{title}}</strong> を次の日程に追加:",
         "no_specific_filters": "このカテゴリーには特定のフィルターがありません。",
         "filters": {
             "show": "種類",
@@ -459,5 +466,47 @@
         },
         "filter_review": "Reviews",
         "detail": "投稿の詳細"
+    },
+    "home_new": {
+        "hero_title": "韓国旅行、プランから予約までこれ一つで",
+        "hero_subtitle": "旅行プランの提案から予約サポートまでスピーディーに。韓国旅行初心者でも安心의 파트너.",
+        "features": {
+            "booking": "予約まで一括で",
+            "ai_plan": "AIでプラン完成",
+            "navi": "道に迷う心配なし"
+        },
+        "input": {
+            "where": "どこへ行きますか？",
+            "where_placeholder": "ソウル、釜山、済州...",
+            "when": "何日間滞在しますか？",
+            "days_suffix": "日間",
+            "who": "誰と行きますか？",
+            "who_options": {
+                "solo": "一人で",
+                "couple": "カップル",
+                "friends": "友達と",
+                "family": "家族と"
+            },
+            "interests": "どんなテーマをご希望ですか？",
+            "interests_options": {
+                "food": "グルメ探検",
+                "shopping": "ショッピング",
+                "beauty": "K-ビューティー",
+                "sightseeing": "観光名所",
+                "night": "ナイトライフ",
+                "experience": "特別な体験"
+            }
+        },
+        "cta_helper": "1分であなたにぴったりの旅行コースを提案",
+        "cta_btn": "プラン作成を始める",
+        "trust": {
+            "title": "Kelloと共にする安心の韓国旅行",
+            "items": [
+                "韓国旅行特化の専門アプリ",
+                "AIによるパーソナライズされたプラン",
+                "言語の壁がないルート案内",
+                "予約困難な場所もサポート"
+            ]
+        }
     }
 }

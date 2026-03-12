@@ -1,219 +1,268 @@
 {
-    "common":  {
-                   "welcome":  "Chào mừng, Lữ khách.",
-                   "greeting":  "Chào buổi sáng",
-                   "login":  "Đăng nhập",
-                   "today":  "Hôm nay",
-                   "move":  "Di chuyển",
-                   "book":  "Đặt chỗ",
-                   "chat":  "Chat",
-                   "my":  "Của tôi",
-                   "current_operation":  "Đang hoạt động",
-                   "live":  "Trực tiếp",
-                   "recommended":  "Gần đây",
-                   "based_on_location":  "Dựa trên vị trí của bạn",
-                   "start_nav":  "Bắt đầu dẫn đường",
-                   "delay_10m":  "Trễ +10 phút",
-                   "confirmed":  "Đã xác nhận",
-                   "payment_completed":  "Thanh toán thành công",
-                   "weather_clear":  "Trời quang",
-                   "back":  "Quay lại",
-                   "select_language":  "Chọn ngôn ngữ",
-                   "home_nav":  "Trang chủ",
-                   "explore_nav":  "Khám phá",
-                   "planner_nav":  "Lịch trình",
-                   "today_nav":  "Hôm nay",
-                   "my_nav":  "Của tôi",
-                   "day_unit":  "n",
-                   "locale":  "vi-VN",
-                   "cities":  {
-                                  "seoul":  "Seoul",
-                                  "busan":  "Busan",
-                                  "jeju":  "Jeju",
-                                  "gyeongju":  "Gyeongju"
-                              },
-                   "categories":  {
-                                      "all":  "Tất cả",
-                                      "food":  "Ẩm thực",
-                                      "beauty":  "Làm đẹp",
-                                      "event":  "Sự kiện",
-                                      "festival":  "Lễ hội",
-                                      "attraction":  "Địa điểm",
-                                      "transport":  "Giao thông"
-                                  },
-                   "community_nav":  "Cộng đồng",
-                   "help_nav":  "Trợ giúp",
-                   "greeting_morning":  "Chào buổi sáng",
-                   "greeting_afternoon":  "Chào buổi chiều",
-                   "greeting_evening":  "Chào buổi tối",
-                   "search_results":  "Kết quả tìm kiếm",
-                   "search_results_for":  "{{count}} kết quả cho '{{query}}'"
-               },
-    "transport":  {
-                      "moving_to":  "Đang đến {{dest}}",
-                      "remaining":  "Còn lại",
-                      "line_2_direction":  "Tuyến 2 • Hướng City Hall",
-                      "departed":  "đã khởi hành",
-                      "passing_now":  "Đang đi qua...",
-                      "current":  "Hiện tại",
-                      "get_off_at":  "Xuống tại",
-                      "exit_3":  "Cửa 3",
-                      "getting_off_here":  "Tôi xuống ở đây",
-                      "stations":  {
-                                       "samseong":  "Samseong",
-                                       "seolleung":  "Seolleung",
-                                       "yeoksam":  "Yeoksam",
-                                       "gangnam":  "Gangnam",
-                                       "gyodae":  "Gyodae",
-                                       "seocho":  "Seocho",
-                                       "seongsu":  "Seongsu"
-                                   }
-                  },
-    "home":  {
-                 "title_korea":  "Hàn Quốc hôm nay",
-                 "title":  "Du lịch Hàn Quốc, hiểu trong 3 giây",
-                 "subtitle":  "Đặt lịch qua Concierge · Lịch trình tự động · Dẫn đường",
-                 "create_trip_cta":  "Bắt đầu lập kế hoạch",
-                 "input_label":  "Bạn định đi đâu du lịch?",
-                 "input_placeholder":  "Thành phố, khu vực, tên khách sạn",
-                 "days_label":  "Thời gian chuyến đi",
-                 "recommended_plans":  "Kế hoạch du lịch được đề xuất",
-                 "plans":  {
-                               "2d":  {
-                                          "title":  "2 Ngày: Seoul Tinh Hoa",
-                                          "label":  "Kế hoạch 2 Ngày"
-                                      },
-                               "3d":  {
-                                          "title":  "3 Ngày: Văn hóa \u0026 Phong cách K",
-                                          "label":  "Kế hoạch 3 Ngày"
-                                      },
-                               "5d":  {
-                                          "title":  "5 Ngày: Khám phá Toàn diện",
-                                          "label":  "Kế hoạch 5 Ngày"
-                                      },
-                               "request_custom_label":  "Tùy chỉnh",
-                               "request_custom_title":  "Yêu cầu kế hoạch {{days}} ngày",
-                               "request_custom_toast":  "Đã yêu cầu kế hoạch {{days}} ngày tùy chỉnh! Concierge của chúng tôi sẽ liên hệ với bạn."
-                           }
-             },
-    "explore_page":  {
-                         "title":  "Khám phá",
-                         "select_city":  "Chọn thành phố"
-                     },
-    "planner_page":  {
-                         "title":  "Lịch trình",
-                         "day":  "Ngày {{n}}"
-                     },
-    "today_page":  {
-                       "title":  "Hôm nay",
-                       "active_now":  "Đang diễn ra",
-                       "navigate":  "Dẫn đường",
-                       "booking_ref":  "Mã đặt: {{ref}}",
-                       "next_up":  "Tiếp theo",
-                       "minutes_left":  "Bắt đầu sau {{mins}}p",
-                       "depart_early":  "Khởi hành ngay",
-                       "timeline":  "Timeline",
-                       "empty":  {
-                                     "title":  "Không có lịch trình hôm nay",
-                                     "desc":  "Khám phá địa điểm và thêm vào chuyến đi!",
-                                     "cta":  "Khám phá địa điểm"
-                                 }
-                   },
-    "booking_detail":  {
-                           "select_date":  "Chọn ngày",
-                           "select_time":  "Chọn giờ",
-                           "total_price":  "Tổng giá",
-                           "request_booking":  "Yêu cầu đặt chỗ"
-                       },
-    "my_page":  {
-                    "bookings":  {
-                                     "title":  "Lịch đặt của tôi",
-                                     "date_time":  "Ngày / Giờ",
-                                     "area":  "Khu vực",
-                                     "price":  "Giá",
-                                     "new_added":  "Đã thêm đơn đặt mới!"
-                                 },
-                    "community":  {
-                                      "title":  "Bài viết Của Tôi",
-                                      "empty":  "Chưa có bài viết nào được tạo."
-                                  }
-                },
-    "community_page":  {
-                           "title":  "Community",
-                           "subtitle":  "Connect with locals \u0026 travelers",
-                           "filter_all":  "All",
-                           "filter_meetup":  "Food \u0026 Meetup",
-                           "filter_travel":  "Travel Mate",
-                           "filter_help":  "Local Help",
-                           "comments":  "Comments",
-                           "message":  "Message",
-                           "type":  {
-                                        "MEETUP":  "MEETUP",
-                                        "TRAVEL":  "TRAVEL",
-                                        "HELP":  "HELP",
-                                        "REVIEW":  "REVIEW"
-                                    },
-                           "post":  {
-                                        "1":  {
-                                                  "author":  "Mika (Japan)",
-                                                  "time":  "10 mins ago",
-                                                  "title":  "Samgyeopsal Meetup 🥓",
-                                                  "desc":  "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
-                                              },
-                                        "2":  {
-                                                  "author":  "John (US)",
-                                                  "time":  "1 hour ago",
-                                                  "title":  "Hongdae Street Performance 🎸",
-                                                  "desc":  "Heading to Hongdae right now to watch indie bands. Join me!"
-                                              },
-                                        "3":  {
-                                                  "author":  "Jihoon (Korea)",
-                                                  "time":  "2 hours ago",
-                                                  "title":  "Need help with subway directions? 🚇",
-                                                  "desc":  "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
-                                              },
-                                        "4":  {
-                                                  "author":  "Li Wei (China)",
-                                                  "time":  "3 hours ago",
-                                                  "title":  "K-Beauty Shopping 💄",
-                                                  "desc":  "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
-                                              }
-                                    },
-                           "filter_review":  "Reviews",
-                           "detail":  "Chi tiết Bài viết"
-                       },
-    "explore_items":  {
-                          "airport_arrival":  "Đến sân bay Incheon",
-                          "hotel_checkin":  "Nhận phòng khách sạn",
-                          "f1":  {
-                                     "title":  "Plant Cafe Seoul"
-                                 },
-                          "f2":  {
-                                     "title":  "Gold Pig BBQ"
-                                 },
-                          "f3":  {
-                                     "title":  "Chợ hải sản"
-                                 },
-                          "b1":  {
-                                     "title":  "Jenny House Beauty"
-                                 },
-                          "b2":  {
-                                     "title":  "PPEUM Clinic Gangnam"
-                                 },
-                          "e1":  {
-                                     "title":  "PSY Water Show"
-                                 },
-                          "e2":  {
-                                     "title":  "Nanta Show Myeongdong"
-                                 },
-                          "fs1":  {
-                                      "title":  "Lễ hội đèn lồng Seoul"
-                                  },
-                          "a1":  {
-                                     "title":  "Cung điện Gyeongbokgung"
-                                 },
-                          "a2":  {
-                                     "title":  "Lotte World Tower"
-                                 }
-                      }
+    "common": {
+        "welcome": "Chào mừng, Lữ khách.",
+        "greeting": "Chào buổi sáng",
+        "login": "Đăng nhập",
+        "today": "Hôm nay",
+        "move": "Di chuyển",
+        "book": "Đặt chỗ",
+        "chat": "Chat",
+        "my": "Của tôi",
+        "current_operation": "Đang hoạt động",
+        "live": "Trực tiếp",
+        "recommended": "Gần đây",
+        "based_on_location": "Dựa trên vị trí của bạn",
+        "start_nav": "Bắt đầu dẫn đường",
+        "delay_10m": "Trễ +10 phút",
+        "confirmed": "Đã xác nhận",
+        "payment_completed": "Thanh toán thành công",
+        "weather_clear": "Trời quang",
+        "back": "Quay lại",
+        "select_language": "Chọn ngôn ngữ",
+        "home_nav": "Trang chủ",
+        "explore_nav": "Khám phá",
+        "planner_nav": "Lịch trình",
+        "today_nav": "Hôm nay",
+        "my_nav": "Của tôi",
+        "day_unit": "n",
+        "locale": "vi-VN",
+        "cities": {
+            "seoul": "Seoul",
+            "busan": "Busan",
+            "jeju": "Jeju",
+            "gyeongju": "Gyeongju"
+        },
+        "categories": {
+            "all": "Tất cả",
+            "food": "Ẩm thực",
+            "beauty": "Làm đẹp",
+            "event": "Sự kiện",
+            "festival": "Lễ hội",
+            "attraction": "Địa điểm",
+            "transport": "Giao thông"
+        },
+        "community_nav": "Cộng đồng",
+        "help_nav": "Trợ giúp",
+        "greeting_morning": "Chào buổi sáng",
+        "greeting_afternoon": "Chào buổi chiều",
+        "greeting_evening": "Chào buổi tối",
+        "search_results": "Kết quả tìm kiếm",
+        "search_results_for": "{{count}} kết quả cho '{{query}}'",
+        "view_map": "Xem vị trí",
+        "view_map_desc": "Xem vị trí chi tiết trên bản đồ",
+        "taxi_call": "Gọi taxi",
+        "route_nav": "Chỉ đường",
+        "transit_nav_desc": "Dẫn đường phương tiện công cộng",
+        "copy_address": "Sao chép địa chỉ",
+        "copied": "Đã sao chép!"
+    },
+    "transport": {
+        "moving_to": "Đang đến {{dest}}",
+        "remaining": "Còn lại",
+        "line_2_direction": "Tuyến 2 • Hướng City Hall",
+        "departed": "đã khởi hành",
+        "passing_now": "Đang đi qua...",
+        "current": "Hiện tại",
+        "get_off_at": "Xuống tại",
+        "exit_3": "Cửa 3",
+        "getting_off_here": "Tôi xuống ở đây",
+        "stations": {
+            "samseong": "Samseong",
+            "seolleung": "Seolleung",
+            "yeoksam": "Yeoksam",
+            "gangnam": "Gangnam",
+            "gyodae": "Gyodae",
+            "seocho": "Seocho",
+            "seongsu": "Seongsu"
+        }
+    },
+    "home": {
+        "title_korea": "Hàn Quốc hôm nay",
+        "title": "Du lịch Hàn Quốc, hiểu trong 3 giây",
+        "subtitle": "Đặt lịch qua Concierge · Lịch trình tự động · Dẫn đường",
+        "create_trip_cta": "Bắt đầu lập kế hoạch",
+        "input_label": "Bạn định đi đâu du lịch?",
+        "input_placeholder": "Thành phố, khu vực, tên khách sạn",
+        "days_label": "Thời gian chuyến đi",
+        "recommended_plans": "Kế hoạch du lịch được đề xuất",
+        "plans": {
+            "2d": {
+                "title": "2 Ngày: Seoul Tinh Hoa",
+                "label": "Kế hoạch 2 Ngày"
+            },
+            "3d": {
+                "title": "3 Ngày: Văn hóa & Phong cách K",
+                "label": "Kế hoạch 3 Ngày"
+            },
+            "5d": {
+                "title": "5 Ngày: Khám phá Toàn diện",
+                "label": "Kế hoạch 5 Ngày"
+            },
+            "request_custom_label": "Tùy chỉnh",
+            "request_custom_title": "Yêu cầu kế hoạch {{days}} ngày",
+            "request_custom_toast": "Đã yêu cầu kế hoạch {{days}} ngày tùy chỉnh! Concierge của chúng tôi sẽ liên hệ với bạn."
+        }
+    },
+    "explore_page": {
+        "title": "Khám phá",
+        "select_city": "Chọn thành phố"
+    },
+    "planner_page": {
+        "title": "Lịch trình",
+        "day": "Ngày {{n}}"
+    },
+    "today_page": {
+        "title": "Hôm nay",
+        "active_now": "Đang diễn ra",
+        "navigate": "Dẫn đường",
+        "booking_ref": "Mã đặt: {{ref}}",
+        "next_up": "Tiếp theo",
+        "minutes_left": "Bắt đầu sau {{mins}}p",
+        "depart_early": "Khởi hành ngay",
+        "timeline": "Timeline",
+        "empty": {
+            "title": "Không có lịch trình hôm nay",
+            "desc": "Khám phá địa điểm và thêm vào chuyến đi!",
+            "cta": "Khám phá địa điểm"
+        }
+    },
+    "booking_detail": {
+        "select_date": "Chọn ngày",
+        "select_time": "Chọn giờ",
+        "total_price": "Tổng giá",
+        "request_booking": "Yêu cầu đặt chỗ"
+    },
+    "my_page": {
+        "bookings": {
+            "title": "Lịch đặt của tôi",
+            "date_time": "Ngày / Giờ",
+            "area": "Khu vực",
+            "price": "Giá",
+            "new_added": "Đã thêm đơn đặt mới!"
+        },
+        "community": {
+            "title": "Bài viết Của Tôi",
+            "empty": "Chưa có bài viết nào được tạo."
+        }
+    },
+    "community_page": {
+        "title": "Community",
+        "subtitle": "Connect with locals & travelers",
+        "filter_all": "All",
+        "filter_meetup": "Food & Meetup",
+        "filter_travel": "Travel Mate",
+        "filter_help": "Local Help",
+        "comments": "Comments",
+        "message": "Message",
+        "type": {
+            "MEETUP": "MEETUP",
+            "TRAVEL": "TRAVEL",
+            "HELP": "HELP",
+            "REVIEW": "REVIEW"
+        },
+        "post": {
+            "1": {
+                "author": "Mika (Japan)",
+                "time": "10 mins ago",
+                "title": "Samgyeopsal Meetup 🥓",
+                "desc": "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
+            },
+            "2": {
+                "author": "John (US)",
+                "time": "1 hour ago",
+                "title": "Hongdae Street Performance 🎸",
+                "desc": "Heading to Hongdae right now to watch indie bands. Join me!"
+            },
+            "3": {
+                "author": "Jihoon (Korea)",
+                "time": "2 hours ago",
+                "title": "Need help with subway directions? 🚇",
+                "desc": "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
+            },
+            "4": {
+                "author": "Li Wei (China)",
+                "time": "3 hours ago",
+                "title": "K-Beauty Shopping 💄",
+                "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
+            }
+        },
+        "filter_review": "Reviews",
+        "detail": "Chi tiết Bài viết"
+    },
+    "explore_items": {
+        "airport_arrival": "Đến sân bay Incheon",
+        "hotel_checkin": "Nhận phòng khách sạn",
+        "f1": {
+            "title": "Plant Cafe Seoul"
+        },
+        "f2": {
+            "title": "Gold Pig BBQ"
+        },
+        "f3": {
+            "title": "Chợ hải sản"
+        },
+        "b1": {
+            "title": "Jenny House Beauty"
+        },
+        "b2": {
+            "title": "PPEUM Clinic Gangnam"
+        },
+        "e1": {
+            "title": "PSY Water Show"
+        },
+        "e2": {
+            "title": "Nanta Show Myeongdong"
+        },
+        "fs1": {
+            "title": "Lễ hội đèn lồng Seoul"
+        },
+        "a1": {
+            "title": "Cung điện Gyeongbokgung"
+        },
+        "a2": {
+            "title": "Lotte World Tower"
+        }
+    },
+    "home_new": {
+        "hero_title": "Du lịch Hàn Quốc, từ lịch trình đến đặt chỗ tất cả trong một",
+        "hero_subtitle": "Từ đề xuất lịch trình đến hỗ trợ đặt chỗ nhanh chóng. Đối tác dễ sử dụng ngay cả với người mới đến Hàn Quốc.",
+        "features": {
+            "booking": "Đặt chỗ trọn gói",
+            "ai_plan": "Hoàn thành lịch trình bằng AI",
+            "navi": "Không lo lạc đường"
+        },
+        "input": {
+            "where": "Bạn đi đâu?",
+            "where_placeholder": "Seoul, Busan, Jeju...",
+            "when": "Bạn ở lại bao lâu?",
+            "days_suffix": " Ngày",
+            "who": "Bạn đi cùng ai?",
+            "who_options": {
+                "solo": "Đi một mình",
+                "couple": "Cặp đôi",
+                "friends": "Cùng bạn bè",
+                "family": "Cùng gia đình"
+            },
+            "interests": "Bạn muốn chủ đề gì?",
+            "interests_options": {
+                "food": "Khám phá ẩm thực",
+                "shopping": "Mua sắm",
+                "beauty": "K-Beauty",
+                "sightseeing": "Danh lam thắng cảnh",
+                "night": "Đời sống về đêm",
+                "experience": "Trải nghiệm độc đáo"
+            }
+        },
+        "cta_helper": "Nhận lộ trình du lịch phù hợp trong 1 phút",
+        "cta_btn": "Bắt đầu tạo lịch trình",
+        "trust": {
+            "title": "Du lịch an tâm cùng Kello",
+            "items": [
+                "Ứng dụng chuyên biệt cho du lịch Hàn Quốc",
+                "Đề xuất lịch trình AI cá nhân hóa",
+                "Chỉ đường không rào cản ngôn ngữ",
+                "Hỗ trợ đặt chỗ ở những nơi khó khăn"
+            ]
+        }
+    }
 }

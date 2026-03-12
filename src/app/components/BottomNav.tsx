@@ -5,6 +5,13 @@ import styles from "./BottomNav.module.css";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { homeTab } from "./BottomNav/tabs/home";
+import { exploreTab } from "./BottomNav/tabs/explore";
+import { itineraryTab } from "./BottomNav/tabs/itinerary";
+import { communityTab } from "./BottomNav/tabs/community";
+import { helpTab } from "./BottomNav/tabs/help";
+import { myTab } from "./BottomNav/tabs/my";
+
 export default function BottomNav() {
     const { t } = useTranslation('common');
     const router = useRouter();
@@ -12,12 +19,12 @@ export default function BottomNav() {
     const [activeTab, setActiveTab] = useState("/");
 
     const navItems = [
-        { path: "/", icon: "✦", label: t('common.home_nav', { defaultValue: 'Home' }), activeKey: "/" },
-        { path: "/explore", icon: "🔍", label: t('common.explore_nav', { defaultValue: 'Explore' }), activeKey: "/explore" },
-        { path: "/navigation", icon: "📍", label: t('common.today_nav', { defaultValue: 'Itinerary' }), activeKey: "/navigation" },
-        { path: "/community", icon: "💬", label: t('common.community_nav', { defaultValue: 'Community' }), activeKey: "/community" },
-        { path: "/help", icon: "🆘", label: t('common.help_nav', { defaultValue: 'Help' }), activeKey: "/help" },
-        { path: "/my", icon: "👤", label: t('common.my_nav', { defaultValue: 'My Info' }), activeKey: "/my" },
+        homeTab(t),
+        exploreTab(t),
+        itineraryTab(t),
+        communityTab(t),
+        helpTab(t),
+        myTab(t),
     ];
 
     useEffect(() => {

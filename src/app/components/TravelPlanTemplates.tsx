@@ -65,7 +65,7 @@ export default function TravelPlanTemplates() {
                 </button>
 
                 <div className={`${styles.collapsibleContent} ${isExpanded ? styles.expanded : ''}`}>
-                    <div className={styles.itineraryTitle}>📅 Schedule</div>
+                    <div className={styles.itineraryTitle}>📅Schedule</div>
                     <div className={styles.itineraryList}>
                         {activePlan.itinerary.map((item, idx) => (
                             <div key={idx} className={styles.itineraryItem}>

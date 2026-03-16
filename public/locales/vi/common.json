@@ -655,7 +655,178 @@
       }
     },
     "filter_review": "Reviews",
-    "detail": "Chi tiết Bài viết"
+    "detail": "Chi tiết Bài viết",
+    "meetup_info": "Thong tin dia diem",
+    "write_post": "Viet danh gia",
+    "edit": "Sua danh gia",
+    "posting": "Dang dang...",
+    "hero": {
+      "title": "Cong dong uu tien review sau khi dat lich beauty",
+      "subtitle": "Bat dau tu review trai nghiem tai beauty salon, sau do xem them an uong, tham quan va su kien.",
+      "search_placeholder": "Tim ten salon, trai nghiem dich vu hoac review dat lich"
+    },
+    "categories": {
+      "all": "Tat ca",
+      "beauty_review": "Review beauty salon",
+      "food_review": "Review am thuc",
+      "travel_review": "Review diem tham quan",
+      "meetup": "Su kien",
+      "help": "Cau hoi"
+    },
+    "sub_filters": {
+      "all": "Tat ca",
+      "saved": "⭐ Da luu",
+      "reacted": "💬 Bai da tham gia",
+      "mine": "👤 Bai cua toi",
+      "recruiting": "📢 Dang mo",
+      "active_reactions": "🔥 Tuong tac cao",
+      "open_meetup": "🤝 Mo di cung",
+      "weekend": "📅 Cuoi tuan nay",
+      "fresh": "✨ Moi cap nhat"
+    },
+    "states": {
+      "fetch_failed_title": "Khong the tai bai viet",
+      "fetch_failed_desc": "Vui long thu lai sau.",
+      "fetch_failed_tip": "Mo lai trang de tai bai moi nhat.",
+      "empty_title": "Chua co bai viet",
+      "empty_desc": "Hay de lai review beauty dau tien.",
+      "empty_tip": "Ten salon, trai nghiem dich vu va quy trinh dat lich se giup nguoi khac nhieu hon.",
+      "no_results_title": "Khong co bai phu hop",
+      "no_results_desc": "Thu doi tu khoa hoac bo loc.",
+      "cta_write": "Viet review",
+      "cta_all": "Xem tat ca"
+    },
+    "form": {
+      "category_label": "Danh muc",
+      "region_label": "Khu vuc",
+      "region_placeholder": "Vi du: Gangnam, Mapo",
+      "vibe_label": "Chon khong khi",
+      "meetup_toggle_title": "Mo di cung",
+      "meetup_toggle_desc": "Nhan tin hieu tham gia tu nguoi khac.",
+      "safety_title": "🔒 Huong dan an toan",
+      "safety_item_1": "• Khong chia se lien he ca nhan ngay. Hay xem phan hoi trong binh luan truoc.",
+      "safety_item_2": "• Nen hen gap o dia diem cong khai.",
+      "image": {
+        "label": "Them anh",
+        "title": "Ban co the tai len toi da {{count}} anh.",
+        "file_only_alert": "Chi co the them tep hinh anh.",
+        "limit_alert": "Ban co the tai len toi da {{count}} anh.",
+        "load_failed_alert": "Khong the tai anh.",
+        "button_loading": "Dang chuan bi anh...",
+        "button_limit": "Da chon toi da {{count}} anh",
+        "button_add_more": "Them anh",
+        "button_select": "Chon anh",
+        "preview_alt": "Xem truoc anh tai len {{index}}",
+        "preview_name": "Anh da chon {{index}}",
+        "preview_desc": "Day la anh thu {{index}}. Hay kiem tra truoc khi dang.",
+        "remove": "Xoa",
+        "saved_name": "Anh da tai len {{index}}",
+        "guides": {
+          "beauty_review": "Hay them anh ket qua dich vu hoac khong gian salon neu co.",
+          "food_review": "Ban co the them anh mon an hoac khong gian cua quan.",
+          "travel_review": "Hay chup lai khong khi cua dia diem hoac diem nhan dang nho.",
+          "meetup": "Hay chia se khong khi su kien hoac ly do nen di cung.",
+          "help": "Neu co anh tham khao, ban cung co the tai len."
+        }
+      },
+      "summary_title": "Tom tat bai viet",
+      "summary_region_type": "Khu vuc / loai",
+      "summary_point": "Diem nhan",
+      "summary_meetup": "Di cung",
+      "summary_enabled": "Bat",
+      "summary_disabled": "Tat",
+      "submit_with_reactions": "Dang review va nhan phan hoi",
+      "submit_beauty": "Chia se review beauty",
+      "submit_default": "Chia se review"
+    },
+    "quick_entry": {
+      "beauty": {
+        "label": "Review beauty",
+        "sub": "Dat lich · phuc vu · hai long"
+      },
+      "food": {
+        "label": "Review am thuc",
+        "sub": "Mo rong lich beauty"
+      },
+      "travel": {
+        "label": "Review tham quan",
+        "sub": "Lo trinh truoc va sau"
+      },
+      "write": {
+        "label": "Viet review",
+        "sub": "Chia se trai nghiem beauty"
+      }
+    },
+    "activity": {
+      "label": "Hoat dong cua toi:",
+      "summary": "Luu {{saved}}, tham gia {{reacted}}",
+      "new_updates": "✨ Co tin moi!"
+    },
+    "sort": {
+      "latest": "Moi nhat",
+      "reactions": "Nhieu phan hoi",
+      "draft": "Muc do hinh thanh"
+    },
+    "defaults": {
+      "region": "Seoul"
+    },
+    "fab": {
+      "beauty": "Viet review beauty",
+      "meetup": "Viet bai su kien"
+    },
+    "report": {
+      "modal_title": "Chon ly do bao cao",
+      "report_action": "Bao cao",
+      "cancel": "Huy",
+      "item_post": "bai viet",
+      "item_comment": "binh luan",
+      "submitted_alert": "Da bao cao {{item}}.\nLy do: {{reason}}\nChung toi se xem xet som.",
+      "reasons": {
+        "ad_spam": "Co ve la quang cao",
+        "offensive": "Co cach dien dat gay kho chiu",
+        "contact": "Du doi lien lac rieng tu",
+        "unsafe": "Cam thay khong an toan",
+        "other": "Khac"
+      }
+    },
+    "detail_page": {
+      "loading": "Dang tai bai viet...",
+      "hidden_post": "Bai viet nay da bi an.",
+      "show_hidden": "Bo an",
+      "not_found": "Khong tim thay bai viet.",
+      "hide_post": "An bai viet nay",
+      "hide_comment": "An",
+      "save_post_aria": "Luu bai viet",
+      "body_title": "Noi dung chi tiet",
+      "comments_title": "Binh luan va di cung",
+      "empty_comments": "Chua co binh luan.",
+      "signal_tag": "Tin hieu di cung",
+      "comment_input": {
+        "default": "Viet binh luan...",
+        "optional": "Tin nhan bo sung (tuy chon)",
+        "send": "Gui"
+      },
+      "signal_intents": {
+        "interested": "Toi cung muon di",
+        "available_this_week": "Tuan nay toi ranh",
+        "join_if_schedule_fits": "Neu hop lich toi se tham gia",
+        "thanks": "Cam on thong tin",
+        "question": "Toi co cau hoi"
+      },
+      "signal_times": {
+        "this_week": "Tuan nay",
+        "this_weekend": "Cuoi tuan nay",
+        "next_week": "Tuan sau",
+        "schedule_coordination": "Dieu chinh lich"
+      },
+      "related": {
+        "this_region": "khu vuc nay"
+      },
+      "save": {
+        "default": "☆ Luu",
+        "saved": "⭐ Da luu"
+      }
+    }
   },
   "explore_items": {
     "airport_arrival": "Đến sân bay Incheon",

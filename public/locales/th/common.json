@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "common": {
     "welcome": "ยินดีต้อนรับนักเดินทาง",
     "greeting": "อรุณสวัสดิ์",
@@ -822,4 +823,388 @@
       "street_hint": "??????????????????????????????????????????????????"
     }
   }
+=======
+    "common": {
+        "welcome": "ยินดีต้อนรับนักเดินทาง",
+        "greeting": "อรุณสวัสดิ์",
+        "login": "เข้าสู่ระบบ",
+        "today": "วันนี้",
+        "move": "เดินทาง",
+        "book": "จอง",
+        "chat": "แชท",
+        "my": "ของฉัน",
+        "current_operation": "กำลังดำเนินการ",
+        "live": "สด",
+        "recommended": "แนะนำใกล้เคียง",
+        "based_on_location": "ตามตำแหน่งของคุณ",
+        "start_nav": "เริ่มนำทาง",
+        "delay_10m": "ล่าช้า +10 นาที",
+        "confirmed": "ยืนยันแล้ว",
+        "payment_completed": "ชำระเงินสำเร็จ",
+        "weather_clear": "แจ่มใส",
+        "back": "ย้อนกลับ",
+        "select_language": "เลือกภาษา",
+        "home_nav": "หน้าแรก",
+        "explore_nav": "สำรวจ",
+        "planner_nav": "ตารางเวลา",
+        "today_nav": "วันนี้",
+        "my_nav": "ของฉัน",
+        "day_unit": "ว",
+        "locale": "th-TH",
+        "cities": {
+            "seoul": "โซล",
+            "busan": "ปูซาน",
+            "jeju": "เจจู",
+            "gyeongju": "คยองจู"
+        },
+        "categories": {
+            "all": "ทั้งหมด",
+            "food": "อาหาร",
+            "beauty": "บิวตี้",
+            "event": "อีเวนต์",
+            "festival": "เทศกาล",
+            "attraction": "สถานที่",
+            "transport": "การเดินทาง"
+        },
+        "community_nav": "Community"
+    },
+    "transport": {
+        "moving_to": "กำลังไปที่ {{dest}}",
+        "remaining": "เหลือ",
+        "line_2_direction": "สาย 2 • มุ่งหน้า City Hall",
+        "departed": "ออกเดินทางแล้ว",
+        "passing_now": "กำลังผ่าน...",
+        "current": "ปัจจุบัน",
+        "get_off_at": "ลงที่",
+        "exit_3": "ทางออก 3",
+        "getting_off_here": "ฉันลงที่นี่",
+        "stations": {
+            "samseong": "ซัมซอง",
+            "seolleung": "ซอลลึง",
+            "yeoksam": "ยอกซัม",
+            "gangnam": "คังนัม",
+            "gyodae": "เคียวแด",
+            "seocho": "ซอโช",
+            "seongsu": "ซองซู"
+        }
+    },
+    "home": {
+        "title_korea": "เกาหลีวันนี้",
+        "title": "ทริปเกาหลี เข้าใจภายใน 3 วินาที",
+        "subtitle": "จองผ่านคอนเซียร์จ · จัดตารางอัตโนมัติ · นำทาง",
+        "create_trip_cta": "เริ่มจัดตารางเวลา",
+        "input_label": "คุณกำลังจะไปเที่ยวที่ไหน?",
+        "input_placeholder": "เมือง, ย่าน, ชื่อโรงแรม",
+        "days_label": "ระยะเวลาการเดินทาง",
+        "recommended_plans": "แผนการเดินทางที่แนะนำ",
+        "plans": {
+            "2d": {
+                "title": "2 วัน: โซลที่ต้องไป",
+                "label": "แผน 2 วัน"
+            },
+            "3d": {
+                "title": "3 วัน: เค-คัลเจอร์และสไตล์",
+                "label": "แผน 3 วัน"
+            },
+            "5d": {
+                "title": "5 วัน: ทัวร์เกาหลีแบบจัดเต็ม",
+                "label": "แผน 5 วัน"
+            },
+            "request_custom_label": "กำหนดเอง",
+            "request_custom_title": "ขอแผนการเดินทางแบบ {{days}} วัน",
+            "request_custom_toast": "ขอแผนการเดินทางแบบ {{days}} วันที่กำหนดเองแล้ว! คอนเซียร์จของเราจะติดต่อกลับหาคุณ"
+        }
+    },
+    "explore_page": {
+        "title": "สำรวจ",
+        "select_city": "เลือกเมือง"
+    },
+    "planner_page": {
+        "title": "ตารางเวลา",
+        "day": "วันที่ {{n}}"
+    },
+    "today_page": {
+        "title": "วันนี้",
+        "active_now": "กำลังดำเนินการ",
+        "navigate": "นำทาง",
+        "booking_ref": "รหัสการจอง: {{ref}}",
+        "next_up": "ถัดไป",
+        "minutes_left": "เริ่มในอีก {{mins}} นาที",
+        "depart_early": "ออกเดินทางเลย",
+        "timeline": "ไทม์ไลน์",
+        "empty": {
+            "title": "ไม่มีตารางเวลาสำหรับวันนี้",
+            "desc": "สำรวจสถานที่และเพิ่มลงในทริปของคุณ!",
+            "cta": "สำรวจสถานที่"
+        }
+    },
+    "booking_detail": {
+        "select_date": "เลือกวันที่",
+        "select_time": "เลือกเวลา",
+        "total_price": "ราคารวม",
+        "request_booking": "ขอจอง"
+    },
+    "my_page": {
+        "bookings": {
+            "title": "การจองของฉัน",
+            "date_time": "วันที่ / เวลา",
+            "area": "ย่าน",
+            "price": "ราคา",
+            "new_added": "เพิ่มหน้าการจองใหม่แล้ว!"
+        },
+        "community": {
+            "title": "โพสต์ของฉัน",
+            "empty": "ยังไม่มีโพสต์ในชุมชน"
+        }
+    },
+    "community_page": {
+        "title": "Community",
+        "subtitle": "Connect with locals & travelers",
+        "filter_all": "All",
+        "filter_meetup": "Food & Meetup",
+        "filter_travel": "Travel Mate",
+        "filter_help": "Local Help",
+        "comments": "Comments",
+        "message": "Message",
+        "type": {
+            "MEETUP": "MEETUP",
+            "TRAVEL": "TRAVEL",
+            "HELP": "HELP",
+            "REVIEW": "REVIEW"
+        },
+        "post": {
+            "1": {
+                "author": "Mika (Japan)",
+                "time": "10 mins ago",
+                "title": "Samgyeopsal Meetup 🥓",
+                "desc": "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
+            },
+            "2": {
+                "author": "John (US)",
+                "time": "1 hour ago",
+                "title": "Hongdae Street Performance 🎸",
+                "desc": "Heading to Hongdae right now to watch indie bands. Join me!"
+            },
+            "3": {
+                "author": "Jihoon (Korea)",
+                "time": "2 hours ago",
+                "title": "Need help with subway directions? 🚇",
+                "desc": "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
+            },
+            "4": {
+                "author": "Li Wei (China)",
+                "time": "3 hours ago",
+                "title": "K-Beauty Shopping 💄",
+                "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
+            }
+        },
+        "filter_review": "Reviews",
+        "detail": "รายละเอียดโพสต์",
+        "meetup_info": "ข้อมูลการไป",
+        "write_post": "เขียนรีวิว",
+        "edit": "แก้ไขรีวิว",
+        "posting": "กำลังโพสต์...",
+        "hero": {
+            "title": "คอมมูนิตี้ที่ให้รีวิวหลังจองร้านบิวตี้มาก่อน",
+            "subtitle": "เริ่มจากรีวิวการใช้บริการร้านบิวตี้ แล้วค่อยต่อด้วยอาหาร เที่ยว และอีเวนต์",
+            "search_placeholder": "ค้นหาชื่อร้าน ประสบการณ์ทำสวย หรือรีวิวการจอง"
+        },
+        "categories": {
+            "all": "ทั้งหมด",
+            "beauty_review": "รีวิวร้านบิวตี้",
+            "food_review": "รีวิวอาหาร",
+            "travel_review": "รีวิวสถานที่เที่ยว",
+            "meetup": "งานแสดงและอีเวนต์",
+            "help": "คำถาม"
+        },
+        "sub_filters": {
+            "all": "ทั้งหมด",
+            "saved": "⭐ ที่บันทึกไว้",
+            "reacted": "💬 ที่ฉันร่วม",
+            "mine": "👤 โพสต์ของฉัน",
+            "recruiting": "📢 เปิดรับอยู่",
+            "active_reactions": "🔥 ปฏิกิริยามาก",
+            "open_meetup": "🤝 เปิดชวนไปด้วยกัน",
+            "weekend": "📅 สุดสัปดาห์นี้",
+            "fresh": "✨ อัปเดตล่าสุด"
+        },
+        "states": {
+            "fetch_failed_title": "โหลดโพสต์ไม่สำเร็จ",
+            "fetch_failed_desc": "กรุณาลองใหม่อีกครั้งในภายหลัง",
+            "fetch_failed_tip": "เปิดหน้านี้ใหม่เพื่อรีเฟรชโพสต์ล่าสุด",
+            "empty_title": "ยังไม่มีโพสต์",
+            "empty_desc": "ลองเขียนรีวิวบิวตี้โพสต์แรกดูสิ",
+            "empty_tip": "ใส่ชื่อร้าน ประสบการณ์บริการ และขั้นตอนการจอง จะช่วยคนอื่นได้มาก",
+            "no_results_title": "ไม่พบโพสต์ที่ตรงเงื่อนไข",
+            "no_results_desc": "ลองเปลี่ยนคำค้นหาหรือตัวกรอง",
+            "cta_write": "เขียนรีวิว",
+            "cta_all": "ดูทั้งหมด"
+        },
+        "form": {
+            "category_label": "หมวดหมู่",
+            "region_label": "พื้นที่",
+            "region_placeholder": "เช่น กังนัม, มาโป",
+            "vibe_label": "เลือกบรรยากาศ",
+            "meetup_toggle_title": "เปิดชวนไปด้วยกัน",
+            "meetup_toggle_desc": "รับสัญญาณความสนใจจากคนอื่น",
+            "safety_title": "🔒 คู่มือความปลอดภัย",
+            "safety_item_1": "• อย่าแชร์ข้อมูลติดต่อส่วนตัวทันที ลองดูปฏิกิริยาในคอมเมนต์ก่อน",
+            "safety_item_2": "• แนะนำให้นัดกันในสถานที่สาธารณะ",
+            "image": {
+                "label": "เพิ่มรูปภาพ",
+                "title": "อัปโหลดรูปภาพได้สูงสุด {{count}} รูป",
+                "file_only_alert": "เพิ่มได้เฉพาะไฟล์รูปภาพเท่านั้น",
+                "limit_alert": "อัปโหลดรูปภาพได้สูงสุด {{count}} รูป",
+                "load_failed_alert": "โหลดรูปภาพไม่ได้",
+                "button_loading": "กำลังเตรียมรูปภาพ...",
+                "button_limit": "เลือกครบ {{count}} รูปแล้ว",
+                "button_add_more": "เพิ่มรูปภาพ",
+                "button_select": "เลือกรูปภาพ",
+                "preview_alt": "ตัวอย่างอัปโหลด {{index}}",
+                "preview_name": "รูปที่เลือก {{index}}",
+                "preview_desc": "นี่คือรูปที่ {{index}} ตรวจสอบตัวอย่างก่อนโพสต์",
+                "remove": "ลบ",
+                "saved_name": "รูปที่อัปโหลด {{index}}",
+                "guides": {
+                    "beauty_review": "เพิ่มภาพผลลัพธ์หลังทำหรือบรรยากาศร้านได้เลย",
+                    "food_review": "เพิ่มรูปอาหารหรือบรรยากาศร้านเพื่อให้เห็นภาพมากขึ้น",
+                    "travel_review": "ถ่ายบรรยากาศสถานที่หรือจุดเด่นที่น่าจดจำไว้ได้เลย",
+                    "meetup": "แชร์บรรยากาศหน้างานหรือจุดที่น่าไปด้วยกัน",
+                    "help": "ถ้ามีรูปอ้างอิงก็อัปโหลดมาด้วยได้"
+                }
+            },
+            "summary_title": "สรุปโพสต์",
+            "summary_region_type": "พื้นที่ / ประเภท",
+            "summary_point": "จุดเด่น",
+            "summary_meetup": "ไปด้วยกัน",
+            "summary_enabled": "เปิด",
+            "summary_disabled": "ปิด",
+            "submit_with_reactions": "โพสต์รีวิวและรับปฏิกิริยา",
+            "submit_beauty": "แชร์รีวิวบิวตี้",
+            "submit_default": "แชร์รีวิว"
+        },
+        "quick_entry": {
+            "beauty": {
+                "label": "รีวิวบิวตี้",
+                "sub": "การจอง · การดูแล · ความพอใจ"
+            },
+            "food": {
+                "label": "รีวิวอาหาร",
+                "sub": "ต่อยอดวันบิวตี้"
+            },
+            "travel": {
+                "label": "รีวิวเที่ยว",
+                "sub": "เส้นทางก่อนและหลังทำสวย"
+            },
+            "write": {
+                "label": "เขียนรีวิว",
+                "sub": "แชร์ประสบการณ์บิวตี้"
+            }
+        },
+        "activity": {
+            "label": "กิจกรรมของฉัน:",
+            "summary": "บันทึก {{saved}} ร่วม {{reacted}}",
+            "new_updates": "✨ มีอัปเดตใหม่!"
+        },
+        "sort": {
+            "latest": "ล่าสุด",
+            "reactions": "ปฏิกิริยามากสุด",
+            "draft": "การก่อตัวของแผน"
+        },
+        "defaults": {
+            "region": "โซล"
+        },
+        "fab": {
+            "beauty": "เขียนรีวิวบิวตี้",
+            "meetup": "เขียนโพสต์อีเวนต์"
+        },
+        "report": {
+            "modal_title": "เลือกเหตุผลในการรายงาน",
+            "report_action": "รายงาน",
+            "cancel": "ยกเลิก",
+            "item_post": "โพสต์",
+            "item_comment": "คอมเมนต์",
+            "submitted_alert": "รายงาน{{item}}แล้ว\nเหตุผล: {{reason}}\nเราจะตรวจสอบโดยเร็ว",
+            "reasons": {
+                "ad_spam": "ดูเหมือนโฆษณา",
+                "offensive": "มีถ้อยคำไม่เหมาะสม",
+                "contact": "ชวนติดต่อส่วนตัวมากเกินไป",
+                "unsafe": "ดูไม่ปลอดภัย",
+                "other": "อื่นๆ"
+            }
+        },
+        "detail_page": {
+            "loading": "กำลังโหลดโพสต์...",
+            "hidden_post": "โพสต์นี้ถูกซ่อนอยู่",
+            "show_hidden": "ยกเลิกการซ่อน",
+            "not_found": "ไม่พบโพสต์",
+            "hide_post": "ซ่อนโพสต์นี้",
+            "hide_comment": "ซ่อน",
+            "save_post_aria": "บันทึกโพสต์",
+            "body_title": "รายละเอียด",
+            "comments_title": "คอมเมนต์และชวนไปด้วยกัน",
+            "empty_comments": "ยังไม่มีคอมเมนต์",
+            "signal_tag": "สัญญาณไปด้วยกัน",
+            "comment_input": {
+                "default": "เขียนคอมเมนต์...",
+                "optional": "ข้อความเพิ่มเติม (ไม่บังคับ)",
+                "send": "ส่ง"
+            },
+            "signal_intents": {
+                "interested": "ฉันก็อยากไป",
+                "available_this_week": "สัปดาห์นี้ว่าง",
+                "join_if_schedule_fits": "ถ้าเวลาตรงกันจะไปด้วย",
+                "thanks": "ขอบคุณสำหรับข้อมูล",
+                "question": "มีคำถาม"
+            },
+            "signal_times": {
+                "this_week": "สัปดาห์นี้",
+                "this_weekend": "สุดสัปดาห์นี้",
+                "next_week": "สัปดาห์หน้า",
+                "schedule_coordination": "นัดวันเวลา"
+            },
+            "related": {
+                "this_region": "พื้นที่นี้"
+            },
+            "save": {
+                "default": "☆ บันทึก",
+                "saved": "⭐ บันทึกแล้ว"
+            }
+        }
+    },
+    "explore_items": {
+        "airport_arrival": "ถึงสนามบินอินชอน",
+        "hotel_checkin": "เช็คอินโรงแรม/ที่พัก",
+        "f1": {
+            "title": "Plant Cafe Seoul"
+        },
+        "f2": {
+            "title": "Gold Pig BBQ"
+        },
+        "f3": {
+            "title": "ตลาดอาหารทะเล"
+        },
+        "b1": {
+            "title": "Jenny House Beauty"
+        },
+        "b2": {
+            "title": "PPEUM Clinic Gangnam"
+        },
+        "e1": {
+            "title": "PSY Water Show"
+        },
+        "e2": {
+            "title": "Nanta Show Myeongdong"
+        },
+        "fs1": {
+            "title": "เทศกาลโคมไฟโซล"
+        },
+        "a1": {
+            "title": "พระราชวังเคียงบกกุง"
+        },
+        "a2": {
+            "title": "Lotte World Tower"
+        }
+    }
+>>>>>>> f779e67 (feat(community): polish community pages and update translations)
 }

@@ -73,11 +73,67 @@
       "kimchi": "キムチ",
       "seafood": "海鮮"
     },
+<<<<<<< HEAD
     "diet": {
       "vegan": "ビーガン",
       "gluten_free": "グルテンフリー",
       "meat_lover": "お肉好き",
       "pescatarian": "ペスカタリアン"
+=======
+    "explore_page": {
+        "title": "探索",
+        "city_changed": "都市が{{city}}に変更されました",
+        "added_to": "{{day}}日目の予定に追加されました",
+        "no_items": "{{city}}で見つかりませんでした",
+        "try_changing": "カテゴリーや都市を変更してみてください。",
+        "add_to_plan": "+ 予定に追加",
+        "today": "今日",
+        "tonight": "今夜",
+        "starts_from": "₩{{price}} から",
+        "indoor": "屋内",
+        "outdoor": "屋外",
+        "badges": {
+            "vegan_only": "ビーガン専用",
+            "vegan_option": "ビーガン選択可"
+        },
+        "filters_title": "フィルター",
+        "apply": "適用",
+        "reset": "リセット",
+        "adding_item_to": "<strong>{{title}}</strong> を次の日程に追加:",
+        "no_specific_filters": "このカテゴリーには特定のフィルターがありません。",
+        "filters": {
+            "show": "種類",
+            "price": "価格",
+            "diet": "食生活",
+            "ingredients": "材料",
+            "date": "日付",
+            "type": "タイプ",
+            "options": {
+                "skin_care": "スキンケア",
+                "hair_makeup": "ヘア/メイク",
+                "spa": "スパ",
+                "nails": "ネイル",
+                "vegan": "ビーガン",
+                "vegetarian": "ベジタリアン",
+                "no_pork": "豚肉なし",
+                "halal": "ハラール",
+                "beef": "牛肉",
+                "pork": "豚肉",
+                "chicken": "鶏肉",
+                "seafood": "海鮮",
+                "dairy": "乳製品",
+                "egg": "卵",
+                "today": "今日",
+                "weekend": "今週末",
+                "select": "日付を選択",
+                "concert": "コンサート",
+                "show": "公演",
+                "popup": "ポップアップ",
+                "club": "クラブ",
+                "exhibition": "展示会"
+            }
+        }
+>>>>>>> f779e67 (feat(community): polish community pages and update translations)
     },
     "community_nav": "コミュニティ",
     "actions": {
@@ -161,6 +217,7 @@
       "reviews": "????",
       "saved_locally": "?????????"
     },
+<<<<<<< HEAD
     "runtime": {
       "counts": {
         "stops_zero": "{{count}}??",
@@ -1045,4 +1102,375 @@
       "street_hint": "????????????????????????"
     }
   }
+=======
+    "today_page": {
+        "title": "今日の日程",
+        "active_now": "進行中",
+        "navigate": "道探し",
+        "booking_ref": "予約番号: {{ref}}",
+        "next_up": "次の日程",
+        "minutes_left": "{{mins}}分後に開始",
+        "depart_early": "今すぐ出発",
+        "timeline": "タイムライン",
+        "empty": {
+            "title": "今日の日程がありません",
+            "desc": "行きたい場所を探して追加してみましょう！",
+            "cta": "場所を探す"
+        }
+    },
+    "booking_detail": {
+        "select_date": "日付選択",
+        "select_time": "時間選択",
+        "total_price": "合計金額",
+        "request_booking": "予約をリクエスト"
+    },
+    "navigation_page": {
+        "title": "今日の予定",
+        "status": {
+            "on_trip": "旅行中",
+            "pre_trip": "準備中",
+            "idle": "予定がありません"
+        },
+        "countdown": {
+            "today": "今日",
+            "starts_in": "{{mins}}分後に開始",
+            "traveling_to": "{{dest}}へ移動中"
+        },
+        "empty": {
+            "title": "今日の予定がありません",
+            "subtitle": "行きたい場所を探して追加してみましょう！",
+            "cta": "場所を探す"
+        },
+        "actions": {
+            "directions": "ルート案内",
+            "booking": "予約を見る",
+            "late_risk": "遅延の危険！",
+            "booking_ref": "予約番号: {{ref}}",
+            "departure_warning": "⚠️ {{title}} 開始 {{mins}}分前 — 今すぐ出発してください！"
+        }
+    },
+    "planner_page": {
+        "title": "予定表",
+        "day": "{{n}}日目",
+        "add_from_discover": "🔍 場所を追加",
+        "auto_build": "✨ 自動生成",
+        "add_to": "{{slot}}に追加",
+        "book_all": "🎫 予約をリクエスト",
+        "booking_modal": {
+            "title": "予約リクエスト",
+            "date": "日付",
+            "people": "人数",
+            "people_count": "{{n}}人",
+            "notes": "要望事項 (任意)",
+            "submit": "リクエストを送信",
+            "submitting": "送信中...",
+            "success_title": "リクエストを受け付けました！",
+            "success_desc": "24時間以内に担当者からご連絡いたします。",
+            "unavailable_title": "予約不可",
+            "unavailable_desc": "次の場所をおすすめします：",
+            "view_status": "状況を確認"
+        },
+        "status": {
+            "draft": "下書き",
+            "submitted": "リクエスト済み",
+            "confirmed": "確定済み",
+            "unavailable": "不可",
+            "completed": "完了"
+        },
+        "slots": {
+            "am": "午前",
+            "pm": "午後",
+            "night": "夜"
+        }
+    },
+    "my_page": {
+        "profile": {
+            "trust_score": "💎 信頼スコア",
+            "trust_level_excellent": "優秀"
+        },
+        "passport": {
+            "title": "マイパスポート",
+            "view_all": "すべて見る",
+            "seoul": "ソウル",
+            "beauty": "美容",
+            "jeju": "済州"
+        },
+        "bookings": {
+            "title": "予約履歴",
+            "date_time": "日付 / 時間",
+            "area": "エリア",
+            "price": "価格",
+            "today_time": "今日, {{time}}",
+            "tomorrow_time": "明日, {{time}}",
+            "next_week_time": "来週, {{time}}",
+            "new_added": "新しい予約が追加されました！"
+        },
+        "community": {
+            "title": "マイコミュニティ投稿",
+            "empty": "まだコミュニティの投稿がありません。"
+        }
+    },
+    "community_page": {
+        "title": "コミュニティ",
+        "subtitle": "地元の人や旅行者と繋がる",
+        "filter_all": "すべて",
+        "filter_meetup": "食事＆集まり",
+        "filter_travel": "旅行仲間",
+        "filter_help": "ローカルヘルプ",
+        "comments": "コメント",
+        "message": "メッセージ",
+        "type": {
+            "MEETUP": "集まり",
+            "TRAVEL": "旅行",
+            "HELP": "ヘルプ",
+            "REVIEW": "REVIEW"
+        },
+        "post": {
+            "1": {
+                "author": "ミカ (日本)",
+                "time": "10分前",
+                "title": "サムギョプサル集まり 🥓",
+                "desc": "今夜7時に金豚食堂で一緒にサムギョプサル食べませんか？"
+            },
+            "2": {
+                "author": "ジョン (米国)",
+                "time": "1時間前",
+                "title": "弘大路上ライブ 🎸",
+                "desc": "インディーズバンドを見に弘大に向かっています。一緒にどうですか！"
+            },
+            "3": {
+                "author": "ジフン (韓国)",
+                "time": "2時間前",
+                "title": "地下鉄の案内が必要ですか？ 🚇",
+                "desc": "明洞の近くに住んでいるので、道に迷ったら通訳や案内ができますよ。お気軽にメッセージください！"
+            },
+            "4": {
+                "author": "リウェイ (中国)",
+                "time": "3時間前",
+                "title": "K-Beauty コスメショッピング 💄",
+                "desc": "明洞のオリーブヤングで一緒に買い物する友達を探しています。いいブランドたくさん知ってます！"
+            }
+        },
+        "filter_review": "Reviews",
+        "detail": "投稿の詳細",
+        "meetup_info": "訪問情報",
+        "write_post": "口コミを書く",
+        "edit": "口コミを編集",
+        "posting": "投稿中...",
+        "hero": {
+            "title": "美容サロン予約後の口コミが先に見えるコミュニティ",
+            "subtitle": "美容サロンの利用レビューを中心に、グルメ・観光・公演レビューまで続けて見られます。",
+            "search_placeholder": "サロン名、施術体験、予約レビューを検索してください"
+        },
+        "categories": {
+            "all": "すべて",
+            "beauty_review": "美容サロン利用レビュー",
+            "food_review": "グルメレビュー",
+            "travel_review": "観光スポットレビュー",
+            "meetup": "公演・イベント",
+            "help": "質問"
+        },
+        "sub_filters": {
+            "all": "すべて",
+            "saved": "⭐ 保存した投稿",
+            "reacted": "💬 参加した投稿",
+            "mine": "👤 自分の投稿",
+            "recruiting": "📢 募集中",
+            "active_reactions": "🔥 反応多め",
+            "open_meetup": "🤝 一緒に行く募集",
+            "weekend": "📅 今週末",
+            "fresh": "✨ 最近更新"
+        },
+        "tags": {
+            "solo_friendly": "一人向き",
+            "friends_friendly": "友達向き",
+            "photo_spot": "写真映え",
+            "waiting": "待ち時間あり",
+            "foreigner_friendly": "外国人対応しやすい"
+        },
+        "states": {
+            "fetch_failed_title": "投稿を読み込めませんでした",
+            "fetch_failed_desc": "しばらくしてからもう一度確認してください。",
+            "fetch_failed_tip": "ページを開き直すと最新の投稿を再読み込みします。",
+            "empty_title": "投稿がありません",
+            "empty_desc": "最初の美容レビューを書いてみてください。",
+            "empty_tip": "サロン名、施術体験、予約や接客ポイントを書くと他の人の参考になります。",
+            "no_results_title": "条件に合う投稿がありません",
+            "no_results_desc": "検索語やフィルターを少し変えてみてください。",
+            "cta_write": "口コミを書く",
+            "cta_all": "すべて見る"
+        },
+        "form": {
+            "category_label": "分類",
+            "region_label": "エリア",
+            "region_placeholder": "例: カンナム、マポ",
+            "vibe_label": "雰囲気を選ぶ",
+            "meetup_toggle_title": "一緒に行く募集を開く",
+            "meetup_toggle_desc": "他の人から参加意思の反応を受け取ります。",
+            "safety_title": "🔒 安全ガイド",
+            "safety_item_1": "• 個人連絡先はすぐに共有せず、まずコメントで反応を確認してください。",
+            "safety_item_2": "• 待ち合わせは公開された場所を中心に決めることをおすすめします。",
+            "image": {
+                "label": "画像を追加",
+                "title": "画像は最大{{count}}枚まで追加できます。",
+                "file_only_alert": "画像ファイルのみ追加できます。",
+                "limit_alert": "画像は最大{{count}}枚まで追加できます。",
+                "load_failed_alert": "画像を読み込めませんでした。",
+                "button_loading": "画像を準備中...",
+                "button_limit": "最大{{count}}枚選択済み",
+                "button_add_more": "画像を追加",
+                "button_select": "画像を選択",
+                "preview_alt": "アップロードプレビュー {{index}}",
+                "preview_name": "選択した画像 {{index}}",
+                "preview_desc": "{{index}}枚目の画像です。投稿前にプレビューを確認してください。",
+                "remove": "削除",
+                "saved_name": "アップロード画像 {{index}}",
+                "guides": {
+                    "beauty_review": "施術後の変化やサロンの雰囲気が伝わる写真を添えてください。",
+                    "food_review": "料理やお店の雰囲気が分かる写真を添えてください。",
+                    "travel_review": "場所の雰囲気や印象的だったポイントを写してみてください。",
+                    "meetup": "現場の雰囲気や一緒に行きたいポイントを共有してください。",
+                    "help": "参考になる画像があれば一緒に載せてみてください。"
+                }
+            },
+            "summary_title": "作成まとめ",
+            "summary_region_type": "エリア / 種類",
+            "summary_point": "ポイント",
+            "summary_meetup": "一緒に行く",
+            "summary_enabled": "有効",
+            "summary_disabled": "無効",
+            "submit_with_reactions": "口コミを投稿して反応を集める",
+            "submit_beauty": "美容レビューを共有",
+            "submit_default": "口コミを共有"
+        },
+        "quick_entry": {
+            "beauty": {
+                "label": "美容レビュー",
+                "sub": "予約・接客・満足度"
+            },
+            "food": {
+                "label": "グルメレビュー",
+                "sub": "美容日の追加コース"
+            },
+            "travel": {
+                "label": "観光レビュー",
+                "sub": "施術前後の動線"
+            },
+            "write": {
+                "label": "口コミを書く",
+                "sub": "美容体験を共有"
+            }
+        },
+        "activity": {
+            "label": "自分の活動:",
+            "summary": "保存 {{saved}}、参加 {{reacted}}",
+            "new_updates": "✨ 新着あり!"
+        },
+        "sort": {
+            "latest": "新着順",
+            "reactions": "反応順",
+            "draft": "下書き形成順"
+        },
+        "defaults": {
+            "region": "ソウル"
+        },
+        "status": {
+            "reviews": "口コミ共有中",
+            "reacting": "反応受付中",
+            "surveying": "意見収集中",
+            "drafting": "下書き整理中",
+            "closed": "締切"
+        },
+        "card": {
+            "title_prefix": {
+                "beauty_review": "[美容レビュー]",
+                "food_review": "[グルメレビュー]",
+                "travel_review": "[観光レビュー]"
+            },
+            "result_badge": "📝 追加Tip",
+            "default_vibe": "✨ 雰囲気よし",
+            "open_meetup_badge": "🤝 一緒に行く募集",
+            "fresh_badges": {
+                "comment": "💬 反応中",
+                "update": "✨ Tip更新"
+            },
+            "draft_status": {
+                "active": "🔥 下書き活発",
+                "forming": "📝 下書き形成中",
+                "preparing": "🤝 下書き準備中"
+            },
+            "draft_desc": {
+                "active": "日程調整の反応が集まっています。",
+                "forming": "一緒に行く流れが少しずつ見えています。",
+                "preparing": "まだ意見が分かれています。"
+            },
+            "cta": {
+                "review": "一緒に行く?",
+                "join": "参加する"
+            },
+            "owner_reactions": {
+                "region": "📊 {{region}} / {{count}}件の反応",
+                "join": "📊 {{count}}件の参加反応"
+            },
+            "more_region": "📍 {{region}}の他の口コミと募集を見る →"
+        },
+        "fab": {
+            "beauty": "美容レビューを書く",
+            "meetup": "公演・イベントを書く"
+        },
+        "report": {
+            "modal_title": "通報理由を選択",
+            "report_action": "通報する",
+            "cancel": "キャンセル",
+            "item_post": "投稿",
+            "item_comment": "コメント",
+            "submitted_alert": "{{item}}を通報しました。\n理由: {{reason}}\n確認後に対応します。",
+            "reasons": {
+                "ad_spam": "広告・宣伝のようです",
+                "offensive": "不快な表現があります",
+                "contact": "個人的な連絡を強く求めています",
+                "unsafe": "安全ではなさそうです",
+                "other": "その他"
+            }
+        },
+        "detail_page": {
+            "loading": "投稿を読み込み中...",
+            "hidden_post": "非表示にした投稿です。",
+            "show_hidden": "非表示を解除",
+            "not_found": "投稿が見つかりません。",
+            "hide_post": "この投稿を隠す",
+            "hide_comment": "非表示",
+            "save_post_aria": "投稿を保存",
+            "body_title": "詳細内容",
+            "comments_title": "コメント・一緒に行く",
+            "empty_comments": "まだコメントがありません。",
+            "signal_tag": "一緒に行くシグナル",
+            "comment_input": {
+                "default": "コメントを書いてください...",
+                "optional": "追加メッセージ（任意）",
+                "send": "送信"
+            },
+            "signal_intents": {
+                "interested": "私も行ってみたいです",
+                "available_this_week": "今週なら可能です",
+                "join_if_schedule_fits": "日程が合えば一緒に行きます",
+                "thanks": "情報ありがとうございます",
+                "question": "質問があります"
+            },
+            "signal_times": {
+                "this_week": "今週",
+                "this_weekend": "今週末",
+                "next_week": "来週",
+                "schedule_coordination": "日程調整"
+            },
+            "related": {
+                "this_region": "この地域"
+            },
+            "save": {
+                "default": "☆ 保存",
+                "saved": "⭐ 保存済み"
+            }
+        }
+    }
+>>>>>>> f779e67 (feat(community): polish community pages and update translations)
 }

@@ -1,186 +1,798 @@
 {
-    "common":  {
-                   "welcome":  "Selamat Datang, Pelancong.",
-                   "greeting":  "Selamat Pagi",
-                   "login":  "Log Masuk",
-                   "today":  "Hari Ini",
-                   "move":  "Pergi",
-                   "book":  "Tempah",
-                   "chat":  "Sembang",
-                   "my":  "Saya",
-                   "current_operation":  "Sedang Beroperasi",
-                   "live":  "LANGSUNG",
-                   "recommended":  "Cadangan Berdekatan",
-                   "based_on_location":  "Berdasarkan lokasi anda",
-                   "start_nav":  "Mulakan Navigasi",
-                   "delay_10m":  "Lewat +10 min",
-                   "confirmed":  "Disahkan",
-                   "payment_completed":  "Pembayaran Selesai",
-                   "weather_clear":  "Cerah",
-                   "back":  "Kembali",
-                   "select_language":  "Pilih Bahasa",
-                   "home_nav":  "Utama",
-                   "explore_nav":  "Teroka",
-                   "planner_nav":  "Jadual",
-                   "today_nav":  "Hari Ini",
-                   "my_nav":  "Saya",
-                   "day_unit":  "h",
-                   "locale":  "ms-MY",
-                   "cities":  {
-                                  "seoul":  "Seoul",
-                                  "busan":  "Busan",
-                                  "jeju":  "Jeju",
-                                  "gyeongju":  "Gyeongju"
-                              },
-                   "categories":  {
-                                      "all":  "Semua",
-                                      "food":  "Makanan",
-                                      "beauty":  "Kecantikan",
-                                      "event":  "Acara",
-                                      "festival":  "Festival",
-                                      "attraction":  "Tarikan",
-                                      "transport":  "Pengangkutan"
-                                  },
-                   "community_nav":  "Community"
-               },
-    "transport":  {
-                      "moving_to":  "Menuju {{dest}}",
-                      "remaining":  "Berbaki",
-                      "line_2_direction":  "Laluan 2 • Hala City Hall",
-                      "departed":  "telah bertolak",
-                      "passing_now":  "Sedang melalui...",
-                      "current":  "Semasa",
-                      "get_off_at":  "Turun di",
-                      "exit_3":  "Pintu keluar 3",
-                      "getting_off_here":  "Saya turun di sini",
-                      "stations":  {
-                                       "samseong":  "Samseong",
-                                       "seolleung":  "Seolleung",
-                                       "yeoksam":  "Yeoksam",
-                                       "gangnam":  "Gangnam",
-                                       "gyodae":  "Gyodae",
-                                       "seocho":  "Seocho",
-                                       "seongsu":  "Seongsu"
-                                   }
-                  },
-    "home":  {
-                 "title_korea":  "Korea Hari Ini",
-                 "title":  "Percutian Korea, Difahami dalam 3 Saat",
-                 "subtitle":  "Tempahan Concierge · Jadual Automatik · Navigasi",
-                 "create_trip_cta":  "Mula Merancang",
-                 "input_label":  "Ke mana anda melancong?",
-                 "input_placeholder":  "Bandar, kawasan, nama hotel",
-                 "days_label":  "Tempoh Percutian",
-                 "recommended_plans":  "Cadangan Jadual Percutian",
-                 "plans":  {
-                               "2d":  {
-                                          "title":  "2 Hari: Inti Pati Seoul",
-                                          "label":  "Jadual 2 Hari"
-                                      },
-                               "3d":  {
-                                          "title":  "3 Hari: K-Kultur \u0026 Gaya",
-                                          "label":  "Jadual 3 Hari"
-                                      },
-                               "5d":  {
-                                          "title":  "5 Hari: Jelajah Hebat",
-                                          "label":  "Jadual 5 Hari"
-                                      },
-                               "request_custom_label":  "Tersuai",
-                               "request_custom_title":  "Mohon Jadual {{days}} Hari",
-                               "request_custom_toast":  "Memohon jadual {{days}} hari tersuai! Concierge kami akan menghubungi anda."
-                           }
-             },
-    "explore_items":  {
-                          "airport_arrival":  "Ketibaan Lapangan Terbang Incheon",
-                          "hotel_checkin":  "Daftar Masuk Hotel / Menginap"
-                      },
-    "explore_page":  {
-                         "title":  "Teroka",
-                         "select_city":  "Pilih Bandar"
-                     },
-    "planner_page":  {
-                         "title":  "Jadual",
-                         "day":  "Hari {{n}}"
-                     },
-    "today_page":  {
-                       "title":  "Hari Ini",
-                       "active_now":  "Sedang Berlangsung",
-                       "navigate":  "Navigasi",
-                       "booking_ref":  "Ref Tempahan: {{ref}}",
-                       "next_up":  "Seterusnya",
-                       "minutes_left":  "Bermula dalam {{mins}}m",
-                       "depart_early":  "Bertolak Sekarang",
-                       "timeline":  "Timeline",
-                       "empty":  {
-                                     "title":  "Tiada jadual untuk hari ini",
-                                     "desc":  "Teroka tempat dan tambahkan ke percutian anda!",
-                                     "cta":  "Teroka Tempat"
-                                 }
-                   },
-    "booking_detail":  {
-                           "select_date":  "Pilih Tarikh",
-                           "select_time":  "Pilih Masa",
-                           "total_price":  "Jumlah Harga",
-                           "request_booking":  "Mohon Tempahan"
-                       },
-    "navigation_page":  {
-                            "title":  "Hari Ini"
-                        },
-    "my_page":  {
-                    "bookings":  {
-                                     "title":  "Tempahan Saya",
-                                     "date_time":  "Tarikh / Masa",
-                                     "area":  "Kawasan",
-                                     "price":  "Harga",
-                                     "new_added":  "Tempahan baru ditambah!"
-                                 },
-                    "community":  {
-                                      "title":  "Kiriman Komuniti Saya",
-                                      "empty":  "Belum ada kiriman komuniti."
-                                  }
-                },
-    "community_page":  {
-                           "title":  "Community",
-                           "subtitle":  "Connect with locals \u0026 travelers",
-                           "filter_all":  "All",
-                           "filter_meetup":  "Food \u0026 Meetup",
-                           "filter_travel":  "Travel Mate",
-                           "filter_help":  "Local Help",
-                           "comments":  "Comments",
-                           "message":  "Message",
-                           "type":  {
-                                        "MEETUP":  "MEETUP",
-                                        "TRAVEL":  "TRAVEL",
-                                        "HELP":  "HELP",
-                                        "REVIEW":  "REVIEW"
-                                    },
-                           "post":  {
-                                        "1":  {
-                                                  "author":  "Mika (Japan)",
-                                                  "time":  "10 mins ago",
-                                                  "title":  "Samgyeopsal Meetup 🥓",
-                                                  "desc":  "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
-                                              },
-                                        "2":  {
-                                                  "author":  "John (US)",
-                                                  "time":  "1 hour ago",
-                                                  "title":  "Hongdae Street Performance 🎸",
-                                                  "desc":  "Heading to Hongdae right now to watch indie bands. Join me!"
-                                              },
-                                        "3":  {
-                                                  "author":  "Jihoon (Korea)",
-                                                  "time":  "2 hours ago",
-                                                  "title":  "Need help with subway directions? 🚇",
-                                                  "desc":  "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
-                                              },
-                                        "4":  {
-                                                  "author":  "Li Wei (China)",
-                                                  "time":  "3 hours ago",
-                                                  "title":  "K-Beauty Shopping 💄",
-                                                  "desc":  "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
-                                              }
-                                    },
-                           "filter_review":  "Reviews",
-                           "detail":  "Butiran Kiriman"
-                       }
+  "common": {
+    "welcome": "Selamat Datang, Pelancong.",
+    "greeting": "Selamat Pagi",
+    "login": "Log Masuk",
+    "today": "Hari Ini",
+    "move": "Pergi",
+    "book": "Tempah",
+    "chat": "Sembang",
+    "my": "Saya",
+    "current_operation": "Sedang Beroperasi",
+    "live": "LANGSUNG",
+    "recommended": "Cadangan Berdekatan",
+    "based_on_location": "Berdasarkan lokasi anda",
+    "start_nav": "Mulakan Navigasi",
+    "delay_10m": "Lewat +10 min",
+    "confirmed": "Disahkan",
+    "payment_completed": "Pembayaran Selesai",
+    "weather_clear": "Cerah",
+    "back": "Kembali",
+    "select_language": "Pilih Bahasa",
+    "home_nav": "Utama",
+    "explore_nav": "Teroka",
+    "planner_nav": "Jadual",
+    "today_nav": "Hari Ini",
+    "my_nav": "Saya",
+    "day_unit": "h",
+    "locale": "ms-MY",
+    "loading": "Memuatkan...",
+    "cities": {
+      "seoul": "Seoul",
+      "busan": "Busan",
+      "jeju": "Jeju",
+      "gyeongju": "Gyeongju"
+    },
+    "categories": {
+      "all": "Semua",
+      "food": "Makanan",
+      "beauty": "Kecantikan",
+      "event": "Acara",
+      "festival": "Festival",
+      "attraction": "Tarikan",
+      "transport": "Pengangkutan"
+    },
+    "community_nav": "Community",
+    "actions": {
+      "apply_again": "Mohon semula",
+      "apply_as_partner": "Mohon sebagai rakan kongsi",
+      "booking_help": "Bantuan tempahan",
+      "call_112": "Hubungi 112",
+      "call_119": "Hubungi 119",
+      "call_1330": "Hubungi 1330",
+      "close": "Tutup",
+      "contact_support": "Hubungi sokongan",
+      "copied": "Disalin",
+      "copy": "Salin",
+      "emergency_help": "Bantuan kecemasan",
+      "explore_places": "Teroka tempat",
+      "general_help": "Bantuan umum",
+      "get_help": "Dapatkan bantuan",
+      "go_to_reviews": "Pergi ke ulasan",
+      "interpreter_for_booking": "Bantuan jurubahasa untuk tempahan ini",
+      "interpreter_help": "Bantuan jurubahasa",
+      "large_view": "Paparan besar",
+      "my_bookings": "Tempahan saya",
+      "open_admin_console": "Buka konsol admin",
+      "open_help_center": "Buka Help Center",
+      "open_support": "Buka sokongan",
+      "partner_inquiry": "Pertanyaan rakan kongsi",
+      "report_issue": "Laporkan isu",
+      "save": "Simpan",
+      "saved": "Disimpan",
+      "show_booking_phrases": "Tunjukkan frasa tempahan",
+      "show_in_korean": "Tunjukkan dalam bahasa Korea",
+      "support": "Sokongan",
+      "travel_phrasebook": "Buku frasa perjalanan",
+      "travel_phrases": "Frasa perjalanan",
+      "view_booking": "Lihat tempahan",
+      "view_bookings": "Lihat tempahan",
+      "add_to_plan": "Tambah ke rancangan",
+      "back_to_booking_support": "Kembali ke bantuan tempahan",
+      "browse_community": "Lihat komuniti",
+      "browse_meetups": "Lihat meetup",
+      "call_clinic": "Hubungi klinik",
+      "continue_editing": "Teruskan suntingan",
+      "create_plan": "Buat rancangan",
+      "explore": "Teroka",
+      "manage": "Urus",
+      "open": "Buka",
+      "open_my_support": "Buka My Support",
+      "open_route": "Buka laluan",
+      "show_emergency_phrases": "Lihat frasa kecemasan",
+      "use_this_plan": "Guna rancangan ini",
+      "view": "Lihat",
+      "view_place_details": "Lihat butiran tempat",
+      "view_plan": "Lihat rancangan",
+      "write_review": "Tulis ulasan"
+    },
+    "states": {
+      "active": "Aktif",
+      "approved": "Diluluskan",
+      "favorites": "Kegemaran",
+      "frequent": "Kerap digunakan",
+      "needs_review": "Perlu semakan",
+      "needs_update": "Perlu dikemas kini",
+      "not_available_yet": "Belum tersedia",
+      "not_connected": "Belum disambungkan",
+      "not_joined": "Belum disertai",
+      "not_set": "Belum ditetapkan",
+      "not_set_yet": "Belum ditetapkan",
+      "not_verified": "Belum disahkan",
+      "pending_review": "Sedang disemak",
+      "read_only": "Baca sahaja",
+      "recent": "Terbaru",
+      "sign_in_required": "Perlu log masuk",
+      "standard_account": "Akaun standard",
+      "verified": "Disahkan",
+      "current_trip_plan": "Rancangan perjalanan semasa",
+      "details_unavailable": "Butiran tidak tersedia",
+      "meetups": "Meetup",
+      "planner_draft": "Draf Planner",
+      "posts": "Kiriman",
+      "recently_viewed": "Dilihat baru-baru ini",
+      "reviews": "Ulasan",
+      "saved_locally": "Disimpan pada peranti ini"
+    },
+    "runtime": {
+      "counts": {
+        "stops_zero": "{{count}} hentian",
+        "stops_one": "{{count}} hentian",
+        "stops_other": "{{count}} hentian",
+        "days_zero": "{{count}} hari",
+        "days_one": "{{count}} hari",
+        "days_other": "{{count}} hari"
+      }
+    }
+  },
+  "transport": {
+    "moving_to": "Menuju {{dest}}",
+    "remaining": "Berbaki",
+    "line_2_direction": "Laluan 2 • Hala City Hall",
+    "departed": "telah bertolak",
+    "passing_now": "Sedang melalui...",
+    "current": "Semasa",
+    "get_off_at": "Turun di",
+    "exit_3": "Pintu keluar 3",
+    "getting_off_here": "Saya turun di sini",
+    "stations": {
+      "samseong": "Samseong",
+      "seolleung": "Seolleung",
+      "yeoksam": "Yeoksam",
+      "gangnam": "Gangnam",
+      "gyodae": "Gyodae",
+      "seocho": "Seocho",
+      "seongsu": "Seongsu"
+    }
+  },
+  "home": {
+    "title_korea": "Korea Hari Ini",
+    "title": "Percutian Korea, Difahami dalam 3 Saat",
+    "subtitle": "Tempahan Concierge · Jadual Automatik · Navigasi",
+    "create_trip_cta": "Mula Merancang",
+    "input_label": "Ke mana anda melancong?",
+    "input_placeholder": "Bandar, kawasan, nama hotel",
+    "days_label": "Tempoh Percutian",
+    "recommended_plans": "Cadangan Jadual Percutian",
+    "plans": {
+      "2d": {
+        "title": "2 Hari: Inti Pati Seoul",
+        "label": "Jadual 2 Hari"
+      },
+      "3d": {
+        "title": "3 Hari: K-Kultur & Gaya",
+        "label": "Jadual 3 Hari"
+      },
+      "5d": {
+        "title": "5 Hari: Jelajah Hebat",
+        "label": "Jadual 5 Hari"
+      },
+      "request_custom_label": "Tersuai",
+      "request_custom_title": "Mohon Jadual {{days}} Hari",
+      "request_custom_toast": "Memohon jadual {{days}} hari tersuai! Concierge kami akan menghubungi anda."
+    }
+  },
+  "explore_items": {
+    "airport_arrival": "Ketibaan Lapangan Terbang Incheon",
+    "hotel_checkin": "Daftar Masuk Hotel / Menginap"
+  },
+  "explore_page": {
+    "title": "Teroka",
+    "select_city": "Pilih Bandar"
+  },
+  "planner_page": {
+    "title": "Jadual",
+    "day": "Hari {{n}}",
+    "add_from_discover": "Tambah dari Discover",
+    "add_to": "Tambah ke",
+    "auto_build": "Bina secara automatik",
+    "book_all": "Tempah semua",
+    "status": {
+      "completed": "Selesai"
+    },
+    "slots": {
+      "morning": "Pagi",
+      "afternoon": "Tengah hari",
+      "evening": "Malam"
+    },
+    "booking_modal": {
+      "title": "Permintaan tempahan",
+      "date": "Tarikh",
+      "notes": "Nota",
+      "people": "Bilangan orang",
+      "people_count": "{{count}} orang",
+      "submit": "Hantar permintaan",
+      "submitting": "Menghantar...",
+      "success_title": "Permintaan dihantar",
+      "success_desc": "Permintaan tempahan telah dihantar. Sila tunggu pengesahan.",
+      "view_status": "Lihat tempahan"
+    },
+    "focus": {
+      "title": "Tempahan yang difokuskan",
+      "desc": "Gunakan pintasan ini untuk tempahan yang sedang diserlahkan dalam rancangan anda."
+    }
+  },
+  "today_page": {
+    "title": "Hari Ini",
+    "active_now": "Sedang Berlangsung",
+    "navigate": "Navigasi",
+    "booking_ref": "Ref Tempahan: {{ref}}",
+    "next_up": "Seterusnya",
+    "minutes_left": "Bermula dalam {{mins}}m",
+    "depart_early": "Bertolak Sekarang",
+    "timeline": "Timeline",
+    "empty": {
+      "title": "Tiada jadual untuk hari ini",
+      "desc": "Teroka tempat dan tambahkan ke percutian anda!",
+      "cta": "Teroka Tempat"
+    }
+  },
+  "booking_detail": {
+    "select_date": "Pilih Tarikh",
+    "select_time": "Pilih Masa",
+    "total_price": "Jumlah Harga",
+    "request_booking": "Mohon Tempahan"
+  },
+  "navigation_page": {
+    "title": "Hari Ini"
+  },
+  "my_page": {
+    "bookings": {
+      "title": "Tempahan Saya",
+      "date_time": "Tarikh / Masa",
+      "area": "Kawasan",
+      "price": "Harga",
+      "new_added": "Tempahan baru ditambah!"
+    },
+    "community": {
+      "title": "Kiriman Komuniti Saya",
+      "empty": "Belum ada kiriman komuniti."
+    },
+    "support": {
+      "short": "Sokongan",
+      "eyebrow": "Hab sokongan",
+      "title": "My Support",
+      "header_cta": "Buka Help Center",
+      "tabs": {
+        "booking": "Bantuan tempahan",
+        "general": "Bantuan umum",
+        "faq": "FAQ / Panduan ringkas",
+        "emergency": "Kecemasan / Jurubahasa"
+      },
+      "summary": {
+        "booking": {
+          "label": "Bantuan tempahan",
+          "desc": "Semak tempahan terkini, laporan isu, dan langkah seterusnya."
+        },
+        "general": {
+          "label": "Bantuan umum",
+          "desc": "Akses Help Center, laluan sokongan, dan pintu masuk keselamatan komuniti."
+        },
+        "emergency": {
+          "label": "Kecemasan & Jurubahasa",
+          "desc": "Mulakan daripada hab ini, kemudian buka halaman terperinci perubatan, polis, atau jurubahasa yang sesuai dengan situasi."
+        }
+      },
+      "guides": {
+        "find_booking": {
+          "q": "Saya tidak dapat mencari lokasi tempahan saya.",
+          "a": "Semak peta dan kawasan yang dipaparkan pada tempahan anda dahulu. Jika masih tidak jumpa, buka Bantuan Jurubahasa atau Help Center untuk bantuan setempat."
+        },
+        "staff_talk": {
+          "q": "Saya sukar berkomunikasi dengan staf.",
+          "a": "Gunakan Bantuan Jurubahasa untuk membuka alat terjemahan dan hotline dengan cepat. Jika keadaan terasa mendesak, teruskan ke Bantuan Kecemasan dengan segera."
+        },
+        "change_time": {
+          "q": "Saya mahu menukar masa tempahan.",
+          "a": "Perubahan tempahan secara terus belum tersedia dalam aplikasi. Mulakan dari Bantuan Tempahan supaya anda boleh memilih langkah seterusnya yang paling selamat sebelum ke lokasi."
+        },
+        "cancel_refund": {
+          "q": "Di mana saya boleh batalkan atau bertanya tentang bayaran balik?",
+          "a": "Pembatalan dan bayaran balik dalam aplikasi masih belum tersedia. Gunakan Help Center atau Bantuan Tempahan untuk menyemak laluan sokongan yang tersedia untuk kes anda."
+        },
+        "write_review": {
+          "q": "Bagaimana saya menulis ulasan selepas lawatan?",
+          "a": "Tempahan yang sudah selesai boleh membawa anda ke My Community > Reviews. Jika borang ulasan khas belum tersedia, gunakan composer komuniti sedia ada."
+        },
+        "community_safety": {
+          "q": "Situasi meetup atau komuniti terasa tidak selamat.",
+          "a": "Hentikan perkongsian maklumat peribadi dan jika perlu, pergi ke bantuan polis atau kecemasan terlebih dahulu. Pengendalian laporan khusus komuniti masih terhad buat masa ini, jadi gunakan laluan keselamatan yang paling sesuai dengan situasi.",
+          "cta": "Bantuan keselamatan"
+        }
+      },
+      "general": {
+        "help_center": {
+          "label": "Help Center",
+          "desc": "Buka halaman bantuan terperinci untuk perubatan, polis, jurubahasa, barangan hilang, dan hubungan kecemasan yang sudah tersedia dalam aplikasi."
+        },
+        "booking_cancel": {
+          "label": "Bantuan tempahan & pembatalan",
+          "desc": "Mulakan di sini untuk pertukaran masa, soalan ketersediaan, dan panduan pelaporan isu.",
+          "cta": "Buka Bantuan Tempahan"
+        },
+        "community_safety": {
+          "label": "Keselamatan komuniti",
+          "desc": "Jika meetup terasa tidak selamat atau tidak selesa, gunakan laluan keselamatan terlebih dahulu.",
+          "cta": "Buka Bantuan Keselamatan"
+        },
+        "partner": {
+          "label": "Pertanyaan rakan kongsi",
+          "desc": "Onboarding berkaitan perniagaan dan rakan kongsi boleh diteruskan melalui aliran pendaftaran rakan kongsi."
+        },
+        "title": "Bantuan umum",
+        "desc": "Gunakan pintu masuk ini apabila anda tidak pasti ke mana perlu pergi seterusnya.",
+        "report_notice": "Tiket isu terus belum tersedia dalam aplikasi. Untuk soalan tentang tempahan, gunakan laluan bantuan di bawah."
+      },
+      "emergency": {
+        "overview": {
+          "label": "Sokongan kecemasan",
+          "desc": "Buka halaman utama bantuan untuk perubatan, polis, barangan hilang, dan jurubahasa.",
+          "cta": "Buka Bantuan Kecemasan"
+        },
+        "interp": {
+          "label": "Bantuan jurubahasa",
+          "desc": "Gunakan alat terjemahan dan pautan hotline apabila sukar bercakap dengan staf di lokasi.",
+          "cta": "Buka Bantuan Jurubahasa",
+          "booking_desc": "Bawa konteks tempahan ini ke laluan jurubahasa supaya staf lebih mudah memahami tempahan yang anda maksudkan."
+        },
+        "phrases": {
+          "label": "Frasa kecemasan",
+          "desc": "Buka frasa bahasa Korea bersaiz besar yang boleh ditunjukkan terus kepada staf, pemandu, atau kaunter bantuan.",
+          "cta": "Buka Frasa Perjalanan",
+          "booking_label": "Frasa tempahan",
+          "booking_desc": "Buka frasa tempahan dahulu apabila anda perlu menjelaskan tempahan, kelewatan, atau situasi daftar masuk kepada staf."
+        },
+        "medical": {
+          "label": "Bantuan perubatan",
+          "desc": "Perlu klinik atau bantuan perubatan kecemasan? Buka laluan perubatan secara terus.",
+          "cta": "Bantuan Perubatan"
+        },
+        "police": {
+          "label": "Polis / Keselamatan",
+          "desc": "Gunakan laluan keselamatan untuk menghubungi polis, panduan insiden, atau situasi berisiko.",
+          "cta": "Buka Bantuan Keselamatan"
+        },
+        "title": "Kecemasan / Jurubahasa",
+        "desc": "My Support ialah hab utama. Gunakan halaman bantuan terperinci di bawah apabila situasi mendesak atau komunikasi menjadi sukar.",
+        "interpreter_notice": "Pautan jurubahasa tersedia di bawah. Sesetengah pilihan mungkin membuka skrin panggilan atau halaman terjemahan luar.",
+        "hub_notice": "Gunakan hab ini untuk memilih halaman terperinci yang betul. Halaman /help/* menerangkan satu laluan dengan lebih mendalam, dan Travel Phrasebook digunakan untuk menunjukkan teks Korea kepada orang lain."
+      },
+      "booking": {
+        "banner_report": "Anda sedang melaporkan isu untuk {{bookingName}}. Pilih laluan sokongan yang paling sesuai dengan masalah ini.",
+        "banner_interpreter": "Perlu bantuan bahasa untuk {{bookingName}}? Pautan jurubahasa dan kecemasan sudah tersedia di bawah.",
+        "banner_default": "Perlu bantuan untuk {{bookingName}}? Mulakan dengan kad tempahan di bawah.",
+        "banner_fallback": "Perlu bantuan untuk satu tempahan? Mulakan dengan tempahan terdekat di bawah.",
+        "title": "Bantuan tempahan",
+        "desc": "Gunakan tempahan terkini anda sebagai cara terpantas untuk mencari laluan sokongan yang betul.",
+        "empty": {
+          "title": "Tiada tempahan untuk ditanya buat masa ini.",
+          "desc": "Semak My Bookings semula kemudian atau teroka tempat untuk mula merancang perjalanan anda."
+        },
+        "context_title": "Bantuan untuk tempahan ini",
+        "context_desc": "Pastikan konteks tempahan ini kekal kelihatan apabila anda bergerak antara bantuan tempahan, bantuan jurubahasa, dan frasa."
+      },
+      "subtitle": "Cari laluan bantuan yang betul untuk tempahan, soalan, dan situasi perjalanan mendesak.",
+      "faq": {
+        "title": "FAQ / Panduan ringkas",
+        "desc": "Panduan ringkas dan selamat untuk soalan perjalanan biasa dalam skop aplikasi semasa."
+      }
+    },
+    "settings": {
+      "short": "Tetapan",
+      "support_short": "Sokongan",
+      "eyebrow": "Tetapan & profil",
+      "title": "Tetapan saya",
+      "subtitle": "Semak akaun, bahasa, status rakan kongsi, dan hab mypage yang berkaitan dari satu tempat.",
+      "summary": {
+        "saved": "Tempat disimpan",
+        "stops": "Hentian pelan",
+        "days": "Hari perjalanan"
+      },
+      "preferences": {
+        "region_empty": "Belum ada pilihan wilayah khusus. Ini boleh diinferensikan selepas anda membina pelan perjalanan.",
+        "region_hint": "Berdasarkan kawasan dalam draf planner semasa anda.",
+        "style_empty": "Belum ada gaya perjalanan yang disimpan. Baris ini akan kekal baca sahaja sehingga pilihan akaun disambungkan.",
+        "style_hint": "Diinferensikan daripada kategori planner semasa anda.",
+        "interests_saved": "Diambil daripada kategori tempat dalam senarai saved_items anda.",
+        "interests_plan": "Isyarat sandaran daripada draf planner semasa anda.",
+        "interests_empty": "Simpan tempat atau bina pelan untuk memaparkan isyarat minat di sini.",
+        "language": "Bahasa",
+        "language_hint": "Bahagian ini mengikuti pemilih bahasa sedia ada dan nilai ktrip_lang.",
+        "region": "Wilayah / bandar pilihan",
+        "style": "Gaya perjalanan",
+        "interests": "Kategori minat",
+        "title": "Keutamaan",
+        "desc": "Bahasa menggunakan nilai yang benar-benar disimpan. Baris lain kekal baca sahaja dan hanya memaparkan isyarat daripada planner atau item yang disimpan apabila tersedia."
+      },
+      "verification": {
+        "email": "E-mel",
+        "email_ready": "Disahkan dalam sesi auth semasa.",
+        "email_missing": "Pengesahan e-mel tidak dikesan daripada Supabase auth.",
+        "phone": "Telefon",
+        "phone_ready": "Pengesahan telefon tersedia pada akaun ini.",
+        "phone_partial": "Nilai telefon wujud, tetapi pengesahan tidak dikesan.",
+        "phone_empty": "Pengesahan telefon belum disambungkan dalam build ini.",
+        "provider": "Kaedah log masuk",
+        "provider_hint": "Dibaca daripada sesi Supabase auth yang aktif.",
+        "title": "Pengesahan / Keselamatan",
+        "desc": "Hanya isyarat pengesahan yang sudah wujud dalam sesi auth semasa dipaparkan di sini.",
+        "identity_note": "Semakan dokumen identiti dan pemarkahan kelengkapan profil belum disambungkan dalam codebase semasa.",
+        "email_provider": "E-mel"
+      },
+      "links": {
+        "support_desc": "Buka bantuan tempahan, bantuan kecemasan, dan FAQ.",
+        "phrases_desc": "Simpan frasa Korea berguna supaya sentiasa sedia digunakan semasa bergerak.",
+        "saved": "Saved Hub",
+        "saved_desc": "Semak semula tempat yang disimpan, pelan semasa, dan item terkini anda.",
+        "bookings": "Tempahan",
+        "bookings_desc": "Semak tempahan akan datang dan aliran sokongan yang berkaitan.",
+        "community": "Komuniti",
+        "community_desc": "Lihat semula siaran, ulasan, dan aktiviti meetup anda.",
+        "title": "Tetapan aplikasi / Pautan pantas",
+        "desc": "Ini ialah halaman sedia ada yang anda sudah boleh urus atau buka semula dalam aplikasi semasa.",
+        "placeholder_title": "Pemberitahuan dan privasi",
+        "placeholder_desc": "Kawalan pemberitahuan dan privasi khusus belum disambungkan dalam build ini, jadi ia masih kekal sebagai placeholder baca sahaja di sini."
+      },
+      "partner": {
+        "title": "Status rakan kongsi",
+        "approved_desc": "Permohonan rakan kongsi anda telah diluluskan. Permintaan rakan kongsi yang berterusan boleh diteruskan melalui sokongan buat masa ini.",
+        "pending_desc": "Permintaan rakan kongsi anda sedang disemak. Tiada laluan pusat rakan kongsi berasingan dalam build ini.",
+        "rejected_desc": "Permohonan sebelum ini tidak diluluskan. Anda boleh memohon semula melalui aliran pendaftaran rakan kongsi apabila butiran sudah bersedia.",
+        "none_desc": "Anda sedang menggunakan akaun pengembara. Mohon hanya jika anda ingin membawa masuk perniagaan atau perkhidmatan."
+      },
+      "admin": {
+        "enabled": "Admin",
+        "enabled_desc": "Akaun ini boleh mengakses konsol admin dan menyemak permintaan rakan kongsi.",
+        "disabled_desc": "Akses admin tidak diaktifkan pada profil ini.",
+        "title": "Konsol admin",
+        "source": "profiles.is_admin = true",
+        "source_none": "Tiada tanda admin pada profil ini"
+      },
+      "hero": {
+        "email_ready": "E-mel disahkan",
+        "email_pending": "E-mel belum disahkan"
+      },
+      "account": {
+        "sign_in_title": "Log masuk untuk mengurus butiran akaun",
+        "sign_in_desc": "Hab ini hanya boleh membaca medan akaun dan profil yang telah disahkan daripada sesi Supabase yang aktif.",
+        "title": "Akaun / Profil",
+        "desc": "Medan ini datang daripada pengguna auth semasa, nama samaran profil, dan metadata akaun asas.",
+        "display_name": "Nama paparan",
+        "display_name_hint": "Nama samaran diutamakan, kemudian auth metadata, kemudian nama e-mel anda.",
+        "email": "E-mel / log masuk",
+        "email_hint": "Dibaca daripada pengguna Supabase auth yang aktif.",
+        "joined": "Tarikh sertai",
+        "joined_hint": "Menggunakan profile.created_at jika tersedia, kemudian fallback ke auth.created_at.",
+        "last_seen": "Log masuk terakhir",
+        "last_seen_hint": "Baca sahaja daripada sesi auth.",
+        "read_only": "Penyuntingan profil belum disambungkan dalam build ini. Gunakan sokongan jika butiran akaun memerlukan bantuan manual.",
+        "default_name": "Pengembara"
+      },
+      "partner_admin": {
+        "title": "Rakan kongsi / Admin",
+        "desc": "Akses rakan kongsi dan admin menggunakan semula semakan status rakan kongsi dan admin yang sudah ada pada papan pemuka my."
+      }
+    },
+    "phrases": {
+      "quick": "Frasa",
+      "title": "Buku frasa perjalanan",
+      "eyebrow": "Hab terjemahan",
+      "favorites": {
+        "title": "Kegemaran",
+        "desc": "Simpan frasa yang anda jangka akan paling kerap ditunjukkan semasa perjalanan anda.",
+        "empty": "Simpan beberapa frasa yang kerap digunakan supaya mudah dibuka semula."
+      },
+      "recent": {
+        "title": "Terbaru",
+        "desc": "Frasa yang baru dibuka atau disalin akan kekal di sini untuk akses pantas."
+      },
+      "subtitle": "Tunjukkan frasa ini kepada staf, pemandu, atau kedai di Korea apabila anda perlukan jawapan yang cepat di tempat itu juga.",
+      "hero": {
+        "badge": "Frasa Korea sedia guna",
+        "count": "frasa"
+      },
+      "context": {
+        "title": "Konteks semasa",
+        "interpreter": "Frasa kecemasan sudah tersedia jika anda perlu menerangkan situasi dengan cepat.",
+        "support": "Gunakan buku frasa ini bersama hab sokongan apabila sukar bercakap dengan staf tempatan.",
+        "booking": "Frasa tempahan untuk reservasi ini sudah sedia."
+      },
+      "category": {
+        "title": "Frasa {{category}}"
+      },
+      "empty": {
+        "title": "Tiada frasa tersedia buat masa ini.",
+        "desc": "Cuba kategori lain atau gunakan Support jika anda perlukan bantuan segera."
+      }
+    },
+    "saved": {
+      "title": "Disimpan",
+      "eyebrow": "Hab simpanan",
+      "header_cta": "Teroka lagi",
+      "subtitle": "Cari semula tempat, draf Planner dan item terbaru yang anda mahu buka semula kemudian.",
+      "summary": {
+        "places": "Tempat",
+        "plans": "Rancangan",
+        "recent": "Terbaru"
+      },
+      "tabs": {
+        "places": "Tempat",
+        "plans": "Rancangan",
+        "recent": "Terbaru"
+      },
+      "summary_hint": "Tempat datang daripada id item Explore yang disimpan, rancangan datang daripada draf Planner semasa, dan item terbaru kekal pada peranti ini.",
+      "places": {
+        "source_plan": "Padan dengan Planner semasa",
+        "source_saved": "Disimpan dari Explore",
+        "source_fallback": "Disimpan dari Explore",
+        "source_id_only": "ID item disimpan",
+        "added": "Ditambah ke Planner. Anda boleh laraskan masa dalam Planner.",
+        "title": "Tempat Disimpan",
+        "desc": "Buka semula tempat yang anda simpan dari Explore. Apabila id simpanan mempunyai metadata terhad, hab ini memaparkan kad minimum dan tidak meneka butiran tambahan.",
+        "empty": {
+          "title": "Belum ada tempat disimpan.",
+          "desc": "Tempat popular yang anda simpan di Explore akan dikumpulkan di sini untuk perancangan pantas kemudian.",
+          "cta": "Lihat Tempat"
+        },
+        "fallback_title": "Tempat disimpan {{id}}"
+      },
+      "plans": {
+        "synced": "Berdasarkan draf Planner semasa",
+        "title": "Rancangan Disimpan",
+        "desc": "Tab ini mencerminkan draf Planner semasa. Ia tidak mencipta templat simpanan berasingan atau rekod rancangan di bahagian pelayan.",
+        "empty": {
+          "title": "Belum ada rancangan disimpan.",
+          "desc": "Apabila anda mula membina itinerari dalam Planner, draf semasa akan muncul di sini."
+        },
+        "current": "Rancangan perjalanan semasa"
+      },
+      "recent": {
+        "title": "Terbaru",
+        "desc": "Tempat, rancangan dan kiriman komuniti yang dilihat baru-baru ini disimpan pada peranti ini untuk dibuka semula dengan cepat.",
+        "empty": {
+          "title": "Belum ada item terbaru.",
+          "desc": "Item terbaru akan muncul di sini selepas anda membuka halaman butiran tempat, Planner atau komuniti.",
+          "fallback": "Apabila local storage tersedia, item terbaru akan disimpan pada peranti ini.",
+          "cta": "Teroka Explore"
+        },
+        "type": {
+          "place": "Tempat",
+          "plan": "Rancangan",
+          "community": "Komuniti"
+        }
+      }
+    },
+    "community_hub": {
+      "eyebrow": "Hab aktiviti saya",
+      "title": "My Community",
+      "subtitle": "Jejaki kiriman, ulasan dan rancangan yang anda buat bersama komuniti di satu tempat.",
+      "browse": "Lihat komuniti",
+      "summary": {
+        "posts": "Kiriman",
+        "reviews": "Ulasan",
+        "meetups": "Meetup"
+      },
+      "tabs": {
+        "posts": "Kiriman",
+        "reviews": "Ulasan",
+        "meetups": "Meetup"
+      },
+      "empty": {
+        "reviews": {
+          "title": "Anda belum menulis sebarang ulasan.",
+          "desc": "Mulakan dengan tempahan yang sudah selesai dan kongsikan perkara yang membantu perjalanan anda.",
+          "no_completed": "Selesaikan tempahan dahulu, kemudian kembali ke sini untuk meninggalkan ulasan yang berguna.",
+          "cta": "Lihat Tempahan Selesai"
+        },
+        "meetups": {
+          "title": "Belum ada aktiviti meetup.",
+          "desc": "Lihat kiriman komuniti gaya meetup dan teruskan rancangan seterusnya di sini."
+        },
+        "posts": {
+          "title": "Belum ada kiriman dalam hab anda.",
+          "desc": "Teroka komuniti, tanya soalan atau kongsi tip berguna untuk pelancong lain."
+        }
+      },
+      "summary_hint": "Jumlah berdasarkan kiriman komuniti yang anda hasilkan dan tempahan yang telah selesai.",
+      "sync_error": "Kiriman komuniti tidak dapat dimuat semula sekarang. Keadaan kosong dipaparkan sebagai gantian.",
+      "review_prompts": {
+        "title": "Tulis daripada tempahan yang telah selesai",
+        "desc": "Buka Community untuk menulis ulasan dan pilih jenis Review dalam composer sedia ada."
+      },
+      "posts_desc": "Lihat semula atau urus kiriman komuniti umum yang anda buat.",
+      "reviews_desc": "Lihat kiriman ulasan yang sudah anda terbitkan, bersama laluan pantas kembali ke sejarah tempahan.",
+      "meetups_desc": "Lihat aktiviti gaya meetup daripada kiriman komuniti anda, termasuk rancangan travel mate.",
+      "loading": "Memuatkan aktiviti anda...",
+      "no_comments": "Belum ada komen",
+      "type": {
+        "travel": "Rakan perjalanan",
+        "meetup": "Meetup"
+      }
+    }
+  },
+  "community_page": {
+    "title": "Community",
+    "subtitle": "Connect with locals & travelers",
+    "filter_all": "All",
+    "filter_meetup": "Food & Meetup",
+    "filter_travel": "Travel Mate",
+    "filter_help": "Local Help",
+    "comments": "Comments",
+    "message": "Message",
+    "type": {
+      "MEETUP": "MEETUP",
+      "TRAVEL": "TRAVEL",
+      "HELP": "HELP",
+      "REVIEW": "REVIEW"
+    },
+    "post": {
+      "1": {
+        "author": "Mika (Japan)",
+        "time": "10 mins ago",
+        "title": "Samgyeopsal Meetup 🥓",
+        "desc": "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
+      },
+      "2": {
+        "author": "John (US)",
+        "time": "1 hour ago",
+        "title": "Hongdae Street Performance 🎸",
+        "desc": "Heading to Hongdae right now to watch indie bands. Join me!"
+      },
+      "3": {
+        "author": "Jihoon (Korea)",
+        "time": "2 hours ago",
+        "title": "Need help with subway directions? 🚇",
+        "desc": "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
+      },
+      "4": {
+        "author": "Li Wei (China)",
+        "time": "3 hours ago",
+        "title": "K-Beauty Shopping 💄",
+        "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
+      }
+    },
+    "filter_review": "Reviews",
+    "detail": "Butiran Kiriman"
+  },
+  "help_page": {
+    "title": "Pusat Bantuan",
+    "badge": "Pusat Bantuan",
+    "numbers_title": "Nombor Kecemasan",
+    "medical_title": "Bantuan Perubatan",
+    "medical_desc": "Klinik berdekatan & kad simptom",
+    "lost_title": "Barang Hilang",
+    "lost_desc": "Panduan langkah demi langkah",
+    "police_title": "Polis / Jenayah",
+    "police_desc": "Lapor & dapatkan bantuan",
+    "interp_title": "Bantuan Penterjemahan",
+    "interp_desc": "Hotline 1330 & aplikasi terjemahan",
+    "symptom_title": "Kad Frasa Simptom",
+    "symptom_hint": "Ketik simptom untuk memaparkan frasa Korea kepada doktor.",
+    "clinic_title": "Klinik Antarabangsa & Kecemasan",
+    "med_title": "Ubat Kedai Serbaneka",
+    "med_hint": "Tersedia 24/7 di GS25, CU, 7-Eleven",
+    "lost_step1": "Langkah 1: Di mana anda kehilangannya?",
+    "lost_step1_hint": "Pilih lokasi untuk melihat langkah pemulihan.",
+    "quick_links": "Pautan Pantas",
+    "go_lost112": "Pergi ke laman rasmi Lost112",
+    "police_contacts": "Hubungan Penting",
+    "police_phrases": "Frasa Kecemasan",
+    "interp_services": "Perkhidmatan Terjemahan",
+    "interp_phrases": "Frasa Berguna",
+    "emergency_call": "Kecemasan?",
+    "emergency_hint": "Hubungi 119 segera",
+    "taxi": "Teksi",
+    "subway": "Kereta api bawah tanah",
+    "airport": "Lapangan terbang",
+    "street": "Jalan",
+    "lost_in": "Hilang di:",
+    "hub_subtitle": "Gunakan My Support sebagai hab utama, buka halaman bantuan terperinci yang sesuai dengan situasi, dan sediakan Emergency Phrases apabila anda perlu menunjukkan bahasa Korea terus di tempat kejadian.",
+    "support_hub_title": "My Support",
+    "support_hub_desc": "Gunakan ini sebagai hab utama apabila anda perlukan bantuan tetapi belum pasti halaman terperinci mana yang paling sesuai.",
+    "support_hub_meta": "Hab untuk bantuan tempahan, umum, FAQ dan kecemasan",
+    "phrases_title": "Frasa Kecemasan",
+    "phrases_desc": "Buka frasa Korea bersaiz besar yang boleh terus ditunjukkan kepada staf, pemandu, polis atau pasukan perubatan.",
+    "phrases_meta": "Buku frasa sedia guna",
+    "call1330_title": "Hubungi 1330",
+    "call1330_desc": "Apabila bantuan bahasa diperlukan, hotline pelancongan selalunya menjadi titik mula yang paling pantas.",
+    "call1330_meta": "Hotline pelancongan",
+    "main_119": "Kecemasan bomba / ambulans",
+    "main_112": "Kecemasan polis",
+    "main_1330": "Hotline pelancongan",
+    "main_120": "Pusat panggilan Dasan Seoul 120",
+    "role_title": "Cara halaman ini berfungsi",
+    "role_text": "My Support ialah hab utama. Setiap halaman /help menerangkan satu laluan dengan lebih terperinci. Travel Phrasebook digunakan untuk teks Korea besar yang boleh ditunjukkan dalam situasi sebenar.",
+    "quick_actions_title": "Tindakan pantas",
+    "quick_actions_desc": "Ini ialah titik masuk yang paling cepat dan selamat apabila anda memerlukan bantuan sekarang.",
+    "routes_title": "Laluan bantuan terperinci",
+    "routes_desc": "Pilih halaman yang paling sesuai dengan situasi. Setiap laluan mengekalkan alat dan pautan hubungan yang sudah ada dalam aplikasi.",
+    "numbers_desc": "Gunakan nombor ini hanya apabila sesuai dengan situasi. Halaman terperinci di bawah akan menambah konteks dan sokongan frasa.",
+    "interp_detail_subtitle": "Gunakan halaman ini apabila komunikasi sukar. Halaman ini membawa anda kepada frasa, hotline dan alat terjemahan mudah yang sudah ada dalam aplikasi.",
+    "interp_when_title": "Bila perlu guna halaman ini",
+    "interp_when_desc": "Gunakan laluan ini apabila anda perlukan bantuan untuk bercakap dengan staf, pemandu, polis atau pasukan perubatan. Jika situasi berkaitan keselamatan atau kesihatan, buka juga halaman terperinci yang sepadan.",
+    "interp_services_desc": "Pilihan ini boleh membuka panggilan telefon atau halaman terjemahan luaran. Tiada perkhidmatan penterjemah baharu dalam aplikasi diwujudkan di sini.",
+    "interp_phrases_desc": "Ini ialah pratonton ringkas. Untuk teks besar yang boleh ditunjukkan dan lebih banyak frasa kecemasan, buka Travel Phrasebook.",
+    "interp_show_more": "Lihat lebih banyak frasa kecemasan",
+    "interp_next_title": "Perlu laluan terperinci lain?",
+    "interp_next_desc": "Bantuan penterjemah tidak menggantikan panduan polis atau perubatan. Jika isu berkaitan keselamatan atau kesihatan, buka juga halaman yang sepadan.",
+    "interp_medical_bridge": "Pergi ke Medical Help jika situasi melibatkan simptom, kecederaan atau rawatan segera.",
+    "interp_medical_cta": "Buka Medical Help",
+    "interp_police_bridge": "Pergi ke Police Help jika anda rasa tidak selamat atau perlukan panduan keselamatan rasmi.",
+    "interp_police_cta": "Buka Police Help",
+    "police_detail_subtitle": "Gunakan halaman ini apabila anda perlukan hubungan polis, panduan polis pelancong atau langkah seterusnya yang lebih selamat.",
+    "police_when_title": "Bila perlu guna halaman ini",
+    "police_when_desc": "Gunakan laluan ini jika anda rasa tidak selamat, perlukan maklumat hubungan polis atau mahukan laluan keselamatan yang lebih jelas.",
+    "police_contacts_desc": "Gunakan laluan telefon atau laman web sedia ada di bawah apabila perlu.",
+    "police_info": {
+      "tourist_info": "Polis pelancong ditempatkan di kawasan Myeongdong, Insadong dan Itaewon.",
+      "crime_label": "Kecemasan polis",
+      "crime_note": "Gunakan ini untuk respons polis segera atau apabila keadaan terasa tidak selamat.",
+      "tourist_label": "Sokongan keselamatan hotline pelancongan",
+      "tourist_note": "Gunakan ini apabila anda perlukan bantuan memahami pilihan keselamatan atau laluan polis.",
+      "station_label": "Laman web rasmi polis"
+    },
+    "police_phrase_desc": "Frasa pantas ini membantu apabila anda perlu menerangkan keadaan sebelum membuka phrasebook penuh.",
+    "police_bridge_title": "Perlu lebih daripada satu laluan?",
+    "police_bridge_desc": "Jika komunikasi sukar, buka juga Interpreter Help. Jika situasi melibatkan kecederaan atau simptom mendesak, buka juga Medical Help.",
+    "police_interp_bridge": "Buka Interpreter Help apabila anda perlukan bantuan menerangkan keadaan kepada pegawai atau staf.",
+    "police_medical_bridge": "Buka Medical Help apabila situasi juga melibatkan kecederaan, sakit atau keperluan rawatan kecemasan.",
+    "medical_detail_subtitle": "Gunakan halaman ini untuk laluan hubungan perubatan, frasa simptom dan panduan klinik statik yang sudah disertakan dalam projek. Ia tidak mewujudkan perkhidmatan diagnosis atau tempahan hospital baharu.",
+    "medical_notice_title": "Jika situasi terasa mendesak",
+    "medical_notice_text": "Hubungi 119 dahulu untuk simptom mendesak, kecederaan serius atau masalah pernafasan. Gunakan phrasebook dan laluan penterjemah untuk membantu menjelaskan keadaan dengan lebih jelas.",
+    "clinic_desc": "Ini ialah contoh entri klinik dan hospital statik yang sudah ada dalam aplikasi. Hubungi terlebih dahulu jika boleh.",
+    "medical_bridge_title": "Perlu laluan sokongan lain juga?",
+    "medical_bridge_desc": "Buka Interpreter Help jika komunikasi sukar. Buka Police Help juga jika keperluan perubatan berkaitan dengan insiden yang tidak selamat.",
+    "medical_interp_bridge": "Pergi ke Interpreter Help apabila anda perlukan cara yang lebih jelas untuk menerangkan simptom atau soalan rawatan.",
+    "medical_police_bridge": "Pergi ke Police Help apabila masalah perubatan berkaitan dengan jenayah, kemalangan atau risiko keselamatan.",
+    "lost_quick_desc": "Gunakan laluan rasmi atau hotline yang sepadan jika anda perlukan sokongan terus untuk barang hilang.",
+    "lost112_desc": "Laluan rasmi barang hilang untuk banyak kes awam di Korea.",
+    "embassy_desc": "Gunakan ini apabila pasport atau dokumen pengenalan hilang dan anda memerlukan sokongan kedutaan.",
+    "lost_1330_desc": "Gunakan ini apabila anda perlukan bantuan memahami langkah seterusnya atau menerangkan situasi.",
+    "lost_steps_desc": "Ikuti laluan yang sepadan di bawah. Gunakan Support atau Phrasebook jika anda perlukan bantuan tambahan untuk bercakap dengan staf.",
+    "interp_badge": "Bantuan penterjemah",
+    "police_badge": "Laluan keselamatan",
+    "medical_badge": "Laluan perubatan",
+    "lost_badge": "Laluan barang hilang",
+    "interp_actions": {
+      "open_papago": "Buka Papago",
+      "open_google_translate": "Buka Google Translate"
+    },
+    "interp_booking_title": "Penterjemah untuk tempahan ini",
+    "interp_booking_desc": "Anda membuka bantuan penterjemah untuk satu tempahan. Kekalkan tempat, masa dan status tempahan kelihatan semasa bercakap dengan staf.",
+    "booking_phrases_desc": "Buka frasa tempahan dahulu apabila anda perlu menerangkan tempahan, kelewatan atau situasi daftar masuk kepada staf.",
+    "booking_context_title": "Bantuan untuk tempahan ini",
+    "booking_context_desc": "Anda membuka halaman bantuan ini semasa menyemak satu tempahan. Kekalkan tempat, masa dan status tempahan kelihatan semasa memilih laluan sokongan seterusnya.",
+    "police_booking_desc": "Anda membuka bantuan keselamatan semasa menyemak satu tempahan. Kekalkan tempat, masa dan status tempahan kelihatan semasa memilih langkah seterusnya yang paling selamat.",
+    "medical_booking_desc": "Anda membuka bantuan perubatan semasa menyemak satu tempahan. Kekalkan tempat, masa dan status tempahan kelihatan semasa memilih laluan perubatan atau penterjemah seterusnya.",
+    "lost_booking_desc": "Jika anda sedang dalam perjalanan ke satu tempahan, kekalkan tempat, masa dan status tempahan kelihatan semasa meminta arah atau bantuan.",
+    "interp": {
+      "hotline_title": "Hotline Pelancongan 1330",
+      "hotline_desc": "Ini ialah hotline rasmi terpantas apabila anda memerlukan sokongan bahasa atau bantuan menerangkan masalah perjalanan.",
+      "papago_title": "Papago",
+      "papago_desc": "Buka Naver Papago apabila anda memerlukan terjemahan pantas dan sokongan teks.",
+      "google_title": "Google Translate",
+      "google_desc": "Buka Google Translate apabila anda memerlukan satu lagi pilihan terjemahan pantas.",
+      "dasan_title": "Pusat Panggilan Dasan 120",
+      "dasan_desc": "Hotline bandar Seoul untuk maklumat awam tempatan dan panduan umum."
+    },
+    "lost112_title": "Lost112",
+    "embassy_title": "Cari Kedutaan",
+    "lost_1330_title": "Hotline Perjalanan 1330",
+    "lost": {
+      "taxi_hint": "Buka langkah untuk barang yang hilang di dalam teksi.",
+      "subway_hint": "Buka langkah untuk barang yang hilang di dalam kereta api bawah tanah atau di stesen.",
+      "airport_hint": "Buka langkah untuk barang yang hilang di lapangan terbang atau semasa transit.",
+      "street_hint": "Buka langkah untuk barang yang hilang di jalan atau kawasan awam."
+    }
+  }
 }

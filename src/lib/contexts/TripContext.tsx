@@ -2,11 +2,13 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export type BookingStatus = 'draft' | 'submitted' | 'in_progress' | 'confirmed' | 'unavailable' | 'canceled';
+export type BookingStatus = 'draft' | 'submitted' | 'in_progress' | 'confirmed' | 'unavailable' | 'canceled' | 'completed';
 export type TripMode = 'idle' | 'pre-trip' | 'on-trip' | 'near-deadline';
 
 export interface ItineraryItem {
     id: string;
+    // Stable source/service id when this item originated from an existing place or plan item.
+    sourceItemId?: string;
     name: string;
     time: string;
     status: BookingStatus;

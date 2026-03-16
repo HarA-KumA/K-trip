@@ -1,222 +1,338 @@
 {
-    "common": {
-        "welcome": "Selamat datang, Pelancong.",
-        "greeting": "Selamat Pagi",
-        "login": "Masuk",
-        "today": "Hari Ini",
-        "move": "Pindah",
-        "book": "Pesan",
-        "chat": "Chat",
-        "my": "Saya",
-        "current_operation": "Operasi Saat Ini",
-        "live": "LIVE",
-        "recommended": "Rekomendasi Terdekat",
-        "based_on_location": "Berdasarkan lokasi Anda",
-        "start_nav": "Mulai Navigasi",
-        "delay_10m": "Tunda +10m",
-        "confirmed": "Dikonfirmasi",
-        "payment_completed": "Pembayaran Selesai",
-        "weather_clear": "Cerah",
-        "back": "Kembali",
-        "select_language": "Pilih Bahasa",
-        "home_nav": "Utama",
-        "explore_nav": "Eksplorasi",
-        "planner_nav": "Jadwal",
-        "today_nav": "Hari Ini",
-        "my_nav": "Saya",
-        "day_unit": "h",
-        "locale": "id-ID",
-        "cities": {
-            "seoul": "Seoul",
-            "busan": "Busan",
-            "jeju": "Jeju",
-            "gyeongju": "Gyeongju"
-        },
-        "categories": {
-            "all": "Semua",
-            "food": "Makanan",
-            "beauty": "Kecantikan",
-            "event": "Acara",
-            "festival": "Festival",
-            "attraction": "Wisata",
-            "transport": "Transportasi"
-        },
-        "community_nav": "Komunitas",
-        "help_nav": "Bantuan",
-        "greeting_morning": "Selamat pagi",
-        "greeting_afternoon": "Selamat siang",
-        "greeting_evening": "Selamat malam",
-        "search_results": "Hasil pencarian",
-        "search_results_for": "{{count}} hasil untuk '{{query}}'",
-        "view_map": "Lihat Lokasi",
-        "view_map_desc": "Lihat lokasi detail di peta",
-        "taxi_call": "Panggil Taksi",
-        "route_nav": "Panduan Rute",
-        "transit_nav_desc": "Navigasi transportasi umum",
-        "copy_address": "Salin Alamat",
-        "copied": "Tersalin!"
+  "common": {
+    "welcome": "Selamat datang, Pelancong.",
+    "greeting": "Selamat Pagi",
+    "login": "Masuk",
+    "today": "Hari Ini",
+    "move": "Pindah",
+    "book": "Pesan",
+    "chat": "Chat",
+    "my": "Saya",
+    "current_operation": "Operasi Saat Ini",
+    "live": "LIVE",
+    "recommended": "Rekomendasi Terdekat",
+    "based_on_location": "Berdasarkan lokasi Anda",
+    "start_nav": "Mulai Navigasi",
+    "delay_10m": "Tunda +10m",
+    "confirmed": "Dikonfirmasi",
+    "payment_completed": "Pembayaran Selesai",
+    "weather_clear": "Cerah",
+    "back": "Kembali",
+    "select_language": "Pilih Bahasa",
+    "home_nav": "Utama",
+    "explore_nav": "Eksplorasi",
+    "planner_nav": "Jadwal",
+    "today_nav": "Hari Ini",
+    "my_nav": "Saya",
+    "day_unit": "h",
+    "locale": "id-ID",
+    "cities": {
+      "seoul": "Seoul",
+      "busan": "Busan",
+      "jeju": "Jeju",
+      "gyeongju": "Gyeongju"
     },
-    "home": {
-        "badge": "Kello",
-        "title": "Pemesanan Concierge · Jadwal Otomatis · Navigasi",
-        "subtitle": "",
-        "create_trip_cta": "Mulai Membuat Jadwal",
-        "input_label": "Ke mana Anda akan berwisata?",
-        "input_placeholder": "Kota, daerah, nama hotel",
-        "days_label": "Durasi Perjalanan",
-        "recommended_plans": "Rekomendasi Rencana Perjalanan",
-        "plans": {
-            "2d": {
-                "title": "2 Hari: Esensial Seoul",
-                "label": "Rencana 2 Hari"
-            },
-            "3d": {
-                "title": "3 Hari: K-Culture & Gaya",
-                "label": "Rencana 3 Hari"
-            },
-            "5d": {
-                "title": "5 Hari: Tur Besar",
-                "label": "Rencana 5 Hari"
-            },
-            "request_custom_label": "Kustom",
-            "request_custom_title": "Minta Rencana {{days}} Hari",
-            "request_custom_toast": "Meminta rencana {{days}} hari kustom! Concierge kami akan menghubungi Anda."
-        }
+    "categories": {
+      "all": "Semua",
+      "food": "Makanan",
+      "beauty": "Kecantikan",
+      "event": "Acara",
+      "festival": "Festival",
+      "attraction": "Wisata",
+      "transport": "Transportasi"
     },
-    "explore_items": {
-        "airport_arrival": "Kedatangan Bandara Incheon",
-        "hotel_checkin": "Check-in Hotel / Menginap"
-    },
-    "explore_page": {
-        "title": "Eksplorasi",
-        "city_changed": "Kota diubah ke {{city}}",
-        "added_to": "Ditambahkan ke Hari {{day}}",
-        "no_items": "Tidak ada item ditemukan di {{city}}",
-        "try_changing": "Coba ubah kategori atau kota.",
-        "select_city": "Pilih Kota"
-    },
-    "planner_page": {
-        "title": "Jadwal",
-        "day": "Hari {{n}}"
-    },
-    "today_page": {
-        "title": "Jadwal Hari Ini",
-        "active_now": "Sedang Aktif",
-        "navigate": "Navigasi",
-        "booking_ref": "Ref Pemesanan: {{ref}}",
-        "next_up": "Selanjutnya",
-        "minutes_left": "Mulai dalam {{mins}}mnt",
-        "depart_early": "Berangkat Sekarang",
-        "timeline": "Timeline",
-        "empty": {
-            "title": "Tidak ada jadwal untuk hari ini",
-            "desc": "Eksplorasi tempat dan tambahkan ke perjalanan Anda!",
-            "cta": "Eksplorasi Tempat"
-        }
-    },
-    "booking_detail": {
-        "select_date": "Pilih Tanggal",
-        "select_time": "Pilih Waktu",
-        "total_price": "Total Harga",
-        "request_booking": "Ajukan Pemesanan"
-    },
-    "my_page": {
-        "bookings": {
-            "title": "Pemesanan Saya",
-            "date_time": "Tanggal / Waktu",
-            "area": "Lokasi",
-            "price": "Harga",
-            "new_added": "Pemesanan baru ditambahkan!"
-        },
-        "community": {
-            "title": "Postingan Komunitas Saya",
-            "empty": "Belum ada postingan komunitas yang ditulis."
-        }
-    },
-    "community_page": {
-        "title": "Community",
-        "subtitle": "Connect with locals & travelers",
-        "filter_all": "All",
-        "filter_meetup": "Food & Meetup",
-        "filter_travel": "Travel Mate",
-        "filter_help": "Local Help",
-        "comments": "Comments",
-        "message": "Message",
-        "type": {
-            "MEETUP": "MEETUP",
-            "TRAVEL": "TRAVEL",
-            "HELP": "HELP",
-            "REVIEW": "REVIEW"
-        },
-        "post": {
-            "1": {
-                "author": "Mika (Japan)",
-                "time": "10 mins ago",
-                "title": "Samgyeopsal Meetup 🥓",
-                "desc": "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
-            },
-            "2": {
-                "author": "John (US)",
-                "time": "1 hour ago",
-                "title": "Hongdae Street Performance 🎸",
-                "desc": "Heading to Hongdae right now to watch indie bands. Join me!"
-            },
-            "3": {
-                "author": "Jihoon (Korea)",
-                "time": "2 hours ago",
-                "title": "Need help with subway directions? 🚇",
-                "desc": "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
-            },
-            "4": {
-                "author": "Li Wei (China)",
-                "time": "3 hours ago",
-                "title": "K-Beauty Shopping 💄",
-                "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
-            }
-        },
-        "filter_review": "Reviews",
-        "detail": "Detail Postingan"
-    },
-    "home_new": {
-        "hero_title": "Wisata Korea, dari rencana hingga pemesanan dalam satu aplikasi",
-        "hero_subtitle": "Dari rekomendasi rencana perjalanan hingga dukungan pemesanan dengan cepat. Mitra yang mudah digunakan bahkan bagi pemula di Korea.",
-        "features": {
-            "booking": "Pemesanan sekaligus",
-            "ai_plan": "Rencana selesai dengan AI",
-            "navi": "Tanpa khawatir tersesat"
-        },
-        "input": {
-            "where": "Mau ke mana?",
-            "where_placeholder": "Seoul, Busan, Jeju...",
-            "when": "Berapa lama menginap?",
-            "days_suffix": " Hari",
-            "who": "Pergi dengan siapa?",
-            "who_options": {
-                "solo": "Sendiri",
-                "couple": "Pasangan",
-                "friends": "Bersama teman",
-                "family": "Bersama keluarga"
-            },
-            "interests": "Tema apa yang Anda inginkan?",
-            "interests_options": {
-                "food": "Wisata Kuliner",
-                "shopping": "Belanja",
-                "beauty": "K-Beauty",
-                "sightseeing": "Tempat Wisata",
-                "night": "Kehidupan Malam",
-                "experience": "Pengalaman Unik"
-            }
-        },
-        "cta_helper": "Dapatkan rute wisata yang pas dalam 1 menit",
-        "cta_btn": "Mulai buat rencana",
-        "trust": {
-            "title": "Wisata Nyaman bersama Kello",
-            "items": [
-                "Aplikasi khusus wisata Korea",
-                "Rekomendasi rencana AI yang dipersonalisasi",
-                "Panduan arah tanpa hambatan bahasa",
-                "Dukungan pemesanan di tempat yang sulit"
-            ]
-        }
+    "community_nav": "Community"
+  },
+  "home": {
+    "badge": "Kello",
+    "title": "Pemesanan Concierge · Jadwal Otomatis · Navigasi",
+    "subtitle": "",
+    "create_trip_cta": "Mulai Membuat Jadwal",
+    "input_label": "Ke mana Anda akan berwisata?",
+    "input_placeholder": "Kota, daerah, nama hotel",
+    "days_label": "Durasi Perjalanan",
+    "recommended_plans": "Rekomendasi Rencana Perjalanan",
+    "plans": {
+      "2d": {
+        "title": "2 Hari: Esensial Seoul",
+        "label": "Rencana 2 Hari"
+      },
+      "3d": {
+        "title": "3 Hari: K-Culture & Gaya",
+        "label": "Rencana 3 Hari"
+      },
+      "5d": {
+        "title": "5 Hari: Tur Besar",
+        "label": "Rencana 5 Hari"
+      },
+      "request_custom_label": "Kustom",
+      "request_custom_title": "Minta Rencana {{days}} Hari",
+      "request_custom_toast": "Meminta rencana {{days}} hari kustom! Concierge kami akan menghubungi Anda."
     }
+  },
+  "explore_items": {
+    "airport_arrival": "Kedatangan Bandara Incheon",
+    "hotel_checkin": "Check-in Hotel / Menginap"
+  },
+  "explore_page": {
+    "title": "Eksplorasi",
+    "city_changed": "Kota diubah ke {{city}}",
+    "added_to": "Ditambahkan ke Hari {{day}}",
+    "no_items": "Tidak ada item ditemukan di {{city}}",
+    "try_changing": "Coba ubah kategori atau kota.",
+    "select_city": "Pilih Kota"
+  },
+  "planner_page": {
+    "title": "Jadwal",
+    "day": "Hari {{n}}"
+  },
+  "today_page": {
+    "title": "Jadwal Hari Ini",
+    "active_now": "Sedang Aktif",
+    "navigate": "Navigasi",
+    "booking_ref": "Ref Pemesanan: {{ref}}",
+    "next_up": "Selanjutnya",
+    "minutes_left": "Mulai dalam {{mins}}mnt",
+    "depart_early": "Berangkat Sekarang",
+    "timeline": "Timeline",
+    "empty": {
+      "title": "Tidak ada jadwal untuk hari ini",
+      "desc": "Eksplorasi tempat dan tambahkan ke perjalanan Anda!",
+      "cta": "Eksplorasi Tempat"
+    }
+  },
+  "booking_detail": {
+    "select_date": "Pilih Tanggal",
+    "select_time": "Pilih Waktu",
+    "total_price": "Total Harga",
+    "request_booking": "Ajukan Pemesanan"
+  },
+  "my_page": {
+    "bookings": {
+      "title": "Pemesanan Saya",
+      "date_time": "Tanggal / Waktu",
+      "area": "Lokasi",
+      "price": "Harga",
+      "new_added": "Pemesanan baru ditambahkan!"
+    },
+    "community": {
+      "title": "Postingan Komunitas Saya",
+      "empty": "Belum ada postingan komunitas yang ditulis."
+    }
+  },
+  "community_page": {
+    "title": "Community",
+    "subtitle": "Connect with locals & travelers",
+    "filter_all": "All",
+    "filter_meetup": "Food & Meetup",
+    "filter_travel": "Travel Mate",
+    "filter_help": "Local Help",
+    "comments": "Comments",
+    "message": "Message",
+    "type": {
+      "MEETUP": "MEETUP",
+      "TRAVEL": "TRAVEL",
+      "HELP": "HELP",
+      "REVIEW": "REVIEW"
+    },
+    "post": {
+      "1": {
+        "author": "Mika (Japan)",
+        "time": "10 mins ago",
+        "title": "Samgyeopsal Meetup 🥓",
+        "desc": "Anyone wants to eat Samgyeopsal at Gold Pig BBQ tonight at 7PM?"
+      },
+      "2": {
+        "author": "John (US)",
+        "time": "1 hour ago",
+        "title": "Hongdae Street Performance 🎸",
+        "desc": "Heading to Hongdae right now to watch indie bands. Join me!"
+      },
+      "3": {
+        "author": "Jihoon (Korea)",
+        "time": "2 hours ago",
+        "title": "Need help with subway directions? 🚇",
+        "desc": "I live near Myeongdong and can help translate or guide you if you are lost. Feel free to message me!"
+      },
+      "4": {
+        "author": "Li Wei (China)",
+        "time": "3 hours ago",
+        "title": "K-Beauty Shopping 💄",
+        "desc": "Looking for a shopping buddy at Olive Young Myeongdong. I know all the good brands!"
+      }
+    },
+    "filter_review": "Reviews",
+    "detail": "Detail Postingan",
+    "meetup_info": "Info kunjungan",
+    "write_post": "Tulis ulasan",
+    "edit": "Edit ulasan",
+    "posting": "Sedang memposting...",
+    "hero": {
+      "title": "Komunitas yang memprioritaskan ulasan beauty setelah reservasi",
+      "subtitle": "Mulai dari ulasan salon beauty, lalu lanjut ke makanan, wisata, dan acara.",
+      "search_placeholder": "Cari nama salon, pengalaman treatment, atau ulasan reservasi"
+    },
+    "categories": {
+      "all": "Semua",
+      "beauty_review": "Ulasan salon beauty",
+      "food_review": "Ulasan kuliner",
+      "travel_review": "Ulasan tempat wisata",
+      "meetup": "Acara",
+      "help": "Pertanyaan"
+    },
+    "sub_filters": {
+      "all": "Semua",
+      "saved": "⭐ Disimpan",
+      "reacted": "💬 Saya ikut",
+      "mine": "👤 Tulisan saya",
+      "recruiting": "📢 Masih buka",
+      "active_reactions": "🔥 Banyak respons",
+      "open_meetup": "🤝 Buka ajakan bareng",
+      "weekend": "📅 Akhir pekan ini",
+      "fresh": "✨ Baru diperbarui"
+    },
+    "states": {
+      "fetch_failed_title": "Tidak bisa memuat postingan",
+      "fetch_failed_desc": "Silakan coba lagi sebentar lagi.",
+      "fetch_failed_tip": "Buka ulang halaman ini untuk memuat postingan terbaru.",
+      "empty_title": "Belum ada postingan",
+      "empty_desc": "Jadilah yang pertama membagikan ulasan beauty.",
+      "empty_tip": "Menulis nama salon, pengalaman treatment, dan alur reservasi akan sangat membantu orang lain.",
+      "no_results_title": "Tidak ada postingan yang cocok",
+      "no_results_desc": "Coba kata kunci atau filter lain.",
+      "cta_write": "Tulis ulasan",
+      "cta_all": "Lihat semua"
+    },
+    "form": {
+      "category_label": "Kategori",
+      "region_label": "Area",
+      "region_placeholder": "Contoh: Gangnam, Mapo",
+      "vibe_label": "Pilih suasana",
+      "meetup_toggle_title": "Buka ajakan bareng",
+      "meetup_toggle_desc": "Terima sinyal minat dari orang lain.",
+      "safety_title": "🔒 Panduan aman",
+      "safety_item_1": "• Jangan langsung membagikan kontak pribadi. Cek respons lewat komentar dulu.",
+      "safety_item_2": "• Disarankan membuat janji di tempat umum.",
+      "image": {
+        "label": "Tambah gambar",
+        "title": "Anda dapat mengunggah hingga {{count}} gambar.",
+        "file_only_alert": "Hanya file gambar yang bisa ditambahkan.",
+        "limit_alert": "Anda dapat mengunggah hingga {{count}} gambar.",
+        "load_failed_alert": "Gambar tidak dapat dimuat.",
+        "button_loading": "Menyiapkan gambar...",
+        "button_limit": "{{count}} gambar sudah dipilih",
+        "button_add_more": "Tambah gambar",
+        "button_select": "Pilih gambar",
+        "preview_alt": "Pratinjau unggahan {{index}}",
+        "preview_name": "Gambar terpilih {{index}}",
+        "preview_desc": "Ini gambar ke-{{index}}. Periksa pratinjaunya sebelum mengirim.",
+        "remove": "Hapus",
+        "saved_name": "Gambar unggahan {{index}}",
+        "guides": {
+          "beauty_review": "Tambahkan hasil treatment atau suasana salon bila ada.",
+          "food_review": "Tambahkan foto makanan atau suasana tempat agar lebih jelas.",
+          "travel_review": "Ambil suasana lokasi atau titik yang paling berkesan.",
+          "meetup": "Bagikan suasana acara atau alasan serunya pergi bersama.",
+          "help": "Kalau ada gambar referensi, unggah juga sekalian."
+        }
+      },
+      "summary_title": "Ringkasan posting",
+      "summary_region_type": "Area / jenis",
+      "summary_point": "Poin",
+      "summary_meetup": "Pergi bersama",
+      "summary_enabled": "Aktif",
+      "summary_disabled": "Nonaktif",
+      "submit_with_reactions": "Posting ulasan dan kumpulkan respons",
+      "submit_beauty": "Bagikan ulasan beauty",
+      "submit_default": "Bagikan ulasan"
+    },
+    "quick_entry": {
+      "beauty": {
+        "label": "Ulasan beauty",
+        "sub": "Reservasi · layanan · kepuasan"
+      },
+      "food": {
+        "label": "Ulasan kuliner",
+        "sub": "Tambahan untuk hari beauty"
+      },
+      "travel": {
+        "label": "Ulasan wisata",
+        "sub": "Rute sebelum dan sesudah treatment"
+      },
+      "write": {
+        "label": "Tulis ulasan",
+        "sub": "Bagikan pengalaman beauty"
+      }
+    },
+    "activity": {
+      "label": "Aktivitas saya:",
+      "summary": "Simpan {{saved}}, ikut {{reacted}}",
+      "new_updates": "✨ Ada kabar baru!"
+    },
+    "sort": {
+      "latest": "Terbaru",
+      "reactions": "Respons terbanyak",
+      "draft": "Pembentukan rencana"
+    },
+    "defaults": {
+      "region": "Seoul"
+    },
+    "fab": {
+      "beauty": "Tulis ulasan beauty",
+      "meetup": "Tulis posting acara"
+    },
+    "report": {
+      "modal_title": "Pilih alasan laporan",
+      "report_action": "Laporkan",
+      "cancel": "Batal",
+      "item_post": "postingan",
+      "item_comment": "komentar",
+      "submitted_alert": "{{item}} telah dilaporkan.\nAlasan: {{reason}}\nKami akan meninjaunya segera.",
+      "reasons": {
+        "ad_spam": "Terlihat seperti iklan",
+        "offensive": "Ada ungkapan yang tidak nyaman",
+        "contact": "Terlalu mendorong kontak pribadi",
+        "unsafe": "Terlihat tidak aman",
+        "other": "Lainnya"
+      }
+    },
+    "detail_page": {
+      "loading": "Memuat postingan...",
+      "hidden_post": "Postingan ini disembunyikan.",
+      "show_hidden": "Tampilkan lagi",
+      "not_found": "Postingan tidak ditemukan.",
+      "hide_post": "Sembunyikan postingan ini",
+      "hide_comment": "Sembunyikan",
+      "save_post_aria": "Simpan postingan",
+      "body_title": "Detail",
+      "comments_title": "Komentar & pergi bersama",
+      "empty_comments": "Belum ada komentar.",
+      "signal_tag": "Sinyal pergi bersama",
+      "comment_input": {
+        "default": "Tulis komentar...",
+        "optional": "Pesan tambahan (opsional)",
+        "send": "Kirim"
+      },
+      "signal_intents": {
+        "interested": "Saya juga ingin pergi",
+        "available_this_week": "Saya bisa minggu ini",
+        "join_if_schedule_fits": "Saya ikut kalau jadwal cocok",
+        "thanks": "Terima kasih infonya",
+        "question": "Saya punya pertanyaan"
+      },
+      "signal_times": {
+        "this_week": "Minggu ini",
+        "this_weekend": "Akhir pekan ini",
+        "next_week": "Minggu depan",
+        "schedule_coordination": "Atur tanggal"
+      },
+      "related": {
+        "this_region": "area ini"
+      },
+      "save": {
+        "default": "☆ Simpan",
+        "saved": "⭐ Tersimpan"
+      }
+    }
+  }
 }

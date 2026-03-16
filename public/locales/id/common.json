@@ -58,7 +58,7 @@
         "label": "Rencana 2 Hari"
       },
       "3d": {
-        "title": "3 Hari: K-Culture \u0026 Gaya",
+        "title": "3 Hari: K-Culture & Gaya",
         "label": "Rencana 3 Hari"
       },
       "5d": {
@@ -122,9 +122,9 @@
   },
   "community_page": {
     "title": "Community",
-    "subtitle": "Connect with locals \u0026 travelers",
+    "subtitle": "Connect with locals & travelers",
     "filter_all": "All",
-    "filter_meetup": "Food \u0026 Meetup",
+    "filter_meetup": "Food & Meetup",
     "filter_travel": "Travel Mate",
     "filter_help": "Local Help",
     "comments": "Comments",
@@ -162,6 +162,177 @@
       }
     },
     "filter_review": "Reviews",
-    "detail": "Detail Postingan"
+    "detail": "Detail Postingan",
+    "meetup_info": "Info kunjungan",
+    "write_post": "Tulis ulasan",
+    "edit": "Edit ulasan",
+    "posting": "Sedang memposting...",
+    "hero": {
+      "title": "Komunitas yang memprioritaskan ulasan beauty setelah reservasi",
+      "subtitle": "Mulai dari ulasan salon beauty, lalu lanjut ke makanan, wisata, dan acara.",
+      "search_placeholder": "Cari nama salon, pengalaman treatment, atau ulasan reservasi"
+    },
+    "categories": {
+      "all": "Semua",
+      "beauty_review": "Ulasan salon beauty",
+      "food_review": "Ulasan kuliner",
+      "travel_review": "Ulasan tempat wisata",
+      "meetup": "Acara",
+      "help": "Pertanyaan"
+    },
+    "sub_filters": {
+      "all": "Semua",
+      "saved": "⭐ Disimpan",
+      "reacted": "💬 Saya ikut",
+      "mine": "👤 Tulisan saya",
+      "recruiting": "📢 Masih buka",
+      "active_reactions": "🔥 Banyak respons",
+      "open_meetup": "🤝 Buka ajakan bareng",
+      "weekend": "📅 Akhir pekan ini",
+      "fresh": "✨ Baru diperbarui"
+    },
+    "states": {
+      "fetch_failed_title": "Tidak bisa memuat postingan",
+      "fetch_failed_desc": "Silakan coba lagi sebentar lagi.",
+      "fetch_failed_tip": "Buka ulang halaman ini untuk memuat postingan terbaru.",
+      "empty_title": "Belum ada postingan",
+      "empty_desc": "Jadilah yang pertama membagikan ulasan beauty.",
+      "empty_tip": "Menulis nama salon, pengalaman treatment, dan alur reservasi akan sangat membantu orang lain.",
+      "no_results_title": "Tidak ada postingan yang cocok",
+      "no_results_desc": "Coba kata kunci atau filter lain.",
+      "cta_write": "Tulis ulasan",
+      "cta_all": "Lihat semua"
+    },
+    "form": {
+      "category_label": "Kategori",
+      "region_label": "Area",
+      "region_placeholder": "Contoh: Gangnam, Mapo",
+      "vibe_label": "Pilih suasana",
+      "meetup_toggle_title": "Buka ajakan bareng",
+      "meetup_toggle_desc": "Terima sinyal minat dari orang lain.",
+      "safety_title": "🔒 Panduan aman",
+      "safety_item_1": "• Jangan langsung membagikan kontak pribadi. Cek respons lewat komentar dulu.",
+      "safety_item_2": "• Disarankan membuat janji di tempat umum.",
+      "image": {
+        "label": "Tambah gambar",
+        "title": "Anda dapat mengunggah hingga {{count}} gambar.",
+        "file_only_alert": "Hanya file gambar yang bisa ditambahkan.",
+        "limit_alert": "Anda dapat mengunggah hingga {{count}} gambar.",
+        "load_failed_alert": "Gambar tidak dapat dimuat.",
+        "button_loading": "Menyiapkan gambar...",
+        "button_limit": "{{count}} gambar sudah dipilih",
+        "button_add_more": "Tambah gambar",
+        "button_select": "Pilih gambar",
+        "preview_alt": "Pratinjau unggahan {{index}}",
+        "preview_name": "Gambar terpilih {{index}}",
+        "preview_desc": "Ini gambar ke-{{index}}. Periksa pratinjaunya sebelum mengirim.",
+        "remove": "Hapus",
+        "saved_name": "Gambar unggahan {{index}}",
+        "guides": {
+          "beauty_review": "Tambahkan hasil treatment atau suasana salon bila ada.",
+          "food_review": "Tambahkan foto makanan atau suasana tempat agar lebih jelas.",
+          "travel_review": "Ambil suasana lokasi atau titik yang paling berkesan.",
+          "meetup": "Bagikan suasana acara atau alasan serunya pergi bersama.",
+          "help": "Kalau ada gambar referensi, unggah juga sekalian."
+        }
+      },
+      "summary_title": "Ringkasan posting",
+      "summary_region_type": "Area / jenis",
+      "summary_point": "Poin",
+      "summary_meetup": "Pergi bersama",
+      "summary_enabled": "Aktif",
+      "summary_disabled": "Nonaktif",
+      "submit_with_reactions": "Posting ulasan dan kumpulkan respons",
+      "submit_beauty": "Bagikan ulasan beauty",
+      "submit_default": "Bagikan ulasan"
+    },
+    "quick_entry": {
+      "beauty": {
+        "label": "Ulasan beauty",
+        "sub": "Reservasi · layanan · kepuasan"
+      },
+      "food": {
+        "label": "Ulasan kuliner",
+        "sub": "Tambahan untuk hari beauty"
+      },
+      "travel": {
+        "label": "Ulasan wisata",
+        "sub": "Rute sebelum dan sesudah treatment"
+      },
+      "write": {
+        "label": "Tulis ulasan",
+        "sub": "Bagikan pengalaman beauty"
+      }
+    },
+    "activity": {
+      "label": "Aktivitas saya:",
+      "summary": "Simpan {{saved}}, ikut {{reacted}}",
+      "new_updates": "✨ Ada kabar baru!"
+    },
+    "sort": {
+      "latest": "Terbaru",
+      "reactions": "Respons terbanyak",
+      "draft": "Pembentukan rencana"
+    },
+    "defaults": {
+      "region": "Seoul"
+    },
+    "fab": {
+      "beauty": "Tulis ulasan beauty",
+      "meetup": "Tulis posting acara"
+    },
+    "report": {
+      "modal_title": "Pilih alasan laporan",
+      "report_action": "Laporkan",
+      "cancel": "Batal",
+      "item_post": "postingan",
+      "item_comment": "komentar",
+      "submitted_alert": "{{item}} telah dilaporkan.\nAlasan: {{reason}}\nKami akan meninjaunya segera.",
+      "reasons": {
+        "ad_spam": "Terlihat seperti iklan",
+        "offensive": "Ada ungkapan yang tidak nyaman",
+        "contact": "Terlalu mendorong kontak pribadi",
+        "unsafe": "Terlihat tidak aman",
+        "other": "Lainnya"
+      }
+    },
+    "detail_page": {
+      "loading": "Memuat postingan...",
+      "hidden_post": "Postingan ini disembunyikan.",
+      "show_hidden": "Tampilkan lagi",
+      "not_found": "Postingan tidak ditemukan.",
+      "hide_post": "Sembunyikan postingan ini",
+      "hide_comment": "Sembunyikan",
+      "save_post_aria": "Simpan postingan",
+      "body_title": "Detail",
+      "comments_title": "Komentar & pergi bersama",
+      "empty_comments": "Belum ada komentar.",
+      "signal_tag": "Sinyal pergi bersama",
+      "comment_input": {
+        "default": "Tulis komentar...",
+        "optional": "Pesan tambahan (opsional)",
+        "send": "Kirim"
+      },
+      "signal_intents": {
+        "interested": "Saya juga ingin pergi",
+        "available_this_week": "Saya bisa minggu ini",
+        "join_if_schedule_fits": "Saya ikut kalau jadwal cocok",
+        "thanks": "Terima kasih infonya",
+        "question": "Saya punya pertanyaan"
+      },
+      "signal_times": {
+        "this_week": "Minggu ini",
+        "this_weekend": "Akhir pekan ini",
+        "next_week": "Minggu depan",
+        "schedule_coordination": "Atur tanggal"
+      },
+      "related": {
+        "this_region": "area ini"
+      },
+      "save": {
+        "default": "☆ Simpan",
+        "saved": "⭐ Tersimpan"
+      }
+    }
   }
 }

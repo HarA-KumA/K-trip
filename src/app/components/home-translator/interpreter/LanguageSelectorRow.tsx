@@ -31,34 +31,46 @@ export function LanguageSelectorRow(props: LanguageSelectorRowProps) {
         </div>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm font-bold text-slate-700">
-          Customer language
-          <select
-            className="min-h-[56px] w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-base font-semibold text-slate-900"
-            value={customerLocale}
-            onChange={(event) => onCustomerLocaleChange(event.target.value as ConciergeLocale)}
-          >
-            <option value="ko">Korean (KO)</option>
-            <option value="en">English (EN)</option>
-            <option value="ja">Japanese (JA)</option>
-            <option value="zh-CN">Chinese Simplified (ZH-CN)</option>
-          </select>
-        </label>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-2">
+          <label className="text-sm font-black uppercase tracking-wider text-slate-500">Customer Language</label>
+          <div className="grid grid-cols-2 gap-2">
+            {(['ko', 'en', 'ja', 'zh-CN'] as const).map((locale) => (
+              <button
+                key={locale}
+                type="button"
+                className={`flex h-12 items-center justify-center rounded-xl border-2 text-sm font-bold transition-all ${
+                  customerLocale === locale
+                    ? 'border-sky-600 bg-sky-50 text-sky-700 shadow-sm'
+                    : 'border-slate-100 bg-white text-slate-600 hover:border-slate-200 hover:bg-slate-50'
+                }`}
+                onClick={() => onCustomerLocaleChange(locale)}
+              >
+                {getLocaleDisplayLabel(locale)}
+              </button>
+            ))}
+          </div>
+        </div>
 
-        <label className="grid gap-2 text-sm font-bold text-slate-700">
-          Staff language
-          <select
-            className="min-h-[56px] w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-base font-semibold text-slate-900"
-            value={staffLocale}
-            onChange={(event) => onStaffLocaleChange(event.target.value as ConciergeLocale)}
-          >
-            <option value="ko">Korean (KO)</option>
-            <option value="en">English (EN)</option>
-            <option value="ja">Japanese (JA)</option>
-            <option value="zh-CN">Chinese Simplified (ZH-CN)</option>
-          </select>
-        </label>
+        <div className="grid gap-2">
+          <label className="text-sm font-black uppercase tracking-wider text-slate-500">Staff Language</label>
+          <div className="grid grid-cols-2 gap-2">
+            {(['ko', 'en', 'ja', 'zh-CN'] as const).map((locale) => (
+              <button
+                key={locale}
+                type="button"
+                className={`flex h-12 items-center justify-center rounded-xl border-2 text-sm font-bold transition-all ${
+                  staffLocale === locale
+                    ? 'border-amber-600 bg-amber-50 text-amber-700 shadow-sm'
+                    : 'border-slate-100 bg-white text-slate-600 hover:border-slate-200 hover:bg-slate-50'
+                }`}
+                onClick={() => onStaffLocaleChange(locale)}
+              >
+                {getLocaleDisplayLabel(locale)}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">

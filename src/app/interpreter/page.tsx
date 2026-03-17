@@ -808,53 +808,53 @@ export default function InterpreterPage() {
       </section>
 
       <section className={styles.languageSection}>
+      <section className={styles.languageSection}>
         <div className={styles.langTopRow}>
-          <label className={styles.langCard}>
+          <div className={styles.langCard} style={{ cursor: 'default', border: 'none', background: 'transparent' }}>
             <span className={styles.langRole}>고객 언어</span>
-            <span className={styles.langCurrent}>
-              {getLocaleDisplayLabel(customerLocale)}
-              <span className={styles.langSelectorArrow}>▼</span>
-            </span>
-            <select
-              aria-label="고객 언어 선택"
-              className={styles.langHiddenSelect}
-              value={customerLocale}
-              disabled={isNonVoiceActionDisabled}
-              onChange={(event) => setCustomerLocale(event.target.value as ConciergeLocale)}
-            >
-              {INTERPRETER_SUPPORTED_LOCALES.map((locale) => (
-                <option key={locale} value={locale}>
-                  {getLocaleDisplayLabel(locale)}
-                </option>
+            <div className={styles.langButtonGrid}>
+              {INTERPRETER_SUPPORTED_LOCALES.map((l) => (
+                <button
+                  key={l}
+                  className={`${styles.langButton} ${customerLocale === l ? styles.langButtonActive : ''}`}
+                  onClick={() => setCustomerLocale(l)}
+                  disabled={isNonVoiceActionDisabled}
+                >
+                  {getLocaleDisplayLabel(l)}
+                </button>
               ))}
-            </select>
-          </label>
-
-          <div className={styles.langSwapBtn} aria-hidden="true">
-            ↔
+            </div>
           </div>
 
-          <label className={styles.langCard}>
+          <button
+            className={styles.langSwapBtn}
+            onClick={() => {
+              const temp = customerLocale;
+              setCustomerLocale(staffLocale);
+              setStaffLocale(temp);
+            }}
+            disabled={isNonVoiceActionDisabled}
+          >
+            ↔
+          </button>
+
+          <div className={styles.langCard} style={{ cursor: 'default', border: 'none', background: 'transparent' }}>
             <span className={styles.langRole}>직원 언어</span>
-            <span className={styles.langCurrent}>
-              {getLocaleDisplayLabel(staffLocale)}
-              <span className={styles.langSelectorArrow}>▼</span>
-            </span>
-            <select
-              aria-label="직원 언어 선택"
-              className={styles.langHiddenSelect}
-              value={staffLocale}
-              disabled={isNonVoiceActionDisabled}
-              onChange={(event) => setStaffLocale(event.target.value as ConciergeLocale)}
-            >
-              {INTERPRETER_SUPPORTED_LOCALES.map((locale) => (
-                <option key={locale} value={locale}>
-                  {getLocaleDisplayLabel(locale)}
-                </option>
+            <div className={styles.langButtonGrid}>
+              {INTERPRETER_SUPPORTED_LOCALES.map((l) => (
+                <button
+                  key={l}
+                  className={`${styles.langButton} ${staffLocale === l ? styles.langButtonStaffActive : ''}`}
+                  onClick={() => setStaffLocale(l)}
+                  disabled={isNonVoiceActionDisabled}
+                >
+                  {getLocaleDisplayLabel(l)}
+                </button>
               ))}
-            </select>
-          </label>
+            </div>
+          </div>
         </div>
+      </section>
       </section>
 
       <section className={styles.contextSection}>

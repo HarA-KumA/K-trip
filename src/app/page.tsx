@@ -28,6 +28,11 @@ export default function HomePage() {
   const { t, i18n } = useTranslation('common');
   const { tripStatus, itinerary, setItinerary, setTripDays } = useTrip();
   const router = useRouter();
+
+  const hasSupabaseAuth = Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  );
+
   const [input, setInput] = useState('');
   const [days, setDays] = useState(3);
   const [activeValueIdx, setActiveValueIdx] = useState(0);
@@ -305,21 +310,14 @@ export default function HomePage() {
     };
   }, [hasSupabaseAuth]);
 
-  const handleSignOut = async () => {
-    if (!hasSupabaseAuth) return;
-
-    try {
-      const { supabase } = await import('@/lib/supabaseClient');
-      await supabase.auth.signOut();
-    } finally {
-      setUserName(null);
-    }
+  const handleOpenInterpreter = () => {
+    router.push('/interpreter');
   };
 
-  const supabase = {
-    auth: {
-      signOut: handleSignOut,
-    },
+  // Safe translation helper
+  const homeTrans = (key: string, defaultValue?: string): any => {
+    const defaultVal = defaultValue || key;
+    return t(`home_new.${key}`, { defaultValue: defaultVal, returnObjects: true });
   };
 
   // Lock scroll when modal is open

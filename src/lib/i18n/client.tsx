@@ -6,6 +6,10 @@ import ko from "../../../public/locales/ko/common.json";
 import en from "../../../public/locales/en/common.json";
 import ja from "../../../public/locales/ja/common.json";
 import zhCN from "../../../public/locales/zh-CN/common.json";
+import koTranslation from "../../../public/locales/ko/translation.json";
+import enTranslation from "../../../public/locales/en/translation.json";
+import jaTranslation from "../../../public/locales/ja/translation.json";
+import zhCNTranslation from "../../../public/locales/zh-CN/translation.json";
 import zhHK from "../../../public/locales/zh-HK/common.json";
 import vi from "../../../public/locales/vi/common.json";
 import th from "../../../public/locales/th/common.json";
@@ -19,15 +23,15 @@ export const SUPPORTED = ["ko", "en", "ja", "zh-CN", "zh-HK", "vi", "th", "id", 
 export type Locale = (typeof SUPPORTED)[number];
 
 const resources = {
-    "ko": { common: ko },
-    "en": { common: en },
-    "ja": { common: ja },
-    "zh-CN": { common: zhCN },
-    "zh-HK": { common: zhHK },
-    "vi": { common: vi },
-    "th": { common: th },
-    "id": { common: id },
-    "ms": { common: ms },
+    "ko": { common: ko, translation: koTranslation },
+    "en": { common: en, translation: enTranslation },
+    "ja": { common: ja, translation: jaTranslation },
+    "zh-CN": { common: zhCN, translation: zhCNTranslation },
+    "zh-HK": { common: zhHK, translation: zhCNTranslation },
+    "vi": { common: vi, translation: enTranslation },
+    "th": { common: th, translation: enTranslation },
+    "id": { common: id, translation: enTranslation },
+    "ms": { common: ms, translation: enTranslation },
 };
 
 /** Utility: Check if value is a supported locale */
@@ -49,7 +53,7 @@ export function readCookie(name: string): string | null {
 function getInitialLang(): Locale {
     const cookieLang = readCookie(STORAGE_KEY);
     if (isSupportedLocale(cookieLang)) return cookieLang;
-    return "en";
+    return "ko";
 }
 
 if (!i18n.isInitialized) {
@@ -58,8 +62,8 @@ if (!i18n.isInitialized) {
         .init({
             resources,
             lng: getInitialLang(),
-            fallbackLng: "en",
-            ns: ["common"],
+            fallbackLng: "ko",
+            ns: ["common", "translation"],
             defaultNS: "common",
             interpolation: { escapeValue: false },
             react: { useSuspense: false }
@@ -104,7 +108,7 @@ function getLocaleFromCountry(country: string): Locale {
  * 2. LocalStorage (Previous User Choice)
  * 3. Browser Languages (navigator.languages)
  * 4. Country Cookie (set by middleware from IP)
- * 5. Default Fallback ('en')
+ * 5. Default Fallback ('ko')
  */
 export function initClientLanguage() {
     if (typeof window === "undefined") return;
@@ -142,7 +146,7 @@ export function initClientLanguage() {
     }
 
     // 5. Final fallback
-    applyLanguage("en", false);
+    applyLanguage("ko", false);
 }
 
 /**

@@ -7,7 +7,6 @@ import LanguagePicker from './components/LanguagePicker';
 import CurrencySelector from './components/CurrencySelector';
 import WeatherWidget from './components/WeatherWidget';
 import styles from './home.module.css';
-import { supabase } from '@/lib/supabaseClient';
 import { useTrip } from '@/lib/contexts/TripContext';
 import TravelPlanTemplates from './components/TravelPlanTemplates';
 
@@ -15,6 +14,9 @@ export default function HomePage() {
   const { t } = useTranslation('common');
   const { setTripDays, setItinerary } = useTrip();
   const router = useRouter();
+  const hasSupabaseAuth = Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  );
 
   const [userName, setUserName] = useState<string | null>(null);
 
@@ -25,23 +27,87 @@ export default function HomePage() {
   const [interests, setInterests] = useState<string[]>([]);
 
   useEffect(() => {
-    // Keep in sync with Supabase session in real-time
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session?.user) {
-        const user = session.user;
-        const name =
-          user.user_metadata?.full_name ||
-          user.user_metadata?.name ||
-          user.email?.split('@')[0] ||
-          'User';
-        setUserName(name);
-      } else {
-        setUserName(null);
-      }
-    });
+    if (!hasSupabaseAuth) {
+      setUserName(null);
+      return;
+    }
 
-    return () => subscription.unsubscribe();
-  }, []);
+    let isMounted = true;
+    let unsubscribe = () => {};
+
+    const syncSession = async () => {
+      try {
+        const { supabase } = await import('@/lib/supabaseClient');
+        const {
+          data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, session) => {
+          if (!isMounted) return;
+
+          if (session?.user) {
+            const user = session.user;
+            const name =
+              user.user_metadata?.full_name ||
+              user.user_metadata?.name ||
+              user.email?.split('@')[0] ||
+              'User';
+            setUserName(name);
+            return;
+          }
+
+          setUserName(null);
+        });
+
+        unsubscribe = () => subscription.unsubscribe();
+
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+
+        if (!isMounted) return;
+
+        if (session?.user) {
+          const user = session.user;
+          setUserName(
+            user.user_metadata?.full_name ||
+            user.user_metadata?.name ||
+            user.email?.split('@')[0] ||
+            'User'
+          );
+          return;
+        }
+
+        setUserName(null);
+      } catch {
+        if (isMounted) {
+          setUserName(null);
+        }
+      }
+    };
+
+    void syncSession();
+
+    return () => {
+      isMounted = false;
+      unsubscribe();
+    };
+  }, [hasSupabaseAuth]);
+
+  const handleSignOut = async () => {
+    if (!hasSupabaseAuth) return;
+
+    try {
+      const { supabase } = await import('@/lib/supabaseClient');
+      await supabase.auth.signOut();
+    } finally {
+      setUserName(null);
+    }
+  };
+
+  const supabase = {
+    auth: {
+      signOut: handleSignOut,
+    },
+  };
 
   const handleStart = () => {
     setTripDays(days);
@@ -51,6 +117,10 @@ export default function HomePage() {
     } else {
       router.push('/planner');
     }
+  };
+
+  const handleOpenInterpreter = () => {
+    router.push('/interpreter');
   };
 
   const toggleInterest = (interest: string) => {
@@ -79,7 +149,7 @@ export default function HomePage() {
           <LanguagePicker compact />
           <CurrencySelector />
         </div>
-        {!userName ? (
+        {!hasSupabaseAuth ? null : !userName ? (
           <div className={styles.navAuthWrap}>
             <button className={styles.navLinkBtn} onClick={() => router.push('/auth/login')}>
               <span className={styles.authIcon}>👤</span>
@@ -206,6 +276,20 @@ export default function HomePage() {
 
       {/* Recommended Plans */}
       <TravelPlanTemplates />
+
+      <section className={styles.interpreterEntrySection}>
+        <div className={styles.interpreterEntryCard}>
+          <h2 className={styles.interpreterEntryTitle}>
+            {homeTrans('interpreter_entry.title', '실시간 통역 도우미')}
+          </h2>
+          <p className={styles.interpreterEntryDescription}>
+            {homeTrans('interpreter_entry.description', '매장에서 직원과 손쉽게 대화해보세요')}
+          </p>
+          <button className={styles.mainCtaBtn} onClick={handleOpenInterpreter}>
+            {homeTrans('interpreter_entry.cta', '통역기 시작하기')}
+          </button>
+        </div>
+      </section>
 
       <div style={{ height: 100 }} />
     </main>

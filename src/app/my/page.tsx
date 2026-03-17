@@ -308,6 +308,7 @@ function MyPageContent() {
                         { icon: '📊', label: '관리자 대시보드', desc: '통계 및 전체 메뉴', path: '/admin' },
                         { icon: '🤝', label: '협력업체 관리', desc: '가입 신청 승인 · 거절', path: '/admin/partners' },
                         { icon: '🛡️', label: '관리자 계정 관리', desc: '권한 부여 · 해제', path: '/admin/users' },
+                        { icon: '🗂️', label: '번역 용어집', desc: '뷰티 번역 용어 우선순위 관리', path: '/admin/glossary' },
                     ].map((item) => (
                         <div
                             key={item.path}

@@ -1,27 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import styles from './interpreter.module.css';
 import {
   getLocaleDisplayLabel,
+  getSpeechLocale,
   INTERPRETER_SUPPORTED_LOCALES,
 } from '@/lib/translator/catalog.ts';
-import type { ConciergeLocale } from '@/lib/translator/types.ts';
+import { normalizeInterpreterTextInput } from '@/lib/translator/interpreterUi.ts';
+import type { ConciergeLocale, SpeakerRole } from '@/lib/translator/types.ts';
 
 const DEFAULT_CUSTOMER_LOCALE: ConciergeLocale = 'en';
 const DEFAULT_STAFF_LOCALE: ConciergeLocale = 'ko';
+const MAX_RECORDING_MS = 10000;
+const MIN_RECORDING_MS = 700;
 
 type InterpreterMessage = {
   id: string;
-  speaker: 'customer' | 'staff';
+  speaker: SpeakerRole;
   sourceText: string;
   translatedText: string;
   statusLabel: string;
   sourceLang: ConciergeLocale;
   targetLang: ConciergeLocale;
   inputType: 'voice' | 'text' | 'quick-phrase';
+  canReplay: boolean;
 };
 
 type QuickPhrase = {
@@ -30,7 +35,7 @@ type QuickPhrase = {
 };
 
 type InterpreterMessageEntry = {
-  speaker: InterpreterMessage['speaker'];
+  speaker: SpeakerRole;
   inputType: InterpreterMessage['inputType'];
   sourceText: string;
   sourceLang: ConciergeLocale;
@@ -49,26 +54,23 @@ type InterpreterTranslateResponse =
       error: string;
     };
 
+type InterpreterTranscribeResponse =
+  | {
+      ok: true;
+      text: string;
+      provider: string;
+    }
+  | {
+      ok: false;
+      error: string;
+    };
+
 type QuickPhraseGroupId =
   | 'consultation'
   | 'haircut'
   | 'styling'
   | 'during-service'
   | 'finishing';
-
-const CUSTOMER_SAMPLE_COPY: Record<ConciergeLocale, string> = {
-  ko: '앞머리를 더 짧게 하고 싶어요.',
-  en: 'I want shorter bangs.',
-  ja: '前髪をもっと短くしたいです。',
-  'zh-CN': '我想把刘海剪得更短一点。',
-};
-
-const STAFF_SAMPLE_COPY: Record<ConciergeLocale, string> = {
-  ko: '거울로 확인해 주세요.',
-  en: 'Please check in the mirror.',
-  ja: '鏡でご確認ください。',
-  'zh-CN': '请您通过镜子确认一下。',
-};
 
 const QUICK_PHRASE_GROUPS: Array<{
   id: QuickPhraseGroupId;
@@ -83,8 +85,8 @@ const QUICK_PHRASE_GROUPS: Array<{
       {
         id: 'sensitive-skin',
         translations: {
-          ko: '피부가 예민한 편이에요.',
-          en: 'I have sensitive skin.',
+          ko: '피부가 예민해서 자극이 적었으면 좋겠어요.',
+          en: 'I have sensitive skin, so please use gentle products.',
           ja: '肌が敏感なほうです。',
           'zh-CN': '我的皮肤比较敏感。',
         },
@@ -94,8 +96,8 @@ const QUICK_PHRASE_GROUPS: Array<{
       {
         id: 'consult-bangs',
         translations: {
-          ko: '앞머이는 어떻게 해드릴까요?',
-          en: 'How would you like your bangs?',
+          ko: '앞머리는 어떤 느낌으로 해드릴까요?',
+          en: 'How would you like your bangs styled?',
           ja: '前髪はどのようにいたしましょうか。',
           'zh-CN': '刘海想怎么处理呢？',
         },
@@ -109,8 +111,8 @@ const QUICK_PHRASE_GROUPS: Array<{
       {
         id: 'shorter-bangs',
         translations: {
-          ko: '앞머리를 더 짧게 하고 싶어요.',
-          en: 'I want shorter bangs.',
+          ko: '앞머리를 조금만 더 짧게 해 주세요.',
+          en: 'Please trim my bangs a little shorter.',
           ja: '前髪をもっと短くしたいです。',
           'zh-CN': '我想把刘海剪得更短一点。',
         },
@@ -118,8 +120,8 @@ const QUICK_PHRASE_GROUPS: Array<{
       {
         id: 'keep-length',
         translations: {
-          ko: '전체 길이는 유지해 주세요.',
-          en: 'Please keep the length.',
+          ko: '전체 길이는 너무 짧아지지 않게 해 주세요.',
+          en: 'Please keep the overall length.',
           ja: '全体の長さはそのままでお願いします。',
           'zh-CN': '请保持整体长度。',
         },
@@ -129,8 +131,8 @@ const QUICK_PHRASE_GROUPS: Array<{
       {
         id: 'desired-length',
         translations: {
-          ko: '길이는 어느 정도 원하세요?',
-          en: 'How much length would you like?',
+          ko: '어느 정도 길이로 남겨드릴까요?',
+          en: 'How much length would you like to keep?',
           ja: '長さはどのくらいをご希望ですか？',
           'zh-CN': '长度想保留到什么程度呢？',
         },
@@ -144,8 +146,8 @@ const QUICK_PHRASE_GROUPS: Array<{
       {
         id: 'less-volume',
         translations: {
-          ko: '옆쪽 볼륨은 덜 들어가면 좋겠어요.',
-          en: 'I want less volume on the sides.',
+          ko: '옆쪽 볼륨은 조금 덜 살려 주세요.',
+          en: 'Please keep the sides less voluminous.',
           ja: '横のボリュームは少なめがいいです。',
           'zh-CN': '我希望两侧的蓬松感少一点。',
         },
@@ -155,8 +157,8 @@ const QUICK_PHRASE_GROUPS: Array<{
       {
         id: 'reduce-volume',
         translations: {
-          ko: '옆쪽 볼륨은 줄여드릴까요?',
-          en: 'Would you like less volume on the sides?',
+          ko: '옆쪽 볼륨은 조금 줄여드릴까요?',
+          en: 'Would you like me to reduce the volume on the sides?',
           ja: '横のボリュームは抑えましょうか？',
           'zh-CN': '两侧的蓬松感要帮您减一点吗？',
         },
@@ -170,8 +172,8 @@ const QUICK_PHRASE_GROUPS: Array<{
       {
         id: 'natural-finish',
         translations: {
-          ko: '최대한 자연스럽게 해주세요.',
-          en: 'Please make it look natural.',
+          ko: '자연스럽게 마무리해 주세요.',
+          en: 'Please keep the finish natural.',
           ja: 'できるだけ自然にしてください。',
           'zh-CN': '请尽量做得自然一点。',
         },
@@ -205,8 +207,8 @@ const QUICK_PHRASE_GROUPS: Array<{
       {
         id: 'check-result',
         translations: {
-          ko: '마무리 상태를 한 번 더 보고 싶어요.',
-          en: 'I want to check the final result once more.',
+          ko: '마지막 상태를 한 번 더 확인하고 싶어요.',
+          en: 'I would like to check the final result once more.',
           ja: '仕上がりをもう一度確認したいです。',
           'zh-CN': '我想再确认一下最终效果。',
         },
@@ -216,8 +218,8 @@ const QUICK_PHRASE_GROUPS: Array<{
       {
         id: 'check-mirror',
         translations: {
-          ko: '거울로 확인해 주세요.',
-          en: 'Please check in the mirror.',
+          ko: '거울로 한 번 확인해 주세요.',
+          en: 'Please take a look in the mirror.',
           ja: '鏡でご確認ください。',
           'zh-CN': '请您通过镜子确认一下。',
         },
@@ -244,7 +246,8 @@ function buildSafeFallbackTranslatedText(entry: InterpreterMessageEntry) {
 function createInterpreterMessage(
   entry: InterpreterMessageEntry,
   translatedText: string,
-  statusPrefix = 'Mock',
+  statusPrefix = '번역 완료',
+  canReplay = false,
 ): InterpreterMessage {
   return {
     id: `${entry.speaker}-${Date.now()}`,
@@ -255,7 +258,43 @@ function createInterpreterMessage(
     sourceLang: entry.sourceLang,
     targetLang: entry.targetLang,
     inputType: entry.inputType,
+    canReplay,
   };
+}
+
+function getMicrophoneErrorText(error: unknown) {
+  const domLikeError = error as { name?: unknown } | null;
+  const errorName = typeof domLikeError?.name === 'string' ? domLikeError.name : '';
+
+  if (errorName === 'NotAllowedError' || errorName === 'SecurityError') {
+    return '마이크 권한이 필요합니다. 브라우저 주소창에서 마이크를 허용한 뒤 다시 시도해 주세요. 어려우면 텍스트 입력을 사용하세요.';
+  }
+
+  if (errorName === 'NotFoundError') {
+    return '사용 가능한 마이크를 찾지 못했습니다. 기기 연결을 확인하거나 텍스트 입력을 사용하세요.';
+  }
+
+  return '녹음을 시작하지 못했습니다. 주변 소음을 줄이고 다시 시도하거나 텍스트 입력을 사용하세요.';
+}
+
+function getAudioFileName(mimeType: string) {
+  if (mimeType.includes('mp4')) {
+    return 'interpreter-recording.m4a';
+  }
+
+  if (mimeType.includes('mpeg')) {
+    return 'interpreter-recording.mp3';
+  }
+
+  return 'interpreter-recording.webm';
+}
+
+function getRecognitionRetryMessage() {
+  return '음성이 또렷하게 인식되지 않았어요. 한 문장씩 짧게 다시 말씀해 주세요. 필요하면 텍스트 입력을 사용하세요.';
+}
+
+function getTranslationFallbackMessage() {
+  return '번역이 잠시 불안정해 원문을 함께 보여드렸어요. 필요하면 짧게 다시 말씀하거나 텍스트 입력을 사용하세요.';
 }
 
 export default function InterpreterPage() {
@@ -268,6 +307,67 @@ export default function InterpreterPage() {
   const [activeQuickGroup, setActiveQuickGroup] = useState<QuickPhraseGroupId>('consultation');
   const [isTranslating, setIsTranslating] = useState(false);
   const [translationError, setTranslationError] = useState<string | null>(null);
+  const [voiceSupported, setVoiceSupported] = useState(false);
+  const [ttsSupported, setTtsSupported] = useState(false);
+  const [isPreparingRecording, setIsPreparingRecording] = useState(false);
+  const [recordingRole, setRecordingRole] = useState<SpeakerRole | null>(null);
+  const [transcribingRole, setTranscribingRole] = useState<SpeakerRole | null>(null);
+  const [voiceStatus, setVoiceStatus] = useState<string | null>(null);
+  const [voiceError, setVoiceError] = useState<string | null>(null);
+  const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const mediaStreamRef = useRef<MediaStream | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
+  const activeRecordingRoleRef = useRef<SpeakerRole | null>(null);
+  const recordingStartedAtRef = useRef<number | null>(null);
+  const recordingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const isSupported =
+      typeof window !== 'undefined' &&
+      typeof MediaRecorder !== 'undefined' &&
+      Boolean(navigator.mediaDevices?.getUserMedia);
+
+    setVoiceSupported(isSupported);
+
+    return () => {
+      mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
+      mediaStreamRef.current = null;
+      mediaRecorderRef.current = null;
+      audioChunksRef.current = [];
+      activeRecordingRoleRef.current = null;
+      recordingStartedAtRef.current = null;
+      if (recordingTimeoutRef.current) {
+        clearTimeout(recordingTimeoutRef.current);
+        recordingTimeoutRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (
+      typeof window === 'undefined' ||
+      typeof window.SpeechSynthesisUtterance === 'undefined' ||
+      !('speechSynthesis' in window)
+    ) {
+      setTtsSupported(false);
+      return;
+    }
+
+    const synthesis = window.speechSynthesis;
+    const syncVoices = () => {
+      setAvailableVoices(synthesis.getVoices());
+    };
+
+    setTtsSupported(true);
+    syncVoices();
+    synthesis.addEventListener('voiceschanged', syncVoices);
+
+    return () => {
+      synthesis.cancel();
+      synthesis.removeEventListener('voiceschanged', syncVoices);
+    };
+  }, []);
 
   const handleBack = () => {
     if (typeof window !== 'undefined' && window.history.length > 1) {
@@ -281,18 +381,88 @@ export default function InterpreterPage() {
   const activeQuickPhraseGroup =
     QUICK_PHRASE_GROUPS.find((group) => group.id === activeQuickGroup) ?? QUICK_PHRASE_GROUPS[0];
 
-  const getLocalesForSpeaker = (speaker: InterpreterMessage['speaker']) => {
+  const getLocalesForSpeaker = (speaker: SpeakerRole) => {
     return speaker === 'customer'
       ? { sourceLang: customerLocale, targetLang: staffLocale }
       : { sourceLang: staffLocale, targetLang: customerLocale };
   };
 
+  const releaseRecorder = () => {
+    if (recordingTimeoutRef.current) {
+      clearTimeout(recordingTimeoutRef.current);
+      recordingTimeoutRef.current = null;
+    }
+
+    mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
+    mediaStreamRef.current = null;
+    mediaRecorderRef.current = null;
+    audioChunksRef.current = [];
+    activeRecordingRoleRef.current = null;
+    recordingStartedAtRef.current = null;
+  };
+
   const appendInterpreterMessage = (
     entry: InterpreterMessageEntry,
     translatedText: string,
-    statusPrefix = 'Mock',
+    statusPrefix = '번역 완료',
+    canReplay = false,
   ) => {
-    setMessages((previous) => [...previous, createInterpreterMessage(entry, translatedText, statusPrefix)]);
+    setMessages((previous) => [
+      ...previous,
+      createInterpreterMessage(entry, translatedText, statusPrefix, canReplay),
+    ]);
+  };
+
+  const findMatchingVoice = (locale: ConciergeLocale) => {
+    const requestedLang = getSpeechLocale(locale).toLowerCase();
+    const requestedBase = requestedLang.split('-')[0];
+    const normalizeVoiceLang = (value: string) => value.toLowerCase().replaceAll('_', '-');
+
+    return (
+      availableVoices.find((voice) => normalizeVoiceLang(voice.lang) === requestedLang) ??
+      availableVoices.find((voice) => {
+        const voiceLang = normalizeVoiceLang(voice.lang);
+        return voiceLang === requestedBase || voiceLang.startsWith(`${requestedBase}-`);
+      }) ??
+      availableVoices[0] ??
+      null
+    );
+  };
+
+  const speakTranslatedText = (text: string, locale: ConciergeLocale) => {
+    const normalizedText = normalizeInterpreterTextInput(text);
+
+    if (
+      !normalizedText ||
+      typeof window === 'undefined' ||
+      typeof window.SpeechSynthesisUtterance === 'undefined' ||
+      !('speechSynthesis' in window)
+    ) {
+      return;
+    }
+
+    try {
+      const utterance = new SpeechSynthesisUtterance(normalizedText);
+      const voice = findMatchingVoice(locale);
+
+      utterance.lang = getSpeechLocale(locale);
+      if (voice) {
+        utterance.voice = voice;
+      }
+
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    } catch {
+      // Keep TTS failures non-blocking for the interpreter flow.
+    }
+  };
+
+  const stopSpeechPlayback = () => {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
+      return;
+    }
+
+    window.speechSynthesis.cancel();
   };
 
   const requestInterpreterTranslation = async (entry: InterpreterMessageEntry) => {
@@ -319,28 +489,28 @@ export default function InterpreterPage() {
   };
 
   const resolveTranslatedText = async (entry: InterpreterMessageEntry) => {
-    const response = await requestInterpreterTranslation(entry);
-
     if (entry.translations?.[entry.targetLang]) {
       return {
         translatedText: entry.translations[entry.targetLang],
-        statusPrefix: response.provider === 'mock' ? 'Mock' : 'Translated',
+        statusPrefix: '번역 완료',
       };
     }
 
+    const response = await requestInterpreterTranslation(entry);
+
     return {
       translatedText: response.translatedText,
-      statusPrefix: response.provider === 'mock' ? 'Mock' : 'Translated',
+      statusPrefix: '번역 완료',
     };
   };
 
   const submitInterpreterMessage = async (params: {
-    speaker: InterpreterMessage['speaker'];
+    speaker: SpeakerRole;
     inputType: InterpreterMessage['inputType'];
     sourceText: string;
     translations?: Record<ConciergeLocale, string>;
   }) => {
-    const normalizedSourceText = params.sourceText.trim();
+    const normalizedSourceText = normalizeInterpreterTextInput(params.sourceText);
     if (!normalizedSourceText || isTranslating) return false;
 
     const { sourceLang, targetLang } = getLocalesForSpeaker(params.speaker);
@@ -355,26 +525,191 @@ export default function InterpreterPage() {
 
     setIsTranslating(true);
     setTranslationError(null);
+    setVoiceError(null);
+    setVoiceStatus(null);
 
     try {
       const translation = await resolveTranslatedText(entry);
 
-      appendInterpreterMessage(entry, translation.translatedText, translation.statusPrefix);
+      appendInterpreterMessage(entry, translation.translatedText, translation.statusPrefix, true);
+      speakTranslatedText(translation.translatedText, entry.targetLang);
       return true;
     } catch (error) {
-      appendInterpreterMessage(entry, buildSafeFallbackTranslatedText(entry), 'Fallback');
-      setTranslationError(
-        error instanceof Error
-          ? `번역 연결에 실패해 fallback 문구로 표시했습니다: ${error.message}`
-          : '번역 연결에 실패해 fallback 문구로 표시했습니다.',
-      );
+      console.error('Interpreter translation failed.', error);
+      appendInterpreterMessage(entry, buildSafeFallbackTranslatedText(entry), '원문 유지');
+      setTranslationError(getTranslationFallbackMessage());
       return true;
     } finally {
       setIsTranslating(false);
     }
   };
 
-  const appendQuickPhraseMessage = (speaker: InterpreterMessage['speaker'], phrase: QuickPhrase) => {
+  const submitVoiceRecording = async (speaker: SpeakerRole, audioBlob: Blob) => {
+    const { sourceLang } = getLocalesForSpeaker(speaker);
+    const mimeType = audioBlob.type || 'audio/webm';
+    const formData = new FormData();
+    const audioFile = new File([audioBlob], getAudioFileName(mimeType), {
+      type: mimeType,
+    });
+
+    formData.append('audio', audioFile);
+    formData.append('language', sourceLang);
+
+    setVoiceError(null);
+    setTranslationError(null);
+    setVoiceStatus('음성 인식 중...');
+
+    try {
+      const response = await fetch('/api/interpreter/transcribe', {
+        method: 'POST',
+        cache: 'no-store',
+        body: formData,
+      });
+
+      const data = (await response.json()) as InterpreterTranscribeResponse;
+
+      if (!response.ok || !data.ok) {
+        throw new Error(data.ok ? 'interpreter_transcribe_failed' : data.error);
+      }
+
+      const normalizedText = normalizeInterpreterTextInput(data.text);
+      if (!normalizedText || normalizedText.length < 2) {
+        setVoiceError(getRecognitionRetryMessage());
+        setVoiceStatus(null);
+        return;
+      }
+
+      setTranscribingRole(null);
+      setVoiceStatus(null);
+      await submitInterpreterMessage({
+        speaker,
+        inputType: 'voice',
+        sourceText: normalizedText,
+      });
+    } catch (error) {
+      console.error('Interpreter transcription failed.', error);
+      setVoiceStatus(null);
+      setVoiceError(getRecognitionRetryMessage());
+    } finally {
+      setTranscribingRole(null);
+    }
+  };
+
+  const startRecording = async (speaker: SpeakerRole) => {
+    if (!voiceSupported || isPreparingRecording || recordingRole || transcribingRole || isTranslating) {
+      return;
+    }
+
+    try {
+      setIsPreparingRecording(true);
+      setVoiceError(null);
+      setTranslationError(null);
+      setVoiceStatus('마이크 권한 확인 중...');
+      stopSpeechPlayback();
+
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mediaRecorder = new MediaRecorder(stream);
+
+      mediaStreamRef.current = stream;
+      mediaRecorderRef.current = mediaRecorder;
+      audioChunksRef.current = [];
+      activeRecordingRoleRef.current = speaker;
+      recordingStartedAtRef.current = Date.now();
+
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunksRef.current.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = () => {
+        const finishedRole = activeRecordingRoleRef.current;
+        const recordingStartedAt = recordingStartedAtRef.current;
+        const durationMs = recordingStartedAt ? Date.now() - recordingStartedAt : 0;
+        const audioBlob = new Blob(audioChunksRef.current, {
+          type: mediaRecorder.mimeType || 'audio/webm',
+        });
+
+        releaseRecorder();
+
+        if (!finishedRole) {
+          setTranscribingRole(null);
+          setVoiceStatus(null);
+          return;
+        }
+
+        if (audioBlob.size === 0) {
+          setTranscribingRole(null);
+          setVoiceStatus(null);
+          setVoiceError(getRecognitionRetryMessage());
+          return;
+        }
+
+        if (durationMs > 0 && durationMs < MIN_RECORDING_MS) {
+          setTranscribingRole(null);
+          setVoiceStatus(null);
+          setVoiceError('조금 더 길게, 한 문장씩 말씀해 주세요. 인식이 잘 안되면 텍스트 입력을 사용하세요.');
+          return;
+        }
+
+        void submitVoiceRecording(finishedRole, audioBlob);
+      };
+
+      mediaRecorder.start();
+      recordingTimeoutRef.current = setTimeout(() => {
+        if (mediaRecorderRef.current?.state === 'recording') {
+          stopRecording();
+        }
+      }, MAX_RECORDING_MS);
+      setIsPreparingRecording(false);
+      setVoiceError(null);
+      setTranslationError(null);
+      setVoiceStatus(`녹음 중... 최대 ${MAX_RECORDING_MS / 1000}초까지 가능해요.`);
+      setRecordingRole(speaker);
+    } catch (error) {
+      releaseRecorder();
+      setIsPreparingRecording(false);
+      setRecordingRole(null);
+      setTranscribingRole(null);
+      setVoiceStatus(null);
+      setVoiceError(getMicrophoneErrorText(error));
+    }
+  };
+
+  const stopRecording = () => {
+    if (!mediaRecorderRef.current || mediaRecorderRef.current.state !== 'recording') {
+      return;
+    }
+
+    const finishedRole = activeRecordingRoleRef.current;
+    setRecordingRole(null);
+    setTranscribingRole(finishedRole);
+    setVoiceStatus('음성 인식 중...');
+    mediaRecorderRef.current.stop();
+  };
+
+  const handleSpeakButtonClick = (speaker: SpeakerRole) => {
+    if (recordingRole === speaker) {
+      stopRecording();
+      return;
+    }
+
+    void startRecording(speaker);
+  };
+
+  const handleReplayMessage = (message: InterpreterMessage) => {
+    if (!message.canReplay || isNonVoiceActionDisabled) {
+      return;
+    }
+
+    speakTranslatedText(message.translatedText, message.targetLang);
+  };
+
+  const appendQuickPhraseMessage = (speaker: SpeakerRole, phrase: QuickPhrase) => {
+    if (recordingRole || transcribingRole) {
+      return;
+    }
+
     const { sourceLang } = getLocalesForSpeaker(speaker);
 
     void submitInterpreterMessage({
@@ -385,25 +720,11 @@ export default function InterpreterPage() {
     });
   };
 
-  const appendCustomerMessage = () => {
-    void submitInterpreterMessage({
-      speaker: 'customer',
-      inputType: 'voice',
-      sourceText: CUSTOMER_SAMPLE_COPY[customerLocale],
-      translations: CUSTOMER_SAMPLE_COPY,
-    });
-  };
-
-  const appendStaffMessage = () => {
-    void submitInterpreterMessage({
-      speaker: 'staff',
-      inputType: 'voice',
-      sourceText: STAFF_SAMPLE_COPY[staffLocale],
-      translations: STAFF_SAMPLE_COPY,
-    });
-  };
-
   const handleCustomerSend = async () => {
+    if (recordingRole || transcribingRole) {
+      return;
+    }
+
     const submitted = await submitInterpreterMessage({
       speaker: 'customer',
       inputType: 'text',
@@ -416,6 +737,10 @@ export default function InterpreterPage() {
   };
 
   const handleStaffSend = async () => {
+    if (recordingRole || transcribingRole) {
+      return;
+    }
+
     const submitted = await submitInterpreterMessage({
       speaker: 'staff',
       inputType: 'text',
@@ -426,6 +751,43 @@ export default function InterpreterPage() {
       setStaffInput('');
     }
   };
+
+  const isNonVoiceActionDisabled =
+    isTranslating || isPreparingRecording || recordingRole !== null || transcribingRole !== null;
+  const isCustomerRecording = recordingRole === 'customer';
+  const isStaffRecording = recordingRole === 'staff';
+  const customerSpeakDisabled =
+    !voiceSupported ||
+    isPreparingRecording ||
+    transcribingRole !== null ||
+    isTranslating ||
+    (recordingRole !== null && !isCustomerRecording);
+  const staffSpeakDisabled =
+    !voiceSupported ||
+    isPreparingRecording ||
+    transcribingRole !== null ||
+    isTranslating ||
+    (recordingRole !== null && !isStaffRecording);
+  const customerSpeakLabel =
+    isPreparingRecording
+      ? '마이크 준비 중...'
+      : transcribingRole === 'customer'
+      ? '고객 음성 인식 중...'
+      : isCustomerRecording
+        ? '고객 녹음 중... 탭하여 종료'
+        : isTranslating
+          ? '번역 중...'
+          : '고객이 말하기';
+  const staffSpeakLabel =
+    isPreparingRecording
+      ? '마이크 준비 중...'
+      : transcribingRole === 'staff'
+      ? '직원 음성 인식 중...'
+      : isStaffRecording
+        ? '직원 녹음 중... 탭하여 종료'
+        : isTranslating
+          ? '번역 중...'
+          : '직원이 말하기';
 
   return (
     <main className={styles.main}>
@@ -439,6 +801,9 @@ export default function InterpreterPage() {
         <h1 className={styles.title}>실시간 통역 도우미</h1>
         <p className={styles.subtitle}>
           고객과 직원이 서로의 언어로 대화할 수 있도록 도와드립니다
+        </p>
+        <p className={styles.onboardingNote}>
+          한 사람씩 짧게 말씀해 주세요. 녹음은 최대 10초까지 가능하며, 인식이 잘 안되면 텍스트 입력이나 quick phrase를 사용하면 더 안정적입니다.
         </p>
       </section>
 
@@ -454,6 +819,7 @@ export default function InterpreterPage() {
               aria-label="고객 언어 선택"
               className={styles.langHiddenSelect}
               value={customerLocale}
+              disabled={isNonVoiceActionDisabled}
               onChange={(event) => setCustomerLocale(event.target.value as ConciergeLocale)}
             >
               {INTERPRETER_SUPPORTED_LOCALES.map((locale) => (
@@ -478,6 +844,7 @@ export default function InterpreterPage() {
               aria-label="직원 언어 선택"
               className={styles.langHiddenSelect}
               value={staffLocale}
+              disabled={isNonVoiceActionDisabled}
               onChange={(event) => setStaffLocale(event.target.value as ConciergeLocale)}
             >
               {INTERPRETER_SUPPORTED_LOCALES.map((locale) => (
@@ -513,12 +880,12 @@ export default function InterpreterPage() {
             {getLocaleDisplayLabel(customerLocale)} to {getLocaleDisplayLabel(staffLocale)}
           </div>
           <button
-            className={`${styles.speakBtn} ${styles.customerBtn}`}
+            className={`${styles.speakBtn} ${styles.customerBtn} ${isCustomerRecording ? styles.recordingActive : ''}`}
             type="button"
-            onClick={appendCustomerMessage}
-            disabled={isTranslating}
+            onClick={() => handleSpeakButtonClick('customer')}
+            disabled={customerSpeakDisabled}
           >
-            {isTranslating ? '번역 중...' : '고객이 말하기'}
+            {customerSpeakLabel}
           </button>
           <div className={styles.quickPhraseScroll}>
             {activeQuickPhraseGroup.customerPhrases.map((phrase) => (
@@ -527,7 +894,7 @@ export default function InterpreterPage() {
                 className={styles.quickPhraseChip}
                 type="button"
                 onClick={() => appendQuickPhraseMessage('customer', phrase)}
-                disabled={isTranslating}
+                disabled={isNonVoiceActionDisabled}
               >
                 {phrase.translations[customerLocale] ?? phrase.translations.ko}
               </button>
@@ -545,7 +912,7 @@ export default function InterpreterPage() {
               value={customerInput}
               onChange={(event) => setCustomerInput(event.target.value)}
               onKeyDown={(event) => {
-                if (event.key === 'Enter' && !event.nativeEvent.isComposing) {
+                if (event.key === 'Enter' && !event.nativeEvent.isComposing && !isNonVoiceActionDisabled) {
                   void handleCustomerSend();
                 }
               }}
@@ -554,7 +921,7 @@ export default function InterpreterPage() {
               className={styles.sendBtn}
               type="button"
               onClick={() => void handleCustomerSend()}
-              disabled={isTranslating}
+              disabled={isNonVoiceActionDisabled}
             >
               전송
             </button>
@@ -566,12 +933,12 @@ export default function InterpreterPage() {
             {getLocaleDisplayLabel(staffLocale)} to {getLocaleDisplayLabel(customerLocale)}
           </div>
           <button
-            className={`${styles.speakBtn} ${styles.staffBtn}`}
+            className={`${styles.speakBtn} ${styles.staffBtn} ${isStaffRecording ? styles.recordingActive : ''}`}
             type="button"
-            onClick={appendStaffMessage}
-            disabled={isTranslating}
+            onClick={() => handleSpeakButtonClick('staff')}
+            disabled={staffSpeakDisabled}
           >
-            {isTranslating ? '번역 중...' : '직원이 말하기'}
+            {staffSpeakLabel}
           </button>
           <div className={styles.quickPhraseScroll}>
             {activeQuickPhraseGroup.staffPhrases.map((phrase) => (
@@ -580,7 +947,7 @@ export default function InterpreterPage() {
                 className={styles.quickPhraseChip}
                 type="button"
                 onClick={() => appendQuickPhraseMessage('staff', phrase)}
-                disabled={isTranslating}
+                disabled={isNonVoiceActionDisabled}
               >
                 {phrase.translations[staffLocale] ?? phrase.translations.ko}
               </button>
@@ -598,7 +965,7 @@ export default function InterpreterPage() {
               value={staffInput}
               onChange={(event) => setStaffInput(event.target.value)}
               onKeyDown={(event) => {
-                if (event.key === 'Enter' && !event.nativeEvent.isComposing) {
+                if (event.key === 'Enter' && !event.nativeEvent.isComposing && !isNonVoiceActionDisabled) {
                   void handleStaffSend();
                 }
               }}
@@ -607,7 +974,7 @@ export default function InterpreterPage() {
               className={styles.sendBtn}
               type="button"
               onClick={() => void handleStaffSend()}
-              disabled={isTranslating}
+              disabled={isNonVoiceActionDisabled}
             >
               전송
             </button>
@@ -616,8 +983,14 @@ export default function InterpreterPage() {
       </section>
 
       <div className={styles.placeholderBox}>
-        <p className={styles.placeholderText}>음성 통역 기능은 다음 단계에서 연결됩니다</p>
+        <p className={styles.placeholderText}>
+          {voiceSupported
+            ? '말하기 버튼을 눌러 시작하고 다시 눌러 종료하세요. 인식이 잘 안되면 짧게 다시 말하거나 텍스트 입력을 사용하세요.'
+            : '이 브라우저에서는 음성 녹음이 지원되지 않습니다. 텍스트 입력과 quick phrase를 사용하세요.'}
+        </p>
       </div>
+      {voiceStatus ? <p className={styles.sttStatusLabel}>{voiceStatus}</p> : null}
+      {voiceError ? <p className={styles.errorText}>{voiceError}</p> : null}
       {isTranslating ? (
         <p className={styles.translatingText}>서버에서 번역 문구를 준비하고 있습니다.</p>
       ) : null}
@@ -627,7 +1000,7 @@ export default function InterpreterPage() {
         {messages.length === 0 ? (
           <div className={styles.placeholderBox}>
             <p className={styles.placeholderText}>
-              아직 대화가 없습니다. 말하기 버튼, quick phrase, 텍스트 입력으로 mock 대화를 추가해보세요.
+              아직 대화가 없습니다. 말하기 버튼, quick phrase, 텍스트 입력으로 상담 문장을 바로 전달해 보세요.
             </p>
           </div>
         ) : (
@@ -648,6 +1021,22 @@ export default function InterpreterPage() {
                 <p className={styles.sourceText}>{message.sourceText}</p>
                 <div className={styles.translatedRow}>
                   <p className={styles.translatedText}>{message.translatedText}</p>
+                  {message.canReplay ? (
+                    <button
+                      className={styles.replayBtn}
+                      type="button"
+                      aria-label="번역 음성 다시 듣기"
+                      title={
+                        ttsSupported
+                          ? '번역 음성 다시 듣기'
+                          : '이 브라우저에서는 음성 재생을 지원하지 않습니다'
+                      }
+                      onClick={() => handleReplayMessage(message)}
+                      disabled={!ttsSupported || isNonVoiceActionDisabled}
+                    >
+                      🔊
+                    </button>
+                  ) : null}
                 </div>
               </article>
             ))}

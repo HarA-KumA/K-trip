@@ -96,7 +96,7 @@ export default function KRideGlobalFAB() {
         <>
             <button
                 className={`${styles.fab} ${tripStatus === 'near-deadline' ? styles.fabImminent : ''} ${shrink ? styles.fabShrink : ''}`}
-                onClick={() => tripStatus === 'idle' ? router.push('/planner') : setOpen(true)}
+                onClick={() => setOpen(true)}
                 aria-label="Concierge Navigation"
             >
                 <span className={styles.fabIcon}>{cfg.icon}</span>

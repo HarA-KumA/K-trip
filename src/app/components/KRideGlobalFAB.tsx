@@ -89,7 +89,7 @@ export default function KRideGlobalFAB() {
         setTimeout(() => setCopied(false), 2000);
     }, [destInfo]);
 
-    const shouldHide = HIDE_ROUTES.some(r => pathname.startsWith(r));
+    const shouldHide = HIDE_ROUTES.some(r => pathname.startsWith(r)) || tripStatus === 'idle';
     if (shouldHide) return null;
 
     return (

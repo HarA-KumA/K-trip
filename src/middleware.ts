@@ -9,7 +9,7 @@ function getLocaleFromCountry(country: string): string {
         'KR': 'ko', 'US': 'en', 'JP': 'ja', 'CN': 'zh-CN', 'HK': 'zh-HK',
         'VN': 'vi', 'TH': 'th', 'ID': 'id', 'MY': 'ms'
     };
-    return map[c] || 'en';
+    return map[c] || 'ko';
 }
 
 function getLocaleFromBrowser(acceptLang: string): string | null {
@@ -52,7 +52,7 @@ export function middleware(request: NextRequest) {
         }
 
         // 3. Default fallback
-        if (!locale) locale = 'en';
+        if (!locale) locale = 'ko';
     }
 
     // Pass the locale in headers so Server Components can read the resolved value directly 

@@ -40,7 +40,7 @@ export default async function RootLayout({
 }>) {
   const reqHeaders = await headers();
   const reqCookies = await cookies();
-  const locale = reqHeaders.get('x-resolved-locale') || reqCookies.get('ktrip_lang')?.value || "en";
+  const locale = reqHeaders.get('x-resolved-locale') || reqCookies.get('ktrip_lang')?.value || "ko";
 
   return (
     <html lang={locale}>

@@ -285,6 +285,11 @@
     transition: all 0.2s;
 }
 
+.sendBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .sendBtn:active {
     background: #cbd5e1;
 }
@@ -319,6 +324,11 @@
     transform: scale(0.96);
 }
 
+.quickPhraseChip:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
 .speakBtn {
     width: 100%;
     padding: 20px;
@@ -337,6 +347,12 @@
 
 .speakBtn:active {
     transform: scale(0.98);
+}
+
+.speakBtn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .customerBtn {
@@ -474,14 +490,33 @@
     transform: scale(0.95);
 }
 
+.replayBtn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
 .translatingText {
-    color: #94a3b8;
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
     font-style: italic;
     animation: pulse 1.5s infinite;
 }
 
 .errorText {
-    color: #ef4444;
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
 }
 
 @keyframes pulse {
@@ -507,8 +542,10 @@
     text-align: center;
     font-size: 13px;
     font-weight: 700;
-    color: #ef4444;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    color: #0f766e;
+    padding: 8px 12px;
+    margin-top: 12px;
+    border-radius: 12px;
+    background: #ecfeff;
     animation: pulse 1.5s infinite;
 }

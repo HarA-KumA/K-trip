@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   /* Premium Light Theme Variables (White & Blue) */
   --background: #ffffff;

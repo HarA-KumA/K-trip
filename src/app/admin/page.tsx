@@ -87,6 +87,11 @@ export default function AdminDashboard() {
             desc: '관리자 권한 부여 · 해제', path: '/admin/users',
             highlight: null,
         },
+        {
+            icon: '🗂️', bg: 'rgba(15,118,110,0.1)', title: '번역 용어집',
+            desc: '뷰티 용어집 편집 및 언어별 우선순위 관리', path: '/admin/glossary',
+            highlight: null,
+        },
     ];
 
     return (

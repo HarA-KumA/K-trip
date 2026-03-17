@@ -1,0 +1,27 @@
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+Supabase URL or Anon Key is missing. Please check your .env.local file.
+⨯ Error: supabaseUrl is required.
+    at module evaluation (src\lib\supabaseClient.ts:10:37)
+    at module evaluation (src\app\page.tsx:10:1)
+   8 | }
+   9 |
+> 10 | export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+     |                                     ^
+  11 |   auth: {
+  12 |     // Automatically clean up invalid/expired sessions
+  13 |     autoRefreshToken: true, {
+  digest: '2564055238'
+}
+⨯ Error: supabaseUrl is required.
+    at module evaluation (src\lib\supabaseClient.ts:10:37)
+    at module evaluation (src\app\page.tsx:10:1)
+   8 | }
+   9 |
+> 10 | export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+     |                                     ^
+  11 |   auth: {
+  12 |     // Automatically clean up invalid/expired sessions
+  13 |     autoRefreshToken: true, {
+  digest: '2564055238'
+}
+^C^C

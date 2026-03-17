@@ -1,0 +1,17 @@
+
+> ktrip-os@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.45.248:3000
+
+✓ Starting...
+Creating turbopack project { dir: 'C:\\Users\\USER\\Desktop\\kello', testMode: true }
+✓ Ready in 653ms
+🌐 i18next is maintained with support from Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙
+ GET / 500 in 842ms (compile: 199ms, proxy.ts: 86ms, render: 556ms)
+ GET / 500 in 422ms (compile: 5ms, proxy.ts: 8ms, render: 409ms)
+🌐 i18next is maintained with support from Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙
+ GET / 200 in 234ms (compile: 93ms, proxy.ts: 6ms, render: 136ms)
+ GET / 200 in 59ms (compile: 3ms, proxy.ts: 6ms, render: 50ms)

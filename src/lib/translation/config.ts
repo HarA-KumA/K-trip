@@ -1,5 +1,5 @@
-export const TRANSLATION_LOCALES = ["ko", "en", "ja", "zh-CN"] as const;
-export const TRANSLATION_TARGET_LOCALES = ["ko", "en", "ja", "zh-CN"] as const;
+export const TRANSLATION_LOCALES = ["ko", "en", "ja", "zh-CN", "zh-HK", "vi", "th", "id", "ms"] as const;
+export const TRANSLATION_TARGET_LOCALES = ["ko", "en", "ja", "zh-CN", "zh-HK", "vi", "th", "id", "ms"] as const;
 export const TRANSLATION_DOMAINS = ["beauty", "restaurant"] as const;
 export const TRANSLATION_CONTENT_TYPES = [
   "shop",
@@ -57,4 +57,8 @@ export function getTranslationEngineName() {
   }
 
   return "mock";
+}
+
+export function getSupportedTranslationLocaleListLabel() {
+  return TRANSLATION_LOCALES.join(", ");
 }

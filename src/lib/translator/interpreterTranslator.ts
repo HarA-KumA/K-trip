@@ -2,6 +2,18 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 import type { ConciergeLocale } from "./types.ts";
 
+const INTERPRETER_LANGUAGE_LABELS: Record<ConciergeLocale, string> = {
+  ko: "Korean",
+  en: "English",
+  ja: "Japanese",
+  "zh-CN": "Simplified Chinese",
+  "zh-HK": "Traditional Chinese",
+  vi: "Vietnamese",
+  th: "Thai",
+  id: "Indonesian",
+  ms: "Malay",
+};
+
 export interface InterpreterTranslationRequest {
   sourceText: string;
   sourceLang: ConciergeLocale;
@@ -61,10 +73,12 @@ function getInterpreterGlossaryHints() {
 
 function buildGeminiInterpreterPrompt(request: InterpreterTranslationRequest) {
   const glossaryHints = getInterpreterGlossaryHints();
+  const sourceLanguage = INTERPRETER_LANGUAGE_LABELS[request.sourceLang];
+  const targetLanguage = INTERPRETER_LANGUAGE_LABELS[request.targetLang];
 
   return [
     "You are a live interpreter for a Korean beauty salon conversation.",
-    `Translate the following message from ${request.sourceLang} to ${request.targetLang}.`,
+    `Translate the following message from ${sourceLanguage} to ${targetLanguage}.`,
     "Return only the translated text.",
     "Do not add explanations, labels, bullet points, quotes, or extra formatting.",
     "Keep the wording concise, natural, and suitable for real-time face-to-face salon communication.",

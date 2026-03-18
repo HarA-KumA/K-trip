@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import styles from './HomeTranslatorHub.module.css';
-import { getLocaleLabel } from '@/lib/translator/catalog.ts';
+import { getLocaleLabel, INTERPRETER_SUPPORTED_LOCALES } from '@/lib/translator/catalog.ts';
 import type {
   ConciergeLocale,
   ConciergeResponse,
@@ -12,8 +12,6 @@ import type {
 import { InShopInterpreterMvp } from './interpreter';
 
 type TranslatorMode = 'booking' | 'interpreter';
-
-const CONCIERGE_LOCALES: ConciergeLocale[] = ['en', 'ja', 'zh-CN', 'ko'];
 
 export default function HomeTranslatorHub() {
   const [mode, setMode] = useState<TranslatorMode>('interpreter');
@@ -101,7 +99,8 @@ function BookingConciergePanel() {
       <div className={styles.panelCard}>
         <h3 className={styles.cardTitle}>고객 문의 입력</h3>
         <p className={styles.cardDesc}>
-          영어, 일본어, 중국어 간체, 한국어로 문의할 수 있습니다. 예약 가능 여부는 서버에서 availability tool을 먼저 호출합니다.
+          한국어, 영어, 일본어, 중국어 간체/번체, 베트남어, 태국어, 인도네시아어, 말레이어로 문의할 수 있습니다.
+          예약 가능 여부는 서버에서 availability tool을 먼저 호출합니다.
         </p>
 
         <div className={styles.grid2}>
@@ -112,7 +111,7 @@ function BookingConciergePanel() {
               value={customerLocale}
               onChange={(event) => setCustomerLocale(event.target.value as ConciergeLocale)}
             >
-              {CONCIERGE_LOCALES.map((locale) => (
+              {INTERPRETER_SUPPORTED_LOCALES.map((locale) => (
                 <option key={locale} value={locale}>
                   {getLocaleLabel(locale)}
                 </option>

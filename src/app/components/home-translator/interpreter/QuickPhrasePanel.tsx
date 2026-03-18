@@ -10,6 +10,15 @@ interface QuickPhrasePanelProps {
 export function QuickPhrasePanel({ groups, onPhraseClick }: QuickPhrasePanelProps) {
   const visibleGroups = getVisibleQuickPhraseGroups(groups);
 
+  if (visibleGroups.length === 0) {
+    return (
+      <div className="rounded-[22px] border border-slate-200 bg-slate-50/80 px-4 py-4 text-sm font-semibold leading-6 text-slate-600">
+        Quick phrases are currently prepared for Korean, English, Japanese, and Simplified Chinese.
+        Use voice or text input for the other supported languages.
+      </div>
+    );
+  }
+
   return (
     <div className="grid gap-3">
       {visibleGroups.map((group) => (

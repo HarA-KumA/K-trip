@@ -1,4 +1,7 @@
+import { TRANSLATION_LOCALES } from "../translation/config.ts";
 import type { BeautyServiceCatalogItem, ConciergeLocale, SpeakerRole } from "./types.ts";
+
+type LocaleTextMap = Partial<Record<ConciergeLocale, string>> & { ko: string };
 
 export const BEAUTY_SERVICE_CATALOG: BeautyServiceCatalogItem[] = [
   {
@@ -77,13 +80,13 @@ export const QUICK_INTERPRETER_PHRASES: Record<
   ],
 };
 
-export const INTERPRETER_SUPPORTED_LOCALES: ConciergeLocale[] = ["ko", "en", "ja", "zh-CN"];
+export const INTERPRETER_SUPPORTED_LOCALES: ConciergeLocale[] = [...TRANSLATION_LOCALES];
 
 export const SALON_QUICK_PHRASES: Record<
   SpeakerRole,
   Array<{
     id: string;
-    translations: Record<ConciergeLocale, string>;
+    translations: LocaleTextMap;
   }>
 > = {
   customer: [
@@ -218,6 +221,11 @@ export function getLocaleLabel(locale: ConciergeLocale) {
     en: "English",
     ja: "日本語",
     "zh-CN": "简体中文",
+    "zh-HK": "繁體中文",
+    vi: "Tiếng Việt",
+    th: "ไทย",
+    id: "Bahasa Indonesia",
+    ms: "Bahasa Melayu",
   };
 
   return labels[locale];
@@ -229,6 +237,11 @@ export function getLocaleDisplayLabel(locale: ConciergeLocale) {
     en: "English (EN)",
     ja: "Japanese (JA)",
     "zh-CN": "Chinese Simplified (ZH-CN)",
+    "zh-HK": "Chinese Traditional (ZH-HK)",
+    vi: "Vietnamese (VI)",
+    th: "Thai (TH)",
+    id: "Indonesian (ID)",
+    ms: "Malay (MS)",
   };
 
   return labels[locale];
@@ -240,13 +253,18 @@ export function getSpeechLocale(locale: ConciergeLocale) {
     en: "en-US",
     ja: "ja-JP",
     "zh-CN": "zh-CN",
+    "zh-HK": "zh-HK",
+    vi: "vi-VN",
+    th: "th-TH",
+    id: "id-ID",
+    ms: "ms-MY",
   };
 
   return map[locale];
 }
 
 export function getQuickPhraseText(
-  phrase: { translations: Record<ConciergeLocale, string> },
+  phrase: { translations: LocaleTextMap },
   locale: ConciergeLocale,
 ) {
   return phrase.translations[locale] ?? phrase.translations.ko;

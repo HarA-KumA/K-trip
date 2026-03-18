@@ -3,6 +3,18 @@ import { getTranslationEngineName } from "./config.ts";
 import { injectGlossaryTokens } from "./glossary.ts";
 import type { TranslationProviderResult, TranslationTextRequest } from "./types.ts";
 
+const TRANSLATION_LANGUAGE_LABELS: Record<string, string> = {
+  ko: "Korean",
+  en: "English",
+  ja: "Japanese",
+  "zh-CN": "Simplified Chinese",
+  "zh-HK": "Traditional Chinese",
+  vi: "Vietnamese",
+  th: "Thai",
+  id: "Indonesian",
+  ms: "Malay",
+};
+
 export interface TranslationProvider {
   translateText(request: TranslationTextRequest): Promise<TranslationProviderResult>;
 }
@@ -89,8 +101,10 @@ export class GeminiTranslationProvider implements TranslationProvider {
   }
 
   async translateText(request: TranslationTextRequest): Promise<TranslationProviderResult> {
+    const sourceLanguage = TRANSLATION_LANGUAGE_LABELS[request.sourceLocale] ?? request.sourceLocale;
+    const targetLanguage = TRANSLATION_LANGUAGE_LABELS[request.targetLocale] ?? request.targetLocale;
     const prompt = `
-      Translate the following text from ${request.sourceLocale} to ${request.targetLocale}.
+      Translate the following text from ${sourceLanguage} to ${targetLanguage}.
       Context: ${request.domain} / ${request.contentType}
       Text to translate:
       ${request.text}

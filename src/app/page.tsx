@@ -1,30 +1,101 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useTranslation } from 'react-i18next';
-import LanguagePicker from './components/LanguagePicker';
+
 import CurrencySelector from './components/CurrencySelector';
+import LanguagePicker from './components/LanguagePicker';
 import WeatherWidget from './components/WeatherWidget';
 import styles from './home.module.css';
-import { useTrip } from '@/lib/contexts/TripContext';
-import TravelPlanTemplates from './components/TravelPlanTemplates';
+import { useTranslation } from 'react-i18next';
+
+type BeautyCategoryId = 'hair' | 'nail' | 'esthetic' | 'waxing' | 'makeup' | 'lash';
+
+type BeautyCategoryOption = {
+  id: BeautyCategoryId;
+  code: string;
+  label: string;
+  english: string;
+  note: string;
+  summary: string;
+};
+
+const BEAUTY_CATEGORY_OPTIONS: BeautyCategoryOption[] = [
+  {
+    id: 'hair',
+    code: 'HAIR',
+    label: '헤어',
+    english: 'Hair',
+    note: '커트, 펌, 염색, 드라이',
+    summary: '스타일 체인지부터 가벼운 손질까지 가장 빠르게 예약을 시작할 수 있어요.',
+  },
+  {
+    id: 'nail',
+    code: 'NAIL',
+    label: '네일',
+    english: 'Nail',
+    note: '젤네일, 케어, 연장',
+    summary: '원하는 무드와 디자인을 정하고 가볍게 예약 단계로 넘어갈 수 있어요.',
+  },
+  {
+    id: 'esthetic',
+    code: 'CARE',
+    label: '에스테틱',
+    english: 'Esthetic',
+    note: '피부관리, 윤곽, 진정 케어',
+    summary: '피부 상태와 원하는 관리 목적에 맞춰 매장을 비교하고 예약할 수 있어요.',
+  },
+  {
+    id: 'waxing',
+    code: 'WAX',
+    label: '왁싱',
+    english: 'Waxing',
+    note: '페이스, 바디, 브라질리언',
+    summary: '부위와 일정에 맞는 매장을 빠르게 찾고 예약 흐름으로 이어집니다.',
+  },
+  {
+    id: 'makeup',
+    code: 'MAKE',
+    label: '메이크업',
+    english: 'Makeup',
+    note: '데일리, 촬영, 웨딩',
+    summary: '행사 일정에 맞는 메이크업 서비스를 선택하고 바로 예약을 시작할 수 있어요.',
+  },
+  {
+    id: 'lash',
+    code: 'LASH',
+    label: '속눈썹',
+    english: 'Lash',
+    note: '연장, 펌, 언더래쉬',
+    summary: '자연스러운 연장부터 볼륨 스타일링까지 원하는 메뉴로 바로 연결됩니다.',
+  },
+];
+
+const ASSURANCE_ITEMS = [
+  {
+    title: '한눈에 카테고리 선택',
+    description: '첫 화면에서 원하는 서비스를 먼저 고르고 예약 흐름으로 바로 진입합니다.',
+  },
+  {
+    title: '언어 걱정 없는 예약',
+    description: '필요할 때 실시간 통역 도우미로 매장과 자연스럽게 대화할 수 있습니다.',
+  },
+  {
+    title: '모바일 우선 예약 동선',
+    description: '한 손으로도 선택하기 쉬운 카드형 버튼과 큰 CTA로 전환을 높였습니다.',
+  },
+];
 
 export default function HomePage() {
   const { t } = useTranslation('common');
-  const { setTripDays, setItinerary } = useTrip();
   const router = useRouter();
   const hasSupabaseAuth = Boolean(
-    process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   );
 
   const [userName, setUserName] = useState<string | null>(null);
-
-  // Search Input State
-  const [where, setWhere] = useState('');
-  const [who, setWho] = useState('solo');
-  const [days, setDays] = useState(3);
-  const [interests, setInterests] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<BeautyCategoryId | null>(null);
 
   useEffect(() => {
     if (!hasSupabaseAuth) {
@@ -69,9 +140,9 @@ export default function HomePage() {
           const user = session.user;
           setUserName(
             user.user_metadata?.full_name ||
-            user.user_metadata?.name ||
-            user.email?.split('@')[0] ||
-            'User'
+              user.user_metadata?.name ||
+              user.email?.split('@')[0] ||
+              'User',
           );
           return;
         }
@@ -103,43 +174,20 @@ export default function HomePage() {
     }
   };
 
-  const supabase = {
-    auth: {
-      signOut: handleSignOut,
-    },
-  };
-
-  const handleStart = () => {
-    setTripDays(days);
-    setItinerary([]);
-    if (where.trim()) {
-      router.push(`/explore?city=${encodeURIComponent(where.trim())}&days=${days}`);
-    } else {
-      router.push('/planner');
+  const handleStartBooking = () => {
+    if (!selectedCategory) {
+      return;
     }
+
+    router.push(`/explore?category=beauty&beautyCategory=${selectedCategory}`);
   };
 
   const handleOpenInterpreter = () => {
     router.push('/interpreter');
   };
 
-  const toggleInterest = (interest: string) => {
-    if (interests.includes(interest)) {
-      setInterests(interests.filter(i => i !== interest));
-    } else {
-      setInterests([...interests, interest]);
-    }
-  };
-
-  // Safe translation helper
-  const homeTrans = (key: string, defaultValue?: string): any => {
-    const defaultVal = defaultValue || key;
-    return t(`home_new.${key}`, { defaultValue: defaultVal, returnObjects: true });
-  };
-
-  const whoOptions = homeTrans('input.who_options') as Record<string, string>;
-  const interestsOptions = homeTrans('input.interests_options') as Record<string, string>;
-  const trustItems = homeTrans('trust.items') as string[] | undefined;
+  const selectedOption =
+    BEAUTY_CATEGORY_OPTIONS.find((option) => option.id === selectedCategory) ?? null;
 
   return (
     <main className={styles.main}>
@@ -151,147 +199,127 @@ export default function HomePage() {
         </div>
         {!hasSupabaseAuth ? null : !userName ? (
           <div className={styles.navAuthWrap}>
-            <button className={styles.navLinkBtn} onClick={() => router.push('/auth/login')}>
+            <button className={styles.navLinkBtn} type="button" onClick={() => router.push('/auth/login')}>
               <span className={styles.authIcon}>👤</span>
             </button>
           </div>
         ) : (
-          <button className={styles.navLinkBtn} onClick={async () => { await supabase.auth.signOut(); setUserName(null); }}>
+          <button className={styles.navLinkBtn} type="button" onClick={() => void handleSignOut()}>
             <span className={styles.authIcon}>👋</span>
           </button>
         )}
       </div>
 
       <div className={styles.backgroundEffects}>
-        <div className={styles.orbPurple} />
-        <div className={styles.orbBlue} />
+        <div className={styles.orbRose} />
+        <div className={styles.orbSand} />
       </div>
 
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <img src="/kello-logo.png" alt="Kello" className={styles.heroLogo} />
-        <h1 className={styles.heroTitle}>
-          {homeTrans('hero_title', '한국 여행, 일정부터 예약까지 한 번에')}
-        </h1>
+      <section className={styles.heroSection}>
+        <Image src="/kello-logo.png" alt="Kello" width={124} height={28} className={styles.heroLogo} priority />
+        <div className={styles.heroEyebrow}>{t('home_beauty.hero.eyebrow')}</div>
+        <h1 className={styles.heroTitle}>{t('home_beauty.hero.title')}</h1>
         <p className={styles.heroSubtitle}>
-          {homeTrans('hero_subtitle', '여행 일정 추천부터 예약 지원까지 빠르게 시작하세요.')}
+          {t('home_beauty.hero.subtitle')}
         </p>
-        <div className={styles.featuresGrid}>
-          <div className={styles.featurePill}>🎫 <span>{homeTrans('features.booking', '예약까지 한 번에')}</span></div>
-          <div className={styles.featurePill}>🗓️ <span>{homeTrans('features.ai_plan', 'AI로 일정 완성')}</span></div>
-          <div className={styles.featurePill}>🗺️ <span>{homeTrans('features.navi', '길찾기 걱정 없이')}</span></div>
-        </div>
+        {userName ? (
+          <p className={styles.welcomeText}>
+            {t('home_beauty.hero.welcome', { name: userName })}
+          </p>
+        ) : null}
       </section>
 
-      {/* Travel Input Card */}
-      <section className={styles.inputCardWrapper}>
-        <div className={styles.inputCard}>
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>📍 {homeTrans('input.where', '어디로 가나요?')}</label>
-            <div className={styles.whereInputWrap}>
-              <input
-                className={styles.whereInput}
-                placeholder={homeTrans('input.where_placeholder', '서울, 부산, 제주...') as string}
-                value={where}
-                onChange={(e) => setWhere(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
-                    handleStart();
-                  }
-                }}
-              />
-              {where && <button className={styles.clearBtn} onClick={() => setWhere('')}>✕</button>}
-            </div>
+      <section className={styles.bookingShell}>
+        <div className={styles.bookingCard}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionEyebrow}>{t('home_beauty.booking.step')}</span>
+            <h2 className={styles.sectionTitle}>{t('home_beauty.booking.title')}</h2>
+            <p className={styles.sectionDescription}>
+              {t('home_beauty.booking.description')}
+            </p>
           </div>
 
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>📅 {homeTrans('input.when', '언제 가나요?')}</label>
-            <div className={styles.daysValueContainer}>
-              <span className={styles.daysNumber}>
-                {days}{homeTrans('input.days_suffix', '일')}
-              </span>
-              <div className={styles.daysControls}>
-                <button className={styles.dayBtn} onClick={() => setDays(Math.max(1, days - 1))}>−</button>
-                <button className={styles.dayBtn} onClick={() => setDays(Math.min(14, days + 1))}>+</button>
-              </div>
-            </div>
-          </div>
+          <div className={styles.categoryGrid}>
+            {BEAUTY_CATEGORY_OPTIONS.map((option) => {
+              const isActive = selectedCategory === option.id;
 
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>🤝 {homeTrans('input.who', '누구와 가나요?')}</label>
-            <div className={styles.chipGrid}>
-              {['solo', 'couple', 'friends', 'family'].map((key) => (
+              return (
                 <button
-                  key={key}
-                  className={`${styles.selectChip} ${who === key ? styles.selectChipActive : ''}`}
-                  onClick={() => setWho(key)}
+                  key={option.id}
+                  type="button"
+                  className={`${styles.categoryButton} ${isActive ? styles.categoryButtonActive : ''}`}
+                  onClick={() => setSelectedCategory(option.id)}
                 >
-                  {whoOptions ? whoOptions[key] : key}
+                  <span className={styles.categoryCode}>{option.code}</span>
+                  <span className={styles.categoryLabel}>{t(`home_beauty.categories.${option.id}.label`)}</span>
+                  <span className={styles.categoryEnglish}>{option.english}</span>
+                  <span className={styles.categoryNote}>{t(`home_beauty.categories.${option.id}.note`)}</span>
                 </button>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>✨ {homeTrans('input.interests', '어떤 여행을 원하시나요?')}</label>
-            <div className={styles.chipGrid3}>
-              {['beauty', 'shopping', 'food', 'night'].map((key) => {
-                const isActive = interests.includes(key);
-                return (
-                  <button
-                    key={key}
-                    className={`${styles.selectChip} ${isActive ? styles.selectChipActive : ''}`}
-                    onClick={() => toggleInterest(key)}
-                  >
-                    {interestsOptions ? interestsOptions[key] : key}
-                  </button>
-                )
-              })}
-            </div>
+          <div className={styles.selectionPanel}>
+            <span className={styles.selectionEyebrow}>{t('home_beauty.selection.eyebrow')}</span>
+            {selectedOption ? (
+              <div className={styles.selectionRow}>
+                <div>
+                  <h3 className={styles.selectionTitle}>{t(`home_beauty.categories.${selectedOption.id}.label`)}</h3>
+                  <p className={styles.selectionDescription}>{t(`home_beauty.categories.${selectedOption.id}.summary`)}</p>
+                </div>
+                <div className={styles.selectionTagRow}>
+                  <span className={styles.selectionTag}>{t('home_beauty.selection.tags.mobile')}</span>
+                  <span className={styles.selectionTag}>{t('home_beauty.selection.tags.comparison')}</span>
+                  <span className={styles.selectionTag}>{t('home_beauty.selection.tags.inquiry')}</span>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.selectionEmpty}>
+                {t('home_beauty.selection.empty')}
+              </div>
+            )}
           </div>
 
           <div className={styles.ctaSection}>
-            <div className={styles.ctaHelper}>{homeTrans('cta_helper', '1분 안에 여행 일정 추천 받기')}</div>
-            <button className={styles.mainCtaBtn} onClick={handleStart}>
-              {homeTrans('cta_btn', '나만의 일정 만들기')} <span className={styles.arrowIcon}>→</span>
+            <p className={styles.ctaHint}>
+              {t('home_beauty.cta.hint')}
+            </p>
+            <button
+              className={styles.mainCtaBtn}
+              type="button"
+              disabled={!selectedCategory}
+              onClick={handleStartBooking}
+            >
+              {t('home_beauty.cta.button')}
+              <span className={styles.arrowIcon}>→</span>
             </button>
           </div>
         </div>
       </section>
 
-      {/* Trust Factors */}
-      <section className={styles.trustSection}>
-        <div className={styles.trustTitle}>
-          {homeTrans('trust.title', 'Kello와 함께하는 안심 여행')}
-        </div>
-        <div className={styles.trustGrid}>
-          {Array.isArray(trustItems) && trustItems.map((item, idx) => (
-            <div key={idx} className={styles.trustItem}>
-              <span className={styles.trustIcon}>✔</span>
-              <span>{item}</span>
-            </div>
+      <section className={styles.supportSection}>
+        <article className={styles.interpreterCard}>
+          <span className={styles.interpreterEyebrow}>{t('home_beauty.interpreter.eyebrow')}</span>
+          <h2 className={styles.interpreterTitle}>{t('home_beauty.interpreter.title')}</h2>
+          <p className={styles.interpreterDescription}>
+            {t('home_beauty.interpreter.description')}
+          </p>
+          <button className={styles.secondaryBtn} type="button" onClick={handleOpenInterpreter}>
+            {t('home_beauty.interpreter.button')}
+          </button>
+        </article>
+
+        <div className={styles.assuranceGrid}>
+          {ASSURANCE_ITEMS.map((item, index) => (
+            <article key={item.title} className={styles.assuranceCard}>
+              <h3 className={styles.assuranceTitle}>{t(`home_beauty.assurance.items.${index}.title`)}</h3>
+              <p className={styles.assuranceDescription}>{t(`home_beauty.assurance.items.${index}.desc`)}</p>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* Recommended Plans */}
-      <TravelPlanTemplates />
-
-      <section className={styles.interpreterEntrySection}>
-        <div className={styles.interpreterEntryCard}>
-          <h2 className={styles.interpreterEntryTitle}>
-            {homeTrans('interpreter_entry.title', '실시간 통역 도우미')}
-          </h2>
-          <p className={styles.interpreterEntryDescription}>
-            {homeTrans('interpreter_entry.description', '매장에서 직원과 손쉽게 대화해보세요')}
-          </p>
-          <button className={styles.mainCtaBtn} onClick={handleOpenInterpreter}>
-            {homeTrans('interpreter_entry.cta', '통역기 시작하기')}
-          </button>
-        </div>
-      </section>
-
-      <div style={{ height: 100 }} />
+      <div className={styles.bottomSpacer} />
     </main>
   );
 }

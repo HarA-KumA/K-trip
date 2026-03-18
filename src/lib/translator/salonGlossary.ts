@@ -1,17 +1,19 @@
 import type { GlossaryEntry, TranslationDomain, TranslationLocale } from "../translation/types.ts";
 import type { SpeakerRole } from "./types.ts";
 
+type SalonLocaleTextMap = Partial<Record<TranslationLocale, string>> & { ko: string };
+
 interface SalonGlossaryTerm {
   id: string;
   priority?: number;
-  translations: Record<TranslationLocale, string>;
+  translations: SalonLocaleTextMap;
   aliases?: Partial<Record<TranslationLocale, string[]>>;
 }
 
 interface SalonQuickPhraseTemplate {
   id: string;
   category: SalonQuickPhraseCategory;
-  template: Record<TranslationLocale, string>;
+  template: SalonLocaleTextMap;
 }
 
 export type SalonQuickPhraseCategory =
@@ -35,6 +37,7 @@ export interface SalonQuickPhraseGroup {
 
 const SALON_GLOSSARY_VERSION = 1;
 const SALON_GLOSSARY_PRIORITY = 20;
+const SALON_QUICK_PHRASE_LOCALES = new Set<TranslationLocale>(["ko", "en", "ja", "zh-CN"]);
 
 export const SALON_GLOSSARY_TERMS: SalonGlossaryTerm[] = [
   {
@@ -386,8 +389,9 @@ export function buildSalonGlossaryEntries(
   }
 
   return SALON_GLOSSARY_TERMS.flatMap((term) => {
-    const sourceTerms = [term.translations[sourceLocale], ...(term.aliases?.[sourceLocale] ?? [])]
-      .filter(Boolean);
+    const sourceTerms = [term.translations[sourceLocale], ...(term.aliases?.[sourceLocale] ?? [])].filter(
+      (value): value is string => Boolean(value),
+    );
     const targetTerm = term.translations[targetLocale];
 
     if (!targetTerm) {
@@ -432,10 +436,18 @@ export function mergeSalonGlossaryEntries(
 }
 
 export function getSalonQuickPhraseTexts(role: SpeakerRole, locale: TranslationLocale) {
+  if (!SALON_QUICK_PHRASE_LOCALES.has(locale)) {
+    return [];
+  }
+
   return SALON_QUICK_PHRASE_TEMPLATES[role].map((phrase) => renderPhraseTemplate(phrase.template[locale] ?? phrase.template.ko, locale));
 }
 
 export function getSalonQuickPhraseGroups(role: SpeakerRole, locale: TranslationLocale): SalonQuickPhraseGroup[] {
+  if (!SALON_QUICK_PHRASE_LOCALES.has(locale)) {
+    return [];
+  }
+
   const grouped = new Map<SalonQuickPhraseCategory, SalonQuickPhraseButton[]>();
 
   SALON_QUICK_PHRASE_TEMPLATES[role].forEach((phrase) => {

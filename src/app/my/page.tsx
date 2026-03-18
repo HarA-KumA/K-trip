@@ -135,7 +135,96 @@ function MyPageContent() {
 
             {/* My Bookings */}
             <section className="mb-8">
-                <h2 className="text-lg font-bold mb-4" suppressHydrationWarning>{t('my_page.bookings.title')}</h2>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 12 }}>
+                    <h2 className="text-lg font-bold" style={{ margin: 0 }} suppressHydrationWarning>{t('my_page.bookings.title')}</h2>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                        <button
+                            type="button"
+                            onClick={() => router.push('/my/settings/notifications')}
+                            style={{
+                                border: '1px solid rgba(124,58,237,0.18)',
+                                background: 'rgba(124,58,237,0.08)',
+                                color: '#7c3aed',
+                                borderRadius: 999,
+                                padding: '8px 12px',
+                                fontSize: '0.78rem',
+                                fontWeight: 700,
+                                cursor: 'pointer',
+                                whiteSpace: 'nowrap',
+                            }}
+                        >
+                            알림 설정
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => router.push('/my/notifications')}
+                            style={{
+                                border: '1px solid rgba(147,51,234,0.18)',
+                                background: 'rgba(147,51,234,0.08)',
+                                color: '#9333ea',
+                                borderRadius: 999,
+                                padding: '8px 12px',
+                                fontSize: '0.78rem',
+                                fontWeight: 700,
+                                cursor: 'pointer',
+                                whiteSpace: 'nowrap',
+                            }}
+                        >
+                            알림 함
+                        </button>
+                        <button
+                            type="button"
+                        onClick={() => router.push('/my/bookings/beauty')}
+                        style={{
+                            border: '1px solid rgba(236,72,153,0.18)',
+                            background: 'rgba(236,72,153,0.08)',
+                            color: '#be185d',
+                            borderRadius: 999,
+                            padding: '8px 12px',
+                            fontSize: '0.78rem',
+                            fontWeight: 700,
+                            cursor: 'pointer',
+                            whiteSpace: 'nowrap',
+                        }}
+                    >
+                        내 뷰티 예약 보기
+                    </button>
+                    </div>
+                </div>
+
+                <div
+                    onClick={() => router.push('/my/bookings/beauty')}
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 12,
+                        background: 'linear-gradient(135deg, rgba(236,72,153,0.08), rgba(244,114,182,0.05))',
+                        border: '1.5px solid rgba(236,72,153,0.18)',
+                        borderRadius: 16,
+                        padding: '16px 18px',
+                        marginBottom: 14,
+                        cursor: 'pointer',
+                    }}
+                >
+                    <div style={{
+                        width: 42,
+                        height: 42,
+                        borderRadius: 12,
+                        background: 'rgba(236,72,153,0.12)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '1.25rem',
+                        flexShrink: 0,
+                    }}>💇</div>
+                    <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: 700, fontSize: '0.92rem', marginBottom: 2 }}>뷰티 예약 요청 확인</div>
+                        <div style={{ fontSize: '0.78rem', color: 'var(--gray-500)' }}>
+                            예약 상태, 전달 메모, 시술 요청 내용을 한 화면에서 확인할 수 있어요.
+                        </div>
+                    </div>
+                    <span style={{ color: '#ec4899', fontSize: '1rem', fontWeight: 700 }}>›</span>
+                </div>
 
                 {allBookings.map((booking: any) => (
                     <div key={booking.id} className={`${styles.ticket} mb-4`}>
@@ -306,6 +395,7 @@ function MyPageContent() {
 
                     {[
                         { icon: '📊', label: '관리자 대시보드', desc: '통계 및 전체 메뉴', path: '/admin' },
+                        { icon: '💼', label: '뷰티 예약 관리', desc: '예약 요청 조회 및 상태 변경', path: '/admin/bookings/beauty' },
                         { icon: '🤝', label: '협력업체 관리', desc: '가입 신청 승인 · 거절', path: '/admin/partners' },
                         { icon: '🛡️', label: '관리자 계정 관리', desc: '권한 부여 · 해제', path: '/admin/users' },
                         { icon: '🗂️', label: '번역 용어집', desc: '뷰티 번역 용어 우선순위 관리', path: '/admin/glossary' },

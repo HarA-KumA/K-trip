@@ -43,6 +43,94 @@
     },
     "community_nav": "Community"
   },
+  "home_beauty": {
+    "hero": {
+      "eyebrow": "Beauty Booking Concierge",
+      "title": "Layanan apa yang ingin Anda pesan?",
+      "subtitle": "Pilih layanan kecantikan yang Anda inginkan terlebih dahulu, lalu masuk ke langkah pemesanan. Kami mendesain layar ini untuk pemilihan cepat di ponsel, diikuti perbandingan toko dan permintaan reservasi.",
+      "welcome": "{{name}}, silakan pilih layanan yang Anda butuhkan hari ini."
+    },
+    "booking": {
+      "step": "Langkah 1",
+      "title": "Silakan pilih layanan kecantikan yang diinginkan",
+      "description": "Setelah memilih kategori, Anda dapat mulai mengeksplorasi pemesanan berdasarkan layanan tersebut pada langkah berikutnya."
+    },
+    "categories": {
+      "hair": {
+        "label": "Rambut",
+        "note": "Potong, Perm, Warna, Dry",
+        "summary": "Mulai pemesanan dengan cepat dari perubahan gaya hingga perawatan ringan."
+      },
+      "nail": {
+        "label": "Kuku",
+        "note": "Gel Nail, Perawatan, Ekstensi",
+        "summary": "Tentukan suasana dan desain yang diinginkan, lalu lanjut ke tahap pemesanan dengan mudah."
+      },
+      "esthetic": {
+        "label": "Estetik",
+        "note": "Skincare, Kontur, Perawatan Penenang",
+        "summary": "Bandingkan toko dan lakukan pemesanan sesuai kondisi kulit dan tujuan perawatan Anda."
+      },
+      "waxing": {
+        "label": "Waxing",
+        "note": "Wajah, Tubuh, Brazilian",
+        "summary": "Temukan dan pesan toko yang sesuai dengan area dan jadwal Anda dengan cepat."
+      },
+      "makeup": {
+        "label": "Makeup",
+        "note": "Harian, Pemotretan, Pernikahan",
+        "summary": "Pilih layanan makeup yang sesuai dengan jadwal acara Anda dan mulai pemesanan segera."
+      },
+      "lash": {
+        "label": "Bulu Mata",
+        "note": "Ekstensi, Perm, Underlash",
+        "summary": "Terhubung langsung dengan menu yang diinginkan, mulai dari ekstensi alami hingga gaya bervolume."
+      }
+    },
+    "selection": {
+      "eyebrow": "Kategori Terpilih",
+      "tags": {
+        "mobile": "Pemesanan Ponsel",
+        "comparison": "Perbandingan Toko",
+        "inquiry": "Konsultasi Real-time"
+      },
+      "empty": "Silakan pilih kategori terlebih dahulu. Tombol mulai pemesanan akan aktif setelah memilih."
+    },
+    "cta": {
+      "hint": "Jelajahi layanan kecantikan yang tersedia berdasarkan kategori terpilih pada layar berikutnya.",
+      "button": "Mulai Pemesanan"
+    },
+    "interpreter": {
+      "eyebrow": "Dukungan Bahasa",
+      "title": "Butuh reservasi dalam bahasa asing? Gunakan Asisten Penerjemah",
+      "description": "Jika Anda khawatir tentang komunikasi saat konsultasi sebelum memesan atau saat di toko, Anda dapat terhubung langsung dengan penerjemah real-time.",
+      "button": "Buka Asisten Penerjemah"
+    },
+    "assurance": {
+      "items": [
+        {
+          "title": "Pilihan Kategori Sekilas",
+          "desc": "Pilih layanan Anda di layar pertama dan masuk ke alur pemesanan secara instan."
+        },
+        {
+          "title": "Pemesanan Tanpa Khawatir Bahasa",
+          "desc": "Bicara secara alami dengan toko menggunakan penerjemah real-time saat diperlukan."
+        },
+        {
+          "title": "Alur Pemesanan Mobile-First",
+          "desc": "Tingkatkan konversi dengan tombol berbentuk kartu dan CTA besar yang mudah dipilih dengan satu tangan."
+        }
+      ]
+    }
+  },
+  "interpreter_ui": {
+    "customer_speaks": "Bahasa Pelanggan",
+    "staff_speaks": "Bahasa Toko",
+    "customer_language": "Bahasa yang Digunakan Pelanggan",
+    "staff_language": "Bahasa yang Digunakan Toko",
+    "session": "Sesi",
+    "expires": "Kedaluwarsa"
+  },
   "home": {
     "badge": "Kello",
     "title": "Pemesanan Concierge · Jadwal Otomatis · Navigasi",
@@ -334,5 +422,160 @@
         "saved": "⭐ Tersimpan"
       }
     }
+  },
+  "beauty_bookings": {
+    "page_title": "My Beauty Bookings",
+    "hero_eyebrow": "My Beauty Booking",
+    "hero_title": "Track your booking requests and notes all in one place.",
+    "hero_text": "Your most recent bookings appear first. Quickly filter between active and completed bookings.",
+    "login_title": "Sign in to view your booking history.",
+    "login_text": "Once logged in, you can see all your beauty booking requests and staff notes in one place.",
+    "login_action": "Go to Sign In",
+    "back_to_my": "Back to My Page",
+    "deeplink_toast": "We opened your selected booking. ✨",
+    "tab_all": "All",
+    "tab_active": "Active",
+    "tab_completed": "Completed",
+    "tab_canceled": "Canceled",
+    "tab_aria": "Booking status filter",
+    "status_requested": "Pending Confirmation",
+    "status_confirmed": "Confirmed",
+    "status_completed": "Completed",
+    "status_canceled": "Canceled",
+    "status_failed": "Needs Attention",
+    "status_change_requested": "Change Requested",
+    "status_desc_requested": "The salon is checking availability.",
+    "status_desc_confirmed": "Your appointment time is confirmed.",
+    "status_desc_completed": "Your visit has been completed.",
+    "status_desc_canceled": "Your booking has been canceled.",
+    "status_desc_failed": "Your booking request needs attention.",
+    "status_desc_change_requested": "A change to your schedule or service is being requested.",
+    "category_hair": "Hair",
+    "category_nail": "Nail",
+    "category_esthetic": "Esthetic",
+    "category_waxing": "Waxing",
+    "category_makeup": "Makeup",
+    "category_lash": "Lash",
+    "lang_ko": "Korean",
+    "lang_en": "English",
+    "lang_ja": "Japanese",
+    "lang_zh_cn": "Chinese (Simplified)",
+    "lang_zh_hk": "Chinese (Traditional)",
+    "lang_vi": "Vietnamese",
+    "lang_th": "Thai",
+    "lang_id": "Indonesian",
+    "lang_ms": "Malay",
+    "intent_booking_confirm": "Booking Confirmation",
+    "intent_service_request": "Service Request",
+    "intent_allergy_notice": "Allergy/Sensitivity Notice",
+    "intent_style_consultation": "Style Consultation",
+    "card_primary_service": "Primary Service",
+    "card_estimated_price": "Est. Price",
+    "loading": "Loading your bookings...",
+    "empty": "No beauty bookings yet. Once you complete a booking, it will appear here.",
+    "select_prompt": "Select a booking to view its details.",
+    "detail_category": "Category",
+    "detail_designer": "Designer",
+    "detail_requested_at": "Requested",
+    "detail_status": "Current Status",
+    "detail_designer_default": "Shop's Choice",
+    "timeline_title": "Booking Progress",
+    "change_request_title": "Change Request Info",
+    "change_request_hint": "Our team is reviewing your request. Please wait a moment.",
+    "change_request_time": "Requested At",
+    "change_request_reason": "Reason",
+    "change_request_reason_empty": "No reason provided",
+    "change_request_time_empty": "Checking",
+    "change_result_title": "Latest Change Request Result",
+    "change_result_status": "Status",
+    "change_result_approved": "✅ Approved",
+    "change_result_rejected": "❌ Rejected",
+    "change_result_review_time": "Reviewed At",
+    "alt_offer_title": "New Schedule Offered",
+    "alt_offer_desc": "Your requested time is no longer available. The salon has suggested the options below — please select one.",
+    "alt_offer_admin_label": "Shop Note",
+    "alt_offer_accept": "Accept & Update Booking",
+    "alt_offer_reject": "Decline Offer",
+    "alt_offer_processing": "Processing...",
+    "alt_offer_response_title": "Offer Response Result",
+    "alt_offer_accepted_result": "You have already accepted this offer.",
+    "alt_offer_rejected_result": "You have already declined this offer.",
+    "alt_response_accepted": "Offer accepted. Your booking schedule has been updated.",
+    "alt_response_rejected": "Offer declined.",
+    "alt_slot_select_error": "Please select one of the offered slots.",
+    "service_info_title": "Service Info",
+    "service_primary": "Primary Service",
+    "service_addons": "Add-ons",
+    "service_region": "Booking Region",
+    "service_addons_empty": "No add-ons selected",
+    "price_title": "Price Summary",
+    "price_base": "Base Price",
+    "price_addon": "Add-on Price",
+    "price_surcharge": "Designer Surcharge",
+    "price_total": "Estimated Total",
+    "request_title": "My Requests",
+    "request_memo": "Request Note",
+    "request_memo_empty": "No special requests.",
+    "delivery_title": "Delivery Info",
+    "delivery_lang": "Language",
+    "delivery_intent": "Purpose",
+    "message_korean": "Korean Note for the Salon",
+    "message_localized": "Note in Selected Language",
+    "manage_title": "Manage Booking",
+    "manage_desc": "You can cancel directly when the booking is pending or confirmed. This cannot be undone.",
+    "manage_disabled": "This booking cannot be managed at its current status.",
+    "action_change": "Request Change",
+    "action_cancel": "Cancel Booking",
+    "cancel_panel_title": "Cancel Booking",
+    "cancel_reason_schedule": "Schedule change",
+    "cancel_reason_other_shop": "Chose another salon",
+    "cancel_reason_mistake": "Booked by mistake",
+    "cancel_reason_etc": "Other",
+    "cancel_details_placeholder": "Any additional reason you'd like to share?",
+    "cancel_confirm": "Confirm Cancellation",
+    "cancel_processing": "Canceling...",
+    "cancel_close": "Close",
+    "cancel_success": "Your booking has been canceled.",
+    "cancel_info_title": "Cancellation Info",
+    "cancel_time": "Canceled At",
+    "cancel_time_empty": "Checking",
+    "cancel_by": "Canceled By",
+    "cancel_by_customer": "Customer",
+    "cancel_by_admin": "Salon",
+    "cancel_by_unknown": "Unknown",
+    "cancel_reason_label": "Reason",
+    "cancel_reason_empty": "No reason provided",
+    "change_panel_title": "Request a Change",
+    "change_placeholder": "e.g. I'd like to change to March 20 at 2pm. / I'd like to change my service.",
+    "change_submit": "Send Change Request",
+    "change_processing": "Sending...",
+    "change_close": "Close",
+    "change_success": "Your change request has been sent.",
+    "error_login": "Please check your login status.",
+    "error_load_401": "Sign in to view your bookings.",
+    "error_load": "Could not load your bookings.",
+    "error_cancel_400": "This booking cannot be canceled right now.",
+    "error_cancel_403": "You can only cancel your own bookings.",
+    "error_cancel": "Could not cancel your booking. Please try again later.",
+    "error_cancel_reason": "Please select or enter a cancellation reason.",
+    "error_change_reason": "Please enter what you'd like to change.",
+    "error_change": "Could not send your change request. Please try again later.",
+    "error_alt": "Something went wrong. Please try again later."
+  },
+  "notifications": {
+    "page_title": "Notification Center",
+    "back": "← My Page",
+    "loading": "Loading notifications...",
+    "empty": "No new notifications.",
+    "empty_cta": "Book a Beauty Service",
+    "booking_link": "View Booking Details →",
+    "event_booking_created": "Booking Requested",
+    "event_booking_confirmed": "Booking Confirmed",
+    "event_booking_canceled_by_customer": "Booking Canceled",
+    "event_booking_change_requested": "Change Requested",
+    "event_booking_change_approved": "Change Approved",
+    "event_booking_change_rejected": "Change Declined",
+    "event_booking_completed": "Service Completed",
+    "event_default": "Notification"
   }
 }

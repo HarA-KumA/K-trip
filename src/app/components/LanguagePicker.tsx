@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { changeLanguage } from '@/lib/i18n/client';
+import { useTranslation } from 'react-i18next';
+import { changeLanguage, STORAGE_KEY, isSupportedLocale } from '@/lib/i18n/client';
 import styles from './LanguagePicker.module.css';
 
 export interface LangOption {
@@ -22,36 +23,33 @@ export const LANGUAGES: LangOption[] = [
     { code: 'ms', label: 'Bahasa Melayu', flag: 'MY' },
 ];
 
-import { useTranslation } from 'react-i18next';
-
 interface LanguagePickerProps {
     compact?: boolean;
 }
 
 export default function LanguagePicker({ compact = false }: LanguagePickerProps) {
-    const { t } = useTranslation('common');
-    // Dropdown open state
+    const { t, i18n } = useTranslation('common');
     const [isOpen, setIsOpen] = useState(false);
 
-    // Default to Korean
-    const [current, setCurrent] = useState<LangOption>(LANGUAGES.find(l => l.code === 'ko') || LANGUAGES[0]);
+    // Sync current language with i18n instance
+    const currentCode = i18n.language || 'ko';
+    const current = LANGUAGES.find(l => l.code === currentCode) || LANGUAGES[0];
 
-    // load saved lang from localStorage
     useEffect(() => {
-        const stored = localStorage.getItem('ktrip_lang');
-        if (stored) {
-            const found = LANGUAGES.find(l => l.code === stored);
-            if (found) setCurrent(found);
-        } else {
-            // Default is Korean
-            setCurrent(LANGUAGES.find(l => l.code === 'ko') || LANGUAGES[0]);
+        // Ensure i18n is initialized with the best guess if it's somehow empty
+        if (!i18n.language && typeof window !== 'undefined') {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (isSupportedLocale(stored)) {
+                i18n.changeLanguage(stored);
+            }
         }
-    }, []);
+    }, [i18n]);
 
     const handleSelect = (lang: LangOption) => {
-        setCurrent(lang);
         setIsOpen(false);
-        changeLanguage(lang.code);
+        if (lang.code !== currentCode) {
+            changeLanguage(lang.code);
+        }
     };
 
     return (

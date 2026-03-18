@@ -16,7 +16,7 @@ import th from "../../../public/locales/th/common.json";
 import id from "../../../public/locales/id/common.json";
 import ms from "../../../public/locales/ms/common.json";
 
-const STORAGE_KEY = "ktrip_lang";
+export const STORAGE_KEY = "ktrip_lang";
 const COUNTRY_COOKIE = "user_country";
 
 export const SUPPORTED = ["ko", "en", "ja", "zh-CN", "zh-HK", "vi", "th", "id", "ms"] as const;

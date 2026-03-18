@@ -92,6 +92,11 @@ export default function AdminDashboard() {
             desc: '뷰티 용어집 편집 및 언어별 우선순위 관리', path: '/admin/glossary',
             highlight: null,
         },
+        {
+            icon: '💼', bg: 'rgba(236,72,153,0.1)', title: '뷰티 예약 관리',
+            desc: '예약 요청 조회 및 진행 상태 변경', path: '/admin/bookings/beauty',
+            highlight: null,
+        },
     ];
 
     return (

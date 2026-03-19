@@ -725,6 +725,73 @@ function MyPageContent() {
 
             <QuickActionBar />
 
+            {/* Special Beauty Section & Notification Hub Header */}
+            <section style={{ padding: '0 20px', marginBottom: 28 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+                    <h2 className={styles.sectionTitle} style={{ margin: 0 }}>{t('my_page.bookings.title')}</h2>
+                    <div style={{ display: 'flex', gap: 6 }}>
+                        <button
+                            onClick={() => router.push('/my/settings/notifications')}
+                            style={{
+                                border: '1px solid #7c3aed33',
+                                background: '#7c3aed11',
+                                color: '#7c3aed',
+                                borderRadius: 99,
+                                padding: '6px 12px',
+                                fontSize: '0.75rem',
+                                fontWeight: 700,
+                                cursor: 'pointer'
+                            }}
+                        >알림 설정</button>
+                        <button
+                            onClick={() => router.push('/my/notifications')}
+                            style={{
+                                border: '1px solid #9333ea33',
+                                background: '#9333ea11',
+                                color: '#9333ea',
+                                borderRadius: 99,
+                                padding: '6px 12px',
+                                fontSize: '0.75rem',
+                                fontWeight: 700,
+                                cursor: 'pointer'
+                            }}
+                        >알림함</button>
+                    </div>
+                </div>
+
+                {/* Beauty Booking Quick Link */}
+                <div
+                    onClick={() => router.push('/my/bookings/beauty')}
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 12,
+                        background: 'linear-gradient(135deg, rgba(236,72,153,0.08), rgba(244,114,182,0.05))',
+                        border: '1.5px solid rgba(236,72,153,0.18)',
+                        borderRadius: 16,
+                        padding: '16px',
+                        cursor: 'pointer',
+                        transition: 'transform 0.1s'
+                    }}
+                    onMouseDown={e => e.currentTarget.style.transform = 'scale(0.98)'}
+                    onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
+                >
+                    <div style={{
+                        width: 44, height: 44, borderRadius: 12,
+                        background: 'rgba(236,72,153,0.12)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: '1.4rem', flexShrink: 0
+                    }}>💇</div>
+                    <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#be185d' }}>내 뷰티 예약 보기</div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--gray-500)', marginTop: 2 }}>
+                            예약 상태 및 시술 내용을 한 화면에서 확인하세요.
+                        </div>
+                    </div>
+                    <span style={{ color: '#ec4899', fontSize: '1.2rem' }}>›</span>
+                </div>
+            </section>
+
             <UpcomingBookingsSection bookings={realBookings} />
 
             <TodayPlanSection itinerary={itinerary} />
@@ -737,11 +804,59 @@ function MyPageContent() {
 
             <CommunitySummarySection posts={myPosts} />
 
+            {/* Standard Partner Banner */}
             <PartnerStatusBanner status={partnerStatus} />
 
-            {isAdmin && <AdminShortcutCard />}
+            {/* Detailed Admin Menu (from HEAD) if Admin */}
+            {isAdmin && (
+                <section style={{ padding: '0 20px', marginTop: 28, marginBottom: 40 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+                        <h2 className={styles.sectionTitle} style={{ margin: 0 }}>⚙️ {t('my_page.dashboard.admin_title')}</h2>
+                        <span style={{
+                            background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
+                            color: 'white', fontSize: '0.65rem', fontWeight: 800,
+                            padding: '2px 8px', borderRadius: 99, textTransform: 'uppercase'
+                        }}>Admin</span>
+                    </div>
 
-            <div style={{ height: 40 }} />
+                    {[
+                        { icon: '📊', label: '관리자 대시보드', desc: '통계 및 전체 메뉴', path: '/admin' },
+                        { icon: '💼', label: '뷰티 예약 관리', desc: '예약 요청 및 상태 변경', path: '/admin/bookings/beauty' },
+                        { icon: '🤝', label: '협력업체 관리', desc: '가입 신청 승인 관리', path: '/admin/partners' },
+                        { icon: '🛡️', label: '관리자 계정 관리', desc: '권한 부여 및 상태 해제', path: '/admin/users' },
+                        { icon: '🗂️', label: '번역 용어집', desc: '뷰티 번역 우선순위 관리', path: '/admin/glossary' },
+                    ].map((item) => (
+                        <div
+                            key={item.path}
+                            onClick={() => router.push(item.path)}
+                            style={{
+                                display: 'flex', alignItems: 'center', gap: 14,
+                                background: 'white', borderRadius: 16,
+                                border: '1px solid rgba(124,58,237,0.12)',
+                                padding: '14px 18px', marginBottom: 10,
+                                cursor: 'pointer', boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                                transition: 'transform 0.15s'
+                            }}
+                            onMouseDown={e => e.currentTarget.style.transform = 'scale(0.985)'}
+                            onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
+                        >
+                            <div style={{
+                                width: 42, height: 42, borderRadius: 12,
+                                background: 'rgba(124,58,237,0.07)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                fontSize: '1.25rem', flexShrink: 0
+                            }}>{item.icon}</div>
+                            <div style={{ flex: 1 }}>
+                                <div style={{ fontWeight: 700, fontSize: '0.92rem' }}>{item.label}</div>
+                                <div style={{ fontSize: '0.78rem', color: 'var(--gray-400)', marginTop: 2 }}>{item.desc}</div>
+                            </div>
+                            <span style={{ color: 'var(--gray-300)', fontSize: '1.1rem' }}>›</span>
+                        </div>
+                    ))}
+                </section>
+            )}
+
+            {!isAdmin && <div style={{ height: 40 }} />}
         </div>
     );
 }

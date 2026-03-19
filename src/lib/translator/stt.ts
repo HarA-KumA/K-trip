@@ -20,6 +20,38 @@ const MOCK_TRANSCRIPTS: Record<ConciergeLocale, string[]> = {
     "请尽量做得自然一点。",
     "这里请少一点蓬松度。",
   ],
+  "zh-HK": [
+    "請幫我做得自然一點。",
+    "請先幫我確認一下長度。",
+  ],
+  vi: [
+    "Xin hãy làm tự nhiên giúp tôi.",
+    "Bạn có thể giảm bớt độ phồng ở đây không?",
+  ],
+  th: [
+    "ช่วยทำให้ดูเป็นธรรมชาติหน่อยนะคะ",
+    "ช่วยลดวอลลุ่มตรงนี้ลงหน่อยได้ไหมคะ",
+  ],
+  id: [
+    "Tolong buat hasilnya terlihat alami.",
+    "Bisa kurangi volumenya di bagian ini?",
+  ],
+  ms: [
+    "Tolong buat hasilnya nampak semula jadi.",
+    "Boleh kurangkan sedikit volume di bahagian ini?",
+  ],
+};
+
+const STT_LANGUAGE_LABELS: Record<ConciergeLocale, string> = {
+  ko: "Korean",
+  en: "English",
+  ja: "Japanese",
+  "zh-CN": "Simplified Chinese",
+  "zh-HK": "Traditional Chinese",
+  vi: "Vietnamese",
+  th: "Thai",
+  id: "Indonesian",
+  ms: "Malay",
 };
 
 export interface InterpreterSttProvider {
@@ -102,9 +134,10 @@ export class GeminiInterpreterSttProvider implements InterpreterSttProvider {
 
   async transcribe(request: InterpreterSttRequest): Promise<InterpreterSttResponse> {
     const audioContent = Buffer.from(request.audioBuffer).toString("base64");
+    const languageLabel = STT_LANGUAGE_LABELS[request.language];
 
     const result = await this.model.generateContent([
-      `Transcribe the speech in this audio to ${request.language}. Return only the text.`,
+      `Transcribe the speech in this audio to ${languageLabel}. Return only the text.`,
       {
         inlineData: {
           data: audioContent,

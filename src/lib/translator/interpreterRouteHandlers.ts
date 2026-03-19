@@ -1,4 +1,7 @@
-import { isSupportedTranslationLocale } from "../translation/config.ts";
+import {
+  getSupportedTranslationLocaleListLabel,
+  isSupportedTranslationLocale,
+} from "../translation/config.ts";
 import { normalizeInterpreterTextInput } from "./interpreterUi.ts";
 import type { InterpreterSessionRequest, InterpreterTurnRequest } from "./types.ts";
 
@@ -23,6 +26,8 @@ interface RouteResult<TBody = unknown> {
   body: TBody;
 }
 
+const SUPPORTED_LOCALE_LIST_LABEL = getSupportedTranslationLocaleListLabel();
+
 export async function processInterpreterSessionPost(
   request: Request,
   routeService: SessionRouteService,
@@ -40,7 +45,7 @@ export async function processInterpreterSessionPost(
     if (!isSupportedTranslationLocale(body.customerLocale) || !isSupportedTranslationLocale(body.staffLocale)) {
       return {
         status: 400,
-        body: { error: "customerLocale and staffLocale must be one of ko, en, ja, zh-CN" },
+        body: { error: `customerLocale and staffLocale must be one of ${SUPPORTED_LOCALE_LIST_LABEL}` },
       };
     }
 
@@ -118,7 +123,7 @@ export async function processInterpreterSttPost(
     if (typeof language !== "string" || !isSupportedTranslationLocale(language)) {
       return {
         status: 400,
-        body: { error: "language must be one of ko, en, ja, zh-CN" },
+        body: { error: `language must be one of ${SUPPORTED_LOCALE_LIST_LABEL}` },
       };
     }
 

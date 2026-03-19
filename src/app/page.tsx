@@ -1,17 +1,80 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
+import { supabase } from '@/lib/supabaseClient';
+import { useTrip } from '@/lib/contexts/TripContext';
+import { MOCK_ITEMS } from './explore/mock/data';
+
 import LanguagePicker from './components/LanguagePicker';
 import CurrencySelector from './components/CurrencySelector';
 import WeatherWidget from './components/WeatherWidget';
 import styles from './home.module.css';
-import { supabase } from '@/lib/supabaseClient';
-
-import { useTranslation } from 'react-i18next';
-import { useTrip } from '@/lib/contexts/TripContext';
-import { MOCK_ITEMS, ServiceItem } from './explore/mock/data';
 import ExploreMap from './explore/components/ExploreMap';
+
+type BeautyCategoryId = 'hair' | 'nail' | 'esthetic' | 'waxing' | 'makeup' | 'lash';
+
+type BeautyCategoryOption = {
+  id: BeautyCategoryId;
+  code: string;
+  label: string;
+  english: string;
+  note: string;
+  summary: string;
+};
+
+const BEAUTY_CATEGORY_OPTIONS: BeautyCategoryOption[] = [
+  {
+    id: 'hair',
+    code: 'HAIR',
+    label: '헤어',
+    english: 'Hair',
+    note: '커트, 펌, 염색, 드라이',
+    summary: '스타일 체인지부터 가벼운 손질까지 가장 빠르게 예약을 시작할 수 있어요.',
+  },
+  {
+    id: 'nail',
+    code: 'NAIL',
+    label: '네일',
+    english: 'Nail',
+    note: '젤네일, 케어, 연장',
+    summary: '원하는 무드와 디자인을 정하고 가볍게 예약 단계로 넘어갈 수 있어요.',
+  },
+  {
+    id: 'esthetic',
+    code: 'CARE',
+    label: '에스테틱',
+    english: 'Esthetic',
+    note: '피부관리, 윤곽, 진정 케어',
+    summary: '피부 상태와 원하는 관리 목적에 맞춰 매장을 비교하고 예약할 수 있어요.',
+  },
+  {
+    id: 'waxing',
+    code: 'WAX',
+    label: '왁싱',
+    english: 'Waxing',
+    note: '페이스, 바디, 브라질리언',
+    summary: '부위와 일정에 맞는 매장을 빠르게 찾고 예약 흐름으로 이어집니다.',
+  },
+  {
+    id: 'makeup',
+    code: 'MAKE',
+    label: '메이크업',
+    english: 'Makeup',
+    note: '데일리, 촬영, 웨딩',
+    summary: '행사 일정에 맞는 메이크업 서비스를 선택하고 바로 예약을 시작할 수 있어요.',
+  },
+  {
+    id: 'lash',
+    code: 'LASH',
+    label: '속눈썹',
+    english: 'Lash',
+    note: '연장, 펌, 언더래쉬',
+    summary: '자연스러운 연장부터 볼륨 스타일링까지 원하는 메뉴로 바로 연결됩니다.',
+  },
+];
 
 const MOCK_PLACES = [
   { title: '롯데백화점 본점', area: '서울특별시 중구 남대문로 81', lat: 37.5647, lng: 126.9818 },
@@ -24,19 +87,35 @@ const MOCK_PLACES = [
   { title: '명동 예술극장', area: '서울특별시 중구 명동길 35', lat: 37.5645, lng: 126.9845 }
 ];
 
+const ASSURANCE_ITEMS = [
+  {
+    title: '한눈에 카테고리 선택',
+    description: '첫 화면에서 원하는 서비스를 먼저 고르고 예약 흐름으로 바로 진입합니다.',
+  },
+  {
+    title: '언어 걱정 없는 예약',
+    description: '필요할 때 실시간 통역 도우미로 매장과 자연스럽게 대화할 수 있습니다.',
+  },
+  {
+    title: '모바일 우선 예약 동선',
+    description: '한 손으로도 선택하기 쉬운 카드형 버튼과 큰 CTA로 전환을 높였습니다.',
+  },
+];
+
 export default function HomePage() {
   const { t, i18n } = useTranslation('common');
   const { tripStatus, itinerary, setItinerary, setTripDays } = useTrip();
   const router = useRouter();
 
   const hasSupabaseAuth = Boolean(
-    process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   );
 
   const [input, setInput] = useState('');
   const [days, setDays] = useState(3);
   const [activeValueIdx, setActiveValueIdx] = useState(0);
   const [userName, setUserName] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<BeautyCategoryId | null>(null);
 
   // Navigation Sheet States
   const [openNavSheet, setOpenNavSheet] = useState(false);
@@ -221,6 +300,7 @@ export default function HomePage() {
     return RECOMMENDED_PLANS.filter(p => p.duration === days);
   }, [RECOMMENDED_PLANS, days]);
 
+
   useEffect(() => {
     // Read localStorage immediately for fast initial render
     if (typeof window !== 'undefined') {
@@ -287,9 +367,9 @@ export default function HomePage() {
           const user = session.user;
           setUserName(
             user.user_metadata?.full_name ||
-            user.user_metadata?.name ||
-            user.email?.split('@')[0] ||
-            'User'
+              user.user_metadata?.name ||
+              user.email?.split('@')[0] ||
+              'User',
           );
           return;
         }
@@ -310,10 +390,31 @@ export default function HomePage() {
     };
   }, [hasSupabaseAuth]);
 
+  const handleSignOut = async () => {
+    if (!hasSupabaseAuth) return;
+
+    try {
+      const { supabase } = await import('@/lib/supabaseClient');
+      await supabase.auth.signOut();
+    } finally {
+      setUserName(null);
+    }
+  };
+
+  const handleStartBooking = () => {
+    if (!selectedCategory) {
+      return;
+    }
+
+    router.push(`/explore?category=beauty&beautyCategory=${selectedCategory}`);
+  };
+
   const handleOpenInterpreter = () => {
     router.push('/interpreter');
   };
 
+  const selectedOption =
+    BEAUTY_CATEGORY_OPTIONS.find((option) => option.id === selectedCategory) ?? null;
   // Safe translation helper
   const homeTrans = (key: string, defaultValue?: string): any => {
     const defaultVal = defaultValue || key;
@@ -519,89 +620,161 @@ export default function HomePage() {
         <WeatherWidget />
         <CurrencySelector />
         {!userName ? (
-          <>
+          <div className={styles.navAuthWrap}>
             <button className={styles.navBtn} onClick={() => router.push('/auth/signup')}>{t('common.signup')}</button>
             <button className={`${styles.navBtn} ${styles.navBtnPrimary}`} onClick={() => router.push('/auth/login')}>{t('common.login')}</button>
-          </>
+          </div>
         ) : (
-          <button className={styles.navBtn} onClick={async () => { await supabase.auth.signOut(); localStorage.removeItem('user'); setUserName(null); }}>{userName}</button>
+          <button className={styles.navBtn} onClick={handleSignOut}>
+            {userName}님 👋
+          </button>
         )}
       </div>
 
-      <div className={styles.orbPurple} />
-      <div className={styles.orbBlue} />
+      <div className={styles.backgroundEffects}>
+        <div className={styles.orbPurple} />
+        <div className={styles.orbBlue} />
+      </div>
 
-      <section className={styles.hero}>
-        <img src="/kello-logo.png" alt="Kello" className={styles.heroLogo} />
-        {userName ? (
-          <p className={styles.heroGreeting} suppressHydrationWarning>{getGreeting()}, {userName}님! 👋</p>
-        ) : null}
-        <div className={styles.heroChips}>
-          <span className={styles.heroChip}>🎫 <span suppressHydrationWarning>{t('home.value_props.booking.title')}</span></span>
-          <span className={styles.heroChip}>🗓️ <span suppressHydrationWarning>{t('home.value_props.itinerary.title')}</span></span>
-          <span className={styles.heroChip}>🗺️ <span suppressHydrationWarning>{t('home.value_props.navigation.title')}</span></span>
-        </div>
+      <section className={styles.heroSection}>
+        <Image src="/kello-logo.png" alt="Kello" width={124} height={28} className={styles.heroLogo} priority />
+        <div className={styles.heroEyebrow}>{t('home_beauty.hero.eyebrow')}</div>
+        <h1 className={styles.heroTitle}>
+          {userName ? (
+            <span suppressHydrationWarning>{getGreeting()}, {userName}님! 👋</span>
+          ) : (
+            t('home_beauty.hero.title')
+          )}
+        </h1>
+        <p className={styles.heroSubtitle}>
+          {t('home_beauty.hero.subtitle')}
+        </p>
       </section>
 
+      <section className={styles.bookingShell}>
+        <div className={styles.bookingCard}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionEyebrow}>{t('home_beauty.booking.step')}</span>
+            <h2 className={styles.sectionTitle}>{t('home_beauty.booking.title')}</h2>
+            <p className={styles.sectionDescription}>
+              {t('home_beauty.booking.description')}
+            </p>
+          </div>
 
+          <div className={styles.categoryGrid}>
+            {BEAUTY_CATEGORY_OPTIONS.map((option) => {
+              const isActive = selectedCategory === option.id;
 
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  className={`${styles.categoryButton} ${isActive ? styles.categoryButtonActive : ''}`}
+                  onClick={() => setSelectedCategory(option.id)}
+                >
+                  <span className={styles.categoryCode}>{option.code}</span>
+                  <span className={styles.categoryLabel}>{t(`home_beauty.categories.${option.id}.label`)}</span>
+                  <span className={styles.categoryEnglish}>{option.english}</span>
+                  <span className={styles.categoryNote}>{t(`home_beauty.categories.${option.id}.note`)}</span>
+                </button>
+              );
+            })}
+          </div>
 
+          <section className={styles.inputSection}>
+            <div className={styles.inputLabel}>{t('home.input_label')}</div>
+            <div className={styles.inputWrap}>
+              <span className={styles.inputIcon}>📍</span>
+              <input
+                className={styles.inputField}
+                placeholder={t('home.input_placeholder')}
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') {
+                    if (e.nativeEvent.isComposing) return;
+                    handleStart();
+                  }
+                }}
+              />
+              {input && <button className={styles.inputClear} onClick={() => setInput('')}>✕</button>}
 
-      <section className={styles.inputSection}>
-        <div className={styles.inputLabel}>{t('home.input_label')}</div>
-        <div className={styles.inputWrap}>
-          <span className={styles.inputIcon}>📍</span>
-          <input
-            className={styles.inputField}
-            placeholder={t('home.input_placeholder')}
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={e => {
-              if (e.key === 'Enter') {
-                if (e.nativeEvent.isComposing) return; // Prevent double trigger during Korean composition
-                handleStart();
-              }
-            }}
-          />
-          {input && <button className={styles.inputClear} onClick={() => setInput('')}>✕</button>}
-
-          {/* Place Search Suggestions */}
-          {showSuggestions && suggestions.length > 0 && (
-            <div className={styles.suggestions}>
-              {suggestions.map((p, idx) => (
-                <div key={idx} className={styles.suggestionItem} onClick={() => handleSelectPlace(p)}>
-                  <span className={styles.suggestIcon}>🏢</span>
-                  <div className={styles.suggestText}>
-                    <div className={styles.suggestName}>{p.title}</div>
-                    <div className={styles.suggestSub}>{p.area}</div>
-                  </div>
+              {showSuggestions && suggestions.length > 0 && (
+                <div className={styles.suggestions}>
+                  {suggestions.map((p, idx) => (
+                    <div key={idx} className={styles.suggestionItem} onClick={() => handleSelectPlace(p)}>
+                      <span className={styles.suggestIcon}>🏢</span>
+                      <div className={styles.suggestText}>
+                        <div className={styles.suggestName}>{p.title}</div>
+                        <div className={styles.suggestSub}>{p.area}</div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
-          )}
-        </div>
-        <div className={styles.daysSliderSection}>
-          <div className={styles.daysSliderInfo}>
-            <span className={styles.daysLabel}>{t('home.days_label')}</span>
-            <span className={styles.daysValue}>{days}{t('common.day_unit', { defaultValue: 'd' })}</span>
-          </div>
-          <div className={styles.sliderContainer}>
-            <input
-              type="range"
-              min="1"
-              max="7"
-              value={days}
-              onChange={(e) => setDays(parseInt(e.target.value))}
-              className={styles.daysRangeInput}
-            />
-            <div className={styles.sliderTicks}>
-              {[1, 2, 3, 4, 5, 6, 7].map(d => (
-                <span key={d} className={`${styles.tick} ${days === d ? styles.tickActive : ''}`} onClick={() => setDays(d)}>{d}</span>
-              ))}
+            <div className={styles.daysSliderSection}>
+              <div className={styles.daysSliderInfo}>
+                <span className={styles.daysLabel}>{t('home.days_label')}</span>
+                <span className={styles.daysValue}>{days}{t('common.day_unit', { defaultValue: 'd' })}</span>
+              </div>
+              <div className={styles.sliderContainer}>
+                <input
+                  type="range"
+                  min="1"
+                  max="7"
+                  value={days}
+                  onChange={(e) => setDays(parseInt(e.target.value))}
+                  className={styles.daysRangeInput}
+                />
+                <div className={styles.sliderTicks}>
+                  {[1, 2, 3, 4, 5, 6, 7].map(d => (
+                    <span key={d} className={`${styles.tick} ${days === d ? styles.tickActive : ''}`} onClick={() => setDays(d)}>{d}</span>
+                  ))}
+                </div>
+              </div>
             </div>
+            <button className={styles.ctaBtn} onClick={handleStart}>
+              <span>{t('home.create_trip_cta')}</span><span className={styles.ctaArrow}>→</span>
+            </button>
+          </section>
+
+          <div className={styles.selectionPanel}>
+            <span className={styles.selectionEyebrow}>{t('home_beauty.selection.eyebrow')}</span>
+            {selectedOption ? (
+              <div className={styles.selectionRow}>
+                <div>
+                  <h3 className={styles.selectionTitle}>{t(`home_beauty.categories.${selectedOption.id}.label`)}</h3>
+                  <p className={styles.selectionDescription}>{t(`home_beauty.categories.${selectedOption.id}.summary`)}</p>
+                </div>
+                <div className={styles.selectionTagRow}>
+                  <span className={styles.selectionTag}>{t('home_beauty.selection.tags.mobile')}</span>
+                  <span className={styles.selectionTag}>{t('home_beauty.selection.tags.comparison')}</span>
+                  <span className={styles.selectionTag}>{t('home_beauty.selection.tags.inquiry')}</span>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.selectionEmpty}>
+                {t('home_beauty.selection.empty')}
+              </div>
+            )}
+          </div>
+
+          <div className={styles.ctaSection}>
+            <p className={styles.ctaHint}>
+              {t('home_beauty.cta.hint')}
+            </p>
+            <button
+              className={styles.mainCtaBtn}
+              type="button"
+              disabled={!selectedCategory}
+              onClick={handleStartBooking}
+            >
+              {t('home_beauty.cta.button')}
+              <span className={styles.arrowIcon}>→</span>
+            </button>
           </div>
         </div>
-        <button className={styles.ctaBtn} onClick={handleStart}><span>{t('home.create_trip_cta')}</span><span className={styles.ctaArrow}>→</span></button>
       </section>
 
       <section className={styles.featuredSection}>
@@ -626,6 +799,28 @@ export default function HomePage() {
               <span className={styles.planTitle}>{t('home.plans.request_custom_title', { days, defaultValue: `Create My Own ${days}-Day Plan` })}</span>
             </div>
           </button>
+        </div>
+      </section>
+
+      <section className={styles.supportSection}>
+        <article className={styles.interpreterCard}>
+          <span className={styles.interpreterEyebrow}>{t('home_beauty.interpreter.eyebrow')}</span>
+          <h2 className={styles.interpreterTitle}>{t('home_beauty.interpreter.title')}</h2>
+          <p className={styles.interpreterDescription}>
+            {t('home_beauty.interpreter.description')}
+          </p>
+          <button className={styles.secondaryBtn} type="button" onClick={handleOpenInterpreter}>
+            {t('home_beauty.interpreter.button')}
+          </button>
+        </article>
+
+        <div className={styles.assuranceGrid}>
+          {ASSURANCE_ITEMS.map((item, index) => (
+            <article key={item.title} className={styles.assuranceCard}>
+              <h3 className={styles.assuranceTitle}>{t(`home_beauty.assurance.items.${index}.title`)}</h3>
+              <p className={styles.assuranceDescription}>{t(`home_beauty.assurance.items.${index}.desc`)}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -712,6 +907,7 @@ export default function HomePage() {
               <button className={styles.mapCloseBtn} onClick={() => setIsMapOpen(false)}>✕</button>
             </div>
             <div className={styles.mapContainer}>
+              {/* @ts-ignore */}
               <ExploreMap
                 items={[]}
                 center={{ lat: destInfo.lat, lng: destInfo.lng, name: destInfo.nameKo }}

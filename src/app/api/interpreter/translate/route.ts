@@ -1,9 +1,14 @@
 import { NextResponse } from "next/server";
 
-import { isSupportedTranslationLocale } from "@/lib/translation/config.ts";
+import {
+  getSupportedTranslationLocaleListLabel,
+  isSupportedTranslationLocale,
+} from "@/lib/translation/config.ts";
 import { translateInterpreterText } from "@/lib/translator/interpreterTranslator.ts";
 
 export const runtime = "nodejs";
+
+const SUPPORTED_LOCALE_LIST_LABEL = getSupportedTranslationLocaleListLabel();
 
 type InterpreterTranslateRequest = {
   sourceText?: unknown;
@@ -39,7 +44,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           ok: false,
-          error: "sourceLang and targetLang must be one of ko, en, ja, zh-CN",
+          error: `sourceLang and targetLang must be one of ${SUPPORTED_LOCALE_LIST_LABEL}`,
         },
         { status: 400 },
       );

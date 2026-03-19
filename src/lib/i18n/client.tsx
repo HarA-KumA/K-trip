@@ -26,6 +26,7 @@ import {
     resolveCanonicalLocale,
 } from "@/lib/i18n/locales";
 
+
 const resources = {
     en: { common: en },
     ko: { common: ko },

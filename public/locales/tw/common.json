@@ -205,6 +205,94 @@
             }
         }
     },
+  "home_beauty": {
+    "hero": {
+      "eyebrow": "Beauty Booking Concierge",
+      "title": "您想預約什麼服務？",
+      "subtitle": "首先選擇您想要的美容服務，然後直接進入預約步驟。我們專為手機快速選擇而設計，隨後是店舖對比和預約請求。",
+      "welcome": "{{name}}，請選擇您今天需要的服務。"
+    },
+    "booking": {
+      "step": "Step 1",
+      "title": "請選擇您想要的美容服務",
+      "description": "選擇類別後，您可以在下一步中根據該服務開始探索預約。"
+    },
+    "categories": {
+      "hair": {
+        "label": "美髮",
+        "note": "剪髮、燙髮、染髮、吹風",
+        "summary": "從改變髮型到輕便修整，可以最快開始預約。"
+      },
+      "nail": {
+        "label": "美甲",
+        "note": "凝膠美甲、護理、延長",
+        "summary": "確定想要的心情和設計，輕鬆進入預約階段。"
+      },
+      "esthetic": {
+        "label": "皮膚管理",
+        "note": "皮膚護理、輪廓、鎮靜護理",
+        "summary": "根據皮膚狀況和管理目的，對比店舖並進行預約。"
+      },
+      "waxing": {
+        "label": "脫毛",
+        "note": "面部、身體、比基尼",
+        "summary": "快速找到適合部位和日程的店舖並進入預約流程。"
+      },
+      "makeup": {
+        "label": "化妝",
+        "note": "日常、拍攝、婚禮",
+        "summary": "選擇適合活動日程的化妝服務，立即開始預約。"
+      },
+      "lash": {
+        "label": "美睫",
+        "note": "嫁接、燙睫毛、下睫毛",
+        "summary": "從自然嫁接到濃密造型，直接連接到您想要的選單。"
+      }
+    },
+    "selection": {
+      "eyebrow": "Selected Category",
+      "tags": {
+        "mobile": "手機預約",
+        "comparison": "店舖對比",
+        "inquiry": "實時諮詢"
+      },
+      "empty": "請先選擇一個類別。選擇後將激活開始預約按鈕。"
+    },
+    "cta": {
+      "hint": "在下一個螢幕上根據所選類別探索可用的美容服務。",
+      "button": "開始預約"
+    },
+    "interpreter": {
+      "eyebrow": "Language Support",
+      "title": "如果需要外語預約，請使用翻譯助手",
+      "description": "擔心預約前諮詢或進店溝通？可以透過實時翻譯功能直接聯繫。",
+      "button": "開啟翻譯助手"
+    },
+    "assurance": {
+      "items": [
+        {
+          "title": "一目了然的選擇類別",
+          "desc": "在第一個螢幕上先選好服務，直接進入預約流程。"
+        },
+        {
+          "title": "無語言擔憂的預約",
+          "desc": "必要時透過實時翻譯助手與店舖自然溝通。"
+        },
+        {
+          "title": "移動優先的預約流程",
+          "desc": "卡片式按鈕和大型 CTA 使單手操作更輕鬆，提高轉換率。"
+        }
+      ]
+    }
+  },
+  "interpreter_ui": {
+    "customer_speaks": "顧客語言",
+    "staff_speaks": "店舖語言",
+    "customer_language": "顧客使用語言",
+    "staff_language": "店舖使用語言",
+    "session": "對話",
+    "expires": "到期"
+  },
     "home": {
         "presets": {
             "beauty_tour": "Beauty Tour",

@@ -24,6 +24,11 @@ const LANGUAGE_LABELS: Record<string, string> = {
   en: "English",
   ja: "Japanese",
   "zh-CN": "Simplified Chinese",
+  "zh-HK": "Traditional Chinese",
+  vi: "Vietnamese",
+  th: "Thai",
+  id: "Indonesian",
+  ms: "Malay",
 };
 
 class MockInterpreterTranscriptionProvider implements InterpreterTranscriptionProvider {

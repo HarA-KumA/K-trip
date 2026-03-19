@@ -34,7 +34,11 @@ function detectIntent(message: string): ConciergeIntent {
     }
   }
 
-  if (BEAUTY_SERVICE_CATALOG.some((service) => service.aliases.ko.some((alias) => message.includes(alias)))) {
+  if (
+    BEAUTY_SERVICE_CATALOG.some((service) =>
+      (service.aliases.ko ?? []).some((alias) => message.includes(alias)),
+    )
+  ) {
     return "availability";
   }
 

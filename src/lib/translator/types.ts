@@ -32,7 +32,7 @@ export interface BeautyServiceCatalogItem {
   id: string;
   category: "beauty";
   canonicalName: string;
-  aliases: Record<ConciergeLocale, string[]>;
+  aliases: Partial<Record<ConciergeLocale, string[]>>;
   priceKrw: number;
   durationMinutes: number;
   cancellationPolicy: string;

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import { changeLanguage } from '@/lib/i18n/client';
 import { LOCALE_STORAGE_KEY, resolveCanonicalLocale } from '@/lib/i18n/locales';
 import styles from './LanguagePicker.module.css';
@@ -30,23 +29,27 @@ interface LanguagePickerProps {
 }
 
 export default function LanguagePicker({ compact = false }: LanguagePickerProps) {
-    const { t } = useTranslation('common');
+    const { t, i18n } = useTranslation('common');
     const [isOpen, setIsOpen] = useState(false);
-    const [current, setCurrent] = useState<LangOption>(LANGUAGES[0]);
+    
+    // Sync current language with i18n instance
+    const currentCode = i18n.language || 'ko';
+    const current = LANGUAGES.find(l => l.code === currentCode) || LANGUAGES[0];
 
     useEffect(() => {
         const stored = resolveCanonicalLocale(localStorage.getItem(LOCALE_STORAGE_KEY), 'ko');
-        const found = LANGUAGES.find((option) => option.code === stored);
-        if (found) {
-            setCurrent(found);
+        if (stored && stored !== i18n.language) {
+             i18n.changeLanguage(stored);
         }
-    }, []);
+    }, [i18n]);
 
     const handleSelect = (lang: LangOption) => {
-        setCurrent(lang);
         setIsOpen(false);
-        changeLanguage(lang.code);
+        if (lang.code !== currentCode) {
+            changeLanguage(lang.code);
+        }
     };
+
 
     return (
         <div className={styles.wrapper}>

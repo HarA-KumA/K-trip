@@ -134,6 +134,39 @@
     appearance: none;
 }
 
+.langButtonGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
+}
+
+.langButton {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.langButtonActive {
+    border-color: #6366f1;
+    background: #eef2ff;
+    color: #4f46e5;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1);
+}
+
+.langButtonStaffActive {
+    border-color: #f59e0b;
+    background: #fffbeb;
+    color: #b45309;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.1);
+}
+
 .langSwapBtn {
     background: #f1f5f9;
     border: 1.5px solid #e2e8f0;
@@ -295,11 +328,10 @@
 }
 
 .quickPhraseScroll {
-    display: flex;
-    overflow-x: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
     padding-bottom: 4px;
-    scrollbar-width: none; /* Firefox */
 }
 
 .quickPhraseScroll::-webkit-scrollbar {

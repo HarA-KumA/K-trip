@@ -41,8 +41,25 @@
       "attraction": "Tarikan",
       "transport": "Pengangkutan"
     },
-    "community_nav": "Community"
+    "community_nav": "Community",
+    "view_map": "Lihat Lokasi",
+    "view_map_desc": "Lihat lokasi terperinci pada peta",
+    "taxi_call": "Panggil Teksi",
+    "route_nav": "Panduan Laluan",
+    "transit_nav_desc": "Navigasi pengangkutan awam",
+    "copy_address": "Salin Alamat",
+    "copied": "Disalin!"
   },
+  "categories": {
+    "all": "Semua",
+    "food": "Makanan",
+    "beauty": "Kecantikan",
+    "event": "Acara",
+    "festival": "Festival",
+    "attraction": "Tarikan",
+    "transport": "Pengangkutan"
+  },
+  "community_nav": "Community",
   "home_beauty": {
     "hero": {
       "eyebrow": "Beauty Booking Concierge",
@@ -440,6 +457,48 @@
         "default": "☆ Simpan",
         "saved": "⭐ Disimpan"
       }
+    }
+  },
+  "home_new": {
+    "hero_title": "Percutian Korea, dari jadual hingga tempahan semua dalam satu",
+    "hero_subtitle": "Dari cadangan jadual perjalanan hingga sokongan tempahan dengan pantas. Rakan kongsi yang mudah digunakan walaupun untuk pemula di Korea.",
+    "features": {
+      "booking": "Tempahan serentak",
+      "ai_plan": "Jadual siap dengan AI",
+      "navi": "Tanpa risau sesat jalan"
+    },
+    "input": {
+      "where": "Hendak ke mana?",
+      "where_placeholder": "Seoul, Busan, Jeju...",
+      "when": "Berapa lama menginap?",
+      "days_suffix": " Hari",
+      "who": "Pergi dengan siapa?",
+      "who_options": {
+        "solo": "Bersendirian",
+        "couple": "Pasangan",
+        "friends": "Bersama kawan",
+        "family": "Bersama keluarga"
+      },
+      "interests": "Tema apa yang anda mahukan?",
+      "interests_options": {
+        "food": "Jelajah Makanan",
+        "shopping": "Membeli-belah",
+        "beauty": "K-Beauty",
+        "sightseeing": "Tempat Tarikan",
+        "night": "Kehidupan Malam",
+        "experience": "Pengalaman Unik"
+      }
+    },
+    "cta_helper": "Dapatkan laluan pelancongan yang sesuai dalam 1 minit",
+    "cta_btn": "Mula buat jadual",
+    "trust": {
+      "title": "Percutian Tenang bersama Kello",
+      "items": [
+        "Aplikasi khusus pelancongan Korea",
+        "Cadangan jadual AI yang diperibadikan",
+        "Panduan arah tanpa halangan bahasa",
+        "Sokongan tempahan di tempat yang sukar"
+      ]
     }
   },
   "beauty_bookings": {

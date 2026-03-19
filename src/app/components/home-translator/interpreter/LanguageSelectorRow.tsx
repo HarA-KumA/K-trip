@@ -36,11 +36,11 @@ export function LanguageSelectorRow(props: LanguageSelectorRowProps) {
         </div>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold text-slate-700">
-          {t('interpreter_ui.customer_language')}
+          <span className="text-[11px] font-black uppercase tracking-wider text-slate-400">{t('interpreter_ui.customer_language')}</span>
           <select
-            className="min-h-[56px] w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-base font-semibold text-slate-900"
+            className="min-h-[52px] w-full rounded-2xl border border-slate-100 bg-white px-4 py-2 text-base font-bold text-slate-900 shadow-sm focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
             value={customerLocale}
             onChange={(event) => onCustomerLocaleChange(event.target.value as ConciergeLocale)}
           >
@@ -53,9 +53,9 @@ export function LanguageSelectorRow(props: LanguageSelectorRowProps) {
         </label>
 
         <label className="grid gap-2 text-sm font-bold text-slate-700">
-          {t('interpreter_ui.staff_language')}
+          <span className="text-[11px] font-black uppercase tracking-wider text-slate-400">{t('interpreter_ui.staff_language')}</span>
           <select
-            className="min-h-[56px] w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-base font-semibold text-slate-900"
+            className="min-h-[52px] w-full rounded-2xl border border-slate-100 bg-white px-4 py-2 text-base font-bold text-slate-900 shadow-sm focus:border-amber-500 focus:ring-2 focus:ring-amber-200"
             value={staffLocale}
             onChange={(event) => onStaffLocaleChange(event.target.value as ConciergeLocale)}
           >
@@ -75,7 +75,7 @@ export function LanguageSelectorRow(props: LanguageSelectorRowProps) {
         <code className="rounded-full bg-slate-950 px-3 py-1 font-mono text-[11px] text-white">
           {session?.ephemeralToken.slice(0, 12) ?? "creating"}
         </code>
-        <span>{t('interpreter_ui.expires')} {session?.expiresAt ? new Date(session.expiresAt).toLocaleTimeString() : "--"}</span>
+        <span className="ml-auto font-medium">{t('interpreter_ui.expires')} {session?.expiresAt ? new Date(session.expiresAt).toLocaleTimeString() : "--"}</span>
       </div>
     </div>
   );

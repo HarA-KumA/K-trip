@@ -4,13 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import styles from "./BottomNav.module.css";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-
-import { homeTab } from "./BottomNav/tabs/home";
-import { exploreTab } from "./BottomNav/tabs/explore";
-import { itineraryTab } from "./BottomNav/tabs/itinerary";
-import { communityTab } from "./BottomNav/tabs/community";
-import { helpTab } from "./BottomNav/tabs/help";
-import { myTab } from "./BottomNav/tabs/my";
+import { navItems } from "./navigationConfig";
 
 export default function BottomNav() {
     const { t } = useTranslation('common');
@@ -18,17 +12,13 @@ export default function BottomNav() {
     const pathname = usePathname();
     const [activeTab, setActiveTab] = useState("/");
 
-    const navItems = [
-        homeTab(t),
-        exploreTab(t),
-        itineraryTab(t),
-        communityTab(t),
-        helpTab(t),
-        myTab(t),
-    ];
+    const localizedNavItems = navItems.map(item => ({
+        ...item,
+        label: t(item.labelKey, { defaultValue: item.defaultLabel })
+    }));
 
     useEffect(() => {
-        const matched = navItems.find(item => {
+        const matched = localizedNavItems.find(item => {
             if (item.activeKey === "/") return pathname === "/";
             return pathname.startsWith(item.activeKey);
         });
@@ -40,7 +30,7 @@ export default function BottomNav() {
 
     return (
         <nav className={styles.navBar}>
-            {navItems.map((item) => {
+            {localizedNavItems.map((item) => {
                 const isActive = activeTab === item.activeKey;
                 return (
                     <div

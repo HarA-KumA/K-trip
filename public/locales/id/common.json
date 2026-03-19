@@ -41,8 +41,25 @@
       "attraction": "Wisata",
       "transport": "Transportasi"
     },
-    "community_nav": "Community"
+    "community_nav": "Community",
+    "view_map": "Lihat Lokasi",
+    "view_map_desc": "Lihat lokasi detail di peta",
+    "taxi_call": "Panggil Taksi",
+    "route_nav": "Panduan Rute",
+    "transit_nav_desc": "Navigasi transportasi umum",
+    "copy_address": "Salin Alamat",
+    "copied": "Tersalin!"
   },
+  "categories": {
+    "all": "Semua",
+    "food": "Makanan",
+    "beauty": "Kecantikan",
+    "event": "Acara",
+    "festival": "Festival",
+    "attraction": "Wisata",
+    "transport": "Transportasi"
+  },
+  "community_nav": "Community",
   "home_beauty": {
     "hero": {
       "eyebrow": "Beauty Booking Concierge",
@@ -421,6 +438,48 @@
         "default": "☆ Simpan",
         "saved": "⭐ Tersimpan"
       }
+    }
+  },
+  "home_new": {
+    "hero_title": "Wisata Korea, dari rencana hingga pemesanan dalam satu aplikasi",
+    "hero_subtitle": "Dari rekomendasi rencana perjalanan hingga dukungan pemesanan dengan cepat. Mitra yang mudah digunakan bahkan bagi pemula di Korea.",
+    "features": {
+      "booking": "Pemesanan sekaligus",
+      "ai_plan": "Rencana selesai dengan AI",
+      "navi": "Tanpa khawatir tersesat"
+    },
+    "input": {
+      "where": "Mau ke mana?",
+      "where_placeholder": "Seoul, Busan, Jeju...",
+      "when": "Berapa lama menginap?",
+      "days_suffix": " Hari",
+      "who": "Pergi dengan siapa?",
+      "who_options": {
+        "solo": "Sendiri",
+        "couple": "Pasangan",
+        "friends": "Bersama teman",
+        "family": "Bersama keluarga"
+      },
+      "interests": "Tema apa yang Anda inginkan?",
+      "interests_options": {
+        "food": "Wisata Kuliner",
+        "shopping": "Belanja",
+        "beauty": "K-Beauty",
+        "sightseeing": "Tempat Wisata",
+        "night": "Kehidupan Malam",
+        "experience": "Pengalaman Unik"
+      }
+    },
+    "cta_helper": "Dapatkan rute wisata yang pas dalam 1 menit",
+    "cta_btn": "Mulai buat rencana",
+    "trust": {
+      "title": "Wisata Nyaman bersama Kello",
+      "items": [
+        "Aplikasi khusus wisata Korea",
+        "Rekomendasi rencana AI yang dipersonalisasi",
+        "Panduan arah tanpa hambatan bahasa",
+        "Dukungan pemesanan di tempat yang sulit"
+      ]
     }
   },
   "beauty_bookings": {
